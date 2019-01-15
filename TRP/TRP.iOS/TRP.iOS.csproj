@@ -141,4 +141,13 @@
       <Name>TRP</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\penguin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\penguin%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\penguin%403x.png" />
+  </ItemGroup>
 </Project>

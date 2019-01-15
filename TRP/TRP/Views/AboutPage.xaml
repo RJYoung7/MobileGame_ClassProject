@@ -77,6 +77,10 @@
               <Label>Hi FROM LOLITA </Label>
               <Label>Hi FROM LOLITA AGAIN </Label>
 
+
+                <Image Source="penguin.png"></Image> 
+                
+                
             </StackLayout>
         </ScrollView>
     </Grid>
