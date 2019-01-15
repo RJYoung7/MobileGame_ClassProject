@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\ItemNewPage.xaml.cs">
+    <Compile Update="Views\Item\ItemNewPage.xaml.cs">
       <DependentUpon>ItemNewPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
