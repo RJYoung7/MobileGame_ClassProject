@@ -74,7 +74,7 @@
                         TextColor="White" />
 
                 <Label>Hi Mike Here</Label>
-                
+              <Label>Hi FROM LOLITA </Label>
                 
             </StackLayout>
         </ScrollView>
