@@ -73,7 +73,7 @@
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
 
-                <Label>Hi Mike Here</Label>
+                <Label>Hi Mike Here !!!!!</Label>
               <Label>Hi FROM LOLITA </Label>
               <Label>Hi FROM LOLITA AGAIN </Label>
 
