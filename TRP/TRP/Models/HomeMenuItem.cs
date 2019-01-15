@@ -7,7 +7,8 @@ namespace TRP.Models
     public enum MenuItemType
     {
         Browse,
-        About
+        About,
+        Game
     }
     public class HomeMenuItem
     {
