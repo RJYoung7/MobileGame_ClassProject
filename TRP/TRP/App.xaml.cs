@@ -1,9 +1,9 @@
 ﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using TRP.Views;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+using TRP.Views;
+using Xamarin.Forms;
+using SQLite;
+
 namespace TRP
 {
     public partial class App : Application
@@ -13,8 +13,10 @@ namespace TRP
         {
             InitializeComponent();
 
-
             MainPage = new MainPage();
+
+            // Load The Mock Datastore by default
+            TRP.Services.MasterDataStore.ToggleDataStore(Models.DataStoreEnum.Mock);
         }
 
         protected override void OnStart()
@@ -31,5 +33,21 @@ namespace TRP
         {
             // Handle when your app resumes
         }
+
+
+        static SQLiteAsyncConnection _database;
+
+        public static SQLiteAsyncConnection Database
+        {
+            get
+            {
+                if (_database == null)
+                {
+                    _database = new SQLiteAsyncConnection(DependencyService.Get<IFileHelper>().GetLocalFilePath("TRPDatabase.db3"));
+                }
+                return _database;
+            }
+        }
+
     }
 }

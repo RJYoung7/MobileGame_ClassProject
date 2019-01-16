@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{B40529DE-3478-484C-9C0B-BBC93AA8184F}</ProjectGuid>
+    <ProjectGuid>{3E4A984D-9165-44A9-AD85-D895491A43FB}</ProjectGuid>
     <TemplateGuid>{98C37F10-6541-44BE-B1E6-7EB3EB8C08F1}</TemplateGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -93,6 +93,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FileHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -104,7 +105,6 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="penguin.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
@@ -149,12 +149,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.5.231</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TRP\TRP.csproj">
-      <Project>{6E29C354-AF92-45A7-8364-855304FA4B9A}</Project>
+      <Project>{08CA0123-6FC6-4753-A706-56F8C68B7E23}</Project>
       <Name>TRP</Name>
     </ProjectReference>
   </ItemGroup>

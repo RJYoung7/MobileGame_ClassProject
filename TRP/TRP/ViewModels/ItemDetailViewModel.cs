@@ -1,16 +1,14 @@
-﻿using System;
-
-using TRP.Models;
+﻿using TRP.Models;
 
 namespace TRP.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public Item Data { get; set; }
+        public ItemDetailViewModel(Item data = null)
         {
-            Title = item?.Text;
-            Item = item;
+            Title = data?.Name;
+            Data = data;
         }
     }
 }
