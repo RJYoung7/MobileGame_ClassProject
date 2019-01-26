@@ -52,6 +52,16 @@ namespace TRP.Models
         public Character(Character newData)
         {
             // Implement
+            Name = newData.Name;
+            Description = newData.Description;
+            ImageURI = newData.ImageURI;
+        }
+
+        public Character(string name, string desc, string uri)
+        {
+            Name = name;
+            Description = desc;
+            ImageURI = uri;
         }
 
         // Upgrades to a set level

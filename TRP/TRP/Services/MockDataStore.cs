@@ -43,14 +43,18 @@ namespace TRP.Services
             // Load Items.
             _itemDataset.Add(new Item("Gold Sword", "Sword made of Gold, really expensive looking",
                 "http://www.clker.com/cliparts/e/L/A/m/I/c/sword-md.png", 0, 10, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Defense));
-
             _itemDataset.Add(new Item("Strong Shield", "Enough to hide behind",
                 "http://www.clipartbest.com/cliparts/4T9/LaR/4T9LaReTE.png", 0, 10, 0, ItemLocationEnum.OffHand, AttributeEnum.Attack));
-
             _itemDataset.Add(new Item("Bunny Hat", "Pink hat with fluffy ears",
                 "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png", 0, 10, -1, ItemLocationEnum.Head, AttributeEnum.Speed));
 
             // Implement Characters
+            _characterDataset.Add(new Character("Poppy", "Emperor penguin",
+                "https://banner2.kisspng.com/20180328/akq/kisspng-antarctica-penguins-are-waterbirds-flightless-bird-penguins-5abb154b7565a3.1649993015222101234809.jpg"));
+            _characterDataset.Add(new Character("Perry", "Gentoo penguin",
+                "https://banner2.kisspng.com/20180702/uys/kisspng-gentoo-penguin-emperor-penguin-southern-rockhopper-5b3a7d0129fb17.149946071530559745172.jpg"));
+            _characterDataset.Add(new Character("Penny", "Adelie penguin",
+                "https://mpng.pngfly.com/20180715/vh/kisspng-adlie-penguin-bird-antarctica-emperor-penguin-antartic-penguins-5b4b48ab82e673.9603847815316604595362.jpg"));
 
             // Implement Monsters
 
@@ -62,7 +66,7 @@ namespace TRP.Services
             // Do nothing...
         }
 
-        // Delete the Datbase Tables by dropping them
+        // Delete the Database Tables by dropping them
         public void DeleteTables()
         {
             // Implement
@@ -75,7 +79,7 @@ namespace TRP.Services
             // Implement Monsters
 
             // Implement Characters 
-
+            CharactersViewModel.Instance.SetNeedsRefresh(true);
             // Implement Scores
         }
 
@@ -159,34 +163,69 @@ namespace TRP.Services
 
         #region Character
         // Character
+        public async Task<bool> InsertUpdateAsync_Character(Character data)
+        {
+
+            // Check to see if the item exist
+            var oldData = await GetAsync_Item(data.Id);
+            if (oldData == null)
+            {
+                _characterDataset.Add(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Character(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Character(data);
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> AddAsync_Character(Character data)
         {
             // Implement
-            return false;
+            _characterDataset.Add(data);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<bool> UpdateAsync_Character(Character data)
         {
             // Implement
-            return false;
+            var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            if (myData == null)
+            {
+                return false;
+            }
+
+            myData.Update(data);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<bool> DeleteAsync_Character(Character data)
         {
             // Implement
-            return false;
+            var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            _characterDataset.Remove(myData);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<Character> GetAsync_Character(string id)
         {
             // Implement
-            return null;
+            return await Task.FromResult(_characterDataset.FirstOrDefault(s => s.Id == id));
         }
 
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
             // Implement
-            return null;
+            return await Task.FromResult(_characterDataset);
         }
 
         #endregion Character

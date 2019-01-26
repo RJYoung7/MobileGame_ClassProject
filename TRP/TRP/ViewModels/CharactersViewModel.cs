@@ -60,8 +60,39 @@ namespace TRP.ViewModels
 
         private async Task ExecuteLoadDataCommand()
         {
-            // Implement 
-            return;
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                Dataset.Clear();
+                var dataset = await DataStore.GetAllAsync_Character(true);
+
+                // Example of how to sort the database output using a linq query.
+                //Sort the list
+                dataset = dataset
+                    .OrderBy(a => a.Name)
+                    .ThenBy(a => a.Description)
+                    .ToList();
+
+                // Then load the data structure
+                foreach (var data in dataset)
+                {
+                    Dataset.Add(data);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         public void ForceDataRefresh()
@@ -97,6 +128,29 @@ namespace TRP.ViewModels
         }
 
         #endregion DataOperations
+
+
+        #region ItemConversion
+
+        // Takes an item string ID and looks it up and returns the item
+        // This is because the Items on a character are stores as strings of the GUID.  That way it can be saved to the DB.
+        public Character GetCharacter(string charID)
+        {
+            if (string.IsNullOrEmpty(charID))
+            {
+                return null;
+            }
+
+            Character myData = DataStore.GetAsync_Character(charID).GetAwaiter().GetResult();
+            if (myData == null)
+            {
+                return null;
+            }
+
+            return myData;
+        }
+
+        #endregion ItemConversion
 
     }
 }
