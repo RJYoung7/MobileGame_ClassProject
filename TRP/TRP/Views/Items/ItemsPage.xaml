@@ -9,9 +9,6 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-
-            <Label Text="Items List Page" FontSize="Small" />
-
             <ListView x:Name="ItemsListView" 
                 ItemsSource="{Binding Dataset}"
                 VerticalOptions="FillAndExpand"

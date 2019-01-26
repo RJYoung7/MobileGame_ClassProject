@@ -4,7 +4,7 @@
             xmlns:views="clr-namespace:TRP.Views"
             x:Class="TRP.Views.MainPage">
     <TabbedPage.Children>
-        <NavigationPage Title="Home">
+        <NavigationPage Title="Game"> <!-- formerly Home-->
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
@@ -15,6 +15,42 @@
             </x:Arguments>
         </NavigationPage>
 
+        <NavigationPage Title="Characters">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:CharactersPage />
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Title="Items">
+            <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS" Value="tab_feed.png"/>
+            </OnPlatform>
+        </NavigationPage.Icon>
+        <x:Arguments>
+            <views:ItemsPage />
+        </x:Arguments>
+        </NavigationPage>
+
+
+        <NavigationPage Title="History">
+          <NavigationPage.Icon>
+            <OnPlatform x:TypeArguments="FileImageSource">
+              <On Platform="iOS" Value="tab_feed.png"/>
+            </OnPlatform>
+          </NavigationPage.Icon>
+          <x:Arguments>
+            <views:ScoresPage />
+          </x:Arguments>
+        </NavigationPage>
+
+
+        <!--
         <NavigationPage Title="Manage">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -36,5 +72,6 @@
                 <views:AboutPage />
             </x:Arguments>
         </NavigationPage>
+        -->
     </TabbedPage.Children>
 </TabbedPage>

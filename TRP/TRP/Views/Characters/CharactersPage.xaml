@@ -5,7 +5,7 @@
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
     <ContentPage.ToolbarItems>
-        
+      <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" />
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

@@ -22,51 +22,38 @@
                 Orientation="Vertical">
 
                 <StackLayout 
-            HorizontalOptions="CenterAndExpand" 
-            VerticalOptions="StartAndExpand"
-            Orientation="Vertical">
+                    HorizontalOptions="CenterAndExpand" 
+                    VerticalOptions="StartAndExpand"
+                    Orientation="Vertical">
 
                     <Image 
-                Source="d20.png" 
-                VerticalOptions="Center" 
-                HeightRequest="150"
-                HorizontalOptions="Fill"/>
+                        Source="d20.png" 
+                        VerticalOptions="Center" 
+                        HeightRequest="150"
+                        HorizontalOptions="Fill"/>
 
                     <Label 
-                FontSize="Large"
-                Text="The Righteous Penguins"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
-
-                    <Label 
-                FontSize="Medium"
-                Text="Mobile Development"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
-
-                    <Label 
-                FontSize="Small"
-                Text="Mike Koenig"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
+                        FontSize="Large"
+                        Text="The Righteous Penguins"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="CenterAndExpand" />
 
                     <StackLayout 
-                x:Name="DateRoot"
-                HorizontalOptions="CenterAndExpand" 
-                VerticalOptions="Start"
-                Orientation="Vertical">
+                        x:Name="DateRoot"
+                        HorizontalOptions="CenterAndExpand" 
+                        VerticalOptions="Start"
+                        Orientation="Vertical">
                     </StackLayout>
-
                 </StackLayout>
 
                 <StackLayout
                     Margin="0,50,0,0"
-        VerticalOptions="StartAndExpand"
-        HorizontalOptions="CenterAndExpand" 
-        Orientation="Vertical">
-                    
-                <!--Database Settings-->
-                <StackLayout
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="CenterAndExpand" 
+                    Orientation="Vertical">
+
+                    <!--Database Settings-->
+                    <StackLayout
                         x:Name="DatabaseSettingsFrame"
                         IsVisible="True"
                         BackgroundColor="WhiteSmoke">

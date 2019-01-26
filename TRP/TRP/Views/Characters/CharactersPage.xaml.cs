@@ -18,5 +18,10 @@ namespace TRP.Views
             InitializeComponent();
             BindingContext = _viewModel = CharactersViewModel.Instance;
         }
+
+        private async void AddCharacter_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CharacterNewPage());
+        }
     }
 }

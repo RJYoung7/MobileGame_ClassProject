@@ -26,5 +26,10 @@ namespace TRP.Views
         {
             await Navigation.PushAsync(new AutoBattlePage());
         }
+
+        private async void AboutButton_Command(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AboutPage());
+        }
     }
 }

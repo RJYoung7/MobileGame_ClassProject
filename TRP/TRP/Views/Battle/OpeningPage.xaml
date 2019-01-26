@@ -10,20 +10,20 @@
             Orientation="Vertical">
 
             <Image 
-                Source="d20.png" 
+                Source="https://i.pinimg.com/736x/b8/73/5e/b8735e30a542ac991f2c1d22b8f80431--penguin-life-penguin-baby.jpg" 
                 VerticalOptions="Center" 
                 HeightRequest="150"
                 HorizontalOptions="Fill"/>
 
             <Label 
                 FontSize="Large"
-                Text="Class Dungeon"
+                Text="The Righteous Penguins"
                 VerticalOptions="Center" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
 
         <StackLayout>
-            <Label Text="Battle Begins Here"
+            <Label Text="Start Here"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
@@ -32,10 +32,16 @@
                 HorizontalOptions="CenterAndExpand" 
                     Clicked="AutoBattleButton_Command"/>
 
-            <Button Text="Battle"
+            <Button Text="About"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="AboutButton_Command"/>
+            <!--
+                <Button Text="Battle"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
-                    Clicked="ManualBattleButton_Command"/>
+                    Clicked="ManualBattleButton_Command"/> 
+            -->
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
