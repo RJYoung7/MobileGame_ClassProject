@@ -26,12 +26,7 @@ namespace TRP.Views
         {
             InitializeComponent();
 
-            var data = new Character
-            {
-                Name = "Item 1",
-                Description = "This is an item description.",
-                Level = 1
-            };
+            var data = new Character();
 
             _viewModel = new CharacterDetailViewModel(data);
             BindingContext = _viewModel;
