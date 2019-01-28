@@ -10,6 +10,18 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="20" Padding="15">
+        <StackLayout Padding="10">
+            <Label Text="Are you sure you want to delete Monster?" FontSize="Large" 
+                   HorizontalTextAlignment="Center" />
+        </StackLayout>
 
+        <StackLayout Padding="10" Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+            <Button Text="Delete"
+                    Clicked="Delete_Clicked"/>
+            <Button Text="Cancel"
+                    Clicked="Cancel_Clicked" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>
