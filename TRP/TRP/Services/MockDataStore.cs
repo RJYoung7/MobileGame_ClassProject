@@ -57,7 +57,8 @@ namespace TRP.Services
                 "https://mpng.pngfly.com/20180715/vh/kisspng-adlie-penguin-bird-antarctica-emperor-penguin-antartic-penguins-5b4b48ab82e673.9603847815316604595362.jpg"));
 
             // Implement Monsters
-
+            _monsterDataset.Add(new Monster("Orca Whale", "Apex Preadator", 
+                "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/19598483_1401257979949843_906723264379815411_n.jpg?_nc_cat=104&_nc_ht=scontent-sea1-1.xx&oh=b0b1a20ca78838eeaafb5e4462af2917&oe=5CF3C426"));
             // Implement Scores
         }
 
@@ -77,7 +78,7 @@ namespace TRP.Services
         {
             ItemsViewModel.Instance.SetNeedsRefresh(true);
             // Implement Monsters
-
+            MonstersViewModel.Instance.SetNeedsRefresh(true);
             // Implement Characters 
             CharactersViewModel.Instance.SetNeedsRefresh(true);
             // Implement Scores
