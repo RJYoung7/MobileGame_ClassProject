@@ -3,12 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.MonstersPage"
               Title="{Binding Title}"
-             x:Name="BrowseItemsPage">
+             x:Name="BrowseMonstersPage">
     <ContentPage.ToolbarItems>
-
+        <ToolbarItem Text="Add" Clicked="AddMonster_Clicked" />
     </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout>
+
+            <ListView x:Name="MonstersListView" 
+                ItemsSource="{Binding Dataset}"
+                VerticalOptions="FillAndExpand"
+                 HasUnevenRows="true"
+                 RefreshCommand="{Binding LoadItemsCommand}"
+                 IsPullToRefreshEnabled="true"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                 CachingStrategy="RecycleElement"
+                 ItemSelected="OnMonsterSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10"
+                                         Orientation="Horizontal"
+                                         VerticalOptions="Start"
+                                         HorizontalOptions="Start">
+
+                                <!-- Image -->
+                                <Image Source="{Binding ImageURI}"
+                                       WidthRequest="50"
+                                       HeightRequest="50" 
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                                <!-- Labels for Character (name, desc, etc.) -->
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" 
+                                               LineBreakMode="NoWrap" 
+                                               Style="{DynamicResource ListItemTextStyle}" 
+                                               FontSize="16" />
+                                    </StackLayout>
+                                    <Label Text="{Binding Description}" 
+                                         LineBreakMode="NoWrap"
+                                         Style="{DynamicResource ListItemDetailTextStyle}"
+                                         FontSize="13" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
 
         </StackLayout>
     </ContentPage.Content>

@@ -235,32 +235,43 @@ namespace TRP.Services
         //Monster
         public async Task<bool> AddAsync_Monster(Monster data)
         {
-            // Implement
-            return false;
+            _monsterDataset.Add(data);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
-            // Implement
-            return false;
+            var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            if (myData == null)
+            {
+                return false;
+            }
+
+            myData.Update(data);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
             // Implement
-            return false;
+            var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            _monsterDataset.Remove(myData);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<Monster> GetAsync_Monster(string id)
         {
             // Implement
-            return null;
+            return await Task.FromResult(_monsterDataset.FirstOrDefault(s => s.Id == id));
         }
 
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
             // Implement
-            return null;
+            return await Task.FromResult(_monsterDataset);
         }
 
         #endregion Monster
