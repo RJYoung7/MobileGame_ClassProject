@@ -50,6 +50,11 @@
                 <Label Grid.Row="3" Grid.Column="0" Text="Stat Points Available: "/>
                 <Label Grid.Row="3" Grid.Column="1" Text="10" x:Name="statPoints" />
             </Grid>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Save" />
+                <Button Text="Cancel" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
