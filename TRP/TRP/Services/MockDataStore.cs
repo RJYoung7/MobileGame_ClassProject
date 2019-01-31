@@ -49,12 +49,10 @@ namespace TRP.Services
                 "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png", 0, 10, -1, ItemLocationEnum.Head, AttributeEnum.Speed));
 
             // Implement Characters
-            _characterDataset.Add(new Character("Poppy", "Emperor penguin",
-                "https://banner2.kisspng.com/20180328/akq/kisspng-antarctica-penguins-are-waterbirds-flightless-bird-penguins-5abb154b7565a3.1649993015222101234809.jpg"));
-            _characterDataset.Add(new Character("Perry", "Gentoo penguin",
-                "https://banner2.kisspng.com/20180702/uys/kisspng-gentoo-penguin-emperor-penguin-southern-rockhopper-5b3a7d0129fb17.149946071530559745172.jpg"));
-            _characterDataset.Add(new Character("Penny", "Adelie penguin",
-                "https://mpng.pngfly.com/20180715/vh/kisspng-adlie-penguin-bird-antarctica-emperor-penguin-antartic-penguins-5b4b48ab82e673.9603847815316604595362.jpg"));
+            _characterDataset.Add(new Character("Poppy", "Emperor penguin", ""));
+            _characterDataset.Add(new Character("Perry", "Gentoo penguin", ""));
+            _characterDataset.Add(new Character("Paco", "Little penguin", ""));
+            _characterDataset.Add(new Character("Patrick", "Macaroni penguin", ""));
 
             // Implement Monsters
 

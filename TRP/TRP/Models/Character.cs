@@ -61,7 +61,31 @@ namespace TRP.Models
         {
             Name = name;
             Description = desc;
-            ImageURI = uri;
+            if (uri.Length == 0)
+            {
+                ImageURI = GetCharacterImage(desc);
+            }
+            else {
+                ImageURI = uri;
+            }
+        }
+
+        //Given the type of a character, set the image uri 
+        public String GetCharacterImage(string desc)
+        {
+            switch (desc)
+            {
+                case "Emperor penguin":
+                    return "Emperor.png";
+                case "Gentoo penguin":
+                    return "Gentoo.png";
+                case "Little penguin":
+                    return "Little.png";
+                case "Macaroni penguin":
+                    return "Macaroni.png";
+                default:
+                    return "Baby.png";
+            }
         }
 
         // Upgrades to a set level
