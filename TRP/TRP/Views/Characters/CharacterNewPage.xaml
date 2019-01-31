@@ -10,7 +10,7 @@
 
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Entry Keyboard="Text" Placeholder="Enter Character Name" />
+            <Entry Keyboard="Text" Placeholder="{Binding Data.Name}" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Select Type: " HorizontalOptions="Start"/>
                 <Picker HorizontalOptions="FillAndExpand" />
@@ -52,8 +52,8 @@
             </Grid>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="Save" />
-                <Button Text="Cancel" />
+                <Button Text="Save" Clicked="Save_Clicked" />
+                <Button Text="Cancel" Clicked="Cancel_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
