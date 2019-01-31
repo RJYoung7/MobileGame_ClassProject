@@ -11,6 +11,10 @@
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
             <Entry Keyboard="Text" Placeholder="Enter Character Name" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Select Type: " HorizontalOptions="Start"/>
+                <Picker HorizontalOptions="FillAndExpand" />
+            </StackLayout>
 
             <Grid>
                 <Grid.RowDefinitions>
