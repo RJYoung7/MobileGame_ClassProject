@@ -55,7 +55,8 @@ namespace TRP.Services
             _characterDataset.Add(new Character("Patrick", "Macaroni penguin", ""));
 
             // Implement Monsters
-
+            _monsterDataset.Add(new Monster("Orca Whale", "Apex Preadator", 
+                "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/19598483_1401257979949843_906723264379815411_n.jpg?_nc_cat=104&_nc_ht=scontent-sea1-1.xx&oh=b0b1a20ca78838eeaafb5e4462af2917&oe=5CF3C426"));
             // Implement Scores
         }
 
@@ -75,7 +76,7 @@ namespace TRP.Services
         {
             ItemsViewModel.Instance.SetNeedsRefresh(true);
             // Implement Monsters
-
+            MonstersViewModel.Instance.SetNeedsRefresh(true);
             // Implement Characters 
             CharactersViewModel.Instance.SetNeedsRefresh(true);
             // Implement Scores
@@ -232,32 +233,43 @@ namespace TRP.Services
         //Monster
         public async Task<bool> AddAsync_Monster(Monster data)
         {
-            // Implement
-            return false;
+            _monsterDataset.Add(data);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
-            // Implement
-            return false;
+            var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            if (myData == null)
+            {
+                return false;
+            }
+
+            myData.Update(data);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
             // Implement
-            return false;
+            var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            _monsterDataset.Remove(myData);
+
+            return await Task.FromResult(true);
         }
 
         public async Task<Monster> GetAsync_Monster(string id)
         {
             // Implement
-            return null;
+            return await Task.FromResult(_monsterDataset.FirstOrDefault(s => s.Id == id));
         }
 
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
             // Implement
-            return null;
+            return await Task.FromResult(_monsterDataset);
         }
 
         #endregion Monster

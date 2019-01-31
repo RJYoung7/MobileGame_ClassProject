@@ -60,7 +60,39 @@ namespace TRP.ViewModels
         private async Task ExecuteLoadDataCommand()
         {
             // Implement 
-            return;
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                Dataset.Clear();
+                var dataset = await DataStore.GetAllAsync_Monster(true);
+
+                // Example of how to sort the database output using a linq query.
+                //Sort the list
+                dataset = dataset
+                    .OrderBy(a => a.Name)
+                    .ThenBy(a => a.Description)
+                    .ToList();
+
+                // Then load the data structure
+                foreach (var data in dataset)
+                {
+                    Dataset.Add(data);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
 
         }
 

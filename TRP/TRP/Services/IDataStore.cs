@@ -24,6 +24,12 @@ namespace TRP.Services
         Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false);
 
         // Implement Monster
+        Task<bool> AddAsync_Monster(Monster data);
+        Task<bool> UpdateAsync_Monster(Monster data);
+        Task<bool> DeleteAsync_Monster(Monster data);
+        Task<Monster> GetAsync_Monster(string id);
+        Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false);
+
         // Implement Character
         Task<bool> InsertUpdateAsync_Character(Character data);
         Task<bool> AddAsync_Character(Character data);

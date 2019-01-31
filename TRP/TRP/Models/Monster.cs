@@ -32,13 +32,48 @@ namespace TRP.Models
         public Monster(BaseMonster newData)
         {
             // Implement
+            // Base information
+            Name = newData.Name;
+            Description = newData.Description;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = newData.ImageURI;
+            Alive = newData.Alive;
+
+            // Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
+
+            // Populate the Attributes
+            AttributeString = newData.AttributeString;
+
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            // Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
 
         }
+
+        public Monster(string name, string desc, string uri)
+        {
+            Name = name;
+            Description = desc;
+            ImageURI = uri;
+        }
+
 
         // For making a new one for lists etc..
         public Monster(Monster newData)
         {
             // Implement
+            Name = newData.Name;
+            Description = newData.Description;
+            ImageURI = newData.ImageURI;
 
         }
 
