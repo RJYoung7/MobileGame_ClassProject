@@ -29,6 +29,7 @@ namespace TRP.Services
         private List<Character> _characterDataset = new List<Character>();
         private List<Monster> _monsterDataset = new List<Monster>();
         private List<Score> _scoreDataset = new List<Score>();
+        private List<CharacterType> _charactertypeDataset = new List<CharacterType>();
 
         private MockDataStore()
         {
@@ -49,10 +50,16 @@ namespace TRP.Services
                 "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png", 0, 10, -1, ItemLocationEnum.Head, AttributeEnum.Speed));
 
             // Implement Characters
-            _characterDataset.Add(new Character("Poppy", "Emperor penguin", ""));
-            _characterDataset.Add(new Character("Perry", "Gentoo penguin", ""));
-            _characterDataset.Add(new Character("Paco", "Little penguin", ""));
-            _characterDataset.Add(new Character("Patrick", "Macaroni penguin", ""));
+            //_characterDataset.Add(new Character("Poppy", "Emperor penguin", ""));
+            //_characterDataset.Add(new Character("Perry", "Gentoo penguin", ""));
+            //_characterDataset.Add(new Character("Paco", "Little penguin", ""));
+            //_characterDataset.Add(new Character("Patrick", "Macaroni penguin", ""));
+            _characterDataset.Add(new Character("Poppy", "Emperor penguin", "Emperor.png", "attack", 5));
+            _characterDataset.Add(new Character("Perry", "Gentoo penguin", "Gentoo.png", "defense", 5));
+            _characterDataset.Add(new Character("Paco", "Little penguin", "Little.png", "attack", 2));
+            _characterDataset.Add(new Character("Patrick", "Macaroni penguin", "Macaroni.png", "speed", 3));
+
+            _charactertypeDataset.Add(new CharacterType("Emperor penquin", "Emperor.png", "attack", 5));
 
             // Implement Monsters
             _monsterDataset.Add(new Monster("Orca Whale", "Apex Preadator", 

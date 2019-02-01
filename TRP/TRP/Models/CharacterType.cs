@@ -4,63 +4,40 @@ using System.Linq;
 
 namespace TRP.Models
 {
-    // Enum to specify the different attributes Allowed.
-    // Not specified is considered not initialize and returns unknown
-    // All other attributes have explicted values.
-
-    public enum AttributeEnum
+    // Helper functions for the CharacterTypeList
+    public class CharacterType
     {
-        // Not specified
-        Unknown = 0,
+        public string TypeName { get; set; }
 
-        // The speed of the character, impacts movement, and initiative
-        Speed = 10,
+        public string ImageURI { get; set; }
 
-        // The defense score, to be used for defending against attacks
-        Defense = 12,
+        public string BonusName { get; set; }
 
-        // The Attack score to be used when attacking
-        Attack = 14,
+        public int BonusValue { get; set; }
 
-        // Current Health which is always at or below MaxHealth
-        CurrentHealth = 16,
-
-        // The highest value health can go
-        MaxHealth = 18,
-    }
-
-    // Helper functions for the AttribureList
-    public static class AttributeList
-    {
-
-        // Returns a list of strings of the enum for Attribute
-        // Removes the attributes that are not changable by Items such as Unknown, MaxHealth
-        public static List<string> GetListItem
+        // Add in the actual attribute class
+        public CharacterType(string typename, string imageURI, string bonusName, int bonusValue)
         {
-            get
-            {
-                var myList = Enum.GetNames(typeof(AttributeEnum)).ToList();
-                var myReturn = myList;
-                return myReturn;
-            }
+            TypeName = typename;
+            ImageURI = imageURI;
+            BonusName = bonusName;
+            BonusValue = bonusValue;
         }
 
-        // Returns a list of strings of the enum for Attribute
-        // Removes the unknown
-        public static List<string> GetListCharacter
+        // Update the character information
+        // Updates the attribute string
+        public void Update(CharacterType newData)
         {
-            get
-            {
-                var myList = Enum.GetNames(typeof(AttributeEnum)).ToList();
-                var myReturn = myList;
-                return myReturn;
-            }
+
+            // Implement
+            return;
         }
 
-        // Given the String for an enum, return its value.  That allows for the enums to be numbered 2,4,6 rather than 1,2,3
-        public static AttributeEnum ConvertStringToEnum(string value)
+        // Helper to combine the attributes into a single line, to make it easier to display the item as a string
+        public string FormatOutput()
         {
-            return (AttributeEnum)Enum.Parse(typeof(AttributeEnum), value);
+            var myReturn = " Implement";
+            return myReturn;
         }
     }
 }

@@ -11,6 +11,9 @@ namespace TRP.Models
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
 
+        // Add in the actual character type class
+        public CharacterType Type { get; set; }
+
         // Make sure Attribute is instantiated in the constructor
         public Character()
         {
@@ -55,6 +58,20 @@ namespace TRP.Models
             Name = newData.Name;
             Description = newData.Description;
             ImageURI = newData.ImageURI;
+        }
+
+        public Character(string name, CharacterType type)
+        {
+            Name = name;
+            Description = type.TypeName;
+            Type = type;
+        }
+
+        public Character(string name, string charactertypename, string charactertypeimage, string charactertypebonusname, int charactertypebonusvalue)
+        {
+            Name = name;
+            Type = new CharacterType(charactertypename, charactertypeimage, charactertypebonusname, charactertypebonusvalue);
+            ImageURI = charactertypeimage;
         }
 
         public Character(string name, string desc, string uri)

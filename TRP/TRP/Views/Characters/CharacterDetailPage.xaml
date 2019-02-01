@@ -41,10 +41,10 @@
             <StackLayout
                 Orientation="Horizontal"
                 HorizontalOptions="Start">
-                <Label Text="Description : " 
+                <Label Text="Type : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Description}" 
+                <Label Text="{Binding Data.Type.TypeName}" 
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
             </StackLayout>
