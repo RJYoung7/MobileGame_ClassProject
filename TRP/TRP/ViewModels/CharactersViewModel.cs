@@ -42,6 +42,13 @@ namespace TRP.ViewModels
 
             // Implement 
 
+            // Update Database: Delete Character
+            MessagingCenter.Subscribe<CharacterDeletePage, Character>(this, "DeleteData", async (obj, data) =>
+            {
+                Dataset.Remove(data);
+                await DataStore.DeleteAsync_Character(data);
+            });
+
         }
 
         // Return True if a refresh is needed
