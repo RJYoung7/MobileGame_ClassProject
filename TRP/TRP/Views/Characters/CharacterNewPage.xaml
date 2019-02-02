@@ -9,6 +9,12 @@
 
     </ContentPage.ToolbarItems>
 
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:StringEnumConverter x:Key="StringEnum"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
             <Entry Keyboard="Text" Placeholder="{Binding Data.Name}" />
@@ -16,7 +22,7 @@
                 <Label Text="Select Type: " HorizontalOptions="Start"/>
                 <Picker HorizontalOptions="FillAndExpand"
                         ItemsSource="{x:Static local:PenguinTypeList.GetPenguinTypeList}"
-                        SelectedItem="Binding Data.PType, Converter={StaticResource StringEnum}, Mode=TwoWay"
+                        SelectedItem="{Binding Data.PType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
                         x:Name="PenguinTypePicker"/>
             </StackLayout>
 
