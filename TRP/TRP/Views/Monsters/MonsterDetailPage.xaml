@@ -5,11 +5,49 @@
              Title="{Binding Title}">
 
 
-    <ContentPage.ToolbarItems>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
+    <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
+    <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+  </ContentPage.ToolbarItems>
 
-    </ContentPage.ToolbarItems>
+  <ScrollView>
+    <StackLayout 
+      x:Name="DetailsRoot"
+      Orientation="Vertical"
+      Spacing="20"
+      Padding="15">
 
-    <StackLayout Spacing="20" Padding="15">
+      <!-- Picture of monster -->
+      <Image Source="{Binding Data.ImageURI}"
+             WidthRequest="150"
+             HeightRequest="150" 
+             HorizontalOptions="Center"
+             VerticalOptions="Center"/>
 
+      <!-- Name label -->
+      <StackLayout
+        Orientation="Horizontal"
+        HorizontalOptions="Start">
+        <Label Text="Name: " 
+               FontSize="Medium" 
+               HorizontalOptions="Start"/>
+        <Label Text="{Binding Data.Name}" 
+               FontSize="Medium" 
+               HorizontalOptions="Center"/>
+      </StackLayout>
+
+      <!-- Description of character -->
+      <StackLayout
+        Orientation="Horizontal"
+        HorizontalOptions="Start">
+        <Label Text="Description: " 
+               FontSize="Medium" 
+               HorizontalOptions="Start"/>
+        <Label Text="{Binding Data.Description}" 
+               FontSize="Medium" 
+               HorizontalOptions="Center"/>
+      </StackLayout>
     </StackLayout>
+  </ScrollView>
 </ContentPage>
