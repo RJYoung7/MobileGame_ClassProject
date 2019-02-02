@@ -3,15 +3,61 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.CharacterEditPage"		     
              Title="{Binding Title}">
-    
+
     <ContentPage.ToolbarItems>
 
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
+            <Label Text="Name" FontSize="Medium" />
+            
+            <Entry Text="{Binding Data.Name}" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Select Type: " HorizontalOptions="Start"/>
+                <Picker HorizontalOptions="FillAndExpand" />
+            </StackLayout>
 
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Start Attack: "/>
+                <Stepper Grid.Row="0" Grid.Column="1" x:Name="attack" Increment="1"
+                            Minimum="0"
+                            Maximum="10"/>
+                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Source={x:Reference attack}, Path=Value}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Start Defense: " />
+                <Stepper Grid.Row="1" Grid.Column="1" x:Name="defense" Increment="1"
+                            Minimum="0"
+                            Maximum="10"/>
+                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Source={x:Reference defense}, Path=Value}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Start Speed: " />
+                <Stepper Grid.Row="2" Grid.Column="1" x:Name="speed" Increment="1"
+                            Minimum="0"
+                            Maximum="10"/>
+                <Label Grid.Row="2" Grid.Column="2" Text="{Binding Source={x:Reference speed}, Path=Value}" />
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Stat Points Available: "/>
+                <Label Grid.Row="3" Grid.Column="1" Text="10" x:Name="statPoints" />
+            </Grid>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Save" Clicked="Save_Clicked" />
+                <Button Text="Cancel" Clicked="Cancel_Clicked"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
-    
+
 </ContentPage>

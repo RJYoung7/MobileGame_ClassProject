@@ -48,6 +48,35 @@
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
             </StackLayout>
+            
+            <Label Text="Stats"
+                       FontSize="Medium"
+                       VerticalOptions="Start" />
+            
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="Start">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
+                    <Label Text="Attack: " />
+                    <Label Text="{Binding Data.Attribute.Attack}" />
+                </StackLayout>
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
+                    <Label Text="Defense: " />
+                    <Label Text="{Binding Data.Attribute.Defense}" />
+                </StackLayout>
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="Start">
+                    <Label Text="Speed: " />
+                    <Label Text="{Binding Data.Attribute.Speed}" />
+                </StackLayout>
+
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -72,6 +72,8 @@ namespace TRP.Models
             Name = name;
             Type = new CharacterType(charactertypename, charactertypeimage, charactertypebonusname, charactertypebonusvalue);
             ImageURI = charactertypeimage;
+            Attribute = new AttributeBase();
+            Alive = true;
         }
 
         public Character(string name, string desc, string uri)

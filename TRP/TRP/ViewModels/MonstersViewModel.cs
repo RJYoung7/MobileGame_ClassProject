@@ -46,6 +46,8 @@ namespace TRP.ViewModels
                 Dataset.Remove(data);
                 await DataStore.DeleteAsync_Monster(data);
             });
+
+
         }
 
         // Return True if a refresh is needed
