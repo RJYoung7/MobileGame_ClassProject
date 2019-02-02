@@ -4,6 +4,7 @@ namespace TRP.Models
 {
     public class BaseCharacter : BasePlayer<BaseCharacter>
     {
+        public PenguinType PType { get; set; }
         // Just base from here down. 
         // This is what will be saved to the Database
 
@@ -34,18 +35,18 @@ namespace TRP.Models
 
             // Set the strings for the items
             Head = newData.Head;
-            Feet = newData.Feet;
-            Necklass = newData.Necklass;
+            //Feet = newData.Feet;
+            //Necklass = newData.Necklass;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+            PType = newData.PType;
         }
 
         // Update character from the passed in data
         public void Update(BaseCharacter newData)
         {
             return;
-
         }
 
     }

@@ -12,7 +12,7 @@ namespace TRP.Models
         public AttributeBase Attribute { get; set; }
 
         // Add in the actual character type class
-        public CharacterType Type { get; set; }
+        //public CharacterType Type { get; set; }
 
         // Make sure Attribute is instantiated in the constructor
         public Character()
@@ -23,7 +23,7 @@ namespace TRP.Models
 
         // Create a new character, based on a passed in BaseCharacter
         // Used for converting from database format to character
-        public Character(BaseCharacter newData)
+        /*public Character(BaseCharacter newData)
         {
             // Base information
             Name = newData.Name;
@@ -44,39 +44,50 @@ namespace TRP.Models
 
             // Set the strings for the items
             Head = newData.Head;
-            Feet = newData.Feet;
-            Necklass = newData.Necklass;
+            //Feet = newData.Feet;
+            //Necklass = newData.Necklass;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+            PType = newData.PType;
+        }
+        */
+
+        public Character(string name, AttributeBase ab, PenguinType pt)
+        {
+            Name = name;
+            Attribute = ab;
+            PType = pt;
+            ImageURI = GetCharacterImage(pt);
         }
 
         // Create a new character, based on existing Character
-        public Character(Character newData)
+        /*public Character(Character newData)
         {
             // Implement
             Name = newData.Name;
             Description = newData.Description;
             ImageURI = newData.ImageURI;
-        }
+        }*/
 
-        public Character(string name, CharacterType type)
+        /*public Character(string name, CharacterType type)
         {
             Name = name;
             Description = type.TypeName;
             Type = type;
-        }
+        }*/
 
-        public Character(string name, string charactertypename, string charactertypeimage, string charactertypebonusname, int charactertypebonusvalue)
+        /*public Character(string name, string charactertypename, string charactertypeimage, string charactertypebonusname, int charactertypebonusvalue)
         {
             Name = name;
             Type = new CharacterType(charactertypename, charactertypeimage, charactertypebonusname, charactertypebonusvalue);
             ImageURI = charactertypeimage;
             Attribute = new AttributeBase();
             Alive = true;
-        }
+        }*/
 
-        public Character(string name, string desc, string uri)
+
+        /*public Character(string name, string desc, string uri)
         {
             Name = name;
             Description = desc;
@@ -87,20 +98,20 @@ namespace TRP.Models
             else {
                 ImageURI = uri;
             }
-        }
+        }*/
 
         //Given the type of a character, set the image uri 
-        public String GetCharacterImage(string desc)
+        public String GetCharacterImage(PenguinType pt)
         {
-            switch (desc)
+            switch (pt)
             {
-                case "Emperor penguin":
+                case PenguinType.Emperor:
                     return "Emperor.png";
-                case "Gentoo penguin":
+                case PenguinType.Gentoo:
                     return "Gentoo.png";
-                case "Little penguin":
+                case PenguinType.Little:
                     return "Little.png";
-                case "Macaroni penguin":
+                case PenguinType.Macaroni:
                     return "Macaroni.png";
                 default:
                     return "Baby.png";

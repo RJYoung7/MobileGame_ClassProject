@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="TRP.Views.CharacterNewPage"
-		     Title="Add New Character">
-    
+		     Title="Add New Character"
+             xmlns:local="using:TRP.Models">
+
     <ContentPage.ToolbarItems>
 
     </ContentPage.ToolbarItems>
@@ -13,7 +14,10 @@
             <Entry Keyboard="Text" Placeholder="{Binding Data.Name}" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Select Type: " HorizontalOptions="Start"/>
-                <Picker HorizontalOptions="FillAndExpand" />
+                <Picker HorizontalOptions="FillAndExpand"
+                        ItemsSource="{x:Static local:PenguinTypeList.GetPenguinTypeList}"
+                        SelectedItem="Binding Data.PType, Converter={StaticResource StringEnum}, Mode=TwoWay"
+                        x:Name="PenguinTypePicker"/>
             </StackLayout>
 
             <Grid>

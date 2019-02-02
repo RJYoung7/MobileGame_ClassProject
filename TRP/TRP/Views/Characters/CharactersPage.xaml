@@ -28,7 +28,7 @@
                                          HorizontalOptions="Start">
 
                                 <!-- Image -->
-                                <Image Source="{Binding Type.ImageURI}"
+                                <Image Source="{Binding ImageURI}"
                                        WidthRequest="50"
                                        HeightRequest="50" 
                                        HorizontalOptions="Center"
@@ -42,7 +42,7 @@
                                                Style="{DynamicResource ListItemTextStyle}" 
                                                FontSize="16" />
                                     </StackLayout>
-                                    <Label Text="{Binding Type.TypeName}" 
+                                    <Label Text="{Binding PType}" 
                                          LineBreakMode="NoWrap"
                                          Style="{DynamicResource ListItemDetailTextStyle}"
                                          FontSize="13" />

@@ -44,7 +44,7 @@
                 <Label Text="Type : " 
                    FontSize="Medium" 
                    HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Type.TypeName}" 
+                <Label Text="{Binding Data.PType}" 
                     FontSize="Medium" 
                     HorizontalOptions="Center"/>
             </StackLayout>

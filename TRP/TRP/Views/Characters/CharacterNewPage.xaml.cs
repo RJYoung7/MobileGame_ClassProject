@@ -19,12 +19,16 @@ namespace TRP.Views
             Data = new Character
             {
                 Name = "Enter Character Name",
-                Description = "This is a Character description.",
-                Level =1,
-                Id = Guid.NewGuid().ToString()
+                //Description = "This is a Character description.",
+                //Level = 1,
+                //Id = Guid.NewGuid().ToString(),
+                Attribute = new AttributeBase(),
+                PType = PenguinType.Unknown
             };
 
             BindingContext = this;
+            PenguinTypePicker.SelectedItem = Data.PType.ToString();
+ 
         }
 
         public async void Save_Clicked(object sender, EventArgs e)

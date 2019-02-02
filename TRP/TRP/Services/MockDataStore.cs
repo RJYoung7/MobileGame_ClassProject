@@ -54,12 +54,14 @@ namespace TRP.Services
             //_characterDataset.Add(new Character("Perry", "Gentoo penguin", ""));
             //_characterDataset.Add(new Character("Paco", "Little penguin", ""));
             //_characterDataset.Add(new Character("Patrick", "Macaroni penguin", ""));
-            _characterDataset.Add(new Character("Poppy", "Emperor penguin", "Emperor.png", "attack", 5));
-            _characterDataset.Add(new Character("Perry", "Gentoo penguin", "Gentoo.png", "defense", 5));
-            _characterDataset.Add(new Character("Paco", "Little penguin", "Little.png", "attack", 2));
-            _characterDataset.Add(new Character("Patrick", "Macaroni penguin", "Macaroni.png", "speed", 3));
+            //_characterDataset.Add(new Character("Poppy", "Emperor penguin", "Emperor.png", "attack", 5));
+            //_characterDataset.Add(new Character("Perry", "Gentoo penguin", "Gentoo.png", "defense", 5));
+            //_characterDataset.Add(new Character("Paco", "Little penguin", "Little.png", "attack", 2));
+            //_characterDataset.Add(new Character("Patrick", "Macaroni penguin", "Macaroni.png", "speed", 3));
 
-            _charactertypeDataset.Add(new CharacterType("Emperor penquin", "Emperor.png", "attack", 5));
+            //_charactertypeDataset.Add(new CharacterType("Emperor penquin", "Emperor.png", "attack", 5));
+
+            _characterDataset.Add(new Character("Poasdfasdfasfdppy", new AttributeBase(), PenguinType.Emperor));
 
             // Implement Monsters
             _monsterDataset.Add(new Monster("Orca Whale", "Apex Preadator", 
