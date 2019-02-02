@@ -49,6 +49,13 @@ namespace TRP.ViewModels
                 await DataStore.DeleteAsync_Character(data);
             });
 
+            // For adding Character
+            MessagingCenter.Subscribe<CharacterNewPage, Character>(this, "AddData", async (obj, data) =>
+            {
+                Dataset.Add(data);
+                await DataStore.AddAsync_Character(data);
+            });
+
         }
 
         // Return True if a refresh is needed
