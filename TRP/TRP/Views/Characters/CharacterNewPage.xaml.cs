@@ -18,7 +18,7 @@ namespace TRP.Views
 
             Data = new Character
             {
-                Name = "Default data",
+                Name = "",
                 //Description = "This is a Character description.",
                 //Level = 1,
                 //Id = Guid.NewGuid().ToString(),
