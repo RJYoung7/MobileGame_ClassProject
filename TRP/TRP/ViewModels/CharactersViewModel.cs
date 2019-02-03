@@ -58,7 +58,6 @@ namespace TRP.ViewModels
 
             MessagingCenter.Subscribe<CharacterEditPage, Character>(this, "EditData", async (obj, data) =>
             {
-                Dataset.Add(data);
                 await DataStore.UpdateAsync_Character(data);
             });
 
