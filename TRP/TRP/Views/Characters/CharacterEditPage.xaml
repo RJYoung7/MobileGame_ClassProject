@@ -68,7 +68,8 @@
                           Increment="1"
                           ValueChanged="Attack_OnStepperValueChanged"
                           HorizontalOptions="Start"
-                          VerticalOptions="Center"/>
+                          VerticalOptions="Center"
+                            x:Name="attack"/>
                     </StackLayout>
 
                     <!-- Defense incrementer -->
@@ -94,7 +95,8 @@
                           Increment="1"
                           ValueChanged="Defense_OnStepperValueChanged"
                           HorizontalOptions="Start"
-                          VerticalOptions="Center"/>
+                          VerticalOptions="Center"
+                            x:Name="defense"/>
                     </StackLayout>
 
                     <!-- Speed incrementer -->
@@ -120,7 +122,8 @@
                           Increment="1"
                           ValueChanged="Speed_OnStepperValueChanged"
                           HorizontalOptions="Start"
-                          VerticalOptions="Center"/>
+                          VerticalOptions="Center"
+                            x:Name="speed"/>
                     </StackLayout>
 
                     <Label Grid.Row="3" Grid.Column="0" Text="Stat Points Available: "/>

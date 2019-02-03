@@ -15,6 +15,18 @@ namespace TRP.Views
 
         public Character Data { get; set; }
 
+        // Returns the sum of all attributes
+        public int AttributeSum()
+        {
+            return Data.Attribute.Attack + Data.Attribute.Defense + Data.Attribute.Speed;
+        }
+
+        // Returns the number of stat points available
+        public int AdjustStatPointAvail(int statTotalPoints)
+        {
+            return statTotalPoints - (AttributeSum());
+        }
+
         public CharacterEditPage(CharacterDetailViewModel viewModel)
         {
             // Save off the item
@@ -50,19 +62,53 @@ namespace TRP.Views
         // The stepper function for Attack
         void Attack_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            AttackValue.Text = String.Format("{0}", e.NewValue);
+            //var temp = AttackValue.GetValue + SpeedValue.GetValue + DefenseValue.GetValue;
+            if (AttributeSum() > 10)
+            {
+                AttackValue.Text = String.Format("{0}", e.OldValue);
+                attack.Value = e.OldValue;
+
+            }
+            else
+            {
+                AttackValue.Text = String.Format("{0}", e.NewValue);
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+
+            }
         }
 
         // The stepper function for Defense
         void Defense_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            DefenseValue.Text = String.Format("{0}", e.NewValue);
+            if (AttributeSum() > 10)
+            {
+                DefenseValue.Text = String.Format("{0}", e.OldValue);
+                defense.Value = e.OldValue;
+
+            }
+            else
+            {
+                DefenseValue.Text = String.Format("{0}", e.NewValue);
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+
+            }
         }
 
         // The stepper function for Speed
         void Speed_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            SpeedValue.Text = String.Format("{0}", e.NewValue);
+            if (AttributeSum() > 10)
+            {
+                SpeedValue.Text = String.Format("{0}", e.OldValue);
+                speed.Value = e.OldValue;
+
+            }
+            else
+            {
+                SpeedValue.Text = String.Format("{0}", e.NewValue);
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+
+            }
         }
     }
 }
