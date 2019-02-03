@@ -1,4 +1,5 @@
-﻿using TRP.GameEngine;
+﻿using System;
+using TRP.GameEngine;
 
 namespace TRP.Models
 {
@@ -49,5 +50,22 @@ namespace TRP.Models
             return;
         }
 
+        //Given the type of a character, set the image uri 
+        public String GetCharacterImage(PenguinType pt)
+        {
+            switch (pt)
+            {
+                case PenguinType.Emperor:
+                    return "Emperor.png";
+                case PenguinType.Gentoo:
+                    return "Gentoo.png";
+                case PenguinType.Little:
+                    return "Little.png";
+                case PenguinType.Macaroni:
+                    return "Macaroni.png";
+                default:
+                    return "Baby.png";
+            }
+        }
     }
 }

@@ -100,24 +100,6 @@ namespace TRP.Models
             }
         }*/
 
-        //Given the type of a character, set the image uri 
-        public String GetCharacterImage(PenguinType pt)
-        {
-            switch (pt)
-            {
-                case PenguinType.Emperor:
-                    return "Emperor.png";
-                case PenguinType.Gentoo:
-                    return "Gentoo.png";
-                case PenguinType.Little:
-                    return "Little.png";
-                case PenguinType.Macaroni:
-                    return "Macaroni.png";
-                default:
-                    return "Baby.png";
-            }
-        }
-
         // Upgrades to a set level
         public void ScaleLevel(int level)
         {
