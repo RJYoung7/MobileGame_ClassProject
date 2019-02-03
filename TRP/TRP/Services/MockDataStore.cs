@@ -50,19 +50,11 @@ namespace TRP.Services
                 "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png", 0, 10, -1, ItemLocationEnum.Head, AttributeEnum.Speed));
 
             // Implement Characters
-            //_characterDataset.Add(new Character("Poppy", "Emperor penguin", ""));
-            //_characterDataset.Add(new Character("Perry", "Gentoo penguin", ""));
-            //_characterDataset.Add(new Character("Paco", "Little penguin", ""));
-            //_characterDataset.Add(new Character("Patrick", "Macaroni penguin", ""));
-            //_characterDataset.Add(new Character("Poppy", "Emperor penguin", "Emperor.png", "attack", 5));
-            //_characterDataset.Add(new Character("Perry", "Gentoo penguin", "Gentoo.png", "defense", 5));
-            //_characterDataset.Add(new Character("Paco", "Little penguin", "Little.png", "attack", 2));
-            //_characterDataset.Add(new Character("Patrick", "Macaroni penguin", "Macaroni.png", "speed", 3));
-
-            //_charactertypeDataset.Add(new CharacterType("Emperor penquin", "Emperor.png", "attack", 5));
-
-            _characterDataset.Add(new Character("Poasdfasdfasfdppy", new AttributeBase(), PenguinType.Emperor));
-
+            _characterDataset.Add(new Character("Poppy", new AttributeBase(), PenguinType.Emperor));
+            _characterDataset.Add(new Character("Perry", new AttributeBase(), PenguinType.Little));
+            _characterDataset.Add(new Character("Paco", new AttributeBase(), PenguinType.Gentoo));
+            _characterDataset.Add(new Character("Patrick", new AttributeBase(), PenguinType.Macaroni));
+                                 
             // Implement Monsters
             _monsterDataset.Add(new Monster("Orca Whale", "Apex Preadator", 
                 "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/19598483_1401257979949843_906723264379815411_n.jpg?_nc_cat=104&_nc_ht=scontent-sea1-1.xx&oh=b0b1a20ca78838eeaafb5e4462af2917&oe=5CF3C426"));

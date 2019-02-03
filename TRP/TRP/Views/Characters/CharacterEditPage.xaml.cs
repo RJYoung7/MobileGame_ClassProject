@@ -23,7 +23,6 @@ namespace TRP.Views
 
             InitializeComponent();
             
-
             // Set the data binding for the page
             BindingContext = _viewModel = viewModel;
         }
