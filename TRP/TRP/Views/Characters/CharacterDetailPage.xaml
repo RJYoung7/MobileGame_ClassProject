@@ -12,71 +12,74 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout 
-            x:Name="DetailsRoot"
-            Orientation="Vertical"
-            Spacing="20"
-            Padding="15">
 
-            <!-- Picture of character -->
-            <Image Source="{Binding Data.ImageURI}"
-                WidthRequest="150"
-                HeightRequest="150" 
-                HorizontalOptions="Center"
-                VerticalOptions="Center"/>
-
-            <!-- Name label -->
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Name : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Name}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
-
-            <!-- Description of character -->
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Type : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.PType}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
-            
-            <Label Text="Stats"
-                       FontSize="Medium"
-                       VerticalOptions="Start" />
-            
-            <StackLayout
+            <StackLayout 
+                x:Name="DetailsRoot"
                 Orientation="Vertical"
-                HorizontalOptions="Start">
+                Spacing="20"
+                Padding="15">
 
+                <!-- Picture of character -->
+                <Image Source="{Binding Data.ImageURI}"
+                    WidthRequest="150"
+                    HeightRequest="150" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+
+                <!-- Name label -->
                 <StackLayout
                     Orientation="Horizontal"
-                    VerticalOptions="Start">
-                    <Label Text="Attack: " />
-                    <Label Text="{Binding Data.Attribute.Attack}" />
-                </StackLayout>
-                <StackLayout
-                    Orientation="Horizontal"
-                    VerticalOptions="Start">
-                    <Label Text="Defense: " />
-                    <Label Text="{Binding Data.Attribute.Defense}" />
-                </StackLayout>
-                <StackLayout
-                    Orientation="Horizontal"
-                    VerticalOptions="Start">
-                    <Label Text="Speed: " />
-                    <Label Text="{Binding Data.Attribute.Speed}" />
+                    HorizontalOptions="Start">
+                    <Label Text="Name : " 
+                           FontSize="Medium" 
+                           HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.Name}" 
+                           FontSize="Medium" 
+                           HorizontalOptions="Center"/>
                 </StackLayout>
 
+                <!-- Description of character -->
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Start">
+                    <Label Text="Type : " 
+                           FontSize="Medium" 
+                           HorizontalOptions="Start"/>
+                    <Label Text="{Binding Data.PType}" 
+                           FontSize="Medium" 
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <Label Text="Stats" FontSize="Medium" VerticalOptions="Start"/>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" />
+                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" />
+
+                    <Label Grid.Column="0" Grid.Row="1" Text="Attack:" />
+                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute.Attack}" />
+
+                    <Label Grid.Column="0" Grid.Row="2" Text="Defense:" />
+                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Attribute.Defense}" />
+
+                    <Label Grid.Column="0" Grid.Row="3" Text="Speed:" />
+                    <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" />
+
+                </Grid>
+            
             </StackLayout>
-        </StackLayout>
+
     </ScrollView>
 </ContentPage>
