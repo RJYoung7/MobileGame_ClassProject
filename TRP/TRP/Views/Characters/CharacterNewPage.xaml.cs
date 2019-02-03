@@ -43,5 +43,23 @@ namespace TRP.Views
         {
             await Navigation.PopAsync();
         }
+
+        // The stepper function for Attack
+        void Attack_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            AttackValue.Text = String.Format("{0}", e.NewValue);
+        }
+
+        // The stepper function for Defense
+        void Defense_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            DefenseValue.Text = String.Format("{0}", e.NewValue);
+        }
+
+        // The stepper function for Speed
+        void Speed_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            SpeedValue.Text = String.Format("{0}", e.NewValue);
+        }
     }
 }
