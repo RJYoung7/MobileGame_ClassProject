@@ -19,6 +19,9 @@ namespace TRP.Models
         // Necklasss is a string referencing the database table
         public string Necklass { get; set; }
 
+        // Body is a string referencing the database table
+        public string Body { get; set; }
+
         // PrimaryHand is a string referencing the database table
         public string PrimaryHand { get; set; }
 

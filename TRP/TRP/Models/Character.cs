@@ -11,9 +11,6 @@ namespace TRP.Models
         // Add in the actual attribute class
         public AttributeBase Attribute { get; set; }
 
-        // Add in the actual character type class
-        //public CharacterType Type { get; set; }
-
         // Make sure Attribute is instantiated in the constructor
         public Character()
         {
@@ -22,41 +19,9 @@ namespace TRP.Models
             TypeBonus = AttributeEnum.Unknown;
             BonusValue = 0;
             BonusString = "";
-
         }
 
-        // Create a new character, based on a passed in BaseCharacter
-        // Used for converting from database format to character
-        /*public Character(BaseCharacter newData)
-        {
-            // Base information
-            Name = newData.Name;
-            Description = newData.Description;
-            Level = newData.Level;
-            ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = newData.ImageURI;
-            Alive = newData.Alive;
-
-            // Database information
-            Guid = newData.Guid;
-            Id = newData.Id;
-
-            // Populate the Attributes
-            AttributeString = newData.AttributeString;
-
-            Attribute = new AttributeBase(newData.AttributeString);
-
-            // Set the strings for the items
-            Head = newData.Head;
-            //Feet = newData.Feet;
-            //Necklass = newData.Necklass;
-            RightFinger = newData.RightFinger;
-            LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
-            PType = newData.PType;
-        }
-        */
-
+        // Create a character from datastore
         public Character(string name, AttributeBase ab, PenguinType pt)
         {
             Name = name;
@@ -68,49 +33,75 @@ namespace TRP.Models
             BonusString = GetBonusString(pt);
         }
 
-        // Create a new character, based on existing Character
-        /*public Character(Character newData)
+        // Create a new character, based on a passed in BaseCharacter
+        // Used for converting from database format to character
+        public Character(BaseCharacter newData)
         {
-            // Implement
+            //Base information
             Name = newData.Name;
             Description = newData.Description;
-            ImageURI = newData.ImageURI;
-        }*/
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = GetCharacterImage(newData.PType);
+            Alive = newData.Alive;
+            PType = newData.PType;
+            TypeBonus = GetCharacterBonus(newData.PType);
+            BonusValue = GetCharacterBonusValue(newData.PType);
+            BonusString = GetBonusString(newData.PType);
 
-        /*public Character(string name, CharacterType type)
+            //Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
+
+            //Populate the Attributes
+            AttributeString = newData.AttributeString;
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            //Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
+        }
+
+        // Create a new character, based on existing Character
+        public Character(Character newData)
         {
-            Name = name;
-            Description = type.TypeName;
-            Type = type;
-        }*/
+            //Base information
+            Name = newData.Name;
+            Description = newData.Description;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = GetCharacterImage(newData.PType);
+            Alive = newData.Alive;
+            PType = newData.PType;
+            TypeBonus = GetCharacterBonus(newData.PType);
+            BonusValue = GetCharacterBonusValue(newData.PType);
+            BonusString = GetBonusString(newData.PType);
 
-        /*public Character(string name, string charactertypename, string charactertypeimage, string charactertypebonusname, int charactertypebonusvalue)
-        {
-            Name = name;
-            Type = new CharacterType(charactertypename, charactertypeimage, charactertypebonusname, charactertypebonusvalue);
-            ImageURI = charactertypeimage;
-            Attribute = new AttributeBase();
-            Alive = true;
-        }*/
+            //Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
 
+            //Populate the Attributes
+            AttributeString = newData.AttributeString;
+            Attribute = new AttributeBase(newData.AttributeString);
 
-        /*public Character(string name, string desc, string uri)
-        {
-            Name = name;
-            Description = desc;
-            if (uri.Length == 0)
-            {
-                ImageURI = GetCharacterImage(desc);
-            }
-            else {
-                ImageURI = uri;
-            }
-        }*/
-
-        // Upgrades to a set level
-        public void ScaleLevel(int level)
-        {
-            // Implement
+            //Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
         }
 
         // Update the character information
@@ -118,8 +109,38 @@ namespace TRP.Models
         public void Update(Character newData)
         {
 
-            // Implement
-            return;
+            if (newData == null)
+            {
+                return;
+            }
+
+            // Update all the fields in the Data, except for the Id and guid
+            //Base information
+            Name = newData.Name;
+            Description = newData.Description;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = GetCharacterImage(newData.PType);
+            Alive = newData.Alive;
+            PType = newData.PType;
+            TypeBonus = GetCharacterBonus(newData.PType);
+            BonusValue = GetCharacterBonusValue(newData.PType);
+            BonusString = GetBonusString(newData.PType);
+
+            //Populate the Attributes
+            AttributeString = newData.AttributeString;
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            //Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
@@ -127,6 +148,12 @@ namespace TRP.Models
         {
             var myReturn = " Implement";
             return myReturn;
+        }
+
+        // Upgrades to a set level
+        public void ScaleLevel(int level)
+        {
+            Level = level;
         }
 
         #region Basics

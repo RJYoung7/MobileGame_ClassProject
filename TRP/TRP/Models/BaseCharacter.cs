@@ -16,7 +16,6 @@ namespace TRP.Models
         // This is what will be saved to the Database
 
         // So when working with the database, pass Character
-
         public BaseCharacter()
         {
 
@@ -34,6 +33,8 @@ namespace TRP.Models
             Alive = newData.Alive;
             TypeBonus = newData.TypeBonus;
             BonusValue = newData.BonusValue;
+            BonusString = newData.BonusString;
+
             // Database information
             Guid = newData.Guid;
             Id = newData.Id;
@@ -43,8 +44,11 @@ namespace TRP.Models
 
             // Set the strings for the items
             Head = newData.Head;
-            //Feet = newData.Feet;
-            //Necklass = newData.Necklass;
+            Feet = newData.Feet;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            Body = newData.Body;
+            Necklass = newData.Necklass;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
