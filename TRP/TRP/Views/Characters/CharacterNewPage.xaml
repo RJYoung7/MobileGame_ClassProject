@@ -18,10 +18,10 @@
     <ContentPage.Content>
         <!-- Name -->
         <StackLayout Spacing="20" Padding="15">
-            <Entry Keyboard="Text" Placeholder="Name" Text="{Binding Data.Name}" />
+            <Entry Keyboard="Text" Placeholder="Enter Character Name" Text="{Binding Data.Name}" />
             <StackLayout Orientation="Horizontal">
               <!-- Penguin type -->
-                <Label Text="Select Type: " HorizontalOptions="Start"/>
+                <Label Text="Select Type: " HorizontalOptions="Start" FontSize="Medium"/>
                 <Picker HorizontalOptions="FillAndExpand"
                         ItemsSource="{x:Static local:PenguinTypeList.GetPenguinTypeList}"
                         SelectedItem="{Binding Data.PType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
@@ -29,105 +29,100 @@
             </StackLayout>
 
             <Grid
-                    RowSpacing="1"
-                    ColumnSpacing="2"
-                    VerticalOptions="Center">
+                RowSpacing="1"
+                ColumnSpacing="2"
+                VerticalOptions="Center">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
 
                 <!-- Attack incrementer -->
-                <StackLayout Grid.Row="0" Grid.Column="0">
-                    <Label 
-                      Text="Attack" 
+                <Label Grid.Row="0" Grid.Column="0"
+                      Text="Start Attack:" 
                       FontSize="Medium" 
                       HorizontalOptions="Start"/>
-                </StackLayout>
 
-                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center">
-                    <Label 
+                <Stepper Grid.Row="0" Grid.Column="1"
+                    Value="{Binding Data.Attribute.Attack, Mode=TwoWay}"
+                    Minimum="0"
+                    Maximum="10"
+                    Increment="1"
+                    ValueChanged="Attack_OnStepperValueChanged"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    x:Name="attack"/>
+
+                <Frame Grid.Row="0" Grid.Column="2" OutlineColor="Black"/>
+                <Label Grid.Row="0" Grid.Column="2"
                       Text="{Binding Data.Attribute.Attack}" 
                       FontSize="Medium" 
-                      HorizontalOptions="Start"
+                      HorizontalOptions="Center"
                       x:Name="AttackValue"
                       VerticalOptions="Center"/>
 
-                    <Stepper 
-                      Value="{Binding Data.Attribute.Attack, Mode=TwoWay}"
-                      Minimum="0"
-                      Maximum="10"
-                      Increment="1"
-                      ValueChanged="Attack_OnStepperValueChanged"
-                      HorizontalOptions="Start"
-                      VerticalOptions="Center"
-                        x:Name="attack"/>
-                </StackLayout>
-
                 <!-- Defense incrementer -->
-                <StackLayout Grid.Row="1" Grid.Column="0">
-                    <Label 
-                      Text="Defense" 
+                <Label Grid.Row="1" Grid.Column="0"
+                      Text="Start Defense:" 
                       FontSize="Medium" 
                       HorizontalOptions="Start"/>
-                </StackLayout>
 
-                <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center">
-                    <Label 
+                <Stepper Grid.Row="1" Grid.Column="1" 
+                    Value="{Binding Data.Attribute.Defense, Mode=TwoWay}"
+                    Minimum="0"
+                    Maximum="10"
+                    Increment="1"
+                    ValueChanged="Defense_OnStepperValueChanged"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    x:Name="defense"/>
+
+                <Frame Grid.Row="1" Grid.Column="2" OutlineColor="Black"/>
+                <Label  Grid.Row="1" Grid.Column="2" 
                       Text="{Binding Data.Attribute.Defense}" 
                       FontSize="Medium" 
-                      HorizontalOptions="Start"
+                      HorizontalOptions="Center"
                       x:Name="DefenseValue"
                       VerticalOptions="Center"/>
 
-                    <Stepper 
-                      Value="{Binding Data.Attribute.Defense, Mode=TwoWay}"
-                      Minimum="0"
-                      Maximum="10"
-                      Increment="1"
-                      ValueChanged="Defense_OnStepperValueChanged"
-                      HorizontalOptions="Start"
-                      VerticalOptions="Center"
-                        x:Name="defense"/>
-                </StackLayout>
-
                 <!-- Speed incrementer -->
-                <StackLayout Grid.Row="2" Grid.Column="0">
-                    <Label 
-                      Text="Speed" 
-                      FontSize="Medium" 
-                      HorizontalOptions="Start"/>
-                </StackLayout>
+                <Label Grid.Row="2" Grid.Column="0"
+                    Text="Start Speed:" 
+                    FontSize="Medium" 
+                    HorizontalOptions="Start"/>
 
-                <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center">
-                    <Label 
+                <Stepper Grid.Row="2" Grid.Column="1"
+                    Value="{Binding Data.Attribute.Speed, Mode=TwoWay}"
+                    Minimum="0"
+                    Maximum="10"
+                    Increment="1"
+                    ValueChanged="Speed_OnStepperValueChanged"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    x:Name="speed"/>
+                
+                <Frame Grid.Row="2" Grid.Column="2" OutlineColor="Black"/>
+                <Label Grid.Row="2" Grid.Column="2"
                       Text="{Binding Data.Attribute.Speed}" 
                       FontSize="Medium" 
-                      HorizontalOptions="Start"
+                      HorizontalOptions="Center"
                       x:Name="SpeedValue"
                       VerticalOptions="Center"/>
 
-                    <Stepper 
-                      Value="{Binding Data.Attribute.Speed, Mode=TwoWay}"
-                      Minimum="0"
-                      Maximum="10"
-                      Increment="1"
-                      ValueChanged="Speed_OnStepperValueChanged"
-                      HorizontalOptions="Start"
-                      VerticalOptions="Center"
-                        x:Name="speed"/>
-                    </StackLayout>
-
-                <Label Grid.Row="3" Grid.Column="0" Text="Stat Points Available: "/>
-                <Label Grid.Row="3" Grid.Column="1" Text="10" x:Name="statPoints" />
+                <!-- Stat points available -->
+                <Label Grid.Row="3" Grid.Column="0" Text="Stat Points Available:  " FontSize="Medium"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="10" x:Name="statPoints" FontSize="Medium"/>
             </Grid>
 
+            <!-- Save and Cancel Buttons -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="Save" Clicked="Save_Clicked" />
-                <Button Text="Cancel" Clicked="Cancel_Clicked"/>
+                <Button Text="Save" Clicked="Save_Clicked" Padding="30,10,30,10"/>
+                <Button Text="Cancel" Clicked="Cancel_Clicked" Padding="30,10,30,10"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
