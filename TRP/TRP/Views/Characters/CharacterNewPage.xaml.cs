@@ -47,6 +47,8 @@ namespace TRP.Views
         public async void Save_Clicked(object sender, EventArgs e)
         {
             Data.ImageURI = Data.GetCharacterImage(Data.PType);
+            Data.TypeBonus = Data.GetCharacterBonus(Data.PType);
+            Data.BonusValue = Data.GetCharacterBonusValue(Data.PType);
             MessagingCenter.Send(this, "AddData", Data);
             await Navigation.PopAsync();
         }

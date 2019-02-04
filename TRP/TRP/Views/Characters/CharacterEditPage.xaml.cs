@@ -15,18 +15,6 @@ namespace TRP.Views
 
         public Character Data { get; set; }
 
-        // Returns the sum of all attributes
-        public int AttributeSum()
-        {
-            return Data.Attribute.Attack + Data.Attribute.Defense + Data.Attribute.Speed;
-        }
-
-        // Returns the number of stat points available
-        public int AdjustStatPointAvail(int statTotalPoints)
-        {
-            return statTotalPoints - (AttributeSum());
-        }
-
         public CharacterEditPage(CharacterDetailViewModel viewModel)
         {
             // Save off the item
@@ -39,7 +27,19 @@ namespace TRP.Views
             BindingContext = _viewModel = viewModel;
         }
 
-	    public async void Save_Clicked(object sender, EventArgs e)
+        // Returns the sum of all attributes
+        public int AttributeSum()
+        {
+            return Data.Attribute.Attack + Data.Attribute.Defense + Data.Attribute.Speed;
+        }
+
+        // Returns the number of stat points available
+        public int AdjustStatPointAvail(int statTotalPoints)
+        {
+            return statTotalPoints - (AttributeSum());
+        }
+
+        public async void Save_Clicked(object sender, EventArgs e)
         {
             Data.ImageURI = Data.GetCharacterImage(Data.PType);
             MessagingCenter.Send(this, "EditData", Data);

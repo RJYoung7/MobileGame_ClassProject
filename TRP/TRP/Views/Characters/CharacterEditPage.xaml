@@ -126,6 +126,7 @@
                             x:Name="speed"/>
                     </StackLayout>
 
+                    
                     <Label Grid.Row="3" Grid.Column="0" Text="Stat Points Available: "/>
                     <Label Grid.Row="3" Grid.Column="1" Text="10" x:Name="statPoints" />
                 </Grid>

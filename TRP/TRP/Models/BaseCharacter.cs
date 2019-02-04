@@ -6,6 +6,10 @@ namespace TRP.Models
     public class BaseCharacter : BasePlayer<BaseCharacter>
     {
         public PenguinType PType { get; set; }
+
+        public AttributeEnum TypeBonus { get; set; }
+
+        public double BonusValue { get; set; }
         // Just base from here down. 
         // This is what will be saved to the Database
 
@@ -26,7 +30,8 @@ namespace TRP.Models
             ExperienceTotal = newData.ExperienceTotal;
             ImageURI = newData.ImageURI;
             Alive = newData.Alive;
-
+            TypeBonus = newData.TypeBonus;
+            BonusValue = newData.BonusValue;
             // Database information
             Guid = newData.Guid;
             Id = newData.Id;
@@ -65,6 +70,30 @@ namespace TRP.Models
                     return "Macaroni.png";
                 default:
                     return "Baby.png";
+            }
+        }
+
+        //Given the type of a character, set the bonus type
+        public AttributeEnum GetCharacterBonus(PenguinType pt)
+        {
+            switch (pt)
+            {
+                case PenguinType.Emperor:
+                    return AttributeEnum.Attack;
+                default:
+                    return AttributeEnum.Unknown;
+            }
+        }
+
+        //Given the type of a character, set the bonus value 
+        public double GetCharacterBonusValue(PenguinType pt)
+        {
+            switch (pt)
+            {
+                case PenguinType.Emperor:
+                    return 0.05;
+                default:
+                    return 0.0;
             }
         }
     }
