@@ -42,6 +42,9 @@ namespace TRP.Views
         public async void Save_Clicked(object sender, EventArgs e)
         {
             Data.ImageURI = Data.GetCharacterImage(Data.PType);
+            Data.TypeBonus = Data.GetCharacterBonus(Data.PType);
+            Data.BonusValue = Data.GetCharacterBonusValue(Data.PType);
+            Data.BonusString = Data.GetBonusString(Data.PType);
             MessagingCenter.Send(this, "EditData", Data);
 
             // removing the old ItemDetails page, 2 up counting this page

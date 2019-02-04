@@ -47,5 +47,6 @@ namespace TRP.Views
         {
             await Navigation.PopAsync();
         }
+
     }
 }

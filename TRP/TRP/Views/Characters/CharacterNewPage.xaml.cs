@@ -49,6 +49,7 @@ namespace TRP.Views
             Data.ImageURI = Data.GetCharacterImage(Data.PType);
             Data.TypeBonus = Data.GetCharacterBonus(Data.PType);
             Data.BonusValue = Data.GetCharacterBonusValue(Data.PType);
+            Data.BonusString = Data.GetBonusString(Data.PType);
             MessagingCenter.Send(this, "AddData", Data);
             await Navigation.PopAsync();
         }
@@ -108,5 +109,7 @@ namespace TRP.Views
 
             }
         }
+
+
     }
 }

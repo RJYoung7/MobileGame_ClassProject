@@ -50,7 +50,23 @@
                            HorizontalOptions="Center"/>
                 </StackLayout>
 
-                <Label Text="Stats" FontSize="Medium" VerticalOptions="Start"/>
+                <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="Start">
+                    <Label Text="Type Bonus: " 
+                               FontSize="Medium" 
+                               HorizontalOptions="Start"/>
+
+
+                    <Label Text="{Binding Data.BonusString}"
+                           FontSize="Medium"
+                           HorizontalOptions="Center" />
+
+
+                </StackLayout>
+
+
+            <Label Text="Stats" FontSize="Medium" VerticalOptions="Start"/>
 
                 <Grid>
 

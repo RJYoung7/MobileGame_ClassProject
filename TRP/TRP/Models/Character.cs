@@ -21,6 +21,7 @@ namespace TRP.Models
             Alive = true;
             TypeBonus = AttributeEnum.Unknown;
             BonusValue = 0;
+            BonusString = "";
 
         }
 
@@ -64,6 +65,7 @@ namespace TRP.Models
             ImageURI = GetCharacterImage(pt);
             TypeBonus = GetCharacterBonus(pt);
             BonusValue = GetCharacterBonusValue(pt);
+            BonusString = GetBonusString(pt);
         }
 
         // Create a new character, based on existing Character

@@ -10,6 +10,8 @@ namespace TRP.Models
         public AttributeEnum TypeBonus { get; set; }
 
         public double BonusValue { get; set; }
+
+        public string BonusString { get; set; }
         // Just base from here down. 
         // This is what will be saved to the Database
 
@@ -80,6 +82,20 @@ namespace TRP.Models
             {
                 case PenguinType.Emperor:
                     return AttributeEnum.Attack;
+                case PenguinType.Adelie:
+                    return AttributeEnum.Defense;
+                case PenguinType.Gentoo:
+                    return AttributeEnum.Speed;
+                case PenguinType.King:
+                    return AttributeEnum.MaxHealth;
+                case PenguinType.Little:
+                    return AttributeEnum.Attack;
+                case PenguinType.Macaroni:
+                    return AttributeEnum.Defense;
+                case PenguinType.Magellanic:
+                    return AttributeEnum.Speed;
+                case PenguinType.Rockhopper:
+                    return AttributeEnum.MaxHealth;
                 default:
                     return AttributeEnum.Unknown;
             }
@@ -92,9 +108,35 @@ namespace TRP.Models
             {
                 case PenguinType.Emperor:
                     return 0.05;
+                case PenguinType.Adelie:
+                    return 0.05;
+                case PenguinType.Gentoo:
+                    return 0.05;
+                case PenguinType.King:
+                    return 0.05;
+                case PenguinType.Little:
+                    return 0.05;
+                case PenguinType.Macaroni:
+                    return 0.05;
+                case PenguinType.Magellanic:
+                    return 0.05;
+                case PenguinType.Rockhopper:
+                    return 0.05;
                 default:
                     return 0.0;
             }
         }
+
+        public string GetBonusString(PenguinType pt)
+        {
+            double value = GetCharacterBonusValue(pt)*100;
+            string attribute = GetCharacterBonus(pt).ToString();
+
+            string ret = attribute + " +" + value + "%";
+
+            return ret;
+
+        }
+
     }
 }
