@@ -16,6 +16,7 @@ namespace TRP.ViewModels
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static CharactersViewModel _instance;
 
+        // Constructor: returns instance if instantiated, otherwise creates instance if it's null 
         public static CharactersViewModel Instance
         {
             get
@@ -28,11 +29,15 @@ namespace TRP.ViewModels
             }
         }
 
+        // Collection of Characters 
         public ObservableCollection<Character> Dataset { get; set; }
+
+        // Command to load data
         public Command LoadDataCommand { get; set; }
 
-        private bool _needsRefresh;
+        private bool _needsRefresh; // boolean for whether data is stale or not
 
+        // Constructor: loads data and listens for broadcast from views
         public CharactersViewModel()
         {
 
@@ -63,20 +68,26 @@ namespace TRP.ViewModels
 
         }
 
-        // Return True if a refresh is needed
+        // Return whether a refresh is needed
         // It sets the refresh flag to false
         public bool NeedsRefresh()
         {
-            // Implement 
+            if (_needsRefresh)
+            {
+                _needsRefresh = false;
+                return true;
+            }
+
             return false;
         }
 
         // Sets the need to refresh
         public void SetNeedsRefresh(bool value)
         {
-            // Implement 
+            _needsRefresh = value;
         }
 
+        // Command to load data into collection
         private async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
@@ -101,6 +112,7 @@ namespace TRP.ViewModels
                 {
                     Dataset.Add(data);
                 }
+                SetNeedsRefresh(false);
             }
 
             catch (Exception ex)
@@ -114,9 +126,11 @@ namespace TRP.ViewModels
             }
         }
 
+        // Refreshes data
         public void ForceDataRefresh()
         {
-            // Implement 
+            var canExecute = LoadDataCommand.CanExecute(null);
+            LoadDataCommand.Execute(null);
         }
 
         #region DataOperations
