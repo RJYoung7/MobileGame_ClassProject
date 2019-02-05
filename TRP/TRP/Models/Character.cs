@@ -128,7 +128,7 @@ namespace TRP.Models
             BonusString = GetBonusString(newData.PType);
 
             //Populate the Attributes
-            AttributeString = newData.AttributeString;
+            AttributeString = AttributeBase.GetAttributeString(newData.Attribute);
             Attribute = new AttributeBase(newData.AttributeString);
 
             //Set the strings for the items
