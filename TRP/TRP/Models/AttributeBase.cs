@@ -34,6 +34,15 @@ namespace TRP.Models
             SetDefaultValues();
         }
 
+        // Constructor that takes in ints for each attribute
+        public AttributeBase(int health, int attack, int defense, int speed)
+        {
+            MaxHealth = health;
+            Attack = attack;
+            Defense = defense;
+            Speed = speed;
+        }
+
         // Defaults are all value 1, and then adjusted by scaling up
         private void SetDefaultValues()
         {
