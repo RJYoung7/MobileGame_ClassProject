@@ -111,21 +111,21 @@ namespace TRP.Models
             switch (pt)
             {
                 case PenguinType.Emperor:
-                    return 0.05;
+                    return 0.1;
                 case PenguinType.Adelie:
-                    return 0.05;
+                    return 0.1;
                 case PenguinType.Gentoo:
-                    return 0.05;
+                    return 0.1;
                 case PenguinType.King:
-                    return 0.05;
+                    return 0.1;
                 case PenguinType.Little:
-                    return 0.05;
+                    return 0.1;
                 case PenguinType.Macaroni:
-                    return 0.05;
+                    return 0.1;
                 case PenguinType.Magellanic:
-                    return 0.05;
+                    return 0.1;
                 case PenguinType.Rockhopper:
-                    return 0.05;
+                    return 0.1;
                 default:
                     return 0.0;
             }
