@@ -33,26 +33,21 @@ namespace TRP.Views
             Data = new Character
             {
                 Name = "",
-                //Description = "This is a Character description.",
-                //Level = 1,
-                //Id = Guid.NewGuid().ToString(),
+                Level = 1,
+                Id = Guid.NewGuid().ToString(),
                 Attribute = new AttributeBase(),
                 PType = PenguinType.Unknown
             };
 
             BindingContext = this;
             
+            // Set picker to what the characters type current is.
             PenguinTypePicker.SelectedItem = Data.PType.ToString();
- 
         }
 
         // When save button is clicked, add attributes to this character, and broadcast add
         public async void Save_Clicked(object sender, EventArgs e)
         {
-            Data.ImageURI = Data.GetCharacterImage(Data.PType);
-            Data.TypeBonus = Data.GetCharacterBonus(Data.PType);
-            Data.BonusValue = Data.GetCharacterBonusValue(Data.PType);
-            Data.BonusString = Data.GetBonusString(Data.PType);
             MessagingCenter.Send(this, "AddData", Data);
             await Navigation.PopAsync();
         }

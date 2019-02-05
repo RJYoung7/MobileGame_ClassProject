@@ -46,10 +46,6 @@ namespace TRP.Views
         // When save button is clicked, add attributes to this character, and broadcast edit
         public async void Save_Clicked(object sender, EventArgs e)
         {
-            Data.ImageURI = Data.GetCharacterImage(Data.PType);
-            Data.TypeBonus = Data.GetCharacterBonus(Data.PType);
-            Data.BonusValue = Data.GetCharacterBonusValue(Data.PType);
-            Data.BonusString = Data.GetBonusString(Data.PType);
             MessagingCenter.Send(this, "EditData", Data);
 
             // removing the old ItemDetails page, 2 up counting this page
@@ -71,7 +67,6 @@ namespace TRP.Views
         // The stepper function for Attack
         void Attack_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            //var temp = AttackValue.GetValue + SpeedValue.GetValue + DefenseValue.GetValue;
             if (AttributeSum() > 10)
             {
                 AttackValue.Text = String.Format("{0}", e.OldValue);

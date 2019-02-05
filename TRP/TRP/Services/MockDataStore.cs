@@ -192,6 +192,7 @@ namespace TRP.Services
         public async Task<bool> AddAsync_Character(Character data)
         {
             // Implement
+            data.Update(data);
             _characterDataset.Add(data);
 
             return await Task.FromResult(true);

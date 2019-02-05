@@ -25,12 +25,13 @@ namespace TRP.Models
         public Character(string name, AttributeBase ab, PenguinType pt)
         {
             Name = name;
+            Alive = true;
             Attribute = ab;
             PType = pt;
-            ImageURI = GetCharacterImage(pt);
-            TypeBonus = GetCharacterBonus(pt);
-            BonusValue = GetCharacterBonusValue(pt);
-            BonusString = GetBonusString(pt);
+            Level = 1;
+
+            // Update this character with these properties.  Updates and fills in all properties.
+            Update(this);
         }
 
         // Create a new character, based on a passed in BaseCharacter
