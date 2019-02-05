@@ -10,11 +10,12 @@ namespace TRP.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CharacterEditPage : ContentPage
 	{
-	    // ReSharper disable once NotAccessedField.Local
-	    private CharacterDetailViewModel _viewModel;
+	    private CharacterDetailViewModel _viewModel; // View model for this page
 
+        // Data for this page
         public Character Data { get; set; }
 
+        // Constructor: binds data for view and saves bound data
         public CharacterEditPage(CharacterDetailViewModel viewModel)
         {
             // Save off the item
@@ -42,6 +43,7 @@ namespace TRP.Views
             return statTotalPoints - (AttributeSum());
         }
 
+        // When save button is clicked, add attributes to this character, and broadcast edit
         public async void Save_Clicked(object sender, EventArgs e)
         {
             Data.ImageURI = Data.GetCharacterImage(Data.PType);
@@ -60,7 +62,8 @@ namespace TRP.Views
             Navigation.RemovePage(this);
         }
 
-	    private async void Cancel_Clicked(object sender, EventArgs e)
+        // When cancel button is clicked, remove this page from stack
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
@@ -73,13 +76,11 @@ namespace TRP.Views
             {
                 AttackValue.Text = String.Format("{0}", e.OldValue);
                 attack.Value = e.OldValue;
-
             }
             else
             {
                 AttackValue.Text = String.Format("{0}", e.NewValue);
                 statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
-
             }
         }
 
@@ -90,13 +91,11 @@ namespace TRP.Views
             {
                 DefenseValue.Text = String.Format("{0}", e.OldValue);
                 defense.Value = e.OldValue;
-
             }
             else
             {
                 DefenseValue.Text = String.Format("{0}", e.NewValue);
                 statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
-
             }
         }
 
@@ -107,13 +106,11 @@ namespace TRP.Views
             {
                 SpeedValue.Text = String.Format("{0}", e.OldValue);
                 speed.Value = e.OldValue;
-
             }
             else
             {
                 SpeedValue.Text = String.Format("{0}", e.NewValue);
                 statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
-
             }
         }
     }

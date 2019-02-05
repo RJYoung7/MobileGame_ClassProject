@@ -10,6 +10,7 @@ namespace TRP.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterNewPage : ContentPage
     {
+        // Data for this page
         public Character Data { get; set; }
 
         // Returns the sum of all attributes
@@ -24,6 +25,7 @@ namespace TRP.Views
             return statTotalPoints - (AttributeSum());
         }
 
+        // Constructor: generates a new Character and binds the data to this page
         public CharacterNewPage()
         {
             InitializeComponent();
@@ -44,6 +46,7 @@ namespace TRP.Views
  
         }
 
+        // When save button is clicked, add attributes to this character, and broadcast add
         public async void Save_Clicked(object sender, EventArgs e)
         {
             Data.ImageURI = Data.GetCharacterImage(Data.PType);
@@ -54,6 +57,7 @@ namespace TRP.Views
             await Navigation.PopAsync();
         }
 
+        // When cancel button is clicked, remove this page from stack 
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
@@ -72,7 +76,6 @@ namespace TRP.Views
             {
                 AttackValue.Text = String.Format("{0}", e.NewValue);
                 statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
-
             }
         }
 
@@ -83,13 +86,11 @@ namespace TRP.Views
             {
                 DefenseValue.Text = String.Format("{0}", e.OldValue);
                 defense.Value = e.OldValue;
-
             }
             else
             {
                 DefenseValue.Text = String.Format("{0}", e.NewValue);
                 statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
-
             }
         }
 
@@ -106,10 +107,7 @@ namespace TRP.Views
             {
                 SpeedValue.Text = String.Format("{0}", e.NewValue);
                 statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
-
             }
         }
-
-
     }
 }
