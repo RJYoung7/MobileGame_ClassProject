@@ -5,12 +5,16 @@ namespace TRP.Models
 {
     public class BaseCharacter : BasePlayer<BaseCharacter>
     {
+        // PenguinType data for this character
         public PenguinType PType { get; set; }
 
+        // Penguin type bonus for this character
         public AttributeEnum TypeBonus { get; set; }
 
+        // Penguin type bonus value for this character
         public double BonusValue { get; set; }
 
+        // String of type bonus
         public string BonusString { get; set; }
         // Just base from here down. 
         // This is what will be saved to the Database
@@ -131,6 +135,7 @@ namespace TRP.Models
             }
         }
 
+        // Given the type of a character, return its type bonus as string
         public string GetBonusString(PenguinType pt)
         {
             double value = GetCharacterBonusValue(pt)*100;

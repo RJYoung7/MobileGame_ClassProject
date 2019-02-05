@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace TRP.Models
 {
+    // Enum to specify the type of penguin character
+    // A penguin can have one type.
     public enum PenguinType
     {
         Unknown = 0,
@@ -18,9 +19,10 @@ namespace TRP.Models
         King = 8,
     }
 
-    //Returns a list of PenguinTypes a Character can have
+    // Helper functions for PenguinType enum
     public static class PenguinTypeList
     {
+        //Returns a list of PenguinTypes a Character can have
         public static List<string> GetPenguinTypeList
         {
             get
@@ -31,12 +33,13 @@ namespace TRP.Models
             }
         }
 
-        //Given a string for this enum, return its int value
+        // Given a string for this enum, return its int value
         public static PenguinType ConvertStringToEnum(string value)
         {
             return (PenguinType)Enum.Parse(typeof(PenguinType), value);
         }
 
+        // Given a penguin type, return its string value
         public static String ConvertEnumToString(PenguinType ptype)
         {
             switch (ptype)
