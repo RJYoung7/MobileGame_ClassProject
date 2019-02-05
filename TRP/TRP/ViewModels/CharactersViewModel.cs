@@ -61,6 +61,7 @@ namespace TRP.ViewModels
                 await DataStore.AddAsync_Character(data);
             });
 
+            // For modifying a Character
             MessagingCenter.Subscribe<CharacterEditPage, Character>(this, "EditData", async (obj, data) =>
             {
                 await DataStore.UpdateAsync_Character(data);
