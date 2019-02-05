@@ -11,7 +11,14 @@
 
     <StackLayout Spacing="20" Padding="15">
         <StackLayout Padding="10">
-            <Label Text="Are you sure you want to delete Character?" FontSize="Large" 
+            <Label Text="Are you sure you want to delete" FontSize="Medium"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="{Binding Data.Name}" FontSize="Medium"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="from Character list?" FontSize="Medium"
+                   HorizontalOptions="Center"
                    HorizontalTextAlignment="Center" />
         </StackLayout>
 
