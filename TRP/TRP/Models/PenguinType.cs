@@ -61,7 +61,7 @@ namespace TRP.Models
                 case PenguinTypeEnum.Emperor:
                     return "Emperor penguin";
                 default:
-                    return "Unknownsadf";
+                    return "Unknown";
             }
         }
     }
