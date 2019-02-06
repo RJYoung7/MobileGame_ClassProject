@@ -6,7 +6,7 @@ namespace TRP.Models
     public class BaseCharacter : BasePlayer<BaseCharacter>
     {
         // PenguinType data for this character
-        public PenguinType PType { get; set; }
+        public PenguinTypeEnum PenguinType { get; set; }
 
         // Penguin type bonus for this character
         public AttributeEnum TypeBonus { get; set; }
@@ -56,7 +56,7 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
-            PType = newData.PType;
+            PenguinType = newData.PenguinType;
         }
 
         // Update character from the passed in data
@@ -66,17 +66,17 @@ namespace TRP.Models
         }
 
         //Given the type of a character, set the image uri 
-        public String GetCharacterImage(PenguinType pt)
+        public String GetCharacterImage(PenguinTypeEnum pt)
         {
             switch (pt)
             {
-                case PenguinType.Emperor:
+                case PenguinTypeEnum.Emperor:
                     return "Emperor.png";
-                case PenguinType.Gentoo:
+                case PenguinTypeEnum.Gentoo:
                     return "Gentoo.png";
-                case PenguinType.Little:
+                case PenguinTypeEnum.Little:
                     return "Little.png";
-                case PenguinType.Macaroni:
+                case PenguinTypeEnum.Macaroni:
                     return "Macaroni.png";
                 default:
                     return "Baby.png";
@@ -84,25 +84,25 @@ namespace TRP.Models
         }
 
         //Given the type of a character, set the bonus type
-        public AttributeEnum GetCharacterBonus(PenguinType pt)
+        public AttributeEnum GetCharacterBonus(PenguinTypeEnum pt)
         {
             switch (pt)
             {
-                case PenguinType.Emperor:
+                case PenguinTypeEnum.Emperor:
                     return AttributeEnum.Attack;
-                case PenguinType.Adelie:
+                case PenguinTypeEnum.Adelie:
                     return AttributeEnum.Defense;
-                case PenguinType.Gentoo:
+                case PenguinTypeEnum.Gentoo:
                     return AttributeEnum.Speed;
-                case PenguinType.King:
+                case PenguinTypeEnum.King:
                     return AttributeEnum.MaxHealth;
-                case PenguinType.Little:
+                case PenguinTypeEnum.Little:
                     return AttributeEnum.Attack;
-                case PenguinType.Macaroni:
+                case PenguinTypeEnum.Macaroni:
                     return AttributeEnum.Defense;
-                case PenguinType.Magellanic:
+                case PenguinTypeEnum.Magellanic:
                     return AttributeEnum.Speed;
-                case PenguinType.Rockhopper:
+                case PenguinTypeEnum.Rockhopper:
                     return AttributeEnum.MaxHealth;
                 default:
                     return AttributeEnum.Unknown;
@@ -110,25 +110,25 @@ namespace TRP.Models
         }
 
         //Given the type of a character, set the bonus value 
-        public double GetCharacterBonusValue(PenguinType pt)
+        public double GetCharacterBonusValue(PenguinTypeEnum pt)
         {
             switch (pt)
             {
-                case PenguinType.Emperor:
+                case PenguinTypeEnum.Emperor:
                     return 0.1;
-                case PenguinType.Adelie:
+                case PenguinTypeEnum.Adelie:
                     return 0.1;
-                case PenguinType.Gentoo:
+                case PenguinTypeEnum.Gentoo:
                     return 0.1;
-                case PenguinType.King:
+                case PenguinTypeEnum.King:
                     return 0.1;
-                case PenguinType.Little:
+                case PenguinTypeEnum.Little:
                     return 0.1;
-                case PenguinType.Macaroni:
+                case PenguinTypeEnum.Macaroni:
                     return 0.1;
-                case PenguinType.Magellanic:
+                case PenguinTypeEnum.Magellanic:
                     return 0.1;
-                case PenguinType.Rockhopper:
+                case PenguinTypeEnum.Rockhopper:
                     return 0.1;
                 default:
                     return 0.0;
@@ -136,7 +136,7 @@ namespace TRP.Models
         }
 
         // Given the type of a character, return its type bonus as string
-        public string GetBonusString(PenguinType pt)
+        public string GetBonusString(PenguinTypeEnum pt)
         {
             double value = GetCharacterBonusValue(pt)*100;
             string attribute = GetCharacterBonus(pt).ToString();

@@ -6,7 +6,7 @@ namespace TRP.Models
 {
     // Enum to specify the type of penguin character
     // A penguin can have one type.
-    public enum PenguinType
+    public enum PenguinTypeEnum
     {
         Unknown = 0,
         Adelie = 1,
@@ -27,38 +27,38 @@ namespace TRP.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(PenguinType)).ToList();
+                var myList = Enum.GetNames(typeof(PenguinTypeEnum)).ToList();
                 var ret = myList;
                 return ret;
             }
         }
 
         // Given a string for this enum, return its int value
-        public static PenguinType ConvertStringToEnum(string value)
+        public static PenguinTypeEnum ConvertStringToEnum(string value)
         {
-            return (PenguinType)Enum.Parse(typeof(PenguinType), value);
+            return (PenguinTypeEnum)Enum.Parse(typeof(PenguinTypeEnum), value);
         }
 
         // Given a penguin type, return its string value
-        public static String ConvertEnumToString(PenguinType ptype)
+        public static String ConvertEnumToString(PenguinTypeEnum ptype)
         {
             switch (ptype)
             {
-                case PenguinType.Adelie:
+                case PenguinTypeEnum.Adelie:
                     return "Adelie penguin";
-                case PenguinType.Gentoo:
+                case PenguinTypeEnum.Gentoo:
                     return "Gentoo penguin";
-                case PenguinType.Little:
+                case PenguinTypeEnum.Little:
                     return "Little penguin";
-                case PenguinType.Macaroni:
+                case PenguinTypeEnum.Macaroni:
                     return "Macaroni penguin";
-                case PenguinType.Magellanic:
+                case PenguinTypeEnum.Magellanic:
                     return "Magellanic penguin";
-                case PenguinType.Rockhopper:
+                case PenguinTypeEnum.Rockhopper:
                     return "Rockhopper penguin";
-                case PenguinType.King:
+                case PenguinTypeEnum.King:
                     return "King penguin";
-                case PenguinType.Emperor:
+                case PenguinTypeEnum.Emperor:
                     return "Emperor penguin";
                 default:
                     return "Unknownsadf";

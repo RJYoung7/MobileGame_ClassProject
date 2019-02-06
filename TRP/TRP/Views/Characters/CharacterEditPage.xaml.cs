@@ -28,7 +28,7 @@ namespace TRP.Views
             BindingContext = _viewModel = viewModel;
             
             // Set the picker to the preexisting penguin type
-            PenguinTypePicker.SelectedItem = Data.PType.ToString();
+            PenguinTypePicker.SelectedItem = Data.PenguinType.ToString();
         }
 
         // Returns the sum of all attributes

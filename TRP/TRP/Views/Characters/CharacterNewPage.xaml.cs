@@ -36,13 +36,13 @@ namespace TRP.Views
                 Level = 1,
                 Id = Guid.NewGuid().ToString(),
                 Attribute = new AttributeBase(),
-                PType = PenguinType.Unknown
+                PenguinType = PenguinTypeEnum.Unknown
             };
 
             BindingContext = this;
             
             // Set picker to what the characters type current is.
-            PenguinTypePicker.SelectedItem = Data.PType.ToString();
+            PenguinTypePicker.SelectedItem = Data.PenguinType.ToString();
         }
 
         // When save button is clicked, add attributes to this character, and broadcast add
