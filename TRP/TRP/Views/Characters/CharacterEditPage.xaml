@@ -5,10 +5,6 @@
              xmlns:local="using:TRP.Models"
              Title="Edit Character">
 
-    <ContentPage.ToolbarItems>
-
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:StringEnumConverter x:Key="StringEnum"/>

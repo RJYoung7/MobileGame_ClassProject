@@ -4,11 +4,6 @@
              x:Class="TRP.Views.CharacterDeletePage"
             Title="{Binding Title}">
 
-
-    <ContentPage.ToolbarItems>
-
-    </ContentPage.ToolbarItems>
-
     <StackLayout Spacing="20" Padding="15">
         <StackLayout Padding="10">
             <Label Text="Are you sure you want to delete" FontSize="Medium"

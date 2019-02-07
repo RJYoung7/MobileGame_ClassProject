@@ -28,7 +28,62 @@ namespace TRP.Views
             BindingContext = _viewModel = viewModel;
         }
 
-	    private async void Save_Clicked(object sender, EventArgs e)
+        public int AttributeSum()
+        {
+            return Data.Attribute.Attack + Data.Attribute.Defense + Data.Attribute.Speed;
+        }
+
+        // Returns the number of stat points available
+        public int AdjustStatPointAvail(int statTotalPoints)
+        {
+            return statTotalPoints - (AttributeSum());
+        }
+
+        void Attack_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            if (AttributeSum() > 10)
+            {
+                AttackValue.Text = String.Format("{0}", e.OldValue);
+                attack.Value = e.OldValue;
+            }
+            else
+            {
+                AttackValue.Text = String.Format("{0}", e.NewValue);
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+            }
+        }
+
+        // The stepper function for Defense
+        void Defense_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            if (AttributeSum() > 10)
+            {
+                DefenseValue.Text = String.Format("{0}", e.OldValue);
+                defense.Value = e.OldValue;
+            }
+            else
+            {
+                DefenseValue.Text = String.Format("{0}", e.NewValue);
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+            }
+        }
+
+        // The stepper function for Speed
+        void Speed_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            if (AttributeSum() > 10)
+            {
+                SpeedValue.Text = String.Format("{0}", e.OldValue);
+                speed.Value = e.OldValue;
+            }
+            else
+            {
+                SpeedValue.Text = String.Format("{0}", e.NewValue);
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+            }
+        }
+
+        private async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "EditData", Data);
 

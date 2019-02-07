@@ -27,7 +27,8 @@ namespace TRP.Views
             BindingContext = _viewModel = viewModel;
         }
 
-	    private async void Delete_Clicked(object sender, EventArgs e)
+        // When delete button is clicked, broadcast delete and pop this page off stack
+        private async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "DeleteData", Data);
 
@@ -37,7 +38,8 @@ namespace TRP.Views
             await Navigation.PopAsync();
         }
 
-	    private async void Cancel_Clicked(object sender, EventArgs e)
+        // When cancel button is clicked, remove this page from stack
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }

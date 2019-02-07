@@ -35,7 +35,7 @@
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
-                                <!-- Labels for Character (name, desc, etc.) -->
+                                <!-- Labels for Monster (name, desc, etc.) -->
                                 <StackLayout>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" 

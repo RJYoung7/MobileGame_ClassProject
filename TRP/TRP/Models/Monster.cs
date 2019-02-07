@@ -59,13 +59,14 @@ namespace TRP.Models
 
         }
 
-        public Monster(string name, string desc, string uri)
+        public Monster(string name, string desc, string uri, AttributeBase ab)
         {
             Name = name;
             Description = desc;
             ImageURI = uri;
-        }
 
+            Attribute = ab;
+        }
 
         // For making a new one for lists etc..
         public Monster(Monster newData)
