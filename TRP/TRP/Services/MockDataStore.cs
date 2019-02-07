@@ -48,10 +48,10 @@ namespace TRP.Services
                 "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png", 0, 10, -1, ItemLocationEnum.Head, AttributeEnum.Speed));
 
             // Load characters
-            _characterDataset.Add(new Character("Poppy", new AttributeBase(10, 4, 4, 2), PenguinType.Emperor));
-            _characterDataset.Add(new Character("Perry", new AttributeBase(10, 4, 2, 4), PenguinType.Little));
-            _characterDataset.Add(new Character("Paco", new AttributeBase(10, 3, 3, 4), PenguinType.Gentoo));
-            _characterDataset.Add(new Character("Patrick", new AttributeBase(10, 3, 4, 3), PenguinType.Macaroni));
+            _characterDataset.Add(new Character("Poppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
+            _characterDataset.Add(new Character("Perry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
+            _characterDataset.Add(new Character("Paco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
+            _characterDataset.Add(new Character("Patrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
                                  
             // Load monsters 
             _monsterDataset.Add(new Monster("Orca Whale", "Apex Preadator", 

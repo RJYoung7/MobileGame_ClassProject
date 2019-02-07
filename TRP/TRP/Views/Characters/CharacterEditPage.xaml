@@ -22,7 +22,7 @@
                 <Label Text="Select Type: " HorizontalOptions="Start" FontSize="Small"/>
                 <Picker HorizontalOptions="FillAndExpand"
                     ItemsSource="{x:Static local:PenguinTypeList.GetPenguinTypeList}"
-                    SelectedItem="{Binding Data.PType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
+                    SelectedItem="{Binding Data.PenguinType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
                     x:Name="PenguinTypePicker"/>
             </StackLayout>
 

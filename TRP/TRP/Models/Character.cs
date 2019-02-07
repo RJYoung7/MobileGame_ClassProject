@@ -22,12 +22,12 @@ namespace TRP.Models
         }
 
         // Create a character from datastore
-        public Character(string name, AttributeBase ab, PenguinType pt)
+        public Character(string name, AttributeBase ab, PenguinTypeEnum pt)
         {
             Name = name;
             Alive = true;
             Attribute = ab;
-            PType = pt;
+            PenguinType = pt;
             Level = 1;
 
             // Update this character with these properties.  Updates and fills in all properties.
@@ -43,12 +43,12 @@ namespace TRP.Models
             Description = newData.Description;
             Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = GetCharacterImage(newData.PType);
+            ImageURI = GetCharacterImage(newData.PenguinType);
             Alive = newData.Alive;
-            PType = newData.PType;
-            TypeBonus = GetCharacterBonus(newData.PType);
-            BonusValue = GetCharacterBonusValue(newData.PType);
-            BonusString = GetBonusString(newData.PType);
+            PenguinType = newData.PenguinType;
+            TypeBonus = GetCharacterBonus(newData.PenguinType);
+            BonusValue = GetCharacterBonusValue(newData.PenguinType);
+            BonusString = GetBonusString(newData.PenguinType);
 
             //Database information
             Guid = newData.Guid;
@@ -78,12 +78,12 @@ namespace TRP.Models
             Description = newData.Description;
             Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = GetCharacterImage(newData.PType);
+            ImageURI = GetCharacterImage(newData.PenguinType);
             Alive = newData.Alive;
-            PType = newData.PType;
-            TypeBonus = GetCharacterBonus(newData.PType);
-            BonusValue = GetCharacterBonusValue(newData.PType);
-            BonusString = GetBonusString(newData.PType);
+            PenguinType = newData.PenguinType;
+            TypeBonus = GetCharacterBonus(newData.PenguinType);
+            BonusValue = GetCharacterBonusValue(newData.PenguinType);
+            BonusString = GetBonusString(newData.PenguinType);
 
             //Database information
             Guid = newData.Guid;
@@ -121,12 +121,12 @@ namespace TRP.Models
             Description = newData.Description;
             Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = GetCharacterImage(newData.PType);
+            ImageURI = GetCharacterImage(newData.PenguinType);
             Alive = newData.Alive;
-            PType = newData.PType;
-            TypeBonus = GetCharacterBonus(newData.PType);
-            BonusValue = GetCharacterBonusValue(newData.PType);
-            BonusString = GetBonusString(newData.PType);
+            PenguinType = newData.PenguinType;
+            TypeBonus = GetCharacterBonus(newData.PenguinType);
+            BonusValue = GetCharacterBonusValue(newData.PenguinType);
+            BonusString = GetBonusString(newData.PenguinType);
 
             //Populate the Attributes
             AttributeString = AttributeBase.GetAttributeString(newData.Attribute);

@@ -39,7 +39,7 @@
                            VerticalOptions="Start"/>
                     <!-- Description of character -->
 
-                    <Label Text="{Binding Data.PType}" 
+                    <Label Text="{Binding Data.PenguinType}" 
                            FontSize="Medium" 
                            FontAttributes="Italic"
                            HorizontalOptions="Start"
