@@ -5,7 +5,11 @@
              xmlns:local="using:TRP.Models"
              Title="{Binding Title}">
 
- 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringEnumConverter x:Key="StringEnum"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />

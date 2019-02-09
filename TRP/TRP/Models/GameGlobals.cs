@@ -4,6 +4,9 @@ namespace TRP.Models
 {
     public static class GameGlobals
     {
+        // Available stat points for character create and edit
+        public const int availStatPoints = 10;
+
         // Turn on to force Rolls to be non random
         public static bool ForceRollsToNotRandom = false;
 

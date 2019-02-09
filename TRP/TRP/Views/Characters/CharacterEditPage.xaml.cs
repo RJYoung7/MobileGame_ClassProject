@@ -67,7 +67,7 @@ namespace TRP.Views
         // The stepper function for Attack
         void Attack_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (AttributeSum() > 10)
+            if (AttributeSum() > GameGlobals.availStatPoints)
             {
                 AttackValue.Text = String.Format("{0}", e.OldValue);
                 attack.Value = e.OldValue;
@@ -75,14 +75,14 @@ namespace TRP.Views
             else
             {
                 AttackValue.Text = String.Format("{0}", e.NewValue);
-                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(GameGlobals.availStatPoints));
             }
         }
 
         // The stepper function for Defense
         void Defense_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (AttributeSum() > 10)
+            if (AttributeSum() > GameGlobals.availStatPoints)
             {
                 DefenseValue.Text = String.Format("{0}", e.OldValue);
                 defense.Value = e.OldValue;
@@ -90,14 +90,14 @@ namespace TRP.Views
             else
             {
                 DefenseValue.Text = String.Format("{0}", e.NewValue);
-                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(GameGlobals.availStatPoints));
             }
         }
 
         // The stepper function for Speed
         void Speed_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (AttributeSum() > 10)
+            if (AttributeSum() > GameGlobals.availStatPoints)
             {
                 SpeedValue.Text = String.Format("{0}", e.OldValue);
                 speed.Value = e.OldValue;
@@ -105,7 +105,7 @@ namespace TRP.Views
             else
             {
                 SpeedValue.Text = String.Format("{0}", e.NewValue);
-                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(GameGlobals.availStatPoints));
             }
         }
     }
