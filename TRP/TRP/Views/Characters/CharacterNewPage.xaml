@@ -5,10 +5,6 @@
 		     Title="Add New Character"
              xmlns:local="using:TRP.Models">
 
-    <ContentPage.ToolbarItems>
-
-    </ContentPage.ToolbarItems>
-
   <ContentPage.Resources>
     <ResourceDictionary>
       <local:StringEnumConverter x:Key="StringEnum"/>

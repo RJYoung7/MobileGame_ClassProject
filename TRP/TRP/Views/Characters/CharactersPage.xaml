@@ -4,6 +4,7 @@
              x:Class="TRP.Views.CharactersPage"
               Title="{Binding Title}"
              x:Name="BrowseCharactersPage">
+    
     <ContentPage.ToolbarItems>
       <ToolbarItem Text="Add" Clicked="AddCharacter_Clicked" />
     </ContentPage.ToolbarItems>
