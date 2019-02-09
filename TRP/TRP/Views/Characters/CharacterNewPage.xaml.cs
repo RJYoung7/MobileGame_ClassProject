@@ -40,9 +40,9 @@ namespace TRP.Views
             };
 
             BindingContext = this;
-            
+
             // Set picker to what the characters type current is.
-            PenguinTypePicker.SelectedItem = Data.PenguinType.ToString();
+            PenguinTypePicker.SelectedItem = PenguinTypeList.GetPenguinTypeList[0].ToString();
         }
 
         // When save button is clicked, add attributes to this character, and broadcast add

@@ -27,8 +27,8 @@ namespace TRP.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(PenguinTypeEnum)).ToList();
-                var ret = myList;
+                var myList = from name in Enum.GetNames(typeof(PenguinTypeEnum)) where name != "Unknown" select name;
+                var ret = myList.ToList();
                 return ret;
             }
         }
