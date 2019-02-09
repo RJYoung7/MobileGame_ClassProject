@@ -16,33 +16,55 @@ namespace TRP.Models
         {
             Attribute = new AttributeBase();
             Alive = true;
+            TypeBonus = AttributeEnum.Unknown;
+            BonusValue = 0;
+            BonusString = "";
+        }
+
+        // Create a character from datastore
+        public Character(string name, AttributeBase ab, PenguinTypeEnum pt)
+        {
+            Name = name;
+            Alive = true;
+            Attribute = ab;
+            PenguinType = pt;
+            Level = 1;
+
+            // Update this character with these properties.  Updates and fills in all properties.
+            Update(this);
         }
 
         // Create a new character, based on a passed in BaseCharacter
         // Used for converting from database format to character
         public Character(BaseCharacter newData)
         {
-            // Base information
+            //Base information
             Name = newData.Name;
             Description = newData.Description;
             Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = newData.ImageURI;
+            ImageURI = GetCharacterImage(newData.PenguinType);
             Alive = newData.Alive;
+            PenguinType = newData.PenguinType;
+            TypeBonus = GetCharacterBonus(newData.PenguinType);
+            BonusValue = GetCharacterBonusValue(newData.PenguinType);
+            BonusString = GetBonusString(newData.PenguinType);
 
-            // Database information
+            //Database information
             Guid = newData.Guid;
             Id = newData.Id;
 
-            // Populate the Attributes
+            //Populate the Attributes
             AttributeString = newData.AttributeString;
-
             Attribute = new AttributeBase(newData.AttributeString);
 
-            // Set the strings for the items
+            //Set the strings for the items
             Head = newData.Head;
             Feet = newData.Feet;
             Necklass = newData.Necklass;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
@@ -51,23 +73,36 @@ namespace TRP.Models
         // Create a new character, based on existing Character
         public Character(Character newData)
         {
-            // Implement
+            //Base information
             Name = newData.Name;
             Description = newData.Description;
-            ImageURI = newData.ImageURI;
-        }
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = GetCharacterImage(newData.PenguinType);
+            Alive = newData.Alive;
+            PenguinType = newData.PenguinType;
+            TypeBonus = GetCharacterBonus(newData.PenguinType);
+            BonusValue = GetCharacterBonusValue(newData.PenguinType);
+            BonusString = GetBonusString(newData.PenguinType);
 
-        public Character(string name, string desc, string uri)
-        {
-            Name = name;
-            Description = desc;
-            ImageURI = uri;
-        }
+            //Database information
+            Guid = newData.Guid;
+            Id = newData.Id;
 
-        // Upgrades to a set level
-        public void ScaleLevel(int level)
-        {
-            // Implement
+            //Populate the Attributes
+            AttributeString = newData.AttributeString;
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            //Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
         }
 
         // Update the character information
@@ -75,8 +110,38 @@ namespace TRP.Models
         public void Update(Character newData)
         {
 
-            // Implement
-            return;
+            if (newData == null)
+            {
+                return;
+            }
+
+            // Update all the fields in the Data, except for the Id and guid
+            //Base information
+            Name = newData.Name;
+            Description = newData.Description;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = GetCharacterImage(newData.PenguinType);
+            Alive = newData.Alive;
+            PenguinType = newData.PenguinType;
+            TypeBonus = GetCharacterBonus(newData.PenguinType);
+            BonusValue = GetCharacterBonusValue(newData.PenguinType);
+            BonusString = GetBonusString(newData.PenguinType);
+
+            //Populate the Attributes
+            AttributeString = AttributeBase.GetAttributeString(newData.Attribute);
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            //Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
@@ -84,6 +149,12 @@ namespace TRP.Models
         {
             var myReturn = " Implement";
             return myReturn;
+        }
+
+        // Upgrades to a set level
+        public void ScaleLevel(int level)
+        {
+            Level = level;
         }
 
         #region Basics

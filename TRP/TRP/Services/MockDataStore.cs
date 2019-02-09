@@ -9,10 +9,10 @@ namespace TRP.Services
 {
     public sealed class MockDataStore : IDataStore
     {
-
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static MockDataStore _instance;
 
+        // Constructor: returns instance if instantiated, otherwise creates instance if it's null 
         public static MockDataStore Instance
         {
             get
@@ -25,22 +25,21 @@ namespace TRP.Services
             }
         }
 
-        private List<Item> _itemDataset = new List<Item>();
-        private List<Character> _characterDataset = new List<Character>();
-        private List<Monster> _monsterDataset = new List<Monster>();
-        private List<Score> _scoreDataset = new List<Score>();
+        private List<Item> _itemDataset = new List<Item>(); // Items dataset
+        private List<Character> _characterDataset = new List<Character>(); // Characters dataset
+        private List<Monster> _monsterDataset = new List<Monster>(); // Monsters dataset
+        private List<Score> _scoreDataset = new List<Score>(); // Scores dataset
 
+        // Constructor: adds data to dataset
         private MockDataStore()
         {
             InitilizeSeedData();
         }
 
+        // Adds data
         private void InitilizeSeedData()
         {
-
-            // Implement
-
-            // Load Items.
+            // Load items
             _itemDataset.Add(new Item("Gold Sword", "Sword made of Gold, really expensive looking",
                 "http://www.clker.com/cliparts/e/L/A/m/I/c/sword-md.png", 0, 10, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Defense));
             _itemDataset.Add(new Item("Strong Shield", "Enough to hide behind",
@@ -48,17 +47,19 @@ namespace TRP.Services
             _itemDataset.Add(new Item("Bunny Hat", "Pink hat with fluffy ears",
                 "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png", 0, 10, -1, ItemLocationEnum.Head, AttributeEnum.Speed));
 
-            // Implement Characters
-            _characterDataset.Add(new Character("Poppy", "Emperor penguin",
-                "https://banner2.kisspng.com/20180328/akq/kisspng-antarctica-penguins-are-waterbirds-flightless-bird-penguins-5abb154b7565a3.1649993015222101234809.jpg"));
-            _characterDataset.Add(new Character("Perry", "Gentoo penguin",
-                "https://banner2.kisspng.com/20180702/uys/kisspng-gentoo-penguin-emperor-penguin-southern-rockhopper-5b3a7d0129fb17.149946071530559745172.jpg"));
-            _characterDataset.Add(new Character("Penny", "Adelie penguin",
-                "https://mpng.pngfly.com/20180715/vh/kisspng-adlie-penguin-bird-antarctica-emperor-penguin-antartic-penguins-5b4b48ab82e673.9603847815316604595362.jpg"));
-
-            // Implement Monsters
+            // Load characters
+            _characterDataset.Add(new Character("Poppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
+            _characterDataset.Add(new Character("Perry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
+            _characterDataset.Add(new Character("Paco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
+            _characterDataset.Add(new Character("Patrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
+                                 
+            // Load monsters 
             _monsterDataset.Add(new Monster("Orca Whale", "Apex Preadator", 
-                "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/19598483_1401257979949843_906723264379815411_n.jpg?_nc_cat=104&_nc_ht=scontent-sea1-1.xx&oh=b0b1a20ca78838eeaafb5e4462af2917&oe=5CF3C426"));
+                "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/19598483_1401257979949843_906723264379815411_n.jpg?_nc_cat=104&_nc_ht=scontent-sea1-1.xx&oh=b0b1a20ca78838eeaafb5e4462af2917&oe=5CF3C426", new AttributeBase(1,1,1,1)));
+            _monsterDataset.Add(new Monster("Sea lion", "Arf arf", "http://www.dolphinencounters.com/wp-content/uploads/2015/12/sea-lion-01.jpg", new AttributeBase(1, 1, 1, 1)));
+            _monsterDataset.Add(new Monster("Polar bear", "Will stalk you for miles", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Polar_Bear_-_Alaska_%28cropped%29.jpg/220px-Polar_Bear_-_Alaska_%28cropped%29.jpg", new AttributeBase(1, 1, 1, 1)));
+            _monsterDataset.Add(new Monster("Artic fox", "Cute but deadly", "http://facts.net/wp-content/uploads/2015/08/Arctic-Fox-Facts.jpg", new AttributeBase(1, 1, 1, 1)));
+            
             // Implement Scores
         }
 
@@ -84,6 +85,7 @@ namespace TRP.Services
             // Implement Scores
         }
 
+        // Refreshes database 
         public void InitializeDatabaseNewTables()
         {
             DeleteTables();
@@ -186,14 +188,17 @@ namespace TRP.Services
             return false;
         }
 
+        // Adds character to the dataset
         public async Task<bool> AddAsync_Character(Character data)
         {
             // Implement
+            data.Update(data);
             _characterDataset.Add(data);
 
             return await Task.FromResult(true);
         }
 
+        // Finds character in dataset and updates it
         public async Task<bool> UpdateAsync_Character(Character data)
         {
             // Implement
@@ -208,6 +213,7 @@ namespace TRP.Services
             return await Task.FromResult(true);
         }
 
+        // Removes character from dataset
         public async Task<bool> DeleteAsync_Character(Character data)
         {
             // Implement
@@ -217,12 +223,14 @@ namespace TRP.Services
             return await Task.FromResult(true);
         }
 
+        // Retrieves matching character from dataset
         public async Task<Character> GetAsync_Character(string id)
         {
             // Implement
             return await Task.FromResult(_characterDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        // Retrieves all characters from dataset
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
             // Implement

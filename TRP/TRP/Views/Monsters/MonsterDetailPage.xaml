@@ -6,10 +6,68 @@
 
 
     <ContentPage.ToolbarItems>
-
+        <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
+        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Spacing="20" Padding="15">
+    <ScrollView>
 
-    </StackLayout>
+        <StackLayout 
+                x:Name="DetailsRoot"
+                Orientation="Vertical"
+                Spacing="20"
+                Padding="15">
+
+            <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
+                <!-- Picture of monster -->
+                <Image Source="{Binding Data.ImageURI}"
+                    WidthRequest="150"
+                    HeightRequest="150" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start">
+                    <!-- Name label -->
+                    <Label Text="{Binding Data.Name}" 
+                           FontAttributes="Bold"
+                           FontSize="Medium" 
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
+
+                    <Label Text="{Binding Data.Description}" 
+                           FontSize="Small" 
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
+                </StackLayout>
+            </StackLayout>
+
+            <Label Text="Base Attributes: " FontSize="Medium" VerticalOptions="Start" FontAttributes="Bold"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" />
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Attack:" />
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute.Attack}" />
+
+                <Label Grid.Column="0" Grid.Row="2" Text="Defense:" />
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Attribute.Defense}" />
+
+                <Label Grid.Column="0" Grid.Row="3" Text="Speed:" />
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" />
+            </Grid>
+
+        </StackLayout>
+
+    </ScrollView>
 </ContentPage>

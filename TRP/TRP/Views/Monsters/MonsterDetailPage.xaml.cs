@@ -26,26 +26,25 @@ namespace TRP.Views
         {
             InitializeComponent();
 
-            var data = new Monster
-            {
-                Name = "Item 1",
-                Description = "This is an item description."
-            };
+            var data = new Monster();
 
             _viewModel = new MonsterDetailViewModel(data);
             BindingContext = _viewModel;
         }
 
+        // When edit button is clicked, create edit page and add onto stack
         private async void Edit_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MonsterEditPage(_viewModel));
         }
 
+        // When delete button is clicked, create delete page and add onto stack
         private async void Delete_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MonsterDeletePage(_viewModel));
         }
 
+        // When cancel button is clicked, remove this page from stack
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

@@ -5,13 +5,16 @@
             Title="{Binding Title}">
 
 
-    <ContentPage.ToolbarItems>
-
-    </ContentPage.ToolbarItems>
-
     <StackLayout Spacing="20" Padding="15">
         <StackLayout Padding="10">
-            <Label Text="Are you sure you want to delete Monster?" FontSize="Large" 
+            <Label Text="Are you sure you want to delete" FontSize="Medium"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="{Binding Data.Name}" FontSize="Medium"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="from Monster list?" FontSize="Medium"
+                   HorizontalOptions="Center"
                    HorizontalTextAlignment="Center" />
         </StackLayout>
 
@@ -23,5 +26,7 @@
             <Button Text="Cancel"
                     Clicked="Cancel_Clicked" />
         </StackLayout>
+
+
     </StackLayout>
 </ContentPage>

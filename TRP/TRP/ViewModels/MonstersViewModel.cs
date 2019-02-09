@@ -40,6 +40,14 @@ namespace TRP.ViewModels
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
             // Implement 
+            // Update Database: Delete Character
+            MessagingCenter.Subscribe<MonsterDeletePage, Monster>(this, "DeleteData", async (obj, data) =>
+            {
+                Dataset.Remove(data);
+                await DataStore.DeleteAsync_Monster(data);
+            });
+
+
         }
 
         // Return True if a refresh is needed
