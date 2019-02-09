@@ -5,7 +5,8 @@
 		     Title="Add New Item">
     
     <ContentPage.ToolbarItems>
-
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
