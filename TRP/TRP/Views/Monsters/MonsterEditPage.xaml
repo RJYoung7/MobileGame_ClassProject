@@ -5,12 +5,10 @@
              xmlns:local="using:TRP.Models"
              Title="{Binding Title}">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:StringEnumConverter x:Key="StringEnum"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <ScrollView>
@@ -117,11 +115,6 @@
                     <Label Grid.Row="3" Grid.Column="1" Text="10" x:Name="statPoints" FontSize="Medium"/>
                 </Grid>
 
-                <!-- Save and Cancel Buttons -->
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                    <Button Text="Save" Clicked="Save_Clicked" Padding="30,10,30,10"/>
-                    <Button Text="Cancel" Clicked="Cancel_Clicked" Padding="30,10,30,10"/>
-                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
