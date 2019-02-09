@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="TRP.Views.CharacterNewPage"
 		     Title="Add New Character"
-             xmlns:local="using:TRP.Models">
+             xmlns:local="clr-namespace:TRP.Models">
 
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <local:StringEnumConverter x:Key="StringEnum"/>
-    </ResourceDictionary>
-  </ContentPage.Resources>
+    <ContentPage.Resources>
+        <local:StringEnumConverter x:Key="StringEnum"/>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
