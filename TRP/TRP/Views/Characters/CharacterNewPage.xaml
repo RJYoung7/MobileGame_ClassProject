@@ -18,6 +18,12 @@
         <ScrollView>
             <!-- Name -->
             <StackLayout Spacing="20" Padding="15">
+                <Image Source="{Binding Data.GetCharacterImage(PenguinTypePicker)}"
+                    WidthRequest="150"
+                    HeightRequest="150" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                       x:Name="pic"/>
                 <Entry Keyboard="Text" Placeholder="Enter Character Name" Text="{Binding Data.Name}" />
                 <StackLayout Orientation="Horizontal">
                   <!-- Penguin type -->
@@ -25,7 +31,8 @@
                     <Picker HorizontalOptions="FillAndExpand"
                             ItemsSource="{x:Static local:PenguinTypeList.GetPenguinTypeList}"
                             SelectedItem="{Binding Data.PenguinType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
-                            x:Name="PenguinTypePicker"/>
+                            x:Name="PenguinTypePicker" 
+                            SelectedIndexChanged="PenguinTypePicker_SelectedIndexChanged"/>
                 </StackLayout>
 
                 <Grid

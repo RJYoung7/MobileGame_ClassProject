@@ -108,5 +108,12 @@ namespace TRP.Views
                 statPoints.Text = String.Format("{0}", AdjustStatPointAvail(GameGlobals.availStatPoints));
             }
         }
+
+        private void PenguinTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var penguinType = PenguinTypePicker.SelectedItem.ToString();
+            var penguinEnum = PenguinTypeList.ConvertStringToEnum(penguinType);
+            pic.Source = Data.GetCharacterImage(penguinEnum);
+        }
     }
 }
