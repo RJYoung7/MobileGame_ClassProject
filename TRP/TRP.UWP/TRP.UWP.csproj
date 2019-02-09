@@ -107,9 +107,13 @@
   <ItemGroup>
     <Content Include="Baby.png" />
     <Content Include="Emperor.png" />
+    <Content Include="Fox.png" />
     <Content Include="Gentoo.png" />
+    <Content Include="Iceberg.png" />
+    <Content Include="Leopardseal.png" />
     <Content Include="Little.png" />
     <Content Include="Macaroni.png" />
+    <Content Include="Polarbear.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
@@ -138,6 +142,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Seaeagle.png" />
+    <Content Include="Sealion.png" />
+    <Content Include="Shark.png" />
+    <Content Include="Skua.png" />
     <Content Include="xamarin_logo.png" />
     <Content Include="add.png" />
     <Content Include="save.png" />

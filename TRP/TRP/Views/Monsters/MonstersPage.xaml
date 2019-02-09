@@ -43,7 +43,7 @@
                                                Style="{DynamicResource ListItemTextStyle}" 
                                                FontSize="16" />
                                     </StackLayout>
-                                    <Label Text="{Binding Description}" 
+                                    <Label Text="{Binding MonsterType}" 
                                          LineBreakMode="NoWrap"
                                          Style="{DynamicResource ListItemDetailTextStyle}"
                                          FontSize="13" />

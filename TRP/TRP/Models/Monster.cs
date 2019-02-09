@@ -27,6 +27,19 @@ namespace TRP.Models
             // // Implement ScaleLevel(Level);
         }
 
+        // Create a monster from datastore
+        public Monster(string name, AttributeBase ab, MonsterTypeEnum mt)
+        {
+            Name = name;
+            Alive = true;
+            Attribute = ab;
+            MonsterType = mt;
+            Level = 1;
+
+            // Update this character with these properties.  Updates and fills in all properties.
+            Update(this);
+        }
+
         // Passed in from creating via the Database, so use the guid passed in...
         public Monster(BaseMonster newData)
         {

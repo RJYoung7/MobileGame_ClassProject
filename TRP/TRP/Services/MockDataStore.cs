@@ -54,12 +54,8 @@ namespace TRP.Services
             _characterDataset.Add(new Character("Patrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
                                  
             // Load monsters 
-            _monsterDataset.Add(new Monster("Orca Whale", "Apex Preadator", 
-                "https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/19598483_1401257979949843_906723264379815411_n.jpg?_nc_cat=104&_nc_ht=scontent-sea1-1.xx&oh=b0b1a20ca78838eeaafb5e4462af2917&oe=5CF3C426", new AttributeBase(1,1,1,1)));
-            _monsterDataset.Add(new Monster("Sea lion", "Arf arf", "http://www.dolphinencounters.com/wp-content/uploads/2015/12/sea-lion-01.jpg", new AttributeBase(1, 1, 1, 1)));
-            _monsterDataset.Add(new Monster("Polar bear", "Will stalk you for miles", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Polar_Bear_-_Alaska_%28cropped%29.jpg/220px-Polar_Bear_-_Alaska_%28cropped%29.jpg", new AttributeBase(1, 1, 1, 1)));
-            _monsterDataset.Add(new Monster("Artic fox", "Cute but deadly", "http://facts.net/wp-content/uploads/2015/08/Arctic-Fox-Facts.jpg", new AttributeBase(1, 1, 1, 1)));
-            
+            _monsterDataset.Add(new Monster("Leonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
+            _monsterDataset.Add(new Monster("Arnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
             // Implement Scores
         }
 

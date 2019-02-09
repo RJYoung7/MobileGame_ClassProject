@@ -163,4 +163,28 @@
   <ItemGroup>
     <BundleResource Include="Resources\Baby.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Fox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Leopardseal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Polarbear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Seaeagle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Sealion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Shark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Skua.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Iceberg.png" />
+  </ItemGroup>
 </Project>
