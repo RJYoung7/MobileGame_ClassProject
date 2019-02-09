@@ -113,6 +113,7 @@
     <Content Include="Leopardseal.png" />
     <Content Include="Little.png" />
     <Content Include="Macaroni.png" />
+    <Content Include="Orca.png" />
     <Content Include="Polarbear.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />

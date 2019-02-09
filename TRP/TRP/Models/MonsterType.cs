@@ -27,8 +27,8 @@ namespace TRP.Models
         {
             get
             {
-                var myList = Enum.GetNames(typeof(MonsterTypeEnum)).ToList();
-                var ret = myList;
+                var myList = from name in Enum.GetNames(typeof(MonsterTypeEnum)) where name != "Unknown" select name;
+                var ret = myList.ToList();
                 return ret;
             }
         }
