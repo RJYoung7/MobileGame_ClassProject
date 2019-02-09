@@ -20,7 +20,6 @@ namespace TRP.Models
         {
             Name = "Monster";
             Attribute = new AttributeBase();
-
             Alive = true;
             Level = 1;
 
@@ -31,14 +30,14 @@ namespace TRP.Models
         // Passed in from creating via the Database, so use the guid passed in...
         public Monster(BaseMonster newData)
         {
-            // Implement
             // Base information
             Name = newData.Name;
             Description = newData.Description;
             Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = newData.ImageURI;
+            ImageURI = GetMonsterImage(newData.MonsterType);
             Alive = newData.Alive;
+            MonsterType = newData.MonsterType;
 
             // Database information
             Guid = newData.Guid;
@@ -46,7 +45,6 @@ namespace TRP.Models
 
             // Populate the Attributes
             AttributeString = newData.AttributeString;
-
             Attribute = new AttributeBase(newData.AttributeString);
 
             // Set the strings for the items
@@ -56,7 +54,6 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
-
         }
 
         public Monster(string name, string desc, string uri, AttributeBase ab)
@@ -87,9 +84,35 @@ namespace TRP.Models
         // Update the values passed in
         public new void Update(Monster newData)
         {
-            // Implement
+            if (newData == null)
+            {
+                return;
+            }
 
-            return;
+            // Update all the fields in the Data, except for the Id and guid
+            //Base information
+            Name = newData.Name;
+            Description = newData.Description;
+            Level = newData.Level;
+            ExperienceTotal = newData.ExperienceTotal;
+            ImageURI = GetMonsterImage(newData.MonsterType);
+            Alive = newData.Alive;
+            MonsterType = newData.MonsterType;
+
+            //Populate the Attributes
+            AttributeString = AttributeBase.GetAttributeString(newData.Attribute);
+            Attribute = new AttributeBase(newData.AttributeString);
+
+            //Set the strings for the items
+            Head = newData.Head;
+            Feet = newData.Feet;
+            Necklass = newData.Necklass;
+            Body = newData.Body;
+            PrimaryHand = newData.PrimaryHand;
+            OffHand = newData.OffHand;
+            RightFinger = newData.RightFinger;
+            LeftFinger = newData.LeftFinger;
+            Feet = newData.Feet;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string

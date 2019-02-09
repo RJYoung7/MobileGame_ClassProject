@@ -10,6 +10,12 @@ namespace TRP.Models
         // Unique Item for Monster
         public string UniqueItem { get; set; }
 
+        // Monster type 
+        public MonsterTypeEnum MonsterType { get; set; }
+
+        // Monster type bonus
+        public AttributeEnum TypeBonus { get; set; }
+
         // Damage the Monster can do.
         public int Damage { get; set; }
 
@@ -21,7 +27,7 @@ namespace TRP.Models
 
         }
 
-        // Creaste a base from a monster, this reuses the guid and id
+        // Create a base from a monster, this reuses the guid and id
         public BaseMonster(Monster newData)
         {
             // Database information
@@ -57,6 +63,32 @@ namespace TRP.Models
         public void Update(Monster newData)
         {
             return;
+        }
+
+        // Given the type of monster, set the image uri
+        public String GetMonsterImage(MonsterTypeEnum mt)
+        {
+            switch (mt)
+            {
+                case MonsterTypeEnum.Shark:
+                    return "Shark.png";
+                case MonsterTypeEnum.LeopardSeal:
+                    return "Leopardseal.png";
+                case MonsterTypeEnum.PolarBear:
+                    return "Polarbear.png";
+                case MonsterTypeEnum.SeaEagle:
+                    return "Seaeagle.png";
+                case MonsterTypeEnum.SeaLion:
+                    return "Sealion.png";
+                case MonsterTypeEnum.Skua:
+                    return "Skua.png";
+                case MonsterTypeEnum.Fox:
+                    return "Fox.png";
+                case MonsterTypeEnum.Orca:
+                    return "Orca.png";
+                default:
+                    return "Iceberg.png";
+            }
         }
     }
 }
