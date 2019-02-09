@@ -18,10 +18,9 @@ namespace TRP.Models
         // Make sure Attribute is instantiated in the constructor
         public Monster()
         {
-            Name = "Monster";
             Attribute = new AttributeBase();
             Alive = true;
-            Level = 1;
+            MonsterType = MonsterTypeEnum.Unknown;
 
             // Scale up to the level
             // // Implement ScaleLevel(Level);
@@ -67,25 +66,6 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
-        }
-
-        public Monster(string name, string desc, string uri, AttributeBase ab)
-        {
-            Name = name;
-            Description = desc;
-            ImageURI = uri;
-
-            Attribute = ab;
-        }
-
-        // For making a new one for lists etc..
-        public Monster(Monster newData)
-        {
-            // Implement
-            Name = newData.Name;
-            Description = newData.Description;
-            ImageURI = newData.ImageURI;
-
         }
 
         // Upgrades a monster to a set level

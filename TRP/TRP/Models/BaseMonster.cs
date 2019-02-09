@@ -38,7 +38,7 @@ namespace TRP.Models
             Description = newData.Description;
             Level = newData.Level;
             ExperienceTotal = newData.ExperienceTotal;
-            ImageURI = newData.ImageURI;
+            ImageURI = newData.GetMonsterImage(newData.MonsterType);
             Alive = newData.Alive;
 
             // Populate the Attributes
@@ -52,6 +52,7 @@ namespace TRP.Models
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
             UniqueItem = newData.UniqueItem;
+            MonsterType = newData.MonsterType;
 
             // Calculate Experience Remaining based on Lookup...
             ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level].Experience;

@@ -19,7 +19,7 @@ namespace TRP.Views
 
             Data = new Monster
             {
-                Name = "Monster name",
+                Name = "",
                 Level = 1,
                 Id = Guid.NewGuid().ToString(),
                 Attribute = new AttributeBase(),

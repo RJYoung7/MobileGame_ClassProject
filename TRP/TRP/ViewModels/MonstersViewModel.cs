@@ -37,6 +37,7 @@ namespace TRP.ViewModels
 
         private bool _needsRefresh;
 
+        // Constructor: loads data and listens for broadcast from views
         public MonstersViewModel()
         {
             Title = "Monster List";

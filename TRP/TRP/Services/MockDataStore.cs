@@ -239,6 +239,7 @@ namespace TRP.Services
         //Monster
         public async Task<bool> AddAsync_Monster(Monster data)
         {
+            data.Update(data);
             _monsterDataset.Add(data);
 
             return await Task.FromResult(true);
