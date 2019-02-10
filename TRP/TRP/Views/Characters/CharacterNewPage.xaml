@@ -16,7 +16,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <!-- Name -->
+            <!-- Image -->
             <StackLayout Spacing="20" Padding="15">
                 <Image Source="{Binding Data.GetCharacterImage(PenguinTypePicker)}"
                     WidthRequest="150"
@@ -24,6 +24,7 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                        x:Name="pic"/>
+                <!-- Name -->
                 <Entry Keyboard="Text" Placeholder="Enter Character Name" Text="{Binding Data.Name}" />
                 <StackLayout Orientation="Horizontal">
                   <!-- Penguin type -->

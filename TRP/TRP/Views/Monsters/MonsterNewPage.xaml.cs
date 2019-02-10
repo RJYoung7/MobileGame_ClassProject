@@ -104,5 +104,12 @@ namespace TRP.Views
                 statPoints.Text = String.Format("{0}", AdjustStatPointAvail(GameGlobals.availStatPoints));
             }
         }
+
+        private void MonsterTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var monsterType = MonsterTypePicker.SelectedItem.ToString();
+            var monsterEnum = MonsterTypeList.ConvertStringToEnum(monsterType);
+            pic.Source = Data.GetMonsterImage(monsterEnum);
+        }
     }
 }

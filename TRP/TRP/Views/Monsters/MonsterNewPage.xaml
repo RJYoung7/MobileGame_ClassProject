@@ -16,8 +16,15 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <!-- Name -->
+            <!-- Image -->
             <StackLayout Spacing="20" Padding="15">
+                <Image Source="{Binding Data.GetMonsterImage(MonsterTypePicker)}"
+                    WidthRequest="150"
+                    HeightRequest="150" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                       x:Name="pic"/>
+            <!-- Name -->
                 <Entry Keyboard="Text" Placeholder="Enter Character Name" Text="{Binding Data.Name}" />
                 <StackLayout Orientation="Horizontal">
                     <!-- Monster type -->
@@ -25,7 +32,8 @@
                     <Picker HorizontalOptions="FillAndExpand"
                             ItemsSource="{x:Static local:MonsterTypeList.GetMonsterTypeList}"
                             SelectedItem="{Binding Data.MonsterType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
-                            x:Name="MonsterTypePicker"/>
+                            x:Name="MonsterTypePicker"
+                            SelectedIndexChanged="MonsterTypePicker_SelectedIndexChanged"/>
                 </StackLayout>
 
                 <Grid
