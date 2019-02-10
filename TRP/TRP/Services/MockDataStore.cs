@@ -187,7 +187,6 @@ namespace TRP.Services
         // Adds character to the dataset
         public async Task<bool> AddAsync_Character(Character data)
         {
-            // Implement
             data.Update(data);
             _characterDataset.Add(data);
 

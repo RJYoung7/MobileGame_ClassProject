@@ -10,6 +10,7 @@ namespace TRP.Models
     public class Character : BaseCharacter
     {
         // Add in the actual attribute class
+        [Ignore]
         public AttributeBase Attribute { get; set; }
 
         // Make sure Attribute is instantiated in the constructor
@@ -28,17 +29,6 @@ namespace TRP.Models
             Name = name;
             Alive = true;
             Attribute = ab;
-            PenguinType = pt;
-            Level = 1;
-
-            // Update this character with these properties.  Updates and fills in all properties.
-            Update(this);
-        }
-
-        public Character(string name, PenguinTypeEnum pt)
-        {
-            Name = name;
-            Alive = true;
             PenguinType = pt;
             Level = 1;
 

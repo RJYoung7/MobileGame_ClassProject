@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TRP.Models;
 using TRP.ViewModels;
-using Character = TRP.Models.Character;
-using AttributeBase = TRP.Models.AttributeBase;
 
 namespace TRP.Services
 {
@@ -90,15 +88,9 @@ namespace TRP.Services
             await AddAsync_Character(new Character("SQLPerry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
             await AddAsync_Character(new Character("SQLPaco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
             await AddAsync_Character(new Character("SQLPatrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
-            //await AddAsync_Character(new Character { Id = Guid.NewGuid().ToString(), Name = "SQLFifth Character", Description = "This is an Character description.", Level = 3 });
-            //await AddAsync_Character(new Character { Id = Guid.NewGuid().ToString(), Name = "SQLSixth Character", Description = "This is an Character description.", Level = 3 });
 
-            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "SQLFirst Monster", Description = "This is an Monster description." });
-            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "SQLSecond Monster", Description = "This is an Monster description." });
-            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "SQLThird Monster", Description = "This is an Monster description." });
-            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "SQLFourth Monster", Description = "This is an Monster description." });
-            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "SQLFifth Monster", Description = "This is an Monster description." });
-            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "SQLSixth Monster", Description = "This is an Monster description." });
+            await AddAsync_Monster(new Monster("SQLLeonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
+            await AddAsync_Monster(new Monster("SQLArnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
 
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFirst Score", ScoreTotal = 111 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSecond Score", ScoreTotal = 222 });
@@ -192,6 +184,7 @@ namespace TRP.Services
         // Conver to BaseCharacter and then add it
         public async Task<bool> AddAsync_Character(Character data)
         {
+            data.Update(data);
             var result = await App.Database.InsertAsync(data);
             if (result == 1)
             {
@@ -246,6 +239,7 @@ namespace TRP.Services
         //Monster
         public async Task<bool> AddAsync_Monster(Monster data)
         {
+            data.Update(data);
             var result = await App.Database.InsertAsync(data);
             if (result == 1)
             {

@@ -21,7 +21,6 @@ namespace TRP.Models
         // but it needs to go here as a string so it can be saved to the database.
         public string AttributeString { get; set; }
 
-
         // Death
         // Alive turns to False
         public void CauseDeath()
