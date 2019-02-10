@@ -13,6 +13,7 @@ namespace TRP.Models
         public int ExperienceRemaining { get; set; }
 
         // Add in the actual attribute class
+        [Ignore]
         public AttributeBase Attribute { get; set; }
 
         // Make sure Attribute is instantiated in the constructor

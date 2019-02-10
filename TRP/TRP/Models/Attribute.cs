@@ -7,7 +7,6 @@ namespace TRP.Models
     // Enum to specify the different attributes Allowed.
     // Not specified is considered not initialize and returns unknown
     // All other attributes have explicted values.
-
     public enum AttributeEnum
     {
         // Not specified

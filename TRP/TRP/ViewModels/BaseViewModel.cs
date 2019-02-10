@@ -17,7 +17,7 @@ namespace TRP.ViewModels
         private IDataStore DataStoreMock => DependencyService.Get<IDataStore>() ?? MockDataStore.Instance;
         private IDataStore DataStoreSql => DependencyService.Get<IDataStore>() ?? SQLDataStore.Instance;
 
-        public IDataStore DataStore;
+        public IDataStore DataStore = MockDataStore.Instance;
 
         public BaseViewModel()
         {
@@ -32,8 +32,8 @@ namespace TRP.ViewModels
                     DataStore = DataStoreMock;
                     break;
 
-                case DataStoreEnum.Sql:
-                case DataStoreEnum.Unknown:
+                //case DataStoreEnum.Unknown:
+                //case DataStoreEnum.Sql:
                 default:
                     DataStore = DataStoreSql;
                     break;

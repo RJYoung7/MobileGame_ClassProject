@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TRP.Models;
 using TRP.ViewModels;
@@ -27,44 +28,76 @@ namespace TRP.Services
         private SQLDataStore()
         {
             // Implement
-            // CreateTables();
+            CreateTables();
+            InitializeDatabaseNewTables();
         }
 
         // Create the Database Tables
         private void CreateTables()
         {
-            // Implement
+            App.Database.CreateTableAsync<Item>().Wait();
+            App.Database.CreateTableAsync<Character>().Wait();
+            App.Database.CreateTableAsync<Monster>().Wait();
+            App.Database.CreateTableAsync<Score>().Wait();
         }
 
         // Delete the Datbase Tables by dropping them
         private void DeleteTables()
         {
-            // Implement
+            App.Database.DropTableAsync<Item>().Wait();
+            App.Database.DropTableAsync<Character>().Wait();
+            App.Database.DropTableAsync<Monster>().Wait();
+            App.Database.DropTableAsync<Score>().Wait();
         }
 
         // Tells the View Models to update themselves.
         private void NotifyViewModelsOfDataChange()
         {
-            // Implement
+            ItemsViewModel.Instance.SetNeedsRefresh(true);
+            MonstersViewModel.Instance.SetNeedsRefresh(true);
+            CharactersViewModel.Instance.SetNeedsRefresh(true);
+            ScoresViewModel.Instance.SetNeedsRefresh(true);
         }
 
         public void InitializeDatabaseNewTables()
         {
-            // Implement
+            //Delete the tables
+            DeleteTables();
 
-            // Delete the tables
-
-            // make them again
+            // Make them again
+            CreateTables();
 
             // Populate them
+            InitilizeSeedData();
 
-            // Tell View Models they need to refresh
+            // Tell view Models they need to refresh
+            NotifyViewModelsOfDataChange();
 
         }
 
         private async void InitilizeSeedData()
         {
-            // Implement
+            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQLFirst item", Description = "This is an item description." });
+            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQLSecond item", Description = "This is an item description." });
+            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQLThird item", Description = "This is an item description." });
+            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQLFourth item", Description = "This is an item description." });
+            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQLFifth item", Description = "This is an item description." });
+            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQLSixth item", Description = "This is an item description." });
+
+            await AddAsync_Character(new Character("SQLPoppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
+            await AddAsync_Character(new Character("SQLPerry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
+            await AddAsync_Character(new Character("SQLPaco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
+            await AddAsync_Character(new Character("SQLPatrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
+
+            await AddAsync_Monster(new Monster("SQLLeonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
+            await AddAsync_Monster(new Monster("SQLArnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
+
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFirst Score", ScoreTotal = 111 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSecond Score", ScoreTotal = 222 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLThird Score", ScoreTotal = 333 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFourth Score", ScoreTotal = 444 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFifth Score", ScoreTotal = 555 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSixth Score", ScoreTotal = 666 });
 
         }
 
@@ -95,35 +128,47 @@ namespace TRP.Services
 
         public async Task<bool> AddAsync_Item(Item data)
         {
-            // Implement
+            var result = await App.Database.InsertAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
 
             return false;
         }
 
         public async Task<bool> UpdateAsync_Item(Item data)
         {
-            // Implement
+            var result = await App.Database.UpdateAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
 
             return false;
         }
 
         public async Task<bool> DeleteAsync_Item(Item data)
         {
-            // Implement
+            var result = await App.Database.DeleteAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
 
             return false;
         }
 
         public async Task<Item> GetAsync_Item(string id)
         {
-            // Implement
-            return null;
+            var result = await App.Database.GetAsync<Item>(id);
+            return result;
         }
 
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            var result = await App.Database.Table<Item>().ToListAsync();
+            return result;
         }
         #endregion Item
 
@@ -139,7 +184,12 @@ namespace TRP.Services
         // Conver to BaseCharacter and then add it
         public async Task<bool> AddAsync_Character(Character data)
         {
-            // Implement
+            data.Update(data);
+            var result = await App.Database.InsertAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
 
             return false;
         }
@@ -147,30 +197,40 @@ namespace TRP.Services
         // Convert to BaseCharacter and then update it
         public async Task<bool> UpdateAsync_Character(Character data)
         {
-            // Implement
+            var result = await App.Database.UpdateAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         // Pass in the character and convert to Character to then delete it
         public async Task<bool> DeleteAsync_Character(Character data)
         {
-            // Implement
+            var result = await App.Database.DeleteAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         // Get the Character Base, and Load it back as Character
         public async Task<Character> GetAsync_Character(string id)
         {
-            // Implement
-            return null;
+            var result = await App.Database.GetAsync<Character>(id);
+            return result;
         }
 
         // Load each character as the base character, 
         // Then then convert the list to characters to push up to the view model
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            var result = await App.Database.Table<Character>().ToListAsync();
+            return result;
         }
 
         #endregion Character
@@ -179,32 +239,48 @@ namespace TRP.Services
         //Monster
         public async Task<bool> AddAsync_Monster(Monster data)
         {
-            // Implement
+            data.Update(data);
+            var result = await App.Database.InsertAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
-            // Implement
+            var result = await App.Database.UpdateAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
-            // Implement
+            var result = await App.Database.DeleteAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public async Task<Monster> GetAsync_Monster(string id)
         {
-            // Implement
-            return null;
+            var result = await App.Database.GetAsync<Monster>(id);
+            return result;
         }
 
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            var result = await App.Database.Table<Monster>().ToListAsync();
+            return result;
         }
 
         #endregion Monster
@@ -213,32 +289,47 @@ namespace TRP.Services
         // Score
         public async Task<bool> AddAsync_Score(Score data)
         {
-            // Implement
+            var result = await App.Database.InsertAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public async Task<bool> UpdateAsync_Score(Score data)
         {
-            // Implement
+            var result = await App.Database.UpdateAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public async Task<bool> DeleteAsync_Score(Score data)
         {
-            // Implement
+            var result = await App.Database.DeleteAsync(data);
+            if (result == 1)
+            {
+                return true;
+            }
+
             return false;
         }
 
         public async Task<Score> GetAsync_Score(string id)
         {
-            // Implement
-            return null;
+            var result = await App.Database.GetAsync<Score>(id);
+            return result;
         }
 
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            var result = await App.Database.Table<Score>().ToListAsync();
+            return result;
 
         }
 

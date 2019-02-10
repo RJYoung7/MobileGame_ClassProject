@@ -2,6 +2,7 @@
 using TRP.ViewModels;
 using System;
 using System.Collections.Generic;
+using SQLite;
 
 namespace TRP.Models
 {
@@ -9,6 +10,7 @@ namespace TRP.Models
     public class Character : BaseCharacter
     {
         // Add in the actual attribute class
+        [Ignore]
         public AttributeBase Attribute { get; set; }
 
         // Make sure Attribute is instantiated in the constructor
