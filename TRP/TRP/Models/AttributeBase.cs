@@ -4,6 +4,7 @@ using System;
 
 namespace TRP.Models
 {
+    [Serializable]
     public class AttributeBase
     {
         // The speed of the character, impacts movement, and initiative
@@ -38,6 +39,7 @@ namespace TRP.Models
         public AttributeBase(int health, int attack, int defense, int speed)
         {
             MaxHealth = health;
+            CurrentHealth = MaxHealth;
             Attack = attack;
             Defense = defense;
             Speed = speed;

@@ -2,6 +2,7 @@
 using TRP.ViewModels;
 using System;
 using System.Collections.Generic;
+using SQLite;
 
 namespace TRP.Models
 {
@@ -27,6 +28,17 @@ namespace TRP.Models
             Name = name;
             Alive = true;
             Attribute = ab;
+            PenguinType = pt;
+            Level = 1;
+
+            // Update this character with these properties.  Updates and fills in all properties.
+            Update(this);
+        }
+
+        public Character(string name, PenguinTypeEnum pt)
+        {
+            Name = name;
+            Alive = true;
             PenguinType = pt;
             Level = 1;
 

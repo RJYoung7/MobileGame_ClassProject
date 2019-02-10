@@ -75,7 +75,12 @@
                                         HorizontalTextAlignment="Start"
                                         HorizontalOptions="StartAndExpand"/>
 
-                                    <Switch 
+                                     <Switch 
+                                    x:Name="SettingDataSource"
+                                    HorizontalOptions="Center"
+                                    Toggled="Switch_OnToggled"/>
+
+                                <Switch 
                                         x:Name="UseMockDataSource"
                                         HorizontalOptions="EndAndExpand"
                                         Toggled="UseMockDataSourceSwitch_OnToggled"

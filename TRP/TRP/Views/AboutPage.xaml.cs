@@ -17,9 +17,10 @@ namespace TRP.Views
         {
             InitializeComponent();
 
+            SettingDataSource.IsToggled = true;
             // Set the flag for Mock on or off...
-            UseMockDataSource.IsToggled = (MasterDataStore.GetDataStoreMockFlag() == DataStoreEnum.Mock);
-            SetDataSource(UseMockDataSource.IsToggled);
+            //UseMockDataSource.IsToggled = (MasterDataStore.GetDataStoreMockFlag() == DataStoreEnum.Mock);
+            //SetDataSource(UseMockDataSource.IsToggled);
 
             // Example of how to add an view to an existing set of XAML. 
             // Give the Xaml layout you want to add the data to a good x:Name, so you can access it.  Here "DateRoot" is what I am using.
@@ -49,6 +50,11 @@ namespace TRP.Views
             var myOutputCharacter = myTestCharacter.FormatOutput();
             var myOutputMonster = myTestMonster.FormatOutput();
 
+        }
+        private void Switch_OnToggled(object sender, ToggledEventArgs e)
+        {
+            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
+            SetDataSource(SettingDataSource.IsToggled);
         }
 
         private void SetDataSource(bool isMock)

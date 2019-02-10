@@ -24,6 +24,16 @@ namespace TRP.Models
         {
 
         }
+        public BaseCharacter(string name, PenguinTypeEnum pt)
+        {
+            Name = name;
+            Alive = true;
+            PenguinType = pt;
+            Level = 1;
+
+            // Update this character with these properties.  Updates and fills in all properties.
+            Update(this);
+        }
 
         // Makes BaseCharacter using character for constructor
         public BaseCharacter(Character newData)

@@ -16,6 +16,8 @@ namespace TRP.Models
         // Tracks if auto battle is true, or if user battle = false
         public bool AutoBattle { get; set; }
 
+        public int TurnNumber { get; set; }
+
         // The number of turns the battle took to finish
         public int TurnCount { get; set; }
 
