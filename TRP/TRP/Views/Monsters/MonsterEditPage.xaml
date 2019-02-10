@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.MonsterEditPage"	
-             xmlns:local="using:TRP.Models"
+             xmlns:local="clr-namespace:TRP.Models"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <local:StringEnumConverter x:Key="StringEnum"/>
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
@@ -14,8 +18,23 @@
         <ScrollView>
             <!-- Name -->
             <StackLayout Spacing="20" Padding="15">
+                <Image Source="{Binding Data.GetMonsterImage()}"
+                    WidthRequest="150"
+                    HeightRequest="150" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                       x:Name="pic"/>
                 <Entry Keyboard="Text" Text="{Binding Data.Name}" />
- 
+                <StackLayout Orientation="Horizontal">
+                    <!-- Monster type -->
+                    <Label Text="Select Type: " HorizontalOptions="Start" FontSize="Small"/>
+                    <Picker HorizontalOptions="FillAndExpand"
+                    ItemsSource="{x:Static local:MonsterTypeList.GetMonsterTypeList}"
+                    SelectedItem="{Binding Data.MonsterType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
+                    x:Name="MonsterTypePicker"
+                        SelectedIndexChanged="MonsterTypePicker_SelectedIndexChanged"/>
+                </StackLayout>
+
                 <Grid
                 RowSpacing="1"
                 ColumnSpacing="1"

@@ -23,9 +23,11 @@ namespace TRP.Views
 
             InitializeComponent();
             
-
             // Set the data binding for the page
             BindingContext = _viewModel = viewModel;
+
+            // Set the picker to the preexisting monster type
+            MonsterTypePicker.SelectedItem = Data.MonsterType.ToString();
         }
 
         public int AttributeSum()
@@ -41,7 +43,7 @@ namespace TRP.Views
 
         void Attack_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (AttributeSum() > 10)
+            if (AttributeSum() > GameGlobals.availStatPoints)
             {
                 AttackValue.Text = String.Format("{0}", e.OldValue);
                 attack.Value = e.OldValue;
@@ -49,14 +51,14 @@ namespace TRP.Views
             else
             {
                 AttackValue.Text = String.Format("{0}", e.NewValue);
-                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(GameGlobals.availStatPoints));
             }
         }
 
         // The stepper function for Defense
         void Defense_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (AttributeSum() > 10)
+            if (AttributeSum() > GameGlobals.availStatPoints)
             {
                 DefenseValue.Text = String.Format("{0}", e.OldValue);
                 defense.Value = e.OldValue;
@@ -64,14 +66,14 @@ namespace TRP.Views
             else
             {
                 DefenseValue.Text = String.Format("{0}", e.NewValue);
-                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(GameGlobals.availStatPoints));
             }
         }
 
         // The stepper function for Speed
         void Speed_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (AttributeSum() > 10)
+            if (AttributeSum() > GameGlobals.availStatPoints)
             {
                 SpeedValue.Text = String.Format("{0}", e.OldValue);
                 speed.Value = e.OldValue;
@@ -79,7 +81,7 @@ namespace TRP.Views
             else
             {
                 SpeedValue.Text = String.Format("{0}", e.NewValue);
-                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(10));
+                statPoints.Text = String.Format("{0}", AdjustStatPointAvail(GameGlobals.availStatPoints));
             }
         }
 
@@ -100,6 +102,13 @@ namespace TRP.Views
 	    private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        private void MonsterTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var monsterType = MonsterTypePicker.SelectedItem.ToString();
+            var monsterEnum = MonsterTypeList.ConvertStringToEnum(monsterType);
+            pic.Source = Data.GetMonsterImage(monsterEnum);
         }
     }
 }
