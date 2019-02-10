@@ -38,7 +38,7 @@
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>
 
-                    <Label Text="{Binding Data.Description}" 
+                    <Label Text="{Binding Data.MonsterTypeString}" 
                            FontSize="Small" 
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>

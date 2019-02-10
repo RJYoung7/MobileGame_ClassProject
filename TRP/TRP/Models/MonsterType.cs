@@ -47,13 +47,13 @@ namespace TRP.Models
                 case MonsterTypeEnum.Orca:
                     return "Orca";
                 case MonsterTypeEnum.SeaLion:
-                    return "Sea lion";
+                    return "Sea Lion";
                 case MonsterTypeEnum.PolarBear:
-                    return "Polar bear";
+                    return "Polar Bear";
                 case MonsterTypeEnum.LeopardSeal:
-                    return "Leopard seal";
+                    return "Leopard Seal";
                 case MonsterTypeEnum.SeaEagle:
-                    return "Sea eagle";
+                    return "Sea Eagle";
                 case MonsterTypeEnum.Skua:
                     return "Skua";
                 case MonsterTypeEnum.Shark:

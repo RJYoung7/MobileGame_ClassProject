@@ -19,6 +19,9 @@ namespace TRP.Models
         // Damage the Monster can do.
         public int Damage { get; set; }
 
+        // String to display monster type
+        public string MonsterTypeString { get; set; }
+
         // Just base from here down. 
         // This is what will be saved to the Database
 
@@ -90,6 +93,34 @@ namespace TRP.Models
                 default:
                     return "Iceberg.png";
             }
+        }
+
+        // Given the type of a Monster, return its type as string
+        public string GetMonsterTypeString(MonsterTypeEnum mtype)
+        {
+
+            switch (mtype)
+            {
+                case MonsterTypeEnum.Orca:
+                    return "Orca";
+                case MonsterTypeEnum.SeaLion:
+                    return "Sea Lion";
+                case MonsterTypeEnum.PolarBear:
+                    return "Polar Bear";
+                case MonsterTypeEnum.LeopardSeal:
+                    return "Leopard Seal";
+                case MonsterTypeEnum.SeaEagle:
+                    return "Sea Eagle";
+                case MonsterTypeEnum.Skua:
+                    return "Skua";
+                case MonsterTypeEnum.Shark:
+                    return "Shark";
+                case MonsterTypeEnum.Fox:
+                    return "Fox";
+                default:
+                    return "Unknown";
+            }
+
         }
     }
 }

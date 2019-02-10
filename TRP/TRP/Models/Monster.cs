@@ -21,6 +21,7 @@ namespace TRP.Models
             Attribute = new AttributeBase();
             Alive = true;
             MonsterType = MonsterTypeEnum.Unknown;
+            MonsterTypeString = "";
 
             // Scale up to the level
             // // Implement ScaleLevel(Level);
@@ -50,6 +51,7 @@ namespace TRP.Models
             ImageURI = GetMonsterImage(newData.MonsterType);
             Alive = newData.Alive;
             MonsterType = newData.MonsterType;
+            MonsterTypeString = GetMonsterTypeString(newData.MonsterType);
 
             // Database information
             Guid = newData.Guid;
@@ -91,6 +93,7 @@ namespace TRP.Models
             ImageURI = GetMonsterImage(newData.MonsterType);
             Alive = newData.Alive;
             MonsterType = newData.MonsterType;
+            MonsterTypeString = GetMonsterTypeString(newData.MonsterType);
 
             //Populate the Attributes
             AttributeString = AttributeBase.GetAttributeString(newData.Attribute);
