@@ -30,6 +30,7 @@ namespace TRP.Views
             MonsterTypePicker.SelectedItem = Data.MonsterType.ToString();
         }
 
+        // Returns the sum of all attributes
         public int AttributeSum()
         {
             return Data.Attribute.Attack + Data.Attribute.Defense + Data.Attribute.Speed;
@@ -41,6 +42,7 @@ namespace TRP.Views
             return statTotalPoints - (AttributeSum());
         }
 
+        // The stepper function for Attack
         void Attack_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             if (AttributeSum() > GameGlobals.availStatPoints)
@@ -85,6 +87,7 @@ namespace TRP.Views
             }
         }
 
+        // When save button is clicked, add attributes to this character, and broadcast edit
         private async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "EditData", Data);
@@ -99,11 +102,13 @@ namespace TRP.Views
             Navigation.RemovePage(this);
         }
 
-	    private async void Cancel_Clicked(object sender, EventArgs e)
+        // When cancel button is clicked, remove this page from stack
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
 
+        // Provides Monster information for picker
         private void MonsterTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var monsterType = MonsterTypePicker.SelectedItem.ToString();

@@ -105,6 +105,7 @@ namespace TRP.Views
             }
         }
 
+        // Provides Monster information for picker
         private void MonsterTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var monsterType = MonsterTypePicker.SelectedItem.ToString();

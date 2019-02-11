@@ -109,6 +109,7 @@ namespace TRP.Views
             }
         }
 
+        // Provides Penguin infomration for picker
         private void PenguinTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var penguinType = PenguinTypePicker.SelectedItem.ToString();

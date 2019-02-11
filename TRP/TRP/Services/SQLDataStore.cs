@@ -85,11 +85,13 @@ namespace TRP.Services
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQLFifth item", Description = "This is an item description." });
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQLSixth item", Description = "This is an item description." });
 
+            // Default SQL Characters
             await AddAsync_Character(new Character("SQLPoppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
             await AddAsync_Character(new Character("SQLPerry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
             await AddAsync_Character(new Character("SQLPaco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
             await AddAsync_Character(new Character("SQLPatrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
 
+            // Default SQL Monsters
             await AddAsync_Monster(new Monster("SQLLeonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
             await AddAsync_Monster(new Monster("SQLArnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
 
@@ -185,9 +187,16 @@ namespace TRP.Services
         // Conver to BaseCharacter and then add it
         public async Task<bool> AddAsync_Character(Character data)
         {
+            // Update character data
             data.Update(data);
+
+            // Convert to BaseCharacter type to add to DB
             var databaseChar = new BaseCharacter(data);
+
+            // Insert BaseCharacter
             var result = await App.Database.InsertAsync(databaseChar);
+
+            // If inserstion is successful, return true
             if (result == 1)
                 return true;
             return false;
@@ -196,9 +205,17 @@ namespace TRP.Services
         // Convert to BaseCharacter and then update it
         public async Task<bool> UpdateAsync_Character(Character data)
         {
+
+            // Update character data
             data.Update(data);
+
+            // Convert Character data to BaseCharacter data
             var castData = new BaseCharacter(data);
+
+            // Update BaseCharacter data in DB
             var result = await App.Database.UpdateAsync(castData);
+
+            // If update was successful, returen true
             if (result == 1)
             {
                 return true;
@@ -210,7 +227,13 @@ namespace TRP.Services
         // Pass in the character and convert to Character to then delete it
         public async Task<bool> DeleteAsync_Character(Character data)
         {
+            // Convert Monster to BaseMonster
+            var castData = new BaseCharacter(data);
+
+            // Delete BaseMonster from DB
             var result = await App.Database.DeleteAsync(data);
+
+            // If delete was successful, return true
             if (result == 1)
             {
                 return true;
@@ -242,9 +265,16 @@ namespace TRP.Services
         //Monster
         public async Task<bool> AddAsync_Monster(Monster data)
         {
+            // Update Monster Data
             data.Update(data);
+
+            // Convert Monster to BaseMonster
             var castData = new BaseMonster(data);
+
+            // Add Monster to DB
             var result = await App.Database.InsertAsync(castData);
+
+            // If insertion was successful, return true;
             if (result == 1)
                 return true;
             return false;
@@ -252,9 +282,16 @@ namespace TRP.Services
 
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
+            // Update Monster Data
             data.Update(data);
+
+            // Convert Monster data to BaseMonster data
             var castData = new BaseMonster(data);
+
+            // Update BaseMonster data in DB
             var result = await App.Database.UpdateAsync(castData);
+
+            // If update was successful, return true
             if (result == 1)
             {
                 return true;
@@ -265,7 +302,13 @@ namespace TRP.Services
 
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
-            var result = await App.Database.DeleteAsync(data);
+            // Convert Monster data to BaseMonster data
+            var castData = new BaseMonster(data);
+
+            // Delete BaseMonster from DB
+            var result = await App.Database.DeleteAsync(castData);
+
+            // If deletion is successful, return true
             if (result == 1)
             {
                 return true;
@@ -287,9 +330,7 @@ namespace TRP.Services
             var ret = result.Select(m => new Monster(m)).ToList();
             return ret;
         }
-
-
-
+               
         #endregion Monster
 
         #region Score
