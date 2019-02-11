@@ -245,8 +245,12 @@ namespace TRP.Services
         // Get the Character Base, and Load it back as Character
         public async Task<Character> GetAsync_Character(string id)
         {
+            // Get BaseCharacter from BaseCharacter table
             var result = await App.Database.GetAsync<BaseCharacter>(id);
+
+            // Convert BaseCharacter to Character
             var data = new Character(result);
+
             return data;
         }
 
@@ -254,8 +258,12 @@ namespace TRP.Services
         // Then then convert the list to characters to push up to the view model
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
+            // Get list of BaseCharacters from BaseCharacter table
             var result = await App.Database.Table<BaseCharacter>().ToListAsync();
+
+            // Convert BaseCharacter list to Characters
             var ret = result.Select(c => new Character(c)).ToList();
+
             return ret;
         }
 
@@ -319,14 +327,20 @@ namespace TRP.Services
 
         public async Task<Monster> GetAsync_Monster(string id)
         {
+            // Get BaseMonster from BaseMonster table
             var result = await App.Database.GetAsync<BaseMonster>(id);
+
+            // Convert BaseMonster to Monster
             var ret = new Monster(result);
             return ret;
         }
 
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
+            // Get list of BaseMonsters from BaseMonster table.
             var result = await App.Database.Table<BaseMonster>().ToListAsync();
+
+            // Convert list of BaseMonsters to Monsters
             var ret = result.Select(m => new Monster(m)).ToList();
             return ret;
         }
