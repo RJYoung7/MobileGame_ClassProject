@@ -190,4 +190,16 @@
   <ItemGroup>
     <BundleResource Include="Resources\Orca.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Adelie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\King.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Magellanic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Rockhopper.png" />
+  </ItemGroup>
 </Project>

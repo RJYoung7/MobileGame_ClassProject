@@ -88,6 +88,14 @@ namespace TRP.Models
                     return "Little.png";
                 case PenguinTypeEnum.Macaroni:
                     return "Macaroni.png";
+                case PenguinTypeEnum.Adelie:
+                    return "Adelie.png";
+                case PenguinTypeEnum.King:
+                    return "King.png";
+                case PenguinTypeEnum.Rockhopper:
+                    return "Rockhopper.png";
+                case PenguinTypeEnum.Magellanic:
+                    return "Magellanic.png";
                 default:
                     return "Baby.png";
             }
