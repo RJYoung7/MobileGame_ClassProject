@@ -78,6 +78,7 @@ namespace TRP.Services
 
         private async void InitializeSeedData()
         {
+            // Default SQL Items
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Slush Helmet", Description = "A helmet made from slush.",
                 ImageURI= "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", Range=0, Value=1, Damage=0, Location=ItemLocationEnum.Head,
                 Attribute = AttributeEnum.Defense });

@@ -35,26 +35,27 @@
 
 
                                 <StackLayout>
-                                    <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical" Spacing="0">
                                         <Label Text="{Binding Name}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
-                                        <Label Text="{Binding Attribute}" 
-                                           LineBreakMode="NoWrap" 
-                                           Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16" />
-                                        <Label Text="{Binding Value}" 
-                                           LineBreakMode="NoWrap" 
-                                           Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16" />
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                            <Label Text="{Binding Attribute}" 
+                                               LineBreakMode="NoWrap" 
+                                               Style="{DynamicResource ListItemTextStyle}" 
+                                               FontSize="16" />
+                                            <Label Text="{Binding Value}" 
+                                               LineBreakMode="NoWrap" 
+                                               Style="{DynamicResource ListItemTextStyle}" 
+                                               FontSize="16"/>
                                     </StackLayout>
                                     <Label Text="{Binding Description}" 
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemDetailTextStyle}"
                                        FontSize="13" />
                                 </StackLayout>
-                                
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
