@@ -24,7 +24,7 @@ namespace TRP.Views
 
         private async void ManualBattleButton_Command(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AutoBattlePage());
+            await Navigation.PushAsync(new BattleBeginPage());
         }
 
         private async void AboutButton_Command(object sender, EventArgs e)

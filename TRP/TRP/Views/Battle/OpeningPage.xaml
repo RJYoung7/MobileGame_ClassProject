@@ -32,7 +32,12 @@
                 HorizontalOptions="CenterAndExpand" 
                     Clicked="AutoBattleButton_Command"/>
 
-            <Button Text="About"
+            <Button Text="Battle"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="ManualBattleButton_Command"/>
+
+                <Button Text="About"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" 
                     Clicked="AboutButton_Command"/>
