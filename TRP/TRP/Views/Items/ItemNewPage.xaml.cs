@@ -19,8 +19,8 @@ namespace TRP.Views
 
             Data = new Item
             {
-                Name = "Item name",
-                Description = "This is an item description.",
+                Name = "",
+                Description = "",
                 Id = Guid.NewGuid().ToString(),
                 Range=0,
                 Value=1,
