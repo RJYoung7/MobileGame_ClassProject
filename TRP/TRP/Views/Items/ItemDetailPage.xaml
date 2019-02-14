@@ -30,19 +30,21 @@
                     Orientation="Vertical"
                     HorizontalOptions="Start"
                     VerticalOptions="Start">
+                    
                     <!-- Item name -->
                     <Label Text="{Binding Data.Name}" 
                            FontAttributes="Bold"
                            FontSize="Medium" 
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>
+                    
                     <!-- Description of item -->
-
                     <Label Text="{Binding Data.Description}" 
                            FontSize="Medium" 
                            FontAttributes="Italic"
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>
+                    
                 </StackLayout>
             </StackLayout>
 

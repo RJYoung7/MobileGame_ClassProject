@@ -40,12 +40,14 @@ namespace TRP.Services
         private void InitilizeSeedData()
         {
             // Load items
-            _itemDataset.Add(new Item("Gold Sword", "Sword made of Gold, really expensive looking",
-                "http://www.clker.com/cliparts/e/L/A/m/I/c/sword-md.png", 0, 10, 10, ItemLocationEnum.PrimaryHand, AttributeEnum.Defense));
-            _itemDataset.Add(new Item("Strong Shield", "Enough to hide behind",
-                "http://www.clipartbest.com/cliparts/4T9/LaR/4T9LaReTE.png", 0, 10, 0, ItemLocationEnum.OffHand, AttributeEnum.Attack));
-            _itemDataset.Add(new Item("Bunny Hat", "Pink hat with fluffy ears",
-                "http://www.clipartbest.com/cliparts/yik/e9k/yike9kMyT.png", 0, 10, -1, ItemLocationEnum.Head, AttributeEnum.Speed));
+            _itemDataset.Add(new Item("Slush Helmet", "A helmet made from slush",
+                "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", 0, 1, 0, ItemLocationEnum.Head, AttributeEnum.Defense));
+            _itemDataset.Add(new Item("Ice Boots", "Boots with harden iced attached",
+                "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", 0, 3, 0, ItemLocationEnum.Feet, AttributeEnum.Defense));
+            _itemDataset.Add(new Item("Fire Bow", "Crafted from artic flames",
+                "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png", 
+                4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+
 
             // Load characters
             _characterDataset.Add(new Character("Poppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
