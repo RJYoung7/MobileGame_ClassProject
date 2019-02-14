@@ -7,6 +7,16 @@
             <Label Text="Current party"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Button Text="Select Penguins"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="SelectCharactersButton_Command"/>
+
+            <Button Text="Select Monsters"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="SelectMonstersButton_Command"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

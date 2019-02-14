@@ -16,5 +16,15 @@ namespace TRP.Views.Battle
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private async void SelectCharactersButton_Command(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CharactersSelectPage());
+        }
+
+        private async void SelectMonstersButton_Command(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MonstersSelectPage());
+        }
+    }
 }
