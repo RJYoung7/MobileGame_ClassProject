@@ -18,90 +18,59 @@
             Spacing="20"
             Padding="15">
 
-            <Label Text="Items Detail Page" FontSize="Medium" />
+            <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
+                <!-- Picture of item -->
+                <Image Source="{Binding Data.ImageURI}"
+                       WidthRequest="150"
+                       HeightRequest="150" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
 
-            <Image Source="{Binding Data.ImageURI}"
-                WidthRequest="150"
-                HeightRequest="150" 
-                HorizontalOptions="Center"
-                VerticalOptions="Center"/>
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start">
+                    <!-- Item name -->
+                    <Label Text="{Binding Data.Name}" 
+                           FontAttributes="Bold"
+                           FontSize="Medium" 
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
+                    <!-- Description of item -->
 
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Name : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Name}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
-
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Description : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Description}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
+                    <Label Text="{Binding Data.Description}" 
+                           FontSize="Medium" 
+                           FontAttributes="Italic"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
+                </StackLayout>
             </StackLayout>
 
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Range : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Range}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
+            <!-- Attributes -->
+            <Label Text="Base Attributes: " FontSize="Medium" VerticalOptions="Start" FontAttributes="Bold"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Damage : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Damage}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
-            
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Value : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Value}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
-            
-            <StackLayout
-                Orientation="Horizontal"
-                HorizontalOptions="Start">
-                <Label Text="Location : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-                <Label Text="{Binding Data.Location}" 
-                    FontSize="Medium" 
-                    HorizontalOptions="Center"/>
-            </StackLayout>
+                <Label Grid.Column="0" Grid.Row="0" Text="Attribute:" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute}" />
 
-            <StackLayout 
-                Orientation="Horizontal" 
-                HorizontalOptions="Start">
-            <Label Text="Attribute : " 
-                   FontSize="Medium" 
-                   HorizontalOptions="Start"/>
-            <Label Text="{Binding Data.Attribute}" 
-                   FontSize="Medium" 
-                   HorizontalOptions="Center"/>
-            </StackLayout>
+                <Label Grid.Column="0" Grid.Row="1" Text="Value:" />
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Value}" />
+
+                <Label Grid.Column="0" Grid.Row="2" Text="Range:" />
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Range}" />
+
+                <Label Grid.Column="0" Grid.Row="3" Text="Damage:" />
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Damage}" />
+
+                <Label Grid.Column="0" Grid.Row="4" Text="Location:" />
+                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Data.Location}"/>
+            </Grid>
         </StackLayout>
     </ScrollView>
 </ContentPage>
