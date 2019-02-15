@@ -26,5 +26,10 @@ namespace TRP.Views.Battle
         {
             await Navigation.PushAsync(new MonstersSelectPage());
         }
+
+        private async void SelectStartButton_Command(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new BattlePage());
+        }
     }
 }

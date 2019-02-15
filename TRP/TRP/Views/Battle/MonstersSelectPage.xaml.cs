@@ -24,5 +24,7 @@ namespace TRP.Views.Battle
             BindingContext = _viewModel = MonstersViewModel.Instance;
         }
 
+
+
     }
 }

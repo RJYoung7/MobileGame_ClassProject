@@ -17,6 +17,11 @@
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" 
                     Clicked="SelectMonstersButton_Command"/>
+
+            <Button Text="Start Battle"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    Clicked="SelectStartButton_Command" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
