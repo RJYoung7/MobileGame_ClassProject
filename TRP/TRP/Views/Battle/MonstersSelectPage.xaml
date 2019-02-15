@@ -4,9 +4,54 @@
              x:Class="TRP.Views.Battle.MonstersSelectPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="This is where you select monsters..."
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="MonstersListView" 
+                ItemsSource="{Binding Dataset}"
+                VerticalOptions="FillAndExpand"
+                 HasUnevenRows="true"
+                 RefreshCommand="{Binding LoadItemsCommand}"
+                 IsPullToRefreshEnabled="true"
+                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                 CachingStrategy="RecycleElement"
+>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10"
+                                         Orientation="Horizontal"
+                                         VerticalOptions="Start"
+                                         HorizontalOptions="Start">
+                                
+                                <!--Switch to select Monster -->
+                                <Switch x:Name="SelectMonster1"
+                                        HorizontalOptions="EndAndExpand" />
+                                
+                                <!-- Image -->
+                                <Image Source="{Binding ImageURI}"
+                                       WidthRequest="50"
+                                       HeightRequest="50" 
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                                <!-- Labels for Character (name, desc, etc.) -->
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" 
+                                               LineBreakMode="NoWrap" 
+                                               Style="{DynamicResource ListItemTextStyle}" 
+                                               FontSize="16" />
+                                    </StackLayout>
+                                    <Label Text="{Binding MonsterType}" 
+                                         LineBreakMode="NoWrap"
+                                         Style="{DynamicResource ListItemDetailTextStyle}"
+                                         FontSize="13" />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
