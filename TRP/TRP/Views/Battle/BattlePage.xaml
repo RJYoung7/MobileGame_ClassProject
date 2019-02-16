@@ -129,7 +129,12 @@
 
                     <!--Monsters-->
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="0">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Orca.png"
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
                             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
                                 <Label Text="Monster 1" FontSize="10"/>
                                 <Label Text="Level 1" FontSize="10" />
@@ -144,7 +149,12 @@
 
 
                     <StackLayout Grid.Column="1" Grid.Row="1" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="0">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Orca.png"
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
                             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
                                 <Label Text="Monster 2" FontSize="10"/>
                                 <Label Text="Level 1" FontSize="10" />
@@ -158,7 +168,12 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="2" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="0">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Orca.png"
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
                             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
                                 <Label Text="Monster 3" FontSize="10"/>
                                 <Label Text="Level 1" FontSize="10" />
@@ -172,7 +187,12 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="3" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="0">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Orca.png"
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
                             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
                                 <Label Text="Monster 4" FontSize="10"/>
                                 <Label Text="Level 1" FontSize="10" />
@@ -186,7 +206,12 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="4" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="0">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Orca.png"
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
                             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
                                 <Label Text="Monster 5" FontSize="10"/>
                                 <Label Text="Level 1" FontSize="10" />
@@ -200,7 +225,12 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="5" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="0">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Orca.png"
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
                             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
                                 <Label Text="Monster 6" FontSize="10"/>
                                 <Label Text="Level 1" FontSize="10" />
@@ -218,26 +248,16 @@
                     <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2">
                         <ScrollView>
                             <StackLayout>
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 1" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 2" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 3" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 4" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 5" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 6" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 7" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 8" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 9" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 10" FontSize="Micro" />
 
                             </StackLayout>
 
