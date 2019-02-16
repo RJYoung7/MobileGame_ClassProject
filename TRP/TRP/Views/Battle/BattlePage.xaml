@@ -4,25 +4,25 @@
              x:Class="TRP.Views.Battle.BattlePage">
     
     <ContentPage.Content>
-        <StackLayout Padding="15" Spacing="10">
-            <Label Text="Round 1" FontSize="Large" 
-
+        <StackLayout Spacing="10">
+            <Label Text="Round 1" FontSize="Medium" 
                    HorizontalTextAlignment="Center"
                    VerticalOptions="Start"
                    HorizontalOptions="Center"/>
 
             <StackLayout Spacing="0">
-                <Grid RowSpacing="5"
-                      ColumnSpacing="5"
-                      VerticalOptions="Start" >
+                <Grid RowSpacing="3"
+                      ColumnSpacing="3"
+                      VerticalOptions="Start">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -33,105 +33,120 @@
                     <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Character 1" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="0" Grid.Row="1" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Character 2" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="0" Grid.Row="2" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Character 3" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="0" Grid.Row="3" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Character 4" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="0" Grid.Row="4" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Character 5" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="0" Grid.Row="5" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Character 6" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <!--Monsters-->
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Monster 1" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="1" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Monster 2" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="2" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Monster 3" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="3" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Monster 4" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="4" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Monster 5" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="5" Spacing="0" BackgroundColor="Aqua">
                         <Label Text="Monster 6" FontSize="10"/>
                         <Label Text="Level 1" FontSize="10" />
-                        <Label Text="10" FontSize="10" />
+                        <Label Text="Current HP: 10" FontSize="10" />
+                        <Label Text="Alive" FontSize="10" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2">
+                        <ScrollView>
+                            <StackLayout>
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGES" FontSize="Micro" />
+
+                            </StackLayout>
+
+                        </ScrollView>
                     </StackLayout>
 
                 </Grid>
-                <StackLayout>
-                    <ScrollView>
-                        <StackLayout>
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-                            <Label Text="BATTLE MESSAGES" FontSize="Small" />
-
-                        </StackLayout>
-
-                    </ScrollView>
-                </StackLayout>
+                
+  
 
             </StackLayout>
         </StackLayout>
