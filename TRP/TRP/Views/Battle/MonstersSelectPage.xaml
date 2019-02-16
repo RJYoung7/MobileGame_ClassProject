@@ -2,17 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.Battle.MonstersSelectPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked"/>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Current Party: " HorizontalOptions="Center"/>
+                <Label Text="0" x:Name="partysize" HorizontalOptions="Center"/>
+            </StackLayout>
             <ListView x:Name="MonstersListView" 
-                ItemsSource="{Binding Dataset}"
-                VerticalOptions="FillAndExpand"
-                 HasUnevenRows="true"
-                 RefreshCommand="{Binding LoadItemsCommand}"
-                 IsPullToRefreshEnabled="true"
-                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                 CachingStrategy="RecycleElement"
->
+            ItemsSource="{Binding Dataset}"
+            VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -20,19 +30,19 @@
                                          Orientation="Horizontal"
                                          VerticalOptions="Start"
                                          HorizontalOptions="Start">
-                                
-                                <!--Switch to select Monster -->
-                                <Switch x:Name="SelectMonster1"
-                                        HorizontalOptions="EndAndExpand" />
-                                
+
+                                <!--Switch for selecting monster -->
+                                <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" Toggled="Switch_Toggled" VerticalOptions="Center"/>
+
                                 <!-- Image -->
                                 <Image Source="{Binding ImageURI}"
-                                       WidthRequest="50"
-                                       HeightRequest="50" 
+                                       WidthRequest="100"
+                                       HeightRequest="100" 
                                        HorizontalOptions="Center"
-                                       VerticalOptions="Center"/>
+                                       VerticalOptions="Center"
+                                       Aspect="AspectFill"/>
 
-                                <!-- Labels for Character (name, desc, etc.) -->
+                                <!-- Labels for Monster (name, desc, etc.) -->
                                 <StackLayout>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" 
@@ -43,15 +53,13 @@
                                     <Label Text="{Binding MonsterType}" 
                                          LineBreakMode="NoWrap"
                                          Style="{DynamicResource ListItemDetailTextStyle}"
-                                         FontSize="13" />
+                                         FontSize="13" x:Name="label" />
                                 </StackLayout>
-
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

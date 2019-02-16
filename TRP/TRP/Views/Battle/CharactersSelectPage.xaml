@@ -52,7 +52,7 @@
                                                Style="{DynamicResource ListItemTextStyle}" 
                                                FontSize="16" />
                                     </StackLayout>
-                                    <Label Text="{Binding PType}" 
+                                    <Label Text="{Binding PenguinType}" 
                                          LineBreakMode="NoWrap"
                                          Style="{DynamicResource ListItemDetailTextStyle}"
                                          FontSize="13" x:Name="label" />
