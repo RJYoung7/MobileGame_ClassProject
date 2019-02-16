@@ -4,7 +4,7 @@
              x:Class="TRP.Views.Battle.BattlePage">
     
     <ContentPage.Content>
-        <StackLayout Spacing="10">
+        <StackLayout Spacing="10" >
             <Label Text="Round 1" FontSize="Medium" 
                    HorizontalTextAlignment="Center"
                    VerticalOptions="Start"
@@ -30,89 +30,189 @@
                     </Grid.ColumnDefinitions>
 
                     <!--Characters-->
-                    <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Character 1" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Little.png" 
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
+
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
+                                <Label Text="Character 1" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                        </StackLayout>                        
                     </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="1" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Character 2" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="0" Grid.Row="1" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Little.png" 
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
+                                <Label Text="Character 2" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="2" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Character 3" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="0" Grid.Row="2" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Little.png" 
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
+                                <Label Text="Character 3" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="3" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Character 4" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="0" Grid.Row="3" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Little.png" 
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
+                                <Label Text="Character 4" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="4" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Character 5" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="0" Grid.Row="4" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Little.png" 
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
+                                <Label Text="Character 5" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="5" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Character 6" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="0" Grid.Row="5" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="Little.png" 
+                                   HeightRequest="50"
+                                   WidthRequest="50"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Center"/>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
+                                <Label Text="Character 6" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
 
                     <!--Monsters-->
-                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Monster 1" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
+                                <Label Text="Monster 1" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />    
+                            </StackLayout>
+                            <Button Text="ATTACK!" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Monster 2" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+
+                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
+                                <Label Text="Monster 2" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                            <Button Text="ATTACK!" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Monster 3" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
+                                <Label Text="Monster 3" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                            <Button Text="ATTACK!" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="3" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Monster 4" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="1" Grid.Row="3" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
+                                <Label Text="Monster 4" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                            <Button Text="ATTACK!" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="4" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Monster 5" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="1" Grid.Row="4" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
+                                <Label Text="Monster 5" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                            <Button Text="ATTACK!" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="5" Spacing="0" BackgroundColor="Aqua">
-                        <Label Text="Monster 6" FontSize="10"/>
-                        <Label Text="Level 1" FontSize="10" />
-                        <Label Text="Current HP: 10" FontSize="10" />
-                        <Label Text="Alive" FontSize="10" />
+                    <StackLayout Grid.Column="1" Grid.Row="5" Spacing="0" BackgroundColor="#eee9e9">
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
+                                <Label Text="Monster 6" FontSize="10"/>
+                                <Label Text="Level 1" FontSize="10" />
+                                <Label Text="Current HP: 10" FontSize="10" />
+                                <Label Text="Alive" FontSize="10" />
+                            </StackLayout>
+                            <Button Text="ATTACK!" 
+                                    HorizontalOptions="CenterAndExpand" 
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
+
+
                     </StackLayout>
 
                     <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2">
