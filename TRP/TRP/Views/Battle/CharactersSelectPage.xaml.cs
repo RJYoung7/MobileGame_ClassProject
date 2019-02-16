@@ -95,9 +95,9 @@ namespace TRP.Views.Battle
 
         }
 
-        private void Cancel_Clicked(object sender, EventArgs e)
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PopAsync();
         }
     }
 }
