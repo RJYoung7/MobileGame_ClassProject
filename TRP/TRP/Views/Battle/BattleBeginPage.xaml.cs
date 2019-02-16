@@ -31,5 +31,18 @@ namespace TRP.Views.Battle
         {
             await Navigation.PushAsync(new BattlePage());
         }
+
+        // Remove after BattleEngine hookup
+        private async void ItemPickupButton_Command(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ItemPickupPage());
+        }
+
+        // Remove after BattleEngine hoockup
+        private async void RoundEndButton_Command(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RoundEndPage());
+        }
+
     }
 }

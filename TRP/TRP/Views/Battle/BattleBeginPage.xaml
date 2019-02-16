@@ -33,6 +33,18 @@
                         HorizontalOptions="CenterAndExpand"
                         Clicked="SelectStartButton_Command" />
 
+                <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
+                <Button Text="Item Pickup"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" 
+                        Clicked="ItemPickupButton_Command"/>
+                
+                <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
+                <Button Text="Round End"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" 
+                        Clicked="RoundEndButton_Command"/>
+
             </StackLayout>
         </StackLayout>
 
