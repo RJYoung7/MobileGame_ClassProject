@@ -4,24 +4,37 @@
              x:Class="TRP.Views.Battle.BattleBeginPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Current party"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout HorizontalOptions="Center" 
+                     VerticalOptions="Start"
+                     Orientation="Vertical" >
 
-            <Button Text="Select Penguins"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" 
-                    Clicked="SelectCharactersButton_Command"/>
+                <Image Source="Little.png" 
+                       VerticalOptions="Center" 
+                       HeightRequest="150"
+                       HorizontalOptions="Fill"/>
 
-            <Button Text="Select Monsters"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" 
-                    Clicked="SelectMonstersButton_Command"/>
+                <Label Text="Current Party"
+                       FontSize="Large"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="CenterAndExpand" />
 
-            <Button Text="Start Battle"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="Center"
-                    Clicked="SelectStartButton_Command" />
+                <Button Text="Select Penguins"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="CenterAndExpand" 
+                        Clicked="SelectCharactersButton_Command"/>
+
+                <Button Text="Select Monsters"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="CenterAndExpand" 
+                        Clicked="SelectMonstersButton_Command"/>
+
+                <Button Text="Start Battle"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand"
+                        Clicked="SelectStartButton_Command" />
+
+            </StackLayout>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

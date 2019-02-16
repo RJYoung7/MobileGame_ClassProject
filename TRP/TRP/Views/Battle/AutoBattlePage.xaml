@@ -4,31 +4,28 @@
              x:Class="TRP.Views.Battle.AutoBattlePage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout 
-            HorizontalOptions="Center" 
-            VerticalOptions="Start"
-            Orientation="Vertical">
+            <StackLayout HorizontalOptions="Center" 
+                         VerticalOptions="Start"
+                         Orientation="Vertical">
 
-                <Image 
-                Source="d20.png" 
-                VerticalOptions="Center" 
-                HeightRequest="150"
-                HorizontalOptions="Fill"/>
+                <Image Source="d20.png" 
+                       VerticalOptions="Center" 
+                       HeightRequest="150"
+                       HorizontalOptions="Fill"/>
 
-                <Label 
-                FontSize="Large"
-                Text="Class Dungeon"
-                VerticalOptions="Center" 
-                HorizontalOptions="CenterAndExpand" />
+                <Label FontSize="Large"
+                       Text="Class Dungeon"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="CenterAndExpand" />
 
                 <Label Text="Battle Modes"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
                 
                 <Button Text="Auto Battle"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
-                Clicked="AutoBattleButton_Command"/>
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" 
+                        Clicked="AutoBattleButton_Command"/>
 
             </StackLayout>
         </StackLayout>
