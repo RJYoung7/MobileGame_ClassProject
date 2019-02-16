@@ -38,13 +38,19 @@ namespace TRP.Views.Battle
 
         public IList<Character> party = new List<Character>();
 
+        // Returns whether party is full 
+        public bool PartyIsFull()
+        {
+            return party.Count() == GameGlobals.availCharactersSlots;
+        }
+
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
             ViewCell cell = (sender as Switch).Parent.Parent as ViewCell;
 
             Character model = cell.BindingContext as Character;
 
-            if (!party.Contains(model))
+            if (!party.Contains(model) && !PartyIsFull())
             {
                 party.Add(model);
 
@@ -52,6 +58,7 @@ namespace TRP.Views.Battle
             else
             {
                 party.Remove(model);
+                (sender as Switch).IsToggled = false;
             }
 
             partysize.Text = Convert.ToString(party.Count());

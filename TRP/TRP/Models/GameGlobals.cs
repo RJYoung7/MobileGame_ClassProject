@@ -4,6 +4,12 @@ namespace TRP.Models
 {
     public static class GameGlobals
     {
+        // Available slots for penguin party
+        public const int availCharactersSlots = 6;
+
+        // Available slots for monster party
+        public const int availMonstersSlots = 6;
+
         // Available stat points for character create and edit
         public const int availStatPoints = 10;
 
