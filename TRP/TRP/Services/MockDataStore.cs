@@ -54,10 +54,20 @@ namespace TRP.Services
             _characterDataset.Add(new Character("Perry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
             _characterDataset.Add(new Character("Paco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
             _characterDataset.Add(new Character("Patrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
-                                 
+            _characterDataset.Add(new Character("Pennie", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Adelie));
+            _characterDataset.Add(new Character("Percy", new AttributeBase(10, 4, 3, 3), PenguinTypeEnum.Magellanic));
+            _characterDataset.Add(new Character("Patty", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Rockhopper));
+            _characterDataset.Add(new Character("Penelope", new AttributeBase(10, 3, 5, 2), PenguinTypeEnum.King));
+
             // Load monsters 
             _monsterDataset.Add(new Monster("Leonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
             _monsterDataset.Add(new Monster("Arnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
+            _monsterDataset.Add(new Monster("Oscar", new AttributeBase(15, 3, 3, 1), MonsterTypeEnum.Orca));
+            _monsterDataset.Add(new Monster("Sally", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.SeaLion));
+            _monsterDataset.Add(new Monster("Philip", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.PolarBear));
+            _monsterDataset.Add(new Monster("Scott", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.SeaEagle));
+            _monsterDataset.Add(new Monster("Sue", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Skua));
+            _monsterDataset.Add(new Monster("Saul", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
             // Implement Scores
         }
 
