@@ -212,7 +212,6 @@ namespace TRP.Services
         // Finds character in dataset and updates it
         public async Task<bool> UpdateAsync_Character(Character data)
         {
-            // Implement
             var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);
             if (myData == null)
             {
@@ -227,7 +226,6 @@ namespace TRP.Services
         // Removes character from dataset
         public async Task<bool> DeleteAsync_Character(Character data)
         {
-            // Implement
             var myData = _characterDataset.FirstOrDefault(arg => arg.Id == data.Id);
             _characterDataset.Remove(myData);
 
@@ -237,14 +235,12 @@ namespace TRP.Services
         // Retrieves matching character from dataset
         public async Task<Character> GetAsync_Character(string id)
         {
-            // Implement
             return await Task.FromResult(_characterDataset.FirstOrDefault(s => s.Id == id));
         }
 
         // Retrieves all characters from dataset
         public async Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false)
         {
-            // Implement
             return await Task.FromResult(_characterDataset);
         }
 
@@ -317,34 +313,65 @@ namespace TRP.Services
 
         #region Score
         // Score
+
+        // Add a score to the mock datastore
         public async Task<bool> AddAsync_Score(Score data)
         {
-            // Implement
-            return false;
+            // Update the score data
+            data.Update(data);
+
+            // Add to dataset
+            _scoreDataset.Add(data);
+
+            return await Task.FromResult(true);
         }
 
+        // Update a score in the mock datastore
         public async Task<bool> UpdateAsync_Score(Score data)
         {
-            // Implement
-            return false;
+            // Get the score based on id
+            var myData = _scoreDataset.FirstOrDefault(arg => arg.Id == data.Id);
+
+            // Check that the data is not null
+            if (myData == null)
+            {
+                return false;
+            }
+
+            // Update the score with new data
+            myData.Update(data);
+
+            return await Task.FromResult(true);
         }
 
+        // Delete a score from the mock datastore
         public async Task<bool> DeleteAsync_Score(Score data)
         {
-            // Implement
-            return false;
+            // Get the score based on id
+            var myData = _scoreDataset.FirstOrDefault(arg => arg.Id == data.Id);
+
+            // Check that the data is not null
+            if (myData == null)
+            {
+                return false;
+            }
+
+            // Remove the score from the datastore
+            _scoreDataset.Remove(myData);
+
+            return await Task.FromResult(true);
         }
 
+        // Get a score from the mock datastore
         public async Task<Score> GetAsync_Score(string id)
         {
-            // Implement
-            return null;
+            return await Task.FromResult(_scoreDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        // Get a list of scores from the mock datastore
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
-            // Implement
-            return null;
+            return await Task.FromResult(_scoreDataset);
         }
         #endregion Score
     }
