@@ -69,41 +69,46 @@ namespace TRP.ViewModels
             });
         }
 
-        // Call to database operation for delete
-        public async Task<bool> DeleteAsync(Score data)
-        {
-            // Implement 
-            return false;
-        }
+        #region DataOperations
 
-        // Call to database operation for add
         public async Task<bool> AddAsync(Score data)
         {
-            // Implement 
-            return false;
+            Dataset.Add(data);
+            var ret = await DataStore.AddAsync_Score(data);
+            return ret;
         }
 
-        // Call to database operation for update
+        public async Task<bool> DeleteAsync(Score data)
+        {
+            Dataset.Remove(data);
+            var ret = await DataStore.DeleteAsync_Score(data);
+            return ret;
+        }
+
         public async Task<bool> UpdateAsync(Score data)
         {
-            // Implement 
-            return false;
+            var ret = await DataStore.UpdateAsync_Score(data);
+            return ret;
         }
 
         // Call to database to ensure most recent
         public async Task<Score> GetAsync(string id)
         {
-            // Implement 
-            return null;
+            var ret = await DataStore.GetAsync_Score(id);
+            return ret;
         }
 
         // Return True if a refresh is needed
         // It sets the refresh flag to false
         public bool NeedsRefresh()
         {
-            // Implement 
-            return false;
+            if (_needsRefresh)
+            {
+                _needsRefresh = false;
+                return true;
+            }
 
+            return false;
         }
 
         // Sets the need to refresh
@@ -114,14 +119,38 @@ namespace TRP.ViewModels
 
         private async Task ExecuteLoadDataCommand()
         {
-            // Implement 
-            return;
+            if (IsBusy)
+                return;
 
+            IsBusy = true;
+
+            try
+            {
+                Dataset.Clear();
+                var dataset = await DataStore.GetAllAsync_Score(true);
+                foreach (var data in dataset)
+                {
+                    Dataset.Add(data);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
+        // Refreshes data
         public void ForceDataRefresh()
         {
-            // Implement 
+            var canExecute = LoadDataCommand.CanExecute(null);
+            LoadDataCommand.Execute(null);
         }
+        #endregion DataOperations
     }
 }

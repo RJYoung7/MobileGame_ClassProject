@@ -68,7 +68,22 @@ namespace TRP.Services
             _monsterDataset.Add(new Monster("Scott", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.SeaEagle));
             _monsterDataset.Add(new Monster("Sue", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Skua));
             _monsterDataset.Add(new Monster("Saul", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
-            // Implement Scores
+           
+            // Load Scores
+            var mockScores = new List<Score>
+            {
+                new Score { Id = Guid.NewGuid().ToString(), Name = "MockFirst Score", ScoreTotal = 111},
+                new Score { Id = Guid.NewGuid().ToString(), Name = "MockSecond Score", ScoreTotal = 222},
+                new Score { Id = Guid.NewGuid().ToString(), Name = "MockThird Score", ScoreTotal = 333},
+                new Score { Id = Guid.NewGuid().ToString(), Name = "MockFourth Score", ScoreTotal = 444},
+                new Score { Id = Guid.NewGuid().ToString(), Name = "MockFifth Score", ScoreTotal = 555},
+                new Score { Id = Guid.NewGuid().ToString(), Name = "MockSixth Score", ScoreTotal = 666},
+            };
+
+            foreach (var data in mockScores)
+            {
+                _scoreDataset.Add(data);
+            }
         }
 
         private void CreateTables()

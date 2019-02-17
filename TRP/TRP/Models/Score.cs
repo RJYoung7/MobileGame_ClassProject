@@ -45,16 +45,25 @@ namespace TRP.Models
         // Instantiate new Score
         public Score()
         {
-            // Implement
-
+            GameDate = DateTime.Now;    // Set to be now by default.
+            AutoBattle = false;         //assume user battle
+            CharacterAtDeathList = null;
+            MonstersKilledList = null;
+            ItemsDroppedList = null;
+            TurnNumber = 0;
         }
 
         // Update the score based on the passed in values.
         public void Update(Score newData)
         {
-            // Implement
+            if (newData == null)
+            {
+                return;
+            }
 
-            return;
+            // Update all the fields in the Data, except for the Id
+            Name = newData.Name;
+            ScoreTotal = ScoreTotal;
 
         }
 
