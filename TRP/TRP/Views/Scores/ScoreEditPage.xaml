@@ -5,9 +5,49 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout Spacing="20" Padding="15">
+
+                <Label Text="Score Edit Page" FontSize="Small" />
+
+                <Label Text="Name" FontSize="Medium" />
+                <Entry Text="{Binding Data.Name}" FontSize="Small" />
+
+                <Label Text="Score:" FontSize="Medium" />
+                <Entry Text="{Binding Data.ScoreTotal}" FontSize="Small"/>
+
+                <Label Text="Game Date:" FontSize="Medium" />
+                <Entry Text="{Binding Data.GameDate}" FontSize="Small"/>
+
+                <Label Text="AutoBattle:" FontSize="Medium" />
+                <Entry Text="{Binding Data.AutoBattle}" FontSize="Small"/>
+
+                <Label Text="Number of Turns:" FontSize="Medium" />
+                <Entry Text="{Binding Data.TurnNumber}" FontSize="Small"/>
+
+                <Label Text="Number of Monsters Slain:" FontSize="Medium" />
+                <Entry Text="{Binding Data.MonsterSlainNumber}" FontSize="Small"/>
+
+                <Label Text="Total Experience Gained:" FontSize="Medium" />
+                <Entry Text="{Binding Data.ExperienceGainedTotal}" FontSize="Small"/>
+
+                <Label Text="Characters at Death:" FontSize="Medium" />
+                <Entry Text="{Binding Data.CharacterAtDeathList}" FontSize="Small"/>
+
+                <Label Text="Monsters Killed:" FontSize="Medium" />
+                <Entry Text="{Binding Data.MonstersKilledList}" FontSize="Small"/>
+
+                <Label Text="Items Dropped:" FontSize="Medium" />
+                <Entry Text="{Binding Data.ItemsDroppedList}" FontSize="Small"/>
+
+            </StackLayout>
+        </ScrollView>
 
     </ContentPage.Content>
 

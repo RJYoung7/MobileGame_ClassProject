@@ -40,7 +40,33 @@ namespace TRP.ViewModels
             Dataset = new ObservableCollection<Score>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
-            // Implement 
+            MessagingCenter.Subscribe<ScoreDeletePage, Score>(this, "DeleteData", async (obj, data) =>
+            {
+                Dataset.Remove(data);
+                await DataStore.DeleteAsync_Score(data);
+            });
+
+            MessagingCenter.Subscribe<ScoreNewPage, Score>(this, "AddData", async (obj, data) =>
+            {
+                Dataset.Add(data);
+                await DataStore.AddAsync_Score(data);
+            });
+
+            MessagingCenter.Subscribe<ScoreEditPage, Score>(this, "EditData", async (obj, data) =>
+            {
+                // Find the Score, then update it
+                var myData = Dataset.FirstOrDefault(arg => arg.Id == data.Id);
+                if (myData == null)
+                {
+                    return;
+                }
+
+                myData.Update(data);
+                await DataStore.UpdateAsync_Score(myData);
+
+                _needsRefresh = true;
+
+            });
         }
 
         // Call to database operation for delete
