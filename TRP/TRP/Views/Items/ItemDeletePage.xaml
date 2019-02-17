@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.ItemDeletePage"
-            Title="{Binding Title}">
+            Title="Delete Item">
     <StackLayout Spacing="20" Padding="15">
         <StackLayout Padding="10">
             <Label Text="Are you sure you want to delete" FontSize="Medium"

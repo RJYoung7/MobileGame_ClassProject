@@ -54,8 +54,11 @@ namespace TRP.Views
             // Add a new items details page, with the new Item data on it
             await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(Data)));
 
+            await Navigation.PopAsync();
+
             // Last, remove this page
             Navigation.RemovePage(this);
+
         }
 
         // When cancel button is clicked, remove this page from stack

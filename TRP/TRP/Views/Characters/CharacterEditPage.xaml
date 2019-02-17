@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.CharacterEditPage"	
              xmlns:local="clr-namespace:TRP.Models"
-             Title="{Binding Title}">
+             Title="Edit Character">
 
     <ContentPage.Resources>
         <local:StringEnumConverter x:Key="StringEnum"/>

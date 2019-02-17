@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.ItemEditPage"
-             Title="Add New Item"
+             Title="Edit Item"
              xmlns:local="clr-namespace:TRP.Models">
 
     <ContentPage.Resources>
