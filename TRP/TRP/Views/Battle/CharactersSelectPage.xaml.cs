@@ -23,19 +23,6 @@ namespace TRP.Views.Battle
             BindingContext = _viewModel = CharactersViewModel.Instance;
         }
 
-        // When a character is selected, create detail page and add onto stack
-        //private async void OnCharacterSelected(object sender, SelectedItemChangedEventArgs args)
-        //{
-        //    var data = args.SelectedItem as Character;
-        //    if (data == null)
-        //        return;
-
-        //    await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(data)));
-
-        //    // Manually deselect item.
-        //    CharactersListView.SelectedItem = null;
-        //}
-
         public IList<Character> party = new List<Character>();
 
         // Returns whether party is full 
@@ -44,17 +31,20 @@ namespace TRP.Views.Battle
             return party.Count() == GameGlobals.availCharactersSlots;
         }
 
+        // Adds or removes the character to the party list from the switch toggle
         private void Switch_Toggled(object sender, ToggledEventArgs e)
         {
             ViewCell cell = (sender as Switch).Parent.Parent as ViewCell;
 
             Character model = cell.BindingContext as Character;
 
+            // Check if the select character is currently in party and if the party is full
             if (!party.Contains(model) && !PartyIsFull())
             {
                 party.Add(model);
 
             }
+            // Remove character from party and reset switch
             else
             {
                 party.Remove(model);
@@ -90,11 +80,13 @@ namespace TRP.Views.Battle
             BindingContext = _viewModel;
         }
 
+        // Save the party of characters
         private void Save_Clicked(object sender, EventArgs e)
         {
 
         }
 
+        // Cancel the the party selection and return to previous page
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

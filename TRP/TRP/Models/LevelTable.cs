@@ -31,9 +31,11 @@ namespace TRP.Models
         // Data for the Levels
         public LevelTable()
         {
-            ClearAndLoadDatTable();
+            CreateAndLoadDataTable();
         }
-        public void ClearAndLoadDatTable()
+
+        // Create a list to hold level details and load data into it.
+        public void CreateAndLoadDataTable()
         {
             LevelDetailsList = new List<LevelDetails>();
             LoadLevelData();

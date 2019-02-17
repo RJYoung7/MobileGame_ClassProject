@@ -23,7 +23,7 @@ namespace TRP.Views
                 Description = "",
                 Id = Guid.NewGuid().ToString(),
                 Range=0,
-                Value=1,
+                Value=0,
                 ImageURI = ItemsController.DefaultImageURI
         };
 

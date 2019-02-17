@@ -4,7 +4,6 @@ using System;
 
 namespace TRP.Models
 {
-    [Serializable]
     public class AttributeBase
     {
         // The speed of the character, impacts movement, and initiative

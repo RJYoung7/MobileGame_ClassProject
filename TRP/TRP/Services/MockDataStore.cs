@@ -86,9 +86,7 @@ namespace TRP.Services
         private void NotifyViewModelsOfDataChange()
         {
             ItemsViewModel.Instance.SetNeedsRefresh(true);
-            // Implement Monsters
             MonstersViewModel.Instance.SetNeedsRefresh(true);
-            // Implement Characters 
             CharactersViewModel.Instance.SetNeedsRefresh(true);
             // Implement Scores
         }
@@ -96,6 +94,7 @@ namespace TRP.Services
         // Refreshes database 
         public void InitializeDatabaseNewTables()
         {
+            // Delete tables
             DeleteTables();
 
             // make them again
@@ -132,6 +131,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Add item to mock datastore 
         public async Task<bool> AddAsync_Item(Item data)
         {
             _itemDataset.Add(data);
@@ -139,6 +139,7 @@ namespace TRP.Services
             return await Task.FromResult(true);
         }
 
+        // Update item in mock datastore
         public async Task<bool> UpdateAsync_Item(Item data)
         {
             var myData = _itemDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -152,6 +153,7 @@ namespace TRP.Services
             return await Task.FromResult(true);
         }
 
+        // Delete item in mock datastore
         public async Task<bool> DeleteAsync_Item(Item data)
         {
             var myData = _itemDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -160,11 +162,13 @@ namespace TRP.Services
             return await Task.FromResult(true);
         }
 
+        // Get item from mock datastore
         public async Task<Item> GetAsync_Item(string id)
         {
             return await Task.FromResult(_itemDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        // Get list of items from mock datastore
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
             return await Task.FromResult(_itemDataset);
@@ -248,45 +252,64 @@ namespace TRP.Services
 
         #region Monster
         //Monster
+
+        // Add monster to mock datastore
         public async Task<bool> AddAsync_Monster(Monster data)
         {
+            // Update the monster data
             data.Update(data);
+
+            // Add to dataset
             _monsterDataset.Add(data);
 
             return await Task.FromResult(true);
         }
 
+        // Update the monster in the mock datastore
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
+            // Get the monster based on id
             var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+
+            // Check that the data is not null
             if (myData == null)
             {
                 return false;
             }
 
+            // Update the monster with data
             myData.Update(data);
 
             return await Task.FromResult(true);
         }
 
+        // Delete the monster from the mock datastore
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
-            // Implement
+            // Get the monster based on id
             var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
+
+            // Check that the data is not null
+            if (myData == null)
+            {
+                return false;
+            }
+
+            // Remove the monster from the datastore
             _monsterDataset.Remove(myData);
 
             return await Task.FromResult(true);
         }
 
+        // Get the monster from the mock datastore
         public async Task<Monster> GetAsync_Monster(string id)
         {
-            // Implement
             return await Task.FromResult(_monsterDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        // Get a list of monsters from the mock datastore
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
-            // Implement
             return await Task.FromResult(_monsterDataset);
         }
 

@@ -12,10 +12,14 @@
     
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
+            
+            <!-- Party size -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Current Party: " HorizontalOptions="Center"/>
                 <Label Text="0" x:Name="partysize" HorizontalOptions="Center"/>
             </StackLayout>
+            
+            <!-- List view of the characters-->
             <ListView x:Name="CharactersListView" 
             ItemsSource="{Binding Dataset}"
             VerticalOptions="FillAndExpand"
@@ -33,7 +37,7 @@
                                          VerticalOptions="Start"
                                          HorizontalOptions="Start">
 
-                                <!--Select character -->
+                                <!--Select character by toggling switch -->
                                 <Switch IsToggled="{Binding IsSelected, Mode=TwoWay}" Toggled="Switch_Toggled" VerticalOptions="Center"/>
 
                                 <!-- Image -->

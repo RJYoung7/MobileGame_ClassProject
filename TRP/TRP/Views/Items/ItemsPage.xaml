@@ -4,11 +4,14 @@
              x:Class="TRP.Views.ItemsPage"
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
+    
+    <!-- Add new item -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
+            <!-- List view of items -->
             <ListView x:Name="ItemsListView" 
                 ItemsSource="{Binding Dataset}"
                 VerticalOptions="FillAndExpand"
@@ -21,19 +24,19 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-
                             <StackLayout Padding="10"
                                          Orientation="Horizontal"
                                          VerticalOptions="Start"
                                          HorizontalOptions="Start">
 
+                                <!-- Item Image -->
                                 <Image Source="{Binding ImageURI}"
                                        WidthRequest="50"
                                        HeightRequest="50" 
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"/>
 
-
+                                <!-- Item information -->
                                 <StackLayout>
                                     <StackLayout Orientation="Vertical" Spacing="0">
                                         <Label Text="{Binding Name}" 

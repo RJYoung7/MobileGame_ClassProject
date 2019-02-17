@@ -114,7 +114,7 @@
                             VerticalOptions="Center"/>
 
                         <Stepper 
-                            Value="{Binding Data.Attribute.Value, Mode=TwoWay}"
+                            Value="{Binding Data.Value, Mode=TwoWay}"
                             Minimum="0"
                             Maximum="10"
                             Increment="1"

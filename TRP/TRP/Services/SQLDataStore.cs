@@ -26,9 +26,9 @@ namespace TRP.Services
             }
         }
 
+        // Constructor for the SQLDataStore
         private SQLDataStore()
         {
-            // Implement
             CreateTables();
             InitializeDatabaseNewTables();
         }
@@ -42,7 +42,7 @@ namespace TRP.Services
             App.Database.CreateTableAsync<Score>().Wait();
         }
 
-        // Delete the Datbase Tables by dropping them
+        // Delete the Database Tables by dropping them
         private void DeleteTables()
         {
             App.Database.DropTableAsync<Item>().Wait();
@@ -60,6 +60,7 @@ namespace TRP.Services
             ScoresViewModel.Instance.SetNeedsRefresh(true);
         }
 
+        // Initialize the database tables.  Delete, Create, Add seed data, and notify viewmodel
         public void InitializeDatabaseNewTables()
         {
             //Delete the tables
@@ -76,6 +77,7 @@ namespace TRP.Services
 
         }
 
+        // Add items, characters, monsters, and scores to the SQL database
         private async void InitializeSeedData()
         {
             // Default SQL Items
@@ -99,13 +101,13 @@ namespace TRP.Services
             await AddAsync_Monster(new Monster("SQLLeonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
             await AddAsync_Monster(new Monster("SQLArnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
 
+            // Default SQL Scores
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFirst Score", ScoreTotal = 111 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSecond Score", ScoreTotal = 222 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLThird Score", ScoreTotal = 333 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFourth Score", ScoreTotal = 444 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFifth Score", ScoreTotal = 555 });
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSixth Score", ScoreTotal = 666 });
-
         }
 
         #region Item
@@ -133,6 +135,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Add item to SQL database
         public async Task<bool> AddAsync_Item(Item data)
         {
             var result = await App.Database.InsertAsync(data);
@@ -144,6 +147,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Update the item in the database
         public async Task<bool> UpdateAsync_Item(Item data)
         {
             var result = await App.Database.UpdateAsync(data);
@@ -155,6 +159,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Delete the item from the database
         public async Task<bool> DeleteAsync_Item(Item data)
         {
             var result = await App.Database.DeleteAsync(data);
@@ -166,12 +171,14 @@ namespace TRP.Services
             return false;
         }
 
+        // Get the item from the database
         public async Task<Item> GetAsync_Item(string id)
         {
             var result = await App.Database.GetAsync<Item>(id);
             return result;
         }
 
+        // Get a list of items from the database
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
             var result = await App.Database.Table<Item>().ToListAsync();
@@ -188,7 +195,7 @@ namespace TRP.Services
             return false;
         }
 
-        // Conver to BaseCharacter and then add it
+        // Convert to BaseCharacter and then add it
         public async Task<bool> AddAsync_Character(Character data)
         {
             // Update character data
@@ -275,6 +282,8 @@ namespace TRP.Services
 
         #region Monster
         //Monster
+
+        // Convert monster to BaseMonster and Add it to the SQL database
         public async Task<bool> AddAsync_Monster(Monster data)
         {
             // Update Monster Data
@@ -292,6 +301,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Convert the Monster to BaseMonster and update it in the SQL database
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
             // Update Monster Data
@@ -312,6 +322,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Convert the Monster to BaseMonster and delete it from the SQL database
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
             // Convert Monster data to BaseMonster data
@@ -329,6 +340,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Get the BaseMonster from the SQL database and convert it to a Monster
         public async Task<Monster> GetAsync_Monster(string id)
         {
             // Get BaseMonster from BaseMonster table
@@ -339,6 +351,7 @@ namespace TRP.Services
             return ret;
         }
 
+        // Get the list of BaseMonsters from the database and convert it to a list of Monsters
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
             // Get list of BaseMonsters from BaseMonster table.
@@ -353,6 +366,8 @@ namespace TRP.Services
 
         #region Score
         // Score
+
+        // Add the score to the SQL database
         public async Task<bool> AddAsync_Score(Score data)
         {
             var result = await App.Database.InsertAsync(data);
@@ -364,6 +379,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Update the score in the SQL database
         public async Task<bool> UpdateAsync_Score(Score data)
         {
             var result = await App.Database.UpdateAsync(data);
@@ -375,6 +391,7 @@ namespace TRP.Services
             return false;
         }
 
+        // Delete the score from the SQL database
         public async Task<bool> DeleteAsync_Score(Score data)
         {
             var result = await App.Database.DeleteAsync(data);
@@ -386,12 +403,14 @@ namespace TRP.Services
             return false;
         }
 
+        // Get the score from the SQL database
         public async Task<Score> GetAsync_Score(string id)
         {
             var result = await App.Database.GetAsync<Score>(id);
             return result;
         }
 
+        // Get a list of scores from the SQL database
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
             var result = await App.Database.Table<Score>().ToListAsync();

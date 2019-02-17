@@ -4,7 +4,7 @@
              x:Class="TRP.Views.ItemDetailPage"
              Title="{Binding Title}">
 
-
+    <!-- Buttons in toolbar -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
         <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />

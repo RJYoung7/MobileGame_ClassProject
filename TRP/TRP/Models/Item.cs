@@ -35,6 +35,7 @@ namespace TRP.Models
         // Description comes from the Entity class
         // ImageURI comes from the Entity class
 
+        // Item Constructor
         public Item()
         {
             CreateDefaultItem();
@@ -71,6 +72,7 @@ namespace TRP.Models
             return myReturn.Trim();
         }
 
+        // Update the item
         public Item(Item data)
         {
             Update(data);
