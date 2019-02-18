@@ -13,17 +13,22 @@ namespace TRP.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         #region RefactorLater
-
+        // Mock datastore
         private IDataStore DataStoreMock => DependencyService.Get<IDataStore>() ?? MockDataStore.Instance;
+
+        // SQL datastore
         private IDataStore DataStoreSql => DependencyService.Get<IDataStore>() ?? SQLDataStore.Instance;
 
+        // Set the datastore to mockdatstore instance
         public IDataStore DataStore = MockDataStore.Instance;
 
+        // Constructor:  Set the datastore in view model to the mock datastore
         public BaseViewModel()
         {
             SetDataStore(DataStoreEnum.Mock);
         }
 
+        // Method to set datastore to either mock or sql
         public void SetDataStore(DataStoreEnum data)
         {
             switch (data)
@@ -32,31 +37,34 @@ namespace TRP.ViewModels
                     DataStore = DataStoreMock;
                     break;
 
-                //case DataStoreEnum.Unknown:
-                //case DataStoreEnum.Sql:
                 default:
                     DataStore = DataStoreSql;
                     break;
             }
         }
-
-
         #endregion
 
+        // Bool to tell if datastore is busy
         private bool _isBusy = false;
+
+        // Methods to get and set _isBusy bool
         public bool IsBusy
         {
             get { return _isBusy; }
             set { SetProperty(ref _isBusy, value); }
         }
 
+        // String to hold the title of the viewmodel
         private string _title = string.Empty;
+
+        // Methods to get and set the title
         public string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
 
+        // Method to set the property
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
@@ -71,7 +79,10 @@ namespace TRP.ViewModels
         }
 
         #region INotifyPropertyChanged
+        // Event handler for the detect change property
         public event PropertyChangedEventHandler PropertyChanged;
+
+        // Method to handle the property change
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;

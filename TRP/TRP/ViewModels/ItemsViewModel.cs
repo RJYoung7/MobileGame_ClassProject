@@ -18,6 +18,7 @@ namespace TRP.ViewModels
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static ItemsViewModel _instance;
 
+        // Constructor: returns instance if instantiated, otherwise creates instance if it's null
         public static ItemsViewModel Instance
         {
             get
@@ -32,11 +33,15 @@ namespace TRP.ViewModels
 
         #endregion Singleton
 
+        // Collection of Items
         public ObservableCollection<Item> Dataset { get; set; }
+
+        // Command to load data
         public Command LoadDataCommand { get; set; }
 
-        private bool _needsRefresh;
+        private bool _needsRefresh; // boolean for whether data is stale or not
 
+        // Constructor: loads data and listens for broadcast from views
         public ItemsViewModel()
         {
 
@@ -45,16 +50,19 @@ namespace TRP.ViewModels
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
             #region Messages
+            // Updata Database: Delete Item
             MessagingCenter.Subscribe<ItemDeletePage, Item>(this, "DeleteData", async (obj, data) =>
             {
                 await DeleteAsync(data);
             });
 
+            // For adding Item
             MessagingCenter.Subscribe<ItemNewPage, Item>(this, "AddData", async (obj, data) =>
             {
                 await AddAsync(data);
             });
 
+            // For modifying a Item
             MessagingCenter.Subscribe<ItemEditPage, Item>(this, "EditData", async (obj, data) =>
             {
                 await UpdateAsync(data);
@@ -83,6 +91,7 @@ namespace TRP.ViewModels
             _needsRefresh = value;
         }
 
+        // Command to load data into collection
         private async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
@@ -122,6 +131,7 @@ namespace TRP.ViewModels
             }
         }
 
+        // Refreshes data
         public void ForceDataRefresh()
         {
             // Reset
@@ -133,6 +143,7 @@ namespace TRP.ViewModels
 
         #region DataOperations
 
+        // Add item to datastore
         public async Task<bool> AddAsync(Item data)
         {
             Dataset.Add(data);
@@ -140,6 +151,7 @@ namespace TRP.ViewModels
             return myReturn;
         }
 
+        // Delete item in datastore
         public async Task<bool> DeleteAsync(Item data)
         {
             Dataset.Remove(data);
@@ -147,6 +159,7 @@ namespace TRP.ViewModels
             return myReturn;
         }
 
+        // Update item in the datastore
         public async Task<bool> UpdateAsync(Item data)
         {
             // Find the Item, then update it

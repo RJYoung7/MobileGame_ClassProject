@@ -7,6 +7,7 @@ namespace TRP.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
+        // Constructor for the AboutViewModel
         public AboutViewModel()
         {
             Title = "About";

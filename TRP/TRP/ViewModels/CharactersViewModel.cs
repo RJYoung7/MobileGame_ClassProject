@@ -45,8 +45,6 @@ namespace TRP.ViewModels
             Dataset = new ObservableCollection<Character>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
-            // Implement 
-
             // Update Database: Delete Character
             MessagingCenter.Subscribe<CharacterDeletePage, Character>(this, "DeleteData", async (obj, data) =>
             {
@@ -134,7 +132,7 @@ namespace TRP.ViewModels
         }
 
         #region DataOperations
-
+        // Add character to datastore
         public async Task<bool> AddAsync(Character data)
         {
             Dataset.Add(data);
@@ -142,6 +140,7 @@ namespace TRP.ViewModels
             return ret;
         }
 
+        // Delete character in datastore
         public async Task<bool> DeleteAsync(Character data)
         {
             Dataset.Remove(data);
@@ -149,6 +148,7 @@ namespace TRP.ViewModels
             return ret;
         }
 
+        // Update character in the datastore
         public async Task<bool> UpdateAsync(Character data)
         {
             var ret = await DataStore.UpdateAsync_Character(data);

@@ -4,16 +4,6 @@ using TRP.Models;
 
 namespace TRP.Services
 {
-    //public interface IDataStore<T> where T : class
-    //{
-    //    Task<bool> AddAsync(T item);
-    //    Task<bool> UpdateAsync(T item);
-    //    Task<bool> DeleteAsync(T item);
-    //    Task<T> GetAsync(string id);
-    //    Task<IEnumerable<T>> GetAllAsync(bool forceRefresh = false);
-
-    //}
-
     public interface IDataStore
     {
         // Item
@@ -40,13 +30,11 @@ namespace TRP.Services
         Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false);
 
         // Score
-        //Task<bool> InsertUpdateAsync_Score(Score data);
+        Task<bool> InsertUpdateAsync_Score(Score data);
         Task<bool> AddAsync_Score(Score data);
         Task<bool> UpdateAsync_Score(Score data);
         Task<bool> DeleteAsync_Score(Score data);
         Task<Score> GetAsync_Score(string id);
         Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false);
-
-
     }
 }

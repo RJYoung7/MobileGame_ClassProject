@@ -361,11 +361,17 @@ namespace TRP.Services
             var ret = result.Select(m => new Monster(m)).ToList();
             return ret;
         }
-               
+
         #endregion Monster
 
         #region Score
         // Score
+        public async Task<bool> InsertUpdateAsync_Score(Score data)
+        {
+            // Implement
+
+            return false;
+        }
 
         // Add the score to the SQL database
         public async Task<bool> AddAsync_Score(Score data)

@@ -17,6 +17,7 @@ namespace TRP.ViewModels
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static ScoresViewModel _instance;
 
+        // Constructor:  returns instance if instantiated, otherwise creates instance if it's null
         public static ScoresViewModel Instance
         {
             get
@@ -29,29 +30,36 @@ namespace TRP.ViewModels
             }
         }
 
+        // Collection of scores
         public ObservableCollection<Score> Dataset { get; set; }
+
+        // Command to load data
         public Command LoadDataCommand { get; set; }
 
-        private bool _needsRefresh;
+        private bool _needsRefresh;  // boolean for whether data is stale or not
 
+        // Constructor: loads data and listens for broadcast from views
         public ScoresViewModel()
         {
             Title = "Score List";
             Dataset = new ObservableCollection<Score>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
+            // Update Database: Delete Score
             MessagingCenter.Subscribe<ScoreDeletePage, Score>(this, "DeleteData", async (obj, data) =>
             {
                 Dataset.Remove(data);
                 await DataStore.DeleteAsync_Score(data);
             });
 
+            // For adding Score
             MessagingCenter.Subscribe<ScoreNewPage, Score>(this, "AddData", async (obj, data) =>
             {
                 Dataset.Add(data);
                 await DataStore.AddAsync_Score(data);
             });
 
+            // For modifying a Score
             MessagingCenter.Subscribe<ScoreEditPage, Score>(this, "EditData", async (obj, data) =>
             {
                 // Find the Score, then update it
@@ -71,6 +79,7 @@ namespace TRP.ViewModels
 
         #region DataOperations
 
+        // Add score to datastore
         public async Task<bool> AddAsync(Score data)
         {
             Dataset.Add(data);
@@ -78,6 +87,7 @@ namespace TRP.ViewModels
             return ret;
         }
 
+        // Delete score in datastore
         public async Task<bool> DeleteAsync(Score data)
         {
             Dataset.Remove(data);
@@ -85,6 +95,7 @@ namespace TRP.ViewModels
             return ret;
         }
 
+        // Update score in the datastore
         public async Task<bool> UpdateAsync(Score data)
         {
             var ret = await DataStore.UpdateAsync_Score(data);
@@ -117,6 +128,7 @@ namespace TRP.ViewModels
             _needsRefresh = value;
         }
 
+        // Command to load data into collection
         private async Task ExecuteLoadDataCommand()
         {
             if (IsBusy)
@@ -128,6 +140,8 @@ namespace TRP.ViewModels
             {
                 Dataset.Clear();
                 var dataset = await DataStore.GetAllAsync_Score(true);
+
+                // Load the data structure
                 foreach (var data in dataset)
                 {
                     Dataset.Add(data);

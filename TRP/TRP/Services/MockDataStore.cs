@@ -328,6 +328,25 @@ namespace TRP.Services
 
         #region Score
         // Score
+        public async Task<bool> InsertUpdateAsync_Score(Score data)
+        {
+            // Check to see if the score exist
+            var oldData = await GetAsync_Score(data.Id);
+            if (oldData == null)
+            {
+                _scoreDataset.Add(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Score(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Score(data);
+                return true;
+            }
+            return false;
+        }
 
         // Add a score to the mock datastore
         public async Task<bool> AddAsync_Score(Score data)
