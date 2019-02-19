@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using TRP.ViewModels;
 
 namespace TRP.Views.Battle
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BattleBeginPage : ContentPage
 	{
-		public BattleBeginPage ()
+        private BattleViewModel _viewModel; // View model for this page
+
+        public BattleBeginPage ()
 		{
 			InitializeComponent ();
+            BindingContext = _viewModel = BattleViewModel.Instance;
 		}
 
         private async void SelectCharactersButton_Command(object sender, EventArgs e)

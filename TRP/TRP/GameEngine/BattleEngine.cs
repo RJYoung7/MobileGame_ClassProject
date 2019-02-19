@@ -9,9 +9,6 @@ using TRP.ViewModels;
 namespace TRP.GameEngine
 {
     // Battle is the top structure
-
-    // A battle has
-
     class BattleEngine : RoundEngine
     {
         // The status of the actual battle, running or not (over)
@@ -62,12 +59,14 @@ namespace TRP.GameEngine
             return true;
         }
 
+        // Get a random character within range of min and max parameters
         public Character GetRandomCharacter(int ScaleLevelMin, int ScaleLevelMax)
         {
             var myData = new Character();
             return myData;
         }
 
+        // Autobattle
         public bool AutoBattle()
         {
             return true;

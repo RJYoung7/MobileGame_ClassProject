@@ -16,14 +16,14 @@ namespace TRP.Views.Battle
 	{
         private CharactersViewModel _viewModel; // View model for this page
 
+        public IList<Character> party = new List<Character>();  // List to hold party of characters
+
         // Constructor: creates new instance of this page, which initializes the xaml 
         public CharactersSelectPage()
         {
             InitializeComponent();
             BindingContext = _viewModel = CharactersViewModel.Instance;
         }
-
-        public IList<Character> party = new List<Character>();
 
         // Returns whether party is full 
         public bool PartyIsFull()
@@ -81,15 +81,28 @@ namespace TRP.Views.Battle
         }
 
         // Save the party of characters
-        private void Save_Clicked(object sender, EventArgs e)
+        private async void Save_Clicked(object sender, EventArgs e)
         {
-
+            var copy = copyParty(party);
+            MessagingCenter.Send(this, "AddData", copy);
+            await Navigation.PopAsync();
         }
 
         // Cancel the the party selection and return to previous page
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        private IList<Character> copyParty(IList<Character> party)
+        {
+            IList<Character> copy = new List<Character>();
+            foreach (var name in party) {
+                var copyChar = new Character();
+                copyChar.Update(name);
+                copy.Add(copyChar);
+            }
+            return copy;
         }
     }
 }
