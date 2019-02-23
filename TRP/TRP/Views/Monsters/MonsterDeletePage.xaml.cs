@@ -10,11 +10,11 @@ namespace TRP.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MonsterDeletePage : ContentPage
 	{
-	    // ReSharper disable once NotAccessedField.Local
-	    private MonsterDetailViewModel _viewModel;
+	    private MonsterDetailViewModel _viewModel; // View model for this page
 
-        public Monster Data { get; set; }
+        public Monster Data { get; set; } // Data for this page
 
+        // Constructor: creates instance of this page, which initializes the xaml
         public MonsterDeletePage(MonsterDetailViewModel viewModel)
         {
             // Save off the item

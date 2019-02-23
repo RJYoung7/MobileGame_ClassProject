@@ -11,14 +11,17 @@ namespace TRP.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemsPage : ContentPage
     {
-        private ItemsViewModel _viewModel;
+        private ItemsViewModel _viewModel; // View model for this page
 
+        // Constructor: creates new instance of this page, which initializes the xaml 
         public ItemsPage()
         {
             InitializeComponent();
             BindingContext = _viewModel = ItemsViewModel.Instance;
         }
 
+        // If the button to select an item is pressed, create a new ItemsDetailPage and
+        // push onto the stack 
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Item;
@@ -31,11 +34,14 @@ namespace TRP.Views
             ItemsListView.SelectedItem = null;
         }
 
+        // If the button to add new item is pressed, create a new ItemsNewPage and
+        // push onto the stack 
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ItemNewPage());
         }
 
+        // Before the page appears, remove anything that was there prior, and load data to view model
         protected override void OnAppearing()
         {
             base.OnAppearing();

@@ -22,6 +22,7 @@ namespace TRP.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // Constructor: creates instance of page, which initializes the xaml 
         public MonsterDetailPage()
         {
             InitializeComponent();
