@@ -22,31 +22,33 @@ namespace TRP.Views.Battle
         private async void AutoBattleButton_Command(object sender, EventArgs e)
         {
             // Can create a new battle engine...
-            var myBattleEngine = new BattleEngine();
+            var myBattleEngine = new AutoBattleEngine();
 
             var result = myBattleEngine.AddCharactersToBattle();
 
-            var charactersOutput = "";
-            if (result)
-            {
-                charactersOutput += "Count: ";
-                charactersOutput += myBattleEngine.CharacterList.Count + "\n";
-                foreach (var ch in myBattleEngine.CharacterList)
-                {
-                    charactersOutput += ch.FormatOutput() + "\n";
-                }
-                await DisplayAlert("Chosen characters", charactersOutput, "OK");
-            }
+            //var charactersOutput = "";
+            //if (result)
+            //{
+            //    charactersOutput += "Count: ";
+            //    charactersOutput += myBattleEngine.CharacterList.Count + "\n";
+            //    foreach (var ch in myBattleEngine.CharacterList)
+            //    {
+            //        charactersOutput += ch.FormatOutput() + "\n";
+            //    }
+            //    await DisplayAlert("Chosen characters", charactersOutput, "OK");
+            //}
 
-            if (result == false)
-            {
-                var answer = await DisplayAlert("Error", "No Characters to battle with", "OK","Cancel");
-                if (answer)
-                {
-                    var a = 1;
-                    // Can't run auto battle, no characters...
-                }
-            }
+            //if (result == false)
+            //{
+            //    var answer = await DisplayAlert("Error", "No Characters to battle with", "OK","Cancel");
+            //    if (answer)
+            //    {
+            //        var a = 1;
+            //        // Can't run auto battle, no characters...
+            //    }
+            //}
+
+            myBattleEngine.RunAutoBattle();
 
             if (myBattleEngine.BattleScore.RoundCount < 1)
             {
@@ -58,7 +60,7 @@ namespace TRP.Views.Battle
                 }
             }
 
-            var outputString = "Battle Over! Score " + myBattleEngine.BattleScore.ScoreTotal;
+            var outputString = "Battle Over! Socre: " + myBattleEngine.BattleScore.ScoreTotal;
             var action = await DisplayActionSheet(outputString, 
                 "Cancel", 
                 null, 
