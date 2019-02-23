@@ -279,5 +279,4 @@ namespace TRP.ViewModels
             return myReturn.Guid;
         }
     }
-    }
 }
