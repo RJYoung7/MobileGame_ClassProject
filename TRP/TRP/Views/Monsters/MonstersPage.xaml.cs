@@ -11,20 +11,23 @@ namespace TRP.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MonstersPage : ContentPage
     {
-        // ReSharper disable once NotAccessedField.Local
-        private MonstersViewModel _viewModel;
+        private MonstersViewModel _viewModel; // View model for this page
 
+        // Constructor: creates new instance of this page, which initializes the xaml 
         public MonstersPage()
         {
             InitializeComponent();
             BindingContext = _viewModel = MonstersViewModel.Instance;
         }
 
+        // When a monster is selected, create detail page and add onto stack
         private async void AddMonster_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MonsterNewPage());
         }
 
+        // If the button to select a monster is pressed, create a new MonsterDetailPage and
+        // push onto the stack 
         private async void OnMonsterSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var data = args.SelectedItem as Monster;
@@ -36,6 +39,8 @@ namespace TRP.Views
             // Manually deselect item.
             MonstersListView.SelectedItem = null;
         }
+
+        // Before the page appears, remove anything that was there prior, and load data to view model
         protected override void OnAppearing()
         {
             base.OnAppearing();

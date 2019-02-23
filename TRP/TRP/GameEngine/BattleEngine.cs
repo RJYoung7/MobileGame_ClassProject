@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 using TRP.Models;
@@ -56,13 +57,26 @@ namespace TRP.GameEngine
         // Scale them to meet Character Strength...
         public bool AddCharactersToBattle()
         {
+            // If the party does not have 6 characters, add them. 
+            if (CharacterList.Count == 6)
+            {
+                return true;
+            }
+
+            var need = 6 - (CharacterList.Count);
+            if (need >= 0)
+            {
+                var rand = CharactersViewModel.Instance.Dataset.Take(need);
+                CharacterList.AddRange(rand);
+            }
+
             return true;
         }
 
         // Get a random character within range of min and max parameters
-        public Character GetRandomCharacter(int ScaleLevelMin, int ScaleLevelMax)
+        public Character GetRandomCharacter()
         {
-            var myData = new Character();
+            var myData = CharactersViewModel.Instance.ChooseRandomCharacter();
             return myData;
         }
 

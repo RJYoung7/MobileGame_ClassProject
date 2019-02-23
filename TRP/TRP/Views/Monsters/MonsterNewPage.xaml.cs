@@ -13,6 +13,7 @@ namespace TRP.Views
         // Data for this page
         public Monster Data { get; set; }
 
+        // Constructor: creates blank monster that will get updated 
         public MonsterNewPage()
         {
             InitializeComponent();

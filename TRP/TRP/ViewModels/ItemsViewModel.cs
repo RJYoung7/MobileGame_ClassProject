@@ -118,6 +118,7 @@ namespace TRP.ViewModels
                 {
                     Dataset.Add(data);
                 }
+                SetNeedsRefresh(false);
             }
 
             catch (Exception ex)
@@ -192,6 +193,7 @@ namespace TRP.ViewModels
             return myReturn;
         }
 
+        // Check if the passed in item exists in the current data set
         public Item CheckIfItemExists(Item data)
         {
             // This will walk the items and find if there is one that is the same.
@@ -242,9 +244,40 @@ namespace TRP.ViewModels
         // Return a random item from the list of items...
         public string ChooseRandomItemString(ItemLocationEnum location, AttributeEnum attribute)
         {
-            // Implement 
+            if (location == ItemLocationEnum.Unknown)
+            {
+                return null;
+            }
 
-            return null;
+            if (Dataset.Count < 1)
+            {
+                return null;
+            }
+
+            // Get all the items for that location
+            var myList = Dataset.Where(a => a.Location == location).ToList();
+
+            // If an attribute is selected...
+            if (attribute != AttributeEnum.Unknown)
+            {
+                // Filter down to the items that fit the attribute
+                myList = myList.Where(a => a.Attribute == attribute).ToList();
+            }
+
+            if (myList.Count < 1)
+            {
+                return null;
+            }
+
+            // Pick a random item from the list
+            var myRnd = HelperEngine.RollDice(1, myList.Count);
+
+            // Return that item...
+            // -1 because of 0 index list...
+            var myReturn = myList[myRnd - 1];
+
+            return myReturn.Guid;
         }
+    }
     }
 }

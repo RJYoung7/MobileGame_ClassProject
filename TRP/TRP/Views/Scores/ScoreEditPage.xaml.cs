@@ -10,11 +10,11 @@ namespace TRP.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ScoreEditPage : ContentPage
 	{
-	    // ReSharper disable once NotAccessedField.Local
-	    private ScoreDetailViewModel _viewModel;
+	    private ScoreDetailViewModel _viewModel; // View model for this page
 
-        public Score Data { get; set; }
+        public Score Data { get; set; } // Data for this page
 
+        // Constructor: binds data for view and saves bound data
         public ScoreEditPage(ScoreDetailViewModel viewModel)
         {
             // Save off the item
@@ -27,6 +27,7 @@ namespace TRP.Views
             BindingContext = _viewModel = viewModel;
         }
 
+        // When save button is clicked, add attributes to this character, and broadcast edit
         private async void Save_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "EditData", Data);
@@ -41,6 +42,7 @@ namespace TRP.Views
             Navigation.RemovePage(this);
         }
 
+        // When cancel button is clicked, remove this page from stack
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
