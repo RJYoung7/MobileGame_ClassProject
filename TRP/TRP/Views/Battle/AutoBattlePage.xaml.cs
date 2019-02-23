@@ -24,7 +24,19 @@ namespace TRP.Views.Battle
             // Can create a new battle engine...
             var myBattleEngine = new BattleEngine();
 
-            var result = myBattleEngine.AutoBattle();
+            var result = myBattleEngine.AddCharactersToBattle();
+
+            var charactersOutput = "";
+            if (result)
+            {
+                charactersOutput += "Count: ";
+                charactersOutput += myBattleEngine.CharacterList.Count + "\n";
+                foreach (var ch in myBattleEngine.CharacterList)
+                {
+                    charactersOutput += ch.FormatOutput() + "\n";
+                }
+                await DisplayAlert("Chosen characters", charactersOutput, "OK");
+            }
 
             if (result == false)
             {

@@ -187,5 +187,24 @@ namespace TRP.ViewModels
 
         #endregion ItemConversion
 
+        // Get random character
+        public Character ChooseRandomCharacter()
+        {
+            if (Dataset.Count < 1)
+            {
+                return null;
+            }
+
+            // Get all the items for that location
+            var randChar = Dataset.Where(c => c.PenguinType == PenguinTypeEnum.Adelie).FirstOrDefault();
+
+            // If an attribute is selected...
+            if (randChar != null)
+            {
+                return randChar;
+            }
+
+            return null;
+        }
     }
 }
