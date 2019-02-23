@@ -60,7 +60,7 @@ namespace TRP.Views.Battle
                 }
             }
 
-            var outputString = "Battle Over! Socre: " + myBattleEngine.BattleScore.ScoreTotal;
+            var outputString = "Battle Over! Score: " + myBattleEngine.BattleScore.ScoreTotal;
             var action = await DisplayActionSheet(outputString, 
                 "Cancel", 
                 null, 
