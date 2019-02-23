@@ -12,9 +12,9 @@ namespace TRP.Views
     // ReSharper disable once RedundantExtendsListEntry
     public partial class MonsterDetailPage : ContentPage
     {
-        // ReSharper disable once FieldCanBeMadeReadOnly.Local
-        private MonsterDetailViewModel _viewModel;
+        private MonsterDetailViewModel _viewModel; // View model for this page
 
+        // Constructor: overload with view model
         public MonsterDetailPage(MonsterDetailViewModel viewModel)
         {
             InitializeComponent();

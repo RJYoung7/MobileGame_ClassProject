@@ -49,7 +49,7 @@ namespace TRP.ViewModels
             MessagingCenter.Subscribe<ScoreDeletePage, Score>(this, "DeleteData", async (obj, data) =>
             {
                 Dataset.Remove(data);
-                await DataStore.DeleteAsync_Score(data);
+                await DataStore.AddAsync_Score(data);
             });
 
             // For adding Score
@@ -146,6 +146,7 @@ namespace TRP.ViewModels
                 {
                     Dataset.Add(data);
                 }
+                SetNeedsRefresh(false);
             }
 
             catch (Exception ex)

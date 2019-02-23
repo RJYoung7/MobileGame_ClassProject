@@ -12,7 +12,7 @@ namespace TRP.Views
     {
         public Item Data { get; set; } // Data for this page
 
-        // Constructor for the page, will create a new black item that can tehn get updated
+        // Constructor for the page, will create a new blank item that can tehn get updated
         public ItemNewPage()
         {
             InitializeComponent();

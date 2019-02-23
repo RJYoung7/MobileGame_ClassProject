@@ -10,11 +10,11 @@ namespace TRP.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ScoreDeletePage : ContentPage
 	{
-	    // ReSharper disable once NotAccessedField.Local
-	    private ScoreDetailViewModel _viewModel;
+	    private ScoreDetailViewModel _viewModel; // View model for this page
 
-        public Score Data { get; set; }
+        public Score Data { get; set; } // Data for this page
 
+        // Constructor: creates instance of this page, which initializes the xaml
         public ScoreDeletePage (ScoreDetailViewModel viewModel)
         {
             // Save off the item
@@ -27,7 +27,8 @@ namespace TRP.Views
             BindingContext = _viewModel = viewModel;
         }
 
-	    private async void Delete_Clicked(object sender, EventArgs e)
+        // When delete button is clicked, broadcast delete and pop this page off stack
+        private async void Delete_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send(this, "DeleteData", Data);
 
@@ -37,7 +38,8 @@ namespace TRP.Views
             await Navigation.PopAsync();
         }
 
-	    private async void Cancel_Clicked(object sender, EventArgs e)
+        // When cancel button is clicked, remove this page from stack
+        private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
