@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace TRP.GameEngine
 {
-    class RoundEngine : TurnEngine
+    public class RoundEngine : TurnEngine
     {
         // Hold the list of players (monster, and character by guid), and order by speed
         public List<PlayerInfo> PlayerList;

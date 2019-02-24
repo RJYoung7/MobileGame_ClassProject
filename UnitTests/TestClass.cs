@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TRPUnitTests.Tests1
+namespace UnitTests
 {
     [TestFixture]
     public class TestClass

@@ -9,7 +9,7 @@ using TRP.Models;
 
 namespace TRP.GameEngine
 {
-    class AutoBattleEngine : BattleEngine
+    public class AutoBattleEngine : BattleEngine
     {
         public BattleEngine BattleEngine = new BattleEngine();
 
