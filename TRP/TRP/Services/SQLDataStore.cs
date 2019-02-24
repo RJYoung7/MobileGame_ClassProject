@@ -30,7 +30,6 @@ namespace TRP.Services
         private SQLDataStore()
         {
             CreateTables();
-            InitializeDatabaseNewTables();
         }
 
         // Create the Database Tables
