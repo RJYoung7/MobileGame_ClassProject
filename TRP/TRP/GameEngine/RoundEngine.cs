@@ -31,11 +31,30 @@ namespace TRP.GameEngine
         // Start the round, need to get the ItemPool, and Characters
         public void StartRound()
         {
+            // Start round count at 0
+            BattleScore.RoundCount = 0;
+
+            // Start 1st round
+            NewRound();
+
+            // Print Round.
+            Debug.WriteLine("Start Round: " + BattleScore.RoundCount);
         }
 
         // Call to make a new set of monsters...
         public void NewRound()
         {
+            // End previous round
+            EndRound();
+
+            // Add monsters
+            AddMonstersToRound();
+
+            // Add characters
+            MakePlayerList();
+
+            // Update round count
+            BattleScore.RoundCount++;
         }
 
         // Add Monsters
