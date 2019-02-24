@@ -33,57 +33,52 @@ namespace TRP.Services
         // Constructor: adds data to dataset
         private MockDataStore()
         {
-            InitilizeSeedData();
+            InitializeSeedData();
         }
 
         // Adds data
-        private void InitilizeSeedData()
+        private async void InitializeSeedData()
         {
             // Load items
-            _itemDataset.Add(new Item("Slush Helmet", "A helmet made from slush",
-                "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", 0, 1, 0, ItemLocationEnum.Head, AttributeEnum.Defense));
-            _itemDataset.Add(new Item("Ice Boots", "Boots with harden iced attached",
-                "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", 0, 3, 0, ItemLocationEnum.Feet, AttributeEnum.Defense));
-            _itemDataset.Add(new Item("Fire Bow", "Crafted from artic flames",
+            await AddAsync_Item(new Item("Slush Helmet", "A helmet made from slush",
+                "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", 0, 1, 0, ItemLocationEnum.Head,
+                AttributeEnum.Defense));
+            await AddAsync_Item(new Item("Ice Boots", "Boots with harden iced attached",
+                "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", 0, 3, 0, ItemLocationEnum.Feet,
+                AttributeEnum.Defense));
+            
+            await AddAsync_Item(new Item("Fire Bow", "Crafted from artic flames",
                 "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png", 
                 4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
 
 
             // Load characters
-            _characterDataset.Add(new Character("Poppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
-            _characterDataset.Add(new Character("Perry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
-            _characterDataset.Add(new Character("Paco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
-            _characterDataset.Add(new Character("Patrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
-            _characterDataset.Add(new Character("Pennie", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Adelie));
-            _characterDataset.Add(new Character("Percy", new AttributeBase(10, 4, 3, 3), PenguinTypeEnum.Magellanic));
-            _characterDataset.Add(new Character("Patty", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Rockhopper));
-            _characterDataset.Add(new Character("Penelope", new AttributeBase(10, 3, 5, 2), PenguinTypeEnum.King));
+            await AddAsync_Character(new Character("Poppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
+            await AddAsync_Character(new Character("Perry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
+            await AddAsync_Character(new Character("Paco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
+            await AddAsync_Character(new Character("Patrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
+            await AddAsync_Character(new Character("Pennie", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Adelie));
+            await AddAsync_Character(new Character("Percy", new AttributeBase(10, 4, 3, 3), PenguinTypeEnum.Magellanic));
+            await AddAsync_Character(new Character("Patty", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Rockhopper));
+            await AddAsync_Character(new Character("Penelope", new AttributeBase(10, 3, 5, 2), PenguinTypeEnum.King));
 
             // Load monsters 
-            _monsterDataset.Add(new Monster("Leonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
-            _monsterDataset.Add(new Monster("Arnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
-            _monsterDataset.Add(new Monster("Oscar", new AttributeBase(15, 3, 3, 1), MonsterTypeEnum.Orca));
-            _monsterDataset.Add(new Monster("Sally", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.SeaLion));
-            _monsterDataset.Add(new Monster("Philip", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.PolarBear));
-            _monsterDataset.Add(new Monster("Scott", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.SeaEagle));
-            _monsterDataset.Add(new Monster("Sue", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Skua));
-            _monsterDataset.Add(new Monster("Saul", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
-           
-            // Load Scores
-            var mockScores = new List<Score>
-            {
-                new Score { Id = Guid.NewGuid().ToString(), Name = "MockFirst Score", ScoreTotal = 111},
-                new Score { Id = Guid.NewGuid().ToString(), Name = "MockSecond Score", ScoreTotal = 222},
-                new Score { Id = Guid.NewGuid().ToString(), Name = "MockThird Score", ScoreTotal = 333},
-                new Score { Id = Guid.NewGuid().ToString(), Name = "MockFourth Score", ScoreTotal = 444},
-                new Score { Id = Guid.NewGuid().ToString(), Name = "MockFifth Score", ScoreTotal = 555},
-                new Score { Id = Guid.NewGuid().ToString(), Name = "MockSixth Score", ScoreTotal = 666},
-            };
+            await AddAsync_Monster(new Monster("Leonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
+            await AddAsync_Monster(new Monster("Arnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
+            await AddAsync_Monster(new Monster("Oscar", new AttributeBase(15, 3, 3, 1), MonsterTypeEnum.Orca));
+            await AddAsync_Monster(new Monster("Sally", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.SeaLion));
+            await AddAsync_Monster(new Monster("Philip", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.PolarBear));
+            await AddAsync_Monster(new Monster("Scott", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.SeaEagle));
+            await AddAsync_Monster(new Monster("Sue", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Skua));
+            await AddAsync_Monster(new Monster("Saul", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
 
-            foreach (var data in mockScores)
-            {
-                _scoreDataset.Add(data);
-            }
+            // Load Scores
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock First Score", ScoreTotal = 111 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Second Score", ScoreTotal = 222 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Third Score", ScoreTotal = 333 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Fourth Score", ScoreTotal = 444 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Fifth Score", ScoreTotal = 555 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Sixth Score", ScoreTotal = 666 });
         }
 
         private void CreateTables()
@@ -94,7 +89,10 @@ namespace TRP.Services
         // Delete the Database Tables by dropping them
         public void DeleteTables()
         {
-            // Implement
+            _characterDataset.Clear();
+            _itemDataset.Clear();
+            _monsterDataset.Clear();
+            _scoreDataset.Clear();
         }
 
         // Tells the View Models to update themselves.
@@ -116,7 +114,7 @@ namespace TRP.Services
             CreateTables();
 
             // Populate them
-            InitilizeSeedData();
+            InitializeSeedData();
 
             // Tell View Models they need to refresh
             NotifyViewModelsOfDataChange();

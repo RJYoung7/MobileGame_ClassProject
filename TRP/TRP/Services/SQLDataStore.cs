@@ -113,24 +113,23 @@ namespace TRP.Services
         #region Item
         // Item
 
-        // Add InsertUpdateAsync_Item Method
-
-        // Check to see if the item exists
-        // Add your code here.
-
-        // If it does not exist, then Insert it into the DB
-        // Add your code here.
-        // return true;
-
-        // If it does exist, Update it into the DB
-        // Add your code here
-        // return true;
-
-        // If you got to here then return false;
-
+        // Check if item exists, if not, add to database, otherwise, update db
         public async Task<bool> InsertUpdateAsync_Item(Item data)
         {
-            // Implement
+            var oldData = await GetAsync_Item(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Item(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Item(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Item(data);
+                return true;
+            }
 
             return false;
         }
@@ -187,10 +186,25 @@ namespace TRP.Services
         #endregion Item
 
         #region Character
-        // Character
+
+        // Check if character exists in db, if not, add it, otherwise update it
         public async Task<bool> InsertUpdateAsync_Character(Character data)
         {
-            // Implement
+            // Check to see if the item exist
+            var oldData = await GetAsync_Character(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Character(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Character(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Character(data);
+                return true;
+            }
 
             return false;
         }
@@ -281,7 +295,28 @@ namespace TRP.Services
         #endregion Character
 
         #region Monster
-        //Monster
+        // Check if monster exists in database, if so, update it, if not, add it
+        public async Task<bool> InsertUpdateAsync_Monster(Monster data)
+        {
+
+            // Check to see if the item exist
+            var oldData = await GetAsync_Monster(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Monster(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Monster(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Monster(data);
+                return true;
+            }
+
+            return false;
+        }
 
         // Convert monster to BaseMonster and Add it to the SQL database
         public async Task<bool> AddAsync_Monster(Monster data)
@@ -365,10 +400,25 @@ namespace TRP.Services
         #endregion Monster
 
         #region Score
-        // Score
+
+        // Check if score exists in db, if not, add it, otherwise update it
         public async Task<bool> InsertUpdateAsync_Score(Score data)
         {
-            // Implement
+            // Check to see if the item exist
+            var oldData = await GetAsync_Score(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Score(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Score(data);
+            if (UpdateResult)
+            {
+                await AddAsync_Score(data);
+                return true;
+            }
 
             return false;
         }
