@@ -30,7 +30,6 @@ namespace TRP.Services
                     ScoresViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
                     break;
 
-                case DataStoreEnum.Sql:
                 default:
                     _dataStoreEnum = DataStoreEnum.Sql;
                     ItemsViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
@@ -41,10 +40,7 @@ namespace TRP.Services
             }
 
             // Load the Data
-            ItemsViewModel.Instance.ForceDataRefresh();
-            MonstersViewModel.Instance.ForceDataRefresh();
-            CharactersViewModel.Instance.ForceDataRefresh();
-            ScoresViewModel.Instance.ForceDataRefresh();
+            ForceDataRestoreAll();
         }
 
         // Force all modes to load data...
