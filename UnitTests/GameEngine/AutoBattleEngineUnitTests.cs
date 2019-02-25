@@ -5,7 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TRP.Models;
+using TRP.ViewModels;
 using TRP.GameEngine;
+using TRP.Views;
+
+using Xamarin.Forms.Mocks;
+
 
 namespace UnitTests.GameEngine
 {
@@ -97,6 +102,27 @@ namespace UnitTests.GameEngine
             // Assert that it's not null.
             Assert.AreNotEqual(null, Actual, TestContext.CurrentContext.Test.Name);
         }
+
+        // Add characters to battle when character list is already 6 returns true
+        [Test]
+        public void AutoBattleEngine_AddCharactersToBattle_Count_is_6_Should_Pass()
+        {
+            // Arrange
+            var myEngine = new BattleEngine();
+            var Expected = true;
+
+            for (var i = 0; i < 6; i++)
+            {
+                myEngine.CharacterList.Add(new Character());
+            }
+
+            // Act
+            var Actual = myEngine.AddCharactersToBattle();
+
+            // Assert that it's not null.
+            Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
+        }
+
 
 
     }
