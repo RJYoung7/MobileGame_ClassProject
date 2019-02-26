@@ -123,7 +123,22 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
+        // Add characters to battle when character list is already 0 returns true
+        [Test]
+        public void AutoBattleEngine_AddCharactersToBattle_Count_is_0_Should_Pass()
+        {
+            MockForms.Init();
 
+            // Arrange
+            var myEngine = new BattleEngine();
+            var Expected = true;
+
+            // Act
+            var Actual = myEngine.AddCharactersToBattle();
+
+            // Assert that it's not null.
+            Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
+        }
 
     }
 }
