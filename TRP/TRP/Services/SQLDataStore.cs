@@ -255,7 +255,7 @@ namespace TRP.Services
             var castData = new BaseCharacter(data);
 
             // Delete BaseMonster from DB
-            var result = await App.Database.DeleteAsync(data);
+            var result = await App.Database.DeleteAsync(castData);
 
             // If delete was successful, return true
             if (result == 1)
