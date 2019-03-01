@@ -69,13 +69,24 @@ namespace TRP.GameEngine
         }
 
         /// <summary>
-        /// Will return the Minimum of the characters level
+        /// Will return the Minimum of the characters levels
         /// Will be used to scale Monsters to appropriate level
         /// </summary>
         /// <returns>An integer representing the minimum level</returns>
         public int GetMinCharacterLevel()
         {
             var data = CharacterList.Min(m => m.Level);
+            return data;
+        }
+
+        /// <summary>
+        /// Will return the Maximum of the characters levels
+        /// Will be used to scale Monsters to the appropriate level
+        /// </summary>
+        /// <returns>An integer representing the maximum level</returns>
+        public int GetMaxCharacterLevel()
+        {
+            var data = CharacterList.Max(m => m.Level);
             return data;
         }
 
