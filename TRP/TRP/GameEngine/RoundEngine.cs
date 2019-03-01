@@ -94,6 +94,58 @@ namespace TRP.GameEngine
         // Scale them to meet Character Strength...
         private void AddMonstersToRound()
         {
+            // Check to see if the monster list is full, if so, no need to add more...
+            if(MonsterList.Count() >= 6)
+            {
+                return;
+            }
+
+            // Make suure monster list exists and is loaded...
+            var myMonsterViewModel = MonstersViewModel.Instance;
+            myMonsterViewModel.ForceDataRefresh();
+
+            if(myMonsterViewModel.Dataset.Count() > 0)
+            {
+                // Scale monsters to be within the range of the characters
+                var ScaleLevelMax = 1;
+                var ScaleLevelMin = 1;
+                var ScaleLevelAverage = 1;
+
+                if (CharacterList.Any())
+                {
+                    ScaleLevelMin = GetMinCharacterLevel();
+                    ScaleLevelMax = GetMaxCharacterLevel();
+                    ScaleLevelAverage = GetAverageCharacterLevel();
+                }
+
+                // Get 6 monsters
+                do
+                {
+                    var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
+                    {
+                        var monster = new Monster(myMonsterViewModel.Dataset[rnd - 1]);
+
+                        // Scale the monster to be between the average level of the characters+1
+                        var rndScale = HelperEngine.RollDice(1, ScaleLevelAverage + 1);
+                        monster.ScaleLevel(rndScale);
+                        MonsterList.Add(monster);
+                    }
+
+                } while (MonsterList.Count() < 6);
+            }
+            else
+            {
+                // No mosnters in DB, so add 6 new ones...
+                for (var i = 0; i < 6; i++)
+                {
+                    var monster = new Monster();
+
+                    // Help identify which monster it is....
+                    monster.Name += " " + MonsterList.Count() + 1;
+                    MonsterList.Add(monster);
+                    
+                }
+            }
         }
 
         // At the end of the round
