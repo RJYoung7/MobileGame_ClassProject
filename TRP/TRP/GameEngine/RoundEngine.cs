@@ -31,7 +31,7 @@ namespace TRP.GameEngine
         // Start the round, need to get the ItemPool, and Characters
         public void StartRound()
         {
-            // Start round count at 0
+            // Start on round 0, then the turns will increment the round
             BattleScore.RoundCount = 0;
 
             // Start 1st round
@@ -57,6 +57,16 @@ namespace TRP.GameEngine
             BattleScore.RoundCount++;
         }
 
+        /// <summary>
+        /// Will return the average of the characters level
+        /// Will be used to scaled Monsters to appropriate level
+        /// </summary>
+        /// <returns>An integer representing the averge level</returns>
+        public int GetAverageCharacterLevel()
+        {
+            var data = CharacterList.Average(m => m.Level);
+            return (int)Math.Floor(data);
+        }
         // Add Monsters
         // Scale them to meet Character Strength...
         private void AddMonstersToRound()
