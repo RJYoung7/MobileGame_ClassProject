@@ -76,8 +76,14 @@ namespace TRP.GameEngine
         // Scale them to meet Character Strength...
         public bool AddCharactersToBattle()
         {
+            // Check if the Character list is empty
+            if (CharactersViewModel.Instance.Dataset.Count < 1)
+            {
+                return false;
+            }
+
             // If the party does not have 6 characters, add them. 
-            if (CharacterList.Count == 6)
+            if (CharacterList.Count >= 6)
             {
                 return true;
             }
