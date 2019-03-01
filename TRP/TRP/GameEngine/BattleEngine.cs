@@ -58,6 +58,17 @@ namespace TRP.GameEngine
         // Initializes the Battle to begin
         public bool StartBattle(bool isAutoBattle)
         {
+            // New Battle
+            // Load Characters
+            BattleScore.AutoBattle = isAutoBattle;
+            isBattleRunning = true;
+
+            // Characters not Initialized, so false start...
+            if(CharacterList.Count < 1)
+            {
+                return false;
+            }
+
             return true;
         }
 
