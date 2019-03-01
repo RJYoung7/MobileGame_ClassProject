@@ -4,6 +4,10 @@
     public enum HitStatusEnum
     {
         Unknown = 0,
-        // Implement
+        Miss = 1,
+        Hit = 2,
+        CriticalMiss = 3,
+        CriticalHit = 4
+
     }
 }
