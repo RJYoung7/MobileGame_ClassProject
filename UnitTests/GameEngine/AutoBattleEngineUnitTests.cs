@@ -140,5 +140,28 @@ namespace UnitTests.GameEngine
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
 
+        [Test]
+        public void AutoBattleEngine_RunAutoBattle_No_Characters_Should_Fail()
+        {
+
+            // Arrange
+            MockForms.Init();
+
+            var myEngine = new AutoBattleEngine();
+            bool Expect = false;
+
+            // Delete all Characters from the View Model
+            CharactersViewModel.Instance.Dataset.Clear();
+
+            // Act
+            var Actual = myEngine.RunAutoBattle();
+
+            // Reset
+          //  CharactersViewModel.Instance.ReloadData();
+
+            // Assert
+            Assert.AreEqual(Expect, Actual, TestContext.CurrentContext.Test.Name);
+        }
+
     }
 }

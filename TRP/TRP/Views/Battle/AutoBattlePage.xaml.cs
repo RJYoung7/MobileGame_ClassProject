@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Diagnostics;
 using TRP.GameEngine;
 using TRP.ViewModels;
 using Xamarin.Forms;
@@ -24,47 +25,22 @@ namespace TRP.Views.Battle
             // Can create a new battle engine...
             var myBattleEngine = new AutoBattleEngine();
 
+            // Add characters to AutoBattle
             var result = myBattleEngine.AddCharactersToBattle();
 
-            //var charactersOutput = "";
-            //if (result)
-            //{
-            //    charactersOutput += "Count: ";
-            //    charactersOutput += myBattleEngine.CharacterList.Count + "\n";
-            //    foreach (var ch in myBattleEngine.CharacterList)
-            //    {
-            //        charactersOutput += ch.FormatOutput() + "\n";
-            //    }
-            //    await DisplayAlert("Chosen characters", charactersOutput, "OK");
-            //}
-
-            //if (result == false)
-            //{
-            //    var answer = await DisplayAlert("Error", "No Characters to battle with", "OK","Cancel");
-            //    if (answer)
-            //    {
-            //        var a = 1;
-            //        // Can't run auto battle, no characters...
-            //    }
-            //}
-
+            // Start AutoBattle
             myBattleEngine.RunAutoBattle();
 
-            if (myBattleEngine.BattleScore.RoundCount < 1)
-            {
-                var answer = await DisplayAlert("Error", "No Rounds Fought", "OK", "Cancel");
-                if (answer)
-                {
-                    var a = 1;
-                    // Can't run auto battle, no characters...
-                }
-            }
+            // Display result of AutoBattle
+            await DisplayAlert(null, myBattleEngine.GetResultOutput(), null, "Next");
 
-            var outputString = "Battle Over! Score: " + myBattleEngine.BattleScore.ScoreTotal;
-            var action = await DisplayActionSheet(outputString, 
-                "Cancel", 
-                null, 
-                "View Score");
+            // String to hold score.
+            var outputString = "Score: " + myBattleEngine.BattleScore.ScoreTotal;
+
+            // Show player their score, and allow option to view more details.
+            var action = await DisplayActionSheet(outputString, "Cancel", null, "View Score");
+
+            // If user wants to view more score details, take them there.
             if (action == "View Score")
             {
                 await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myBattleEngine.BattleScore)));

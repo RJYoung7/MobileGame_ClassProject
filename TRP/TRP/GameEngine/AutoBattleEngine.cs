@@ -33,8 +33,7 @@ namespace TRP.GameEngine
             // Start a battle
             BattleEngine.StartBattle(true);
             Debug.WriteLine("Starting Battle with " + BattleEngine.CharacterList.Count + " Characters.\n");
-
-
+            
             // start game by initializing a round 
             BattleEngine.StartRound();
 

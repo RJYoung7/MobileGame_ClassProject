@@ -85,6 +85,12 @@ namespace TRP.ViewModels
             _needsRefresh = value;
         }
 
+
+        public async void ReloadData()
+        {
+            await ExecuteLoadDataCommand();
+        }
+
         // Command to load data into collection
         private async Task ExecuteLoadDataCommand()
         {
