@@ -88,6 +88,11 @@ namespace TRP.GameEngine
                 return true;
             }
 
+            // TODO, determine the character strength
+            // add Characters up to that strength...
+            var ScaleLevelMax = 3;
+            var ScaleLevelMin = 1;
+
             var need = 6 - (CharacterList.Count);
             if (need >= 0)
             {
@@ -99,9 +104,29 @@ namespace TRP.GameEngine
         }
 
         // Get a random character within range of min and max parameters
-        public Character GetRandomCharacter()
+        public Character GetRandomCharacter(int ScaleLevelMin, int ScaleLevelMax)
         {
-            var myData = CharactersViewModel.Instance.ChooseRandomCharacter();
+            var myCharacterViewModel = CharactersViewModel.Instance;
+
+            var rnd = HelperEngine.RollDice(1, myCharacterViewModel.Dataset.Count);
+
+            var myData = new Character(myCharacterViewModel.Dataset[rnd - 1]);
+
+            // Help identify which Character it is...
+            myData.Name += " " + (1 + CharacterList.Count).ToString();
+
+            var rndScale = HelperEngine.RollDice(ScaleLevelMin, ScaleLevelMax);
+            myData.ScaleLevel(rndScale);
+
+            // Add Items...
+            myData.Head = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Head, AttributeEnum.Unknown);
+            myData.Necklass = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Necklass, AttributeEnum.Unknown);
+            myData.PrimaryHand = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.PrimaryHand, AttributeEnum.Unknown);
+            myData.OffHand = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.OffHand, AttributeEnum.Unknown);
+            myData.RightFinger = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.RightFinger, AttributeEnum.Unknown);
+            myData.LeftFinger = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.LeftFinger, AttributeEnum.Unknown);
+            myData.Feet = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Feet, AttributeEnum.Unknown);
+
             return myData;
         }
 
