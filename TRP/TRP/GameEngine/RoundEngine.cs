@@ -67,6 +67,18 @@ namespace TRP.GameEngine
             var data = CharacterList.Average(m => m.Level);
             return (int)Math.Floor(data);
         }
+
+        /// <summary>
+        /// Will return the Minimum of the characters level
+        /// Will be used to scale Monsters to appropriate level
+        /// </summary>
+        /// <returns>An integer representing the minimum level</returns>
+        public int GetMinCharacterLevel()
+        {
+            var data = CharacterList.Min(m => m.Level);
+            return data;
+        }
+
         // Add Monsters
         // Scale them to meet Character Strength...
         private void AddMonstersToRound()
