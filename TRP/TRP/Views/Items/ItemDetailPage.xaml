@@ -12,11 +12,10 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout 
-            x:Name="DetailsRoot"
-            Orientation="Vertical"
-            Spacing="20"
-            Padding="15">
+        <StackLayout x:Name="DetailsRoot"
+                     Orientation="Vertical"
+                     Spacing="20"
+                     Padding="15">
 
             <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0">
                 <!-- Picture of item -->
@@ -27,10 +26,9 @@
                        VerticalOptions="Center"
                        BackgroundColor="White"/>
 
-                <StackLayout
-                    Orientation="Vertical"
-                    HorizontalOptions="Start"
-                    VerticalOptions="Start">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Start">
                     
                     <!-- Item name -->
                     <Label Text="{Binding Data.Name}" 

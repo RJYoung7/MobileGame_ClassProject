@@ -27,10 +27,9 @@
                     <Entry Keyboard="Text" Placeholder="Enter Item Description" Text="{Binding Data.Description}" />
                 </StackLayout>
 
-                <Grid
-                    RowSpacing="1"
-                    ColumnSpacing="1"
-                    VerticalOptions="Center">
+                <Grid RowSpacing="1"
+                      ColumnSpacing="1"
+                      VerticalOptions="Center">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -41,135 +40,120 @@
 
                     <!-- Item URI -->
                     <StackLayout Grid.Row="0" Grid.Column="0">
-                        <Label 
-                            Text="Image: " 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"/>
+                        <Label Text="Image: " 
+                               FontSize="Medium" 
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
                     </StackLayout>
                     <StackLayout Grid.Row="0" Grid.Column="1">
-                        <Entry 
-                            Text="{Binding Data.ImageURI}" 
-                            FontSize="Small" 
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="Center"/>
+                        <Entry Text="{Binding Data.ImageURI}" 
+                               FontSize="Small" 
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="Center"/>
                     </StackLayout>
 
                     <!-- Item attribute -->
                     <StackLayout Grid.Row="1" Grid.Column="0">
-                        <Label 
-                            Text="Select Attribute: " 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"/>
+                        <Label Text="Select Attribute: " 
+                               FontSize="Medium" 
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="1" Grid.Column="1">
-                        <Picker 
-                            ItemsSource="{x:Static local:AttributeList.GetListItem}" 
-                            SelectedItem="{Binding Data.Attribute, Converter={StaticResource StringEnum}, Mode=TwoWay}" 
-                            x:Name="AttributePicker"
-                            VerticalOptions="Center"/>
+                        <Picker ItemsSource="{x:Static local:AttributeList.GetListItem}" 
+                                SelectedItem="{Binding Data.Attribute, Converter={StaticResource StringEnum}, Mode=TwoWay}" 
+                                x:Name="AttributePicker"
+                                VerticalOptions="Center"/>
                     </StackLayout>
 
                     <!-- Item attribute -->
                     <StackLayout Grid.Row="2" Grid.Column="0">
-                        <Label 
-                            Text="Select Location: " 
-                            FontSize="Medium" 
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"/>
+                        <Label Text="Select Location: " 
+                               FontSize="Medium" 
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="2" Grid.Column="1">
-                        <Picker 
-                            ItemsSource="{x:Static local:ItemLocationList.GetListItem}" 
-                            SelectedItem="{Binding Data.Location, Converter={StaticResource StringEnum}, Mode=TwoWay}" 
-                            x:Name="LocationPicker" 
-                            VerticalOptions="Center"/>
+                        <Picker ItemsSource="{x:Static local:ItemLocationList.GetListItem}" 
+                                SelectedItem="{Binding Data.Location, Converter={StaticResource StringEnum}, Mode=TwoWay}" 
+                                x:Name="LocationPicker" 
+                                VerticalOptions="Center"/>
                     </StackLayout>
 
 
                     <!-- Value incrementer -->
                     <StackLayout Grid.Row="3" Grid.Column="0">
-                        <Label 
-                            Text="Start Value:" 
-                            FontSize="Small" 
-                            HorizontalOptions="Start"/>
+                        <Label Text="Start Value:" 
+                               FontSize="Small" 
+                               HorizontalOptions="Start"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-                        <Label  
-                            Text="{Binding Data.Value}" 
-                            FontSize="Small" 
-                            HorizontalOptions="Center"
-                            x:Name="ValueValue"
-                            VerticalOptions="Center"/>
+                        <Label Text="{Binding Data.Value}" 
+                               FontSize="Small" 
+                               HorizontalOptions="Center"
+                               x:Name="ValueValue"
+                               VerticalOptions="Center"/>
 
-                        <Stepper 
-                            Value="{Binding Data.Value, Mode=TwoWay}"
-                            Minimum="0"
-                            Maximum="10"
-                            Increment="1"
-                            ValueChanged="Value_OnStepperValueChanged"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            x:Name="ItemValue"/>
+                        <Stepper Value="{Binding Data.Value, Mode=TwoWay}"
+                                 Minimum="0"
+                                 Maximum="10"
+                                 Increment="1"
+                                 ValueChanged="Value_OnStepperValueChanged"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 x:Name="ItemValue"/>
                     </StackLayout>
 
                     <!-- Range incrementer -->
                     <StackLayout Grid.Row="4" Grid.Column="0" >
-                        <Label 
-                            Text="Start Range:" 
-                            FontSize="Small" 
-                            HorizontalOptions="Start"/>
+                        <Label Text="Start Range:" 
+                               FontSize="Small" 
+                               HorizontalOptions="Start"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
-                        <Label 
-                            Text="{Binding Data.Range}" 
-                            FontSize="Small" 
-                            HorizontalOptions="Center"
-                            x:Name="RangeValue"
-                            VerticalOptions="Center"/>
+                        <Label Text="{Binding Data.Range}" 
+                               FontSize="Small" 
+                               HorizontalOptions="Center"
+                               x:Name="RangeValue"
+                               VerticalOptions="Center"/>
 
-                        <Stepper
-                            Value="{Binding Data.Range, Mode=TwoWay}"
-                            Minimum="0"
-                            Maximum="10"
-                            Increment="1"
-                            ValueChanged="Range_OnStepperValueChanged"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            x:Name="ItemRange"/>
+                        <Stepper Value="{Binding Data.Range, Mode=TwoWay}"
+                                 Minimum="0"
+                                 Maximum="10"
+                                 Increment="1"
+                                 ValueChanged="Range_OnStepperValueChanged"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 x:Name="ItemRange"/>
                     </StackLayout>
 
 
                     <!-- Damage incrementer -->
                     <StackLayout Grid.Row="5" Grid.Column="0" >
-                        <Label 
-                            Text="Start Damage:" 
-                            FontSize="Small" 
-                            HorizontalOptions="Start"/>
+                        <Label Text="Start Damage:" 
+                               FontSize="Small" 
+                               HorizontalOptions="Start"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
-                        <Label 
-                            Text="{Binding Data.Damage}" 
-                            FontSize="Small" 
-                            HorizontalOptions="Center"
-                            x:Name="DamageValue"
-                            VerticalOptions="Center"/>
+                        <Label Text="{Binding Data.Damage}" 
+                               FontSize="Small" 
+                               HorizontalOptions="Center"
+                               x:Name="DamageValue"
+                               VerticalOptions="Center"/>
 
-                        <Stepper
-                            Value="{Binding Data.Damage, Mode=TwoWay}"
-                            Minimum="0"
-                            Maximum="10"
-                            Increment="1"
-                            ValueChanged="Damage_OnStepperValueChanged"
-                            HorizontalOptions="Start"
-                            VerticalOptions="Center"
-                            x:Name="ItemDamage"/>
+                        <Stepper Value="{Binding Data.Damage, Mode=TwoWay}"
+                                 Minimum="0"
+                                 Maximum="10"
+                                 Increment="1"
+                                 ValueChanged="Damage_OnStepperValueChanged"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 x:Name="ItemDamage"/>
                     </StackLayout>
                 </Grid>
             </StackLayout>

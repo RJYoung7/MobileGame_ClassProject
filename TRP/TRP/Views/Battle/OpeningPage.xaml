@@ -4,14 +4,12 @@
              x:Class="TRP.Views.OpeningPage">
     <ContentPage.Content>
         <StackLayout>
-        <StackLayout 
-            HorizontalOptions="Center" 
-            VerticalOptions="Start"
-            Orientation="Vertical">
+        <StackLayout HorizontalOptions="Center" 
+                     VerticalOptions="Start"
+                     Orientation="Vertical">
             
                 <Frame WidthRequest="200" HeightRequest="200">
-                    <Image 
-                        Source="https://i.pinimg.com/736x/b8/73/5e/b8735e30a542ac991f2c1d22b8f80431--penguin-life-penguin-baby.jpg"  />
+                    <Image Source="https://i.pinimg.com/736x/b8/73/5e/b8735e30a542ac991f2c1d22b8f80431--penguin-life-penguin-baby.jpg"  />
                 </Frame>
 
                 <Label FontSize="Large"
@@ -22,12 +20,12 @@
 
         <StackLayout>
             <Label Text="Start Here"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
 
             <Button Text="AutoBattle"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" 
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
                     Clicked="AutoBattleButton_Command"/>
 
             <Button Text="Battle"
@@ -36,9 +34,9 @@
                     Clicked="ManualBattleButton_Command"/>
 
                 <Button Text="About"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" 
-                    Clicked="AboutButton_Command"/>
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" 
+                        Clicked="AboutButton_Command"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

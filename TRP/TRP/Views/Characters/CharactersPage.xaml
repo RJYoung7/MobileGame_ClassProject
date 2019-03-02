@@ -12,14 +12,14 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="CharactersListView" 
-                ItemsSource="{Binding Dataset}"
-                VerticalOptions="FillAndExpand"
-                 HasUnevenRows="true"
-                 RefreshCommand="{Binding LoadItemsCommand}"
-                 IsPullToRefreshEnabled="true"
-                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                 CachingStrategy="RecycleElement"
-                 ItemSelected="OnCharacterSelected">
+                      ItemsSource="{Binding Dataset}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      RefreshCommand="{Binding LoadItemsCommand}"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      CachingStrategy="RecycleElement"
+                      ItemSelected="OnCharacterSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -44,9 +44,9 @@
                                                FontSize="16" />
                                     </StackLayout>
                                     <Label Text="{Binding PenguinType}" 
-                                         LineBreakMode="NoWrap"
-                                         Style="{DynamicResource ListItemDetailTextStyle}"
-                                         FontSize="13" />
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
                                 </StackLayout>
 
                             </StackLayout>

@@ -13,14 +13,14 @@
         <StackLayout>
             <!-- List view of items -->
             <ListView x:Name="ItemsListView" 
-                ItemsSource="{Binding Dataset}"
-                VerticalOptions="FillAndExpand"
-                 HasUnevenRows="true"
-                 RefreshCommand="{Binding LoadItemsCommand}"
-                 IsPullToRefreshEnabled="true"
-                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                 CachingStrategy="RecycleElement"
-                 ItemSelected="OnItemSelected">
+                      ItemsSource="{Binding Dataset}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      RefreshCommand="{Binding LoadItemsCommand}"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      CachingStrategy="RecycleElement"
+                      ItemSelected="OnItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -40,23 +40,23 @@
                                 <StackLayout>
                                     <StackLayout Orientation="Vertical" Spacing="0">
                                         <Label Text="{Binding Name}" 
-                                           LineBreakMode="NoWrap" 
-                                           Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16" />
-                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
-                                            <Label Text="{Binding Attribute}" 
                                                LineBreakMode="NoWrap" 
                                                Style="{DynamicResource ListItemTextStyle}" 
                                                FontSize="16" />
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                            <Label Text="{Binding Attribute}" 
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" 
+                                                   FontSize="16" />
                                             <Label Text="{Binding Value}" 
-                                               LineBreakMode="NoWrap" 
-                                               Style="{DynamicResource ListItemTextStyle}" 
-                                               FontSize="16"/>
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" 
+                                                   FontSize="16"/>
                                     </StackLayout>
                                     <Label Text="{Binding Description}" 
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="13" />
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
                                 </StackLayout>
                                 </StackLayout>
                             </StackLayout>

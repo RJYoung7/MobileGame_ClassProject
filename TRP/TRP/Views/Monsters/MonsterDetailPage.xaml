@@ -13,24 +13,22 @@
 
     <ScrollView>
 
-        <StackLayout 
-                x:Name="DetailsRoot"
-                Orientation="Vertical"
-                Spacing="20"
-                Padding="15">
+        <StackLayout x:Name="DetailsRoot"
+                     Orientation="Vertical"
+                     Spacing="20"
+                     Padding="15">
 
             <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0">
                 <!-- Picture of monster -->
                 <Image Source="{Binding Data.ImageURI}"
-                    WidthRequest="150"
-                    HeightRequest="150" 
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"/>
+                       WidthRequest="150"
+                       HeightRequest="150" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
 
-                <StackLayout
-                    Orientation="Vertical"
-                    HorizontalOptions="Start"
-                    VerticalOptions="Start">
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Start">
                     <!-- Name label -->
                     <Label Text="{Binding Data.Name}" 
                            FontAttributes="Bold"

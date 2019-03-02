@@ -19,26 +19,25 @@
         <!-- Name -->
         <StackLayout Spacing="20" Padding="15">
                 <Image Source="{Binding Data.GetCharacterImage(PenguinTypePicker)}"
-                    WidthRequest="150"
-                    HeightRequest="150" 
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
+                       WidthRequest="150"
+                       HeightRequest="150" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
                        x:Name="pic"/>
                 <Entry Keyboard="Text" Text="{Binding Data.Name}" />
             <StackLayout Orientation="Horizontal">
                 <!-- Penguin type -->
                 <Label Text="Select Type: " HorizontalOptions="Start" FontSize="Small"/>
                 <Picker HorizontalOptions="FillAndExpand"
-                    ItemsSource="{x:Static local:PenguinTypeList.GetPenguinTypeList}"
-                    SelectedItem="{Binding Data.PenguinType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
-                    x:Name="PenguinTypePicker"
+                        ItemsSource="{x:Static local:PenguinTypeList.GetPenguinTypeList}"
+                        SelectedItem="{Binding Data.PenguinType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
+                        x:Name="PenguinTypePicker"
                         SelectedIndexChanged="PenguinTypePicker_SelectedIndexChanged"/>
             </StackLayout>
 
-            <Grid
-                RowSpacing="1"
-                ColumnSpacing="1"
-                VerticalOptions="Center">
+            <Grid RowSpacing="1"
+                  ColumnSpacing="1"
+                  VerticalOptions="Center">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -50,83 +49,74 @@
 
                 <!-- Attack incrementer -->
                 <StackLayout Grid.Row="0" Grid.Column="0">
-                <Label 
-                      Text="Attack:" 
-                      FontSize="Small" 
-                      HorizontalOptions="Start"/>
+                <Label Text="Attack:" 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
                 </StackLayout>
 
                 <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                    <Label 
-                        Text="{Binding Data.Attribute.Attack}" 
-                        FontSize="Small" 
-                        HorizontalOptions="Center"
-                        x:Name="AttackValue"
-                        VerticalOptions="Center"/>
+                    <Label Text="{Binding Data.Attribute.Attack}" 
+                           FontSize="Small" 
+                           HorizontalOptions="Center"
+                           x:Name="AttackValue"
+                           VerticalOptions="Center"/>
 
-                    <Stepper 
-                        Value="{Binding Data.Attribute.Attack, Mode=TwoWay}"
-                        Minimum="0"
-                        Maximum="10"
-                        Increment="1"
-                        ValueChanged="Attack_OnStepperValueChanged"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        x:Name="attack"/>
+                    <Stepper Value="{Binding Data.Attribute.Attack, Mode=TwoWay}"
+                             Minimum="0"
+                             Maximum="10"
+                             Increment="1"
+                             ValueChanged="Attack_OnStepperValueChanged"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             x:Name="attack"/>
                 </StackLayout>
 
                 <!-- Defense incrementer -->
                 <StackLayout Grid.Row="1" Grid.Column="0">
-                <Label 
-                    Text="Defense:" 
-                    FontSize="Small" 
-                    HorizontalOptions="Start"/>
+                <Label Text="Defense:" 
+                       FontSize="Small" 
+                       HorizontalOptions="Start"/>
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                    <Label  
-                        Text="{Binding Data.Attribute.Defense}" 
-                        FontSize="Small" 
-                        HorizontalOptions="Center"
-                        x:Name="DefenseValue"
-                        VerticalOptions="Center"/>
+                    <Label Text="{Binding Data.Attribute.Defense}" 
+                           FontSize="Small" 
+                           HorizontalOptions="Center"
+                           x:Name="DefenseValue"
+                           VerticalOptions="Center"/>
 
-                    <Stepper 
-                        Value="{Binding Data.Attribute.Defense, Mode=TwoWay}"
-                        Minimum="0"
-                        Maximum="10"
-                        Increment="1"
-                        ValueChanged="Defense_OnStepperValueChanged"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        x:Name="defense"/>
+                    <Stepper Value="{Binding Data.Attribute.Defense, Mode=TwoWay}"
+                             Minimum="0"
+                             Maximum="10"
+                             Increment="1"
+                             ValueChanged="Defense_OnStepperValueChanged"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             x:Name="defense"/>
                 </StackLayout>
 
                 <!-- Speed incrementer -->
                 <StackLayout Grid.Row="2" Grid.Column="0" >
-                    <Label 
-                        Text="Speed:" 
-                        FontSize="Small" 
-                        HorizontalOptions="Start"/>
+                    <Label Text="Speed:" 
+                           FontSize="Small" 
+                           HorizontalOptions="Start"/>
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                     <Label 
-                        Text="{Binding Data.Attribute.Speed}" 
-                        FontSize="Small" 
-                        HorizontalOptions="Center"
-                        x:Name="SpeedValue"
-                        VerticalOptions="Center"/>
+                     <Label Text="{Binding Data.Attribute.Speed}" 
+                            FontSize="Small" 
+                            HorizontalOptions="Center"
+                            x:Name="SpeedValue"
+                            VerticalOptions="Center"/>
 
-                    <Stepper
-                        Value="{Binding Data.Attribute.Speed, Mode=TwoWay}"
-                        Minimum="0"
-                        Maximum="10"
-                        Increment="1"
-                        ValueChanged="Speed_OnStepperValueChanged"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                        x:Name="speed"/>
+                    <Stepper Value="{Binding Data.Attribute.Speed, Mode=TwoWay}"
+                             Minimum="0"
+                             Maximum="10"
+                             Increment="1"
+                             ValueChanged="Speed_OnStepperValueChanged"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             x:Name="speed"/>
                 </StackLayout>
 
                 <!-- Stat points available -->
