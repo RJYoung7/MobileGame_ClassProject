@@ -4,23 +4,27 @@
              x:Class="TRP.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!--Top Bar Color-->
             <Color x:Key="Primary">#5b73b4</Color>
-            <Color x:Key="PrimaryDark">#003d6b</Color>
+            <!--Back Ground Color-->
             <Color x:Key="Accent">#aacdee</Color>
+            <!--Font Color-->
+            <Color x:Key="MainFont">#003d6b</Color>            
+            <!--Button Color-->
+            <Color x:Key="ButtonColor">#d5d8f0</Color>
+            
+            <Color x:Key="PrimaryDark">#003d6b</Color>
             <Color x:Key="LightBackgroundColor">#d5d8f0</Color>
             <Color x:Key="DarkBackgroundColor">#7997d6</Color>
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <Color x:Key="LightTextColor">#999999</Color>
-            <Color x:Key="MainFont">#003d6b</Color>
+
+
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
                 <Setter Property="BarTextColor" Value="White" />
-            </Style>
-
-            <Style TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
             </Style>
 
             <Style TargetType="Label">
@@ -29,14 +33,12 @@
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
                 <Setter Property="FontAttributes" Value="None" />
                 <Setter Property="FontSize" Value="Small" />
-
             </Style>
 
             <Style TargetType="Label"
                     x:Key="LabelBase"
                     BasedOn="{StaticResource Xamarin.Forms.Label}">
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-               <!--<Setter Property="BackgroundColor" Value="{StaticResource Accent}" />-->
             </Style>
 
             <Style TargetType="Label"
@@ -60,10 +62,12 @@
                 <Setter Property="FontSize" Value="Small" />
             </Style>
 
-            <Style TargetType="ScrollView">
-                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
-            </Style>
-                   
+            <Style TargetType="Button">
+                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+            </Style>    
 
         </ResourceDictionary>
     </Application.Resources>
