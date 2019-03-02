@@ -101,7 +101,7 @@ namespace TRP.Services
             ItemsViewModel.Instance.SetNeedsRefresh(true);
             MonstersViewModel.Instance.SetNeedsRefresh(true);
             CharactersViewModel.Instance.SetNeedsRefresh(true);
-            // Implement Scores
+            ScoresViewModel.Instance.SetNeedsRefresh(true);
         }
 
         // Refreshes database 
@@ -137,7 +137,6 @@ namespace TRP.Services
             var UpdateResult = await UpdateAsync_Item(data);
             if (UpdateResult)
             {
-                await AddAsync_Item(data);
                 return true;
             }
 
