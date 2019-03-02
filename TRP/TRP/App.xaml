@@ -4,31 +4,39 @@
              x:Class="TRP.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
-            <Color x:Key="PrimaryDark">#1976D2</Color>
-            <Color x:Key="Accent">#96d1ff</Color>
-            <Color x:Key="LightBackgroundColor">#FAFAFA</Color>
-            <Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
+            <Color x:Key="Primary">#5b73b4</Color>
+            <Color x:Key="PrimaryDark">#003d6b</Color>
+            <Color x:Key="Accent">#aacdee</Color>
+            <Color x:Key="LightBackgroundColor">#d5d8f0</Color>
+            <Color x:Key="DarkBackgroundColor">#7997d6</Color>
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <Color x:Key="LightTextColor">#999999</Color>
+            <Color x:Key="MainFont">#003d6b</Color>
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
                 <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
             </Style>
 
             <Style TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
                 <Setter Property="FontAttributes" Value="None" />
                 <Setter Property="FontSize" Value="Small" />
+
             </Style>
 
             <Style TargetType="Label"
                     x:Key="LabelBase"
                     BasedOn="{StaticResource Xamarin.Forms.Label}">
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+               <!--<Setter Property="BackgroundColor" Value="{StaticResource Accent}" />-->
             </Style>
 
             <Style TargetType="Label"
@@ -51,6 +59,11 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="Small" />
             </Style>
+
+            <Style TargetType="ScrollView">
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+            </Style>
+                   
 
         </ResourceDictionary>
     </Application.Resources>

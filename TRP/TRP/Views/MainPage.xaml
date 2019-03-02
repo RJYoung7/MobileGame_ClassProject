@@ -3,6 +3,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:views="clr-namespace:TRP.Views"
             x:Class="TRP.Views.MainPage">
+    
     <TabbedPage.Children>
         <NavigationPage Title="Game"> <!-- formerly Home-->
             <NavigationPage.Icon>

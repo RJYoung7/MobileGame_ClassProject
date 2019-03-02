@@ -18,7 +18,7 @@
             Spacing="20"
             Padding="15">
 
-            <StackLayout Orientation="Horizontal" BackgroundColor="LightGray">
+            <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0">
                 <!-- Picture of item -->
                 <Image Source="{Binding Data.ImageURI}"
                        WidthRequest="150"
