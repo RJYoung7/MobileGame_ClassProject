@@ -126,7 +126,6 @@ namespace TRP.Services
             var UpdateResult = await UpdateAsync_Item(data);
             if (UpdateResult)
             {
-                await AddAsync_Item(data);
                 return true;
             }
 
