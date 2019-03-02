@@ -108,7 +108,7 @@
                                              Orientation="Horizontal">
 
                                     <Label FontSize="Small"
-                                           Text="Number of Items "
+                                           Text="# of Items "
                                            HorizontalTextAlignment="Start"
                                            HorizontalOptions="Start"/>
 

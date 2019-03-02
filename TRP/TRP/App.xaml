@@ -64,7 +64,7 @@
             </Style>
 
             <Style TargetType="Button">
-                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="WidthRequest" Value="100" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
