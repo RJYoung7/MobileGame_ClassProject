@@ -60,6 +60,7 @@
                 <Setter Property="TextColor" Value="Red" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="Small" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
             </Style>
 
             <Style TargetType="Button">
