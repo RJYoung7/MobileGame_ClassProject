@@ -66,7 +66,7 @@ namespace TRP.Views
         // Set datastore based on user's toggle 
         private void SetDataSource(bool isMock)
         {
-            var set = DataStoreEnum.Sql;
+            var set = DataStoreEnum.SQL;
 
             if (isMock)
             {
@@ -140,7 +140,7 @@ namespace TRP.Views
             GameGlobals.EnableCriticalHitDamage = e.Value;
         }
          
-        // Clears database 
+        // A dialog box to confirm clearing of database 
         private async void ClearDatabase_Command(object sender, EventArgs e)
         {
             var answer = await DisplayAlert("Delete", "Sure you want to Delete All Data, and start over?", "Yes", "No");
@@ -151,11 +151,15 @@ namespace TRP.Views
             }
         }
 
-        // Get items from server
+        /// <summary>
+        /// The GetItems_Command will use a GET call to retrieve items from the server
+        /// </summary>
         private async void GetItems_Command(object sender, EventArgs e)
         {
             var myOutput = "No results";
             var myDataList = new List<Item>();
+
+            // Dialog box to confirm the GET call
             var answer = await DisplayAlert("Get", "Sure you want to Get Items from the Server?", "Yes", "No");
             if (answer)
             {
@@ -164,14 +168,26 @@ namespace TRP.Views
                 myDataList = await ItemsController.Instance.GetItemsFromServer(numItemsToGet);
                 if (myDataList != null && myDataList.Count > 0)
                 {
+                    // Reset the output
                     myOutput = "";
+
                     foreach (var item in myDataList)
-                        myOutput += item.FormatOutput() + "\n";
+                    { 
+                        // Add them line by one, use \n to force new line for output display.
+                        // Build up the output string by adding formatted Item Output
+                        myOutput += item.FormatOutput() + "\n\n";
+                    }
                 }
             }
+
+            // Display a list of items return with details in a dialog box
             await DisplayAlert("Returned List", myOutput, "OK");
         }
 
+        /// <summary>
+        /// Get items from the server using a POST call.  Will get items based
+        /// on parameters assigned.
+        /// </summary>
         private async void GetItemsPost_Command(object sender, EventArgs e)
         {
             var myOutput = "No Results";
@@ -188,24 +204,29 @@ namespace TRP.Views
             // Example  result = await ItemsController.Instance.GetItemsFromGame(1, 10, AttributeEnum.Speed, ItemLocationEnum.Feet, false, true);
             //ItemsController.Instance.GetItemsFromGame(int number, int level, AttributeEnum attribute, ItemLocationEnum location, bool random, bool updateDataBase)
 
-            // Implement calling GetItemsFromGame into myDataList.  Remember to Await the call.
-            myDataList =
-                await ItemsController.Instance.GetItemsFromGame(number, level, attribute, location, random,
-                    updateDataBase);
-
-            if (myDataList != null && myDataList.Count > 0)
+            // Display a confirmation dialog box to confirm the user still wants to get the items
+            var answer = await DisplayAlert("Post", "Sure you want to Post Items from the Server?", "Yes", "No");
+            if (answer)
             {
-                // Reset the output
-                myOutput = "";
+                // Get the items and await the call
+                myDataList = await ItemsController.Instance.GetItemsFromGame(number, level, attribute, location, random, updateDataBase);
 
-                foreach (var item in myDataList)
+                // Check if the post returned any items
+                if (myDataList != null && myDataList.Count > 0)
                 {
-                    // Add them line by one, use \n to force new line for output display.
-                    myOutput += item.FormatOutput() + "\n";
-                }
-            }
+                    // Reset the output
+                    myOutput = "";
 
-            await DisplayAlert("Returned List", myOutput, "OK");
+                    foreach (var item in myDataList)
+                    {
+                        // Add them line by one, use \n to force new line for output display.
+                        myOutput += item.FormatOutput() + "\n\n";
+                    }
+                }
+
+                // Display the list of items return with details in a dialog box
+                await DisplayAlert("Returned List", myOutput, "OK");
+            }
         }
 
     }

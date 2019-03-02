@@ -63,9 +63,9 @@ namespace TRP.Models
         {
             var myReturn = Name + " (" + Description + "). To be put on " + Location.ToString() +
                            ". Has +" + Value + " " + Attribute.ToString() +
-                           ", " + Damage + " damage, " + " and " + Range + "range.\n" + "Guid: " + Guid.ToString() + "\n";
+                           ", " + Damage + " damage, " + " and " + Range + " range.\n" + "Guid: " + Guid.ToString() + "\n";
 
-            return myReturn;
+            return myReturn.Trim();
         }
 
         // Update the item

@@ -62,8 +62,7 @@ namespace TRP.Controllers
         // Attribute: which attribute the item should be for, or Unknown 
         public async Task<List<Item>> GetItemsFromGame(int number, int level, AttributeEnum attribute, ItemLocationEnum location, bool random, bool updateDataBase)
         {
-            var URLComponent = "GetItemListPost/";
-
+            var URLComponent = "GetItemListPost";
 
             var dict = new Dictionary<string, string>
             {

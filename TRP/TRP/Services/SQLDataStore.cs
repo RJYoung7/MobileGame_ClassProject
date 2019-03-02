@@ -171,8 +171,15 @@ namespace TRP.Services
         // Get the item from the database
         public async Task<Item> GetAsync_Item(string id)
         {
-            var result = await App.Database.GetAsync<Item>(id);
-            return result;
+            try
+            {
+                var result = await App.Database.GetAsync<Item>(id);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         // Get a list of items from the database
