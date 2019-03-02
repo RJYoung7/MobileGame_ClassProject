@@ -61,15 +61,11 @@ namespace TRP.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = Name + " , " +
-                            Description + " for " +
-                            Location.ToString() + " with " +
-                            Attribute.ToString() +
-                            "+" + Value + " , " +
-                            "Damage : " + Damage + " , " +
-                            "Range : " + Range;
+            var myReturn = Name + " (" + Description + "). To be put on " + Location.ToString() +
+                           ". Has +" + Value + " " + Attribute.ToString() +
+                           ", " + Damage + " damage, " + " and " + Range + "range.\n" + "Guid: " + Guid.ToString() + "\n";
 
-            return myReturn.Trim();
+            return myReturn;
         }
 
         // Update the item
