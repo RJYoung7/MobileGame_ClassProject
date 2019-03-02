@@ -60,6 +60,12 @@ namespace TRP.Models
             ForceRollsToNotRandom = !ForceRollsToNotRandom;
         }
 
+        // Turn Random State Off
+        public static void DisableRandomValues()
+        {
+            ForceRollsToNotRandom = false;
+        }
+
         // Turn Random State On
         public static void EnableRandomValues()
         {

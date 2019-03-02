@@ -154,7 +154,7 @@ namespace TRP.Views
         // Get items from server
         private async void GetItems_Command(object sender, EventArgs e)
         {
-            var myOutput = "";
+            var myOutput = "No results";
             var myDataList = new List<Item>();
             var answer = await DisplayAlert("Get", "Sure you want to Get Items from the Server?", "Yes", "No");
             if (answer)

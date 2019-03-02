@@ -31,6 +31,7 @@ namespace TRP.Controllers
         public static string DefaultImageURI = "Item.png";
 
         #region ServerCalls
+        //Ask server for items based on api url 
         public async Task<List<Item>> GetItemsFromServer(int parameter = 100)
         {
             var URLComponent = "GetItemList/";
@@ -46,7 +47,7 @@ namespace TRP.Controllers
             // For each item, try to insert or update it in db
             foreach (var item in itemsList)
             {
-                await SQLDataStore.Instance.InsertUpdateAsync_Item(item);
+                await ItemsViewModel.Instance.InsertUpdateAsync(item);
             }
 
             // Call model to refresh itself to fetch list
