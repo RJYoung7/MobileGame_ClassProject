@@ -23,7 +23,7 @@
                              VerticalOptions="StartAndExpand"
                              Orientation="Vertical">
 
-                    <Image Source="d20.png" 
+                    <Image Source="Baby.png" 
                            VerticalOptions="Center" 
                            HeightRequest="150"
                            HorizontalOptions="Fill"/>
