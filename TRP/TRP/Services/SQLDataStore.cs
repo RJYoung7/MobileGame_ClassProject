@@ -30,7 +30,8 @@ namespace TRP.Services
         // Constructor for the SQLDataStore
         private SQLDataStore()
         {
-            InitializeDatabaseNewTables();
+            CreateTables();
+            //InitializeDatabaseNewTables();
         }
 
         // Create the Database Tables
