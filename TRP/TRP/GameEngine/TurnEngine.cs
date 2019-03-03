@@ -39,7 +39,6 @@ namespace TRP.GameEngine
         public List<Item> ItemPool = new List<Item>();
 
         //public List<Item> ItemList = new List<Item>();
-
         public List<Monster> MonsterList = new List<Monster>();
         public List<Character> CharacterList = new List<Character>();
 
@@ -55,7 +54,12 @@ namespace TRP.GameEngine
         // Character Attacks...
         public bool TakeTurn(Character Attacker)
         {
+            if (Attacker == null)
+                return false;
+
             // Choose Move or Attack
+            if (!Attacker.Alive)
+                return false;
 
             // For Attack, Choose Who
             var Target = AttackChoice(Attacker);
@@ -76,7 +80,12 @@ namespace TRP.GameEngine
         // Monster Attacks...
         public bool TakeTurn(Monster Attacker)
         {
+            if (Attacker == null)
+                return false;
+
             // Choose Move or Attack
+            if (!Attacker.Alive)
+                return false;
 
             // For Attack, Choose Who
             var Target = AttackChoice(Attacker);
@@ -155,7 +164,7 @@ namespace TRP.GameEngine
                 AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
             }
 
-            TurnMessageSpecial = " remaining health is " + Target.Attribute.CurrentHealth;
+            TurnMessageSpecial = Target.Name + "has remaining health of " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
@@ -176,7 +185,7 @@ namespace TRP.GameEngine
                 foreach (var item in myItemList)
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    TurnMessageSpecial += " Item " + item.Name + " dropped";
+                    TurnMessageSpecial += "\n\tItem: " + item.Name + " dropped";
                 }
 
                 ItemPool.AddRange(myItemList);
@@ -212,6 +221,7 @@ namespace TRP.GameEngine
 
             TargetName = Target.Name;
             AttackerName = Attacker.Name;
+            //Debug.WriteLine(AttackerName + " chooses to attack " + TargetName);
 
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
@@ -225,7 +235,7 @@ namespace TRP.GameEngine
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
-                TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
+                TurnMessage = Attacker.Name + " swings and critically misses " + Target.Name;
                 Debug.WriteLine(TurnMessage);
 
                 if (GameGlobals.EnableCriticalMissProblems)
@@ -251,7 +261,7 @@ namespace TRP.GameEngine
                     {
                         //2x damage
                         DamageAmount += DamageAmount;
-                        AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
+                        AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount) + ".\n";
                     }
                 }
 
@@ -262,14 +272,14 @@ namespace TRP.GameEngine
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
                 {
-                    LevelUpMessage = Attacker.Name + " is now Level " + Attacker.Level + " With Health Max of " + Attacker.GetHealthMax();
+                    LevelUpMessage = Attacker.Name + " is leveled up and is now " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
                     Debug.WriteLine(LevelUpMessage);
                 }
 
                 BattleScore.ExperienceGainedTotal += experienceEarned;
             }
 
-            TurnMessageSpecial = " remaining health is " + Target.Attribute.CurrentHealth;
+            TurnMessageSpecial = "\t" + " remaining health: " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
@@ -278,7 +288,7 @@ namespace TRP.GameEngine
                 MonsterList.Remove(Target);
 
                 // Mark Status in output
-                TurnMessageSpecial = " and causes death";
+                TurnMessageSpecial = "\n\t" + Target.Name + " dies.\n";
 
                 // Add one to the monsters killd count...
                 BattleScore.MonsterSlainNumber++;
@@ -296,15 +306,15 @@ namespace TRP.GameEngine
                 foreach (var item in myItemList)
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    TurnMessageSpecial += " Item " + item.Name + " dropped";
+                    TurnMessageSpecial += " Item " + item.Name + " dropped\n";
                 }
 
                 ItemPool.AddRange(myItemList);
             }
 
-            TurnMessage = Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
-            Debug.WriteLine(TurnMessage);
-
+            TurnMessage = "-" + Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
+            Debug.WriteLine(TurnMessage + "\n");
+            
             return true;
         }
 
@@ -485,7 +495,7 @@ namespace TRP.GameEngine
             switch (rnd)
             {
                 case 1:
-                    myReturn = " Luckly, nothing to drop from " + ItemLocationEnum.PrimaryHand;
+                    myReturn = " Luckily, nothing to drop from " + ItemLocationEnum.PrimaryHand;
                     var myItem = ItemsViewModel.Instance.GetItem(attacker.PrimaryHand);
                     if (myItem != null)
                     {
@@ -499,13 +509,13 @@ namespace TRP.GameEngine
                 case 3:
                 case 4:
                     // Put on the new item, which drops the one back to the pool
-                    myReturn = " Luckly, nothing to drop from " + ItemLocationEnum.PrimaryHand;
+                    myReturn = " Luckily, nothing to drop from " + ItemLocationEnum.PrimaryHand;
                     droppedItem = attacker.AddItem(ItemLocationEnum.PrimaryHand, null);
                     if (droppedItem != null)
                     {
                         // Add the dropped item to the pool
                         ItemPool.Add(droppedItem);
-                        myReturn = " Dropped " + droppedItem.Name + " from " + ItemLocationEnum.PrimaryHand;
+                        myReturn = attacker.Name + " dropped " + droppedItem.Name + " from " + ItemLocationEnum.PrimaryHand;
                     }
                     break;
 
@@ -513,7 +523,7 @@ namespace TRP.GameEngine
                 case 6:
                     var LocationRnd = HelperEngine.RollDice(1, ItemLocationList.GetListCharacter.Count);
                     var myLocationEnum = ItemLocationList.GetLocationByPosition(LocationRnd);
-                    myReturn = " Luckly, nothing to drop from " + myLocationEnum;
+                    myReturn = " Luckily, nothing to drop from " + myLocationEnum;
 
                     // Put on the new item, which drops the one back to the pool
                     droppedItem = attacker.AddItem(myLocationEnum, null);
@@ -521,7 +531,7 @@ namespace TRP.GameEngine
                     {
                         // Add the dropped item to the pool
                         ItemPool.Add(droppedItem);
-                        myReturn = " Dropped " + droppedItem.Name + " from " + myLocationEnum;
+                        myReturn = attacker.Name + " dropped " + droppedItem.Name + " from " + myLocationEnum;
                     }
                     break;
             }
