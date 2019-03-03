@@ -11,7 +11,7 @@
     </ContentPage.ToolbarItems>
     <ScrollView>
         <StackLayout VerticalOptions="Start">
-            <Label Text="Score Detail Page" FontSize="Small" />
+            <Label Text="Score Detail Page" FontSize="Medium" FontAttributes="Bold" />
             
             <!-- Score Details -->
             <Grid>
@@ -43,14 +43,14 @@
                 <Label Grid.Column="0" Grid.Row="6" Text="Total Experience Gained:" />
                 <Label Grid.Column="1" Grid.Row="6" Text="{Binding Data.ExperienceGainedTotal}"/>
 
-                <Label Grid.Column="0" Grid.Row="7" Text="Characters at Death:" />
-                <Label Grid.Column="1" Grid.Row="7" Text="{Binding Data.CharacterAtDeathList}"/>
+                <Label Grid.Column="0" Grid.Row="7" Text="Characters at Death:" VerticalOptions="Start"/>
+                <Label Grid.Column="1" Grid.Row="7" Text="{Binding Data.CharacterAtDeathList}" VerticalOptions="Start"/>
 
-                <Label Grid.Column="0" Grid.Row="8" Text="Monsters Killed:" />
-                <Label Grid.Column="1" Grid.Row="8" Text="{Binding Data.MonstersKilledList}"/>
+                <Label Grid.Column="0" Grid.Row="8" Text="Monsters Killed:" VerticalOptions="Start"/>
+                <Label Grid.Column="1" Grid.Row="8" Text="{Binding Data.MonstersKilledList}" VerticalOptions="Start"/>
 
-                <Label Grid.Column="0" Grid.Row="9" Text="Items Dropped:" />
-                <Label Grid.Column="1" Grid.Row="9" Text="{Binding Data.ItemsDroppedList}"/>
+                <Label Grid.Column="0" Grid.Row="9" Text="Items Dropped:" VerticalOptions="Start"/>
+                <Label Grid.Column="1" Grid.Row="9" Text="{Binding Data.ItemsDroppedList}" VerticalOptions="Start"/>
             </Grid>
         </StackLayout>
     </ScrollView>

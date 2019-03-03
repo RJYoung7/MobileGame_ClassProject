@@ -35,7 +35,7 @@ namespace TRP.Views.Battle
             await DisplayAlert(null, myBattleEngine.GetResultOutput(), null, "Next");
 
             // String to hold score.
-            var outputString = "Score: " + myBattleEngine.BattleScore.ScoreTotal;
+            var outputString = "Score: " + myBattleEngine.GetScoreValue();
 
             // Show player their score, and allow option to view more details.
             var action = await DisplayActionSheet(outputString, "Cancel", null, "View Score");
@@ -43,7 +43,7 @@ namespace TRP.Views.Battle
             // If user wants to view more score details, take them there.
             if (action == "View Score")
             {
-                await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myBattleEngine.BattleScore)));
+                await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myBattleEngine.GetScoreObject())));
             }
         }
     }
