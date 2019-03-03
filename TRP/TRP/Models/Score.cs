@@ -50,7 +50,7 @@ namespace TRP.Models
             CharacterAtDeathList = null;
             MonstersKilledList = null;
             ItemsDroppedList = null;
-            TurnNumber = 0;
+            TurnCount = 0;
         }
 
         // Update the score based on the passed in values.
@@ -77,9 +77,9 @@ namespace TRP.Models
         }
 
         // All a monster to the list of monsters and their stats
-        public bool AddMonsterToList(Monster data)
+        public bool AddMonsterToKillList(Monster data)
         {
-            MonstersKilledList += data.Name;
+            MonstersKilledList += data.Name + "\n";
             return true;
         }
 

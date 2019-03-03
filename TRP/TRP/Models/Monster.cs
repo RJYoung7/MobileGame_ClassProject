@@ -158,13 +158,13 @@ namespace TRP.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var UniqueOutput = "Implement";
+            //var UniqueOutput = "Implement";
 
-            var myReturn = "Implement";
+            var myReturn = this.Name;
 
             // Implement
 
-            myReturn += " , Unique Item : " + UniqueOutput;
+            //myReturn += " , Unique Item : " + UniqueOutput;
 
             return myReturn;
         }

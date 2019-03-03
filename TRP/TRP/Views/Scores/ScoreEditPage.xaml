@@ -29,7 +29,7 @@
                 <Entry Text="{Binding Data.AutoBattle}" FontSize="Small"/>
 
                 <Label Text="Number of Turns:" FontSize="Medium" />
-                <Entry Text="{Binding Data.TurnNumber}" FontSize="Small"/>
+                <Entry Text="{Binding Data.TurnCount}" FontSize="Small"/>
 
                 <Label Text="Number of Monsters Slain:" FontSize="Medium" />
                 <Entry Text="{Binding Data.MonsterSlainNumber}" FontSize="Small"/>

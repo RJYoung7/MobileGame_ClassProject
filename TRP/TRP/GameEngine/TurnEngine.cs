@@ -294,7 +294,7 @@ namespace TRP.GameEngine
                 BattleScore.MonsterSlainNumber++;
 
                 // Add the monster to the killed list
-                BattleScore.MonstersKilledList += Target.FormatOutput() + "\n";
+                BattleScore.AddMonsterToKillList(Target);
 
                 // Drop Items to item Pool
                 var myItemList = Target.DropAllItems();
@@ -305,7 +305,7 @@ namespace TRP.GameEngine
                 // Add to Score
                 foreach (var item in myItemList)
                 {
-                    BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
+                    BattleScore.ItemsDroppedList += item.FormatOutput() + "\n\n";
                     TurnMessageSpecial += " Item " + item.Name + " dropped\n";
                 }
 
