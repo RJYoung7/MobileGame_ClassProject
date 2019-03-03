@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TRP.Models;
@@ -29,7 +30,7 @@ namespace TRP.Services
         // Constructor for the SQLDataStore
         private SQLDataStore()
         {
-            CreateTables();
+            InitializeDatabaseNewTables();
         }
 
         // Create the Database Tables
@@ -404,6 +405,14 @@ namespace TRP.Services
         {
             // Get list of BaseMonsters from BaseMonster table.
             var result = await App.Database.Table<BaseMonster>().ToListAsync();
+            //if (result == null)
+            //{
+            //    Debug.WriteLine("Nothing in SQL");
+            //    var secondResult = App.Database.QueryAsync<BaseMonster>("SELECT * FROM [BaseMonster]");
+
+            //    var listofMonsters = new List<Monster>();
+
+            //}
 
             // Convert list of BaseMonsters to Monsters
             var ret = result.Select(m => new Monster(m)).ToList();
