@@ -7,6 +7,8 @@ namespace TRP.Models
         // Available slots for penguin party
         public const int availCharactersSlots = 6;
 
+        public const int MaxNumberPartyPlayers = 6;
+
         // Available slots for monster party
         public const int availMonstersSlots = 6;
 

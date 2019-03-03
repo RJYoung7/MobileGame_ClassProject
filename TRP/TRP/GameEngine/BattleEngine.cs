@@ -93,12 +93,18 @@ namespace TRP.GameEngine
             var ScaleLevelMax = 3;
             var ScaleLevelMin = 1;
 
-            var need = 6 - (CharacterList.Count);
-            if (need >= 0)
+            //var need = 6 - (CharacterList.Count);
+            //if (need >= 0)
+            //{
+            //    var rand = CharactersViewModel.Instance.Dataset.Take(need);
+            //    CharacterList.AddRange(rand);
+            //}
+            // Get 6 Characters
+            do
             {
-                var rand = CharactersViewModel.Instance.Dataset.Take(need);
-                CharacterList.AddRange(rand);
-            }
+                var Data = GetRandomCharacter(ScaleLevelMin, ScaleLevelMax);
+                CharacterList.Add(Data);
+            } while (CharacterList.Count < GameGlobals.MaxNumberPartyPlayers);
 
             return true;
         }
