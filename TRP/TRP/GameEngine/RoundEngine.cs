@@ -100,6 +100,37 @@ namespace TRP.GameEngine
                 return;
             }
 
+            //var ScaleLevelMax = 0;
+            //var ScaleLevelMin = 0;
+
+            ////Scale monsters based on the rounds so far
+            //if (BattleScore.RoundCount < 10)
+            //{
+            //    ScaleLevelMax = 3;
+            //    ScaleLevelMin = 1;
+            //}
+            //if (BattleScore.RoundCount > 10 && BattleScore.RoundCount <= 40)
+            //{
+            //    ScaleLevelMax = 4;
+            //    ScaleLevelMin = 2;
+            //}
+
+            //if (BattleScore.RoundCount > 40 && BattleScore.RoundCount <= 70)
+            //{
+            //    ScaleLevelMax = 8;
+            //    ScaleLevelMin = 4;
+            //}
+            //if (BattleScore.RoundCount > 70 && BattleScore.RoundCount <= 100)
+            //{
+            //    ScaleLevelMax = 12;
+            //    ScaleLevelMin = 8;
+            //}
+            //if (BattleScore.RoundCount > 100)
+            //{
+            //    ScaleLevelMax = 20;
+            //    ScaleLevelMin = 12;
+            //}
+
             // Make suure monster list exists and is loaded...
             var myMonsterViewModel = MonstersViewModel.Instance;
             myMonsterViewModel.ForceDataRefresh();
@@ -127,6 +158,8 @@ namespace TRP.GameEngine
 
                         // Scale the monster to be between the average level of the characters+1
                         var rndScale = HelperEngine.RollDice(1, ScaleLevelAverage + 1);
+                        // Scale monster to be harder later... 
+                        //var rndScale = HelperEngine.RollDice(ScaleLevelMin, ScaleLevelMax);
                         monster.ScaleLevel(rndScale);
                         MonsterList.Add(monster);
                     }
@@ -184,7 +217,7 @@ namespace TRP.GameEngine
 
             // Decide Who gets next turn
             // Remember who just went...
-            PlayerCurrent = GetNextPlayerTurn();
+            PlayerCurrent = GetNextPlayerInList();
 
             // Decide Who to Attack
             //Do the Turn
@@ -211,41 +244,7 @@ namespace TRP.GameEngine
             //return RoundEnum.GameOver;
         }
 
-        public PlayerInfo GetNextPlayerTurn()
-        {
-            // Recalculate Order
-            OrderPlayerListByTurnOrder();
-
-            // Lookup CurrentPlayer in the list
-            // Find the player next to Current Player in order
-            var PlayerCurrent = GetNextPlayerInList();
-
-            return PlayerCurrent;
-        }
-
-        public void OrderPlayerListByTurnOrder()
-        {
-            var myReturn = new List<PlayerInfo>();
-
-            // Order is based by... 
-            // Order by Speed (Desending)
-            // Then by Highest level (Descending)
-            // Then by Highest Experience Points (Descending)
-            // Then by Character before Monster (enum assending)
-            // Then by Alphabetic on Name (Assending)
-            // Then by First in list order (Assending
-
-            MakePlayerList();
-
-            PlayerList = PlayerList.OrderByDescending(a => a.Speed)
-                .ThenByDescending(a => a.Level)
-                .ThenByDescending(a => a.ExperiencePoints)
-                .ThenByDescending(a => a.PlayerType)
-                .ThenBy(a => a.Name)
-                .ThenBy(a => a.ListOrder)
-                .ToList();
-        }
-
+        // Add players to list and order them 
         private void MakePlayerList()
         {
             PlayerList = new List<PlayerInfo>();
@@ -283,38 +282,54 @@ namespace TRP.GameEngine
                     ListOrder++;
                 }
             }
+
+            //Order the list 
+            PlayerList = PlayerList.OrderByDescending(a => a.Speed)
+                .ThenByDescending(a => a.Level)
+                .ThenByDescending(a => a.ExperiencePoints)
+                .ThenByDescending(a => a.PlayerType)
+                .ThenBy(a => a.Name)
+                .ThenBy(a => a.ListOrder)
+                .ToList();
+
+            var playerListToString = "Player list this round: ";
+            foreach (PlayerInfo p in PlayerList)
+            {
+                playerListToString += p.Name + " ";
+            }
+            Debug.WriteLine(playerListToString);
         }
 
         public PlayerInfo GetNextPlayerInList()
         {
-            // Walk the list from top to bottom
-            // If Player is found, then see if next player exist, if so return that.
-            // If not, return first player (looped)
-
-            // No current player, so set the last one, so it rolls over to the first...
-            if (PlayerCurrent == null)
+            if (PlayerList.Count == 0)
             {
-                PlayerCurrent = PlayerList.LastOrDefault();
+                return null;
             }
 
-            // Else go and pick the next player in the list...
-            for (var i = 0; i < PlayerList.Count(); i++)
-            {
-                if (PlayerList[i].Guid == PlayerCurrent.Guid)
-                {
-                    if (i < PlayerList.Count() - 1) // 0 based...
-                    {
-                        return PlayerList[i + 1];
-                    }
-                    else
-                    {
-                        // Return the first in the list...
-                        return PlayerList.FirstOrDefault();
-                    }
-                }
-            }
+            // Since the list is already ordered by attributes, grab first 
+            PlayerCurrent = PlayerList.FirstOrDefault();
 
-            return null;
+            // Does not seem to recognize dead players? The dead thing never gets attacked agai
+            //while (!PlayerCurrent.Alive)
+            //{
+            //    PlayerList.Remove(PlayerCurrent);
+            //    Debug.WriteLine("Removing dead " + PlayerCurrent.Name + "\n");
+            //}
+
+            // Lazy dequeue and enqueue the selected player
+            PlayerList.Remove(PlayerCurrent);
+            PlayerList.Add(PlayerCurrent);
+
+            // Debug messages to make sure queue is working 
+            var GetNextDebug = "Dequeued/enqueued " + PlayerCurrent.Name + "... \n";
+            GetNextDebug += "Player list now looks like this: ";
+            foreach (PlayerInfo p in PlayerList)
+            {
+                GetNextDebug += p.Name + "\n";
+            }
+            //Debug.WriteLine(GetNextDebug);
+            return PlayerCurrent;
         }
 
         public void PickupItemsFromPool(Character character)
