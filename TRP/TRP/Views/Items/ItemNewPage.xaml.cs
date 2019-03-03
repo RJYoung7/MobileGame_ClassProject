@@ -71,5 +71,19 @@ namespace TRP.Views
             DamageValue.Text = String.Format("{0}", e.NewValue);
         }
 
+        // Toggles consumable flag
+        private void Consumable_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (e.Value == true)
+            {
+                Data.Consumable = true;
+            }
+            else
+            {
+                Data.Consumable = false;
+            }
+
+        }
+
     }
 }

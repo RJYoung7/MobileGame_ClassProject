@@ -82,13 +82,13 @@ namespace TRP.Services
             // Default SQL Items
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Slush Helmet", Description = "A helmet made from slush.",
                 ImageURI= "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", Range=0, Value=1, Damage=0, Location=ItemLocationEnum.Head,
-                Attribute = AttributeEnum.Defense });
+                Attribute = AttributeEnum.Defense, Consumable = false });
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Ice Boots", Description = "Boots with harden iced.",
                 ImageURI= "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", Range=0, Value=3, Damage=0, Location=ItemLocationEnum.Feet,
-                Attribute=AttributeEnum.Defense });
+                Attribute=AttributeEnum.Defense, Consumable = false });
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Flame Bow", Description = "Crafted from artic flames.",
                 ImageURI= "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png",
-                Range=4, Value=3, Damage=3, Location=ItemLocationEnum.PrimaryHand, Attribute=AttributeEnum.Attack });
+                Range=4, Value=3, Damage=3, Location=ItemLocationEnum.PrimaryHand, Attribute=AttributeEnum.Attack, Consumable = false });
 
             // Default SQL Characters
             await AddAsync_Character(new Character("PoppySQL", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
@@ -111,12 +111,12 @@ namespace TRP.Services
             await AddAsync_Monster(new Monster("SaulSQL", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
 
             // Default SQL Scores
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFirst Score", ScoreTotal = 111, BattleNumber = 1 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSecond Score", ScoreTotal = 222, BattleNumber = 2 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLThird Score", ScoreTotal = 333, BattleNumber = 3 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFourth Score", ScoreTotal = 444, BattleNumber = 4 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFifth Score", ScoreTotal = 555, BattleNumber = 5 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSixth Score", ScoreTotal = 666, BattleNumber = 6 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 1", ScoreTotal = 111, BattleNumber = 1 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 2", ScoreTotal = 222, BattleNumber = 2 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 3", ScoreTotal = 333, BattleNumber = 3 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 4", ScoreTotal = 444, BattleNumber = 4 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 5", ScoreTotal = 555, BattleNumber = 5 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 6", ScoreTotal = 666, BattleNumber = 6 });
         }
 
         #region Item

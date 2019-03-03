@@ -42,14 +42,14 @@ namespace TRP.Services
             // Load items
             await AddAsync_Item(new Item("Slush Helmet", "A helmet made from slush",
                 "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", 0, 1, 0, ItemLocationEnum.Head,
-                AttributeEnum.Defense));
+                AttributeEnum.Defense,false));
             await AddAsync_Item(new Item("Ice Boots", "Boots with harden iced attached",
                 "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", 0, 3, 0, ItemLocationEnum.Feet,
-                AttributeEnum.Defense));
+                AttributeEnum.Defense,false));
             
             await AddAsync_Item(new Item("Fire Bow", "Crafted from artic flames",
                 "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png", 
-                4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+                4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack, false));
 
 
             // Load characters
@@ -73,12 +73,12 @@ namespace TRP.Services
             await AddAsync_Monster(new Monster("Saul", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
 
             // Load Scores
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock First Score", ScoreTotal = 111, BattleNumber = 1 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Second Score", ScoreTotal = 222, BattleNumber = 2 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Third Score", ScoreTotal = 333, BattleNumber = 3 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Fourth Score", ScoreTotal = 444, BattleNumber = 4 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Fifth Score", ScoreTotal = 555, BattleNumber = 5 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Sixth Score", ScoreTotal = 666, BattleNumber = 6 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Battle 1", ScoreTotal = 111, BattleNumber = 1 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Battle 2", ScoreTotal = 222, BattleNumber = 2 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Battle 3", ScoreTotal = 333, BattleNumber = 3 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Battle 4", ScoreTotal = 444, BattleNumber = 4 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Battle 5", ScoreTotal = 555, BattleNumber = 5 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Battle 6", ScoreTotal = 666, BattleNumber = 6 });
         }
 
         private void CreateTables()
