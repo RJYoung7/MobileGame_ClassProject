@@ -91,14 +91,24 @@ namespace TRP.Services
                 Range=4, Value=3, Damage=3, Location=ItemLocationEnum.PrimaryHand, Attribute=AttributeEnum.Attack });
 
             // Default SQL Characters
-            await AddAsync_Character(new Character("SQLPoppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
-            await AddAsync_Character(new Character("SQLPerry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
-            await AddAsync_Character(new Character("SQLPaco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
-            await AddAsync_Character(new Character("SQLPatrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
+            await AddAsync_Character(new Character("PoppySQL", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
+            await AddAsync_Character(new Character("PerrySQL", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
+            await AddAsync_Character(new Character("PacoSQL", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
+            await AddAsync_Character(new Character("PatrickSQL", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
+            await AddAsync_Character(new Character("PennieSQL", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Adelie));
+            await AddAsync_Character(new Character("PercySQL", new AttributeBase(10, 4, 3, 3), PenguinTypeEnum.Magellanic));
+            await AddAsync_Character(new Character("PattySQL", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Rockhopper));
+            await AddAsync_Character(new Character("PenelopeSQL", new AttributeBase(10, 3, 5, 2), PenguinTypeEnum.King));
 
             // Default SQL Monsters
-            await AddAsync_Monster(new Monster("SQLLeonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
-            await AddAsync_Monster(new Monster("SQLArnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
+            await AddAsync_Monster(new Monster("LeonardSQL", new AttributeBase(5, 1, 1, 6), MonsterTypeEnum.LeopardSeal));
+            await AddAsync_Monster(new Monster("ArnieSQL", new AttributeBase(5, 1, 1, 3), MonsterTypeEnum.Fox));
+            await AddAsync_Monster(new Monster("OscarSQL", new AttributeBase(15, 3, 3, 2), MonsterTypeEnum.Orca));
+            await AddAsync_Monster(new Monster("SallySQL", new AttributeBase(5, 1, 1, 5), MonsterTypeEnum.SeaLion));
+            await AddAsync_Monster(new Monster("PhilipSQL", new AttributeBase(10, 2, 2, 3), MonsterTypeEnum.PolarBear));
+            await AddAsync_Monster(new Monster("ScottSQL", new AttributeBase(5, 1, 1, 6), MonsterTypeEnum.SeaEagle));
+            await AddAsync_Monster(new Monster("SueSQL", new AttributeBase(5, 1, 1, 2), MonsterTypeEnum.Skua));
+            await AddAsync_Monster(new Monster("SaulSQL", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
 
             // Default SQL Scores
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFirst Score", ScoreTotal = 111 });
