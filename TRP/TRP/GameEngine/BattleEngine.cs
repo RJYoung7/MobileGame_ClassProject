@@ -61,6 +61,8 @@ namespace TRP.GameEngine
             // New Battle
             // Load Characters
             BattleScore.AutoBattle = isAutoBattle;
+            BattleScore.BattleNumber = getLatestBattleNumber() + 1;
+            BattleScore.Name = "Battle " + BattleScore.BattleNumber.ToString();
             isBattleRunning = true;
 
             // Characters not Initialized, so false start...
@@ -134,6 +136,13 @@ namespace TRP.GameEngine
             myData.Feet = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Feet, AttributeEnum.Unknown);
 
             return myData;
+        }
+
+        // Finds the latest battle number
+        public int getLatestBattleNumber()
+        {
+            var BattleNumber = ScoresViewModel.Instance.Dataset.Max(s => s.BattleNumber);
+            return BattleNumber;
         }
 
         // Autobattle

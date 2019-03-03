@@ -73,12 +73,12 @@ namespace TRP.Services
             await AddAsync_Monster(new Monster("Saul", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
 
             // Load Scores
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock First Score", ScoreTotal = 111 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Second Score", ScoreTotal = 222 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Third Score", ScoreTotal = 333 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Fourth Score", ScoreTotal = 444 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Fifth Score", ScoreTotal = 555 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Sixth Score", ScoreTotal = 666 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock First Score", ScoreTotal = 111, BattleNumber = 1 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Second Score", ScoreTotal = 222, BattleNumber = 2 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Third Score", ScoreTotal = 333, BattleNumber = 3 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Fourth Score", ScoreTotal = 444, BattleNumber = 4 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Fifth Score", ScoreTotal = 555, BattleNumber = 5 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "Mock Sixth Score", ScoreTotal = 666, BattleNumber = 6 });
         }
 
         private void CreateTables()
