@@ -26,7 +26,7 @@ namespace TRP.Views.Battle
             var myBattleEngine = new AutoBattleEngine();
 
             // Add characters to AutoBattle
-            var result = myBattleEngine.AddCharactersToBattle();
+            //var result = myBattleEngine.AddCharactersToBattle();
 
             // Start AutoBattle
             myBattleEngine.RunAutoBattle();
