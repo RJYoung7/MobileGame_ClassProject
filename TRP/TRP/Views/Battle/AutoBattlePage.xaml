@@ -16,16 +16,19 @@
                 <Label FontSize="Large"
                        Text="TRP Auto Battle"
                        VerticalOptions="Center" 
-                       HorizontalOptions="CenterAndExpand" />
+                       HorizontalOptions="CenterAndExpand"
+                       FontFamily="{StaticResource Title}"/>
 
                 <Label Text="Battle Modes"
                        VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand" />
+                       HorizontalOptions="CenterAndExpand"
+                       FontFamily="{StaticResource Body}"/>
                 
                 <Button Text="Auto Battle"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" 
-                        Clicked="AutoBattleButton_Command"/>
+                        Clicked="AutoBattleButton_Command"
+                        Style="{StaticResource LargeButton}"/>
 
             </StackLayout>
         </StackLayout>

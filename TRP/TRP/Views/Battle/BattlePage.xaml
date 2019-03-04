@@ -8,7 +8,8 @@
             <Label Text="Round 1" FontSize="Medium" 
                    HorizontalTextAlignment="Center"
                    VerticalOptions="Start"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center"
+                   FontFamily="{StaticResource Title}"/>
 
             <StackLayout Spacing="0">
                 <Grid RowSpacing="3"

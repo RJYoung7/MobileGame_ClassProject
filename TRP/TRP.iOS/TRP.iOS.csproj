@@ -71,6 +71,11 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\Coiny-Regular.ttf" />
+    <BundleResource Include="Resources\Iceberg.ttf" />
+    <BundleResource Include="Resources\Iceberg-Italic.ttf" />
+    <BundleResource Include="Resources\SquadaOne-Regular.ttf" />
+    <BundleResource Include="Resources\Under The Snow.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

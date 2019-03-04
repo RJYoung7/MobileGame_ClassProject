@@ -81,6 +81,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\Coiny-Regular.ttf" />
+    <AndroidAsset Include="Assets\Iceberg-Italic.ttf" />
+    <AndroidAsset Include="Assets\Iceberg.ttf" />
+    <AndroidAsset Include="Assets\SquadaOne-Regular.ttf" />
+    <AndroidAsset Include="Assets\Under The Snow.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

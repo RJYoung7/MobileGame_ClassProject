@@ -19,7 +19,17 @@
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <Color x:Key="LightTextColor">#999999</Color>
 
+            <OnPlatform x:TypeArguments="x:String" x:Key="Title">
+                <On Platform="Android" Value="Iceberg.ttf#Iceberg" />
+                <On Platform="UWP" Value="/Assets/Iceberg.ttf#Iceberg" />
+                <On Platform="iOS" Value="Iceberg.ttf" />
+            </OnPlatform>
 
+            <OnPlatform x:TypeArguments="x:String" x:Key="Body">
+                <On Platform="Android" Value="Under The Snow.ttf#Under The Snow" />
+                <On Platform="UWP" Value="/Assets/Under The Snow.ttf#Under The Snow" />
+                <On Platform="iOS" Value="Under The Snow.ttf" />
+            </OnPlatform>
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
@@ -75,6 +85,7 @@
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+                <Setter Property="FontFamily" Value="{StaticResource Body}" />
             </Style>
 
         </ResourceDictionary>

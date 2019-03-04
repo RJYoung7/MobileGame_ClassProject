@@ -15,7 +15,8 @@
                 <Label Text="Current Party"
                        FontSize="Large"
                        VerticalOptions="Center" 
-                       HorizontalOptions="CenterAndExpand" />
+                       HorizontalOptions="CenterAndExpand"
+                       FontFamily="{StaticResource Title}"/>
 
                 <Button Text="Select Penguins"
                         VerticalOptions="Center" 

@@ -4,7 +4,7 @@
              x:Class="TRP.Views.Battle.RoundEndPage">
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Success: Round 1 Cleared!" FontSize="Large" />
+            <Label Text="Success: Round 1 Cleared!" FontSize="Large" FontFamily="{StaticResource Body}"/>
             <ScrollView >
                 <ListView x:Name="CharactersListView" 
                           ItemsSource="{Binding Dataset}"
@@ -47,10 +47,12 @@
             </ScrollView>
             <Button Text="Items Dropped"
                     Clicked="ItemPickupButton_Clicked"
-                    Style="{StaticResource LargeButton}"/>
+                    Style="{StaticResource LargeButton}"
+                    FontFamily="{StaticResource Body}"/>
             <Button Text="Begin Next Round" FontSize="Medium"
                     Clicked="NextRoundButton_Clicked"
-                    Style="{StaticResource LargeButton}"/>
+                    Style="{StaticResource LargeButton}"
+                    FontFamily="{StaticResource Body}"/>
 
         </StackLayout>
     </ContentPage.Content>
