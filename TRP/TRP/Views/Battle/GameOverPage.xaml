@@ -3,50 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.Battle.GameOverPage">
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Label Text="Game Over" FontSize="Large" FontAttributes="Bold" />
-            <ScrollView>
-                <ListView>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell >
-                                <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding ImageURI}"
-                                       WidthRequest="100"
-                                       HeightRequest="100" 
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       Aspect="AspectFill"/>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <StackLayout HorizontalOptions="Center" 
+                             VerticalOptions="Start"
+                             Orientation="Vertical">
 
-                                    <!-- Labels for Character (name, desc, etc.) -->
-                                    <StackLayout>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Name}" 
-                                               LineBreakMode="NoWrap" 
-                                               Style="{DynamicResource ListItemTextStyle}" 
-                                               FontSize="16" />
-                                        </StackLayout>
-                                        <Label Text="{Binding PenguinType}" 
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="13" x:Name="label" />
+                    <Label Text="GAME OVER" FontSize="50" FontAttributes="Italic" />
+                    <Image Source="https://i.pinimg.com/originals/8b/ff/a6/8bffa65b762f772ec803c3778b8879af.jpg"
+                           WidthRequest="200"
+                           HeightRequest="200" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Aspect="AspectFill"/>
 
-                                    </StackLayout>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollView>
-            
-            <Button Text="View High Scores" FontSize="Default"
-                    Clicked="HighScoreButton_Clicked"
-                    Style="{StaticResource LargeButton}"/>
-            
-            <Button Text="Home" FontSize="Default"
-                    Clicked="HomeButton_Clicked"
-                    Style="{StaticResource LargeButton}"/>
-            
-        </StackLayout>
+                    <!-- Dummy text for now but will bind to passed data later -->
+                    <Label Text ="All Penguins Are Dead" FontSize ="20" FontAttributes="Bold"/>
+                    <Label Text ="Battle: 2456" FontSize ="15"/>
+                    <Label Text ="Rounds: 602" FontSize ="15"/>
+                    <Label Text ="Monsters killed: 3068" FontSize ="15"/>
+                    <Label Text ="Final score: 135485" FontSize ="15"/>
+                </StackLayout>
+
+                <Button Text="View High Scores" FontSize="Default"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        Clicked="HighScoreButton_Clicked"
+                        Style="{StaticResource LargeButton}"/>
+                
+                <Button Text="Home" FontSize="Default"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        Clicked="HomeButton_Clicked"
+                        Style="{StaticResource LargeButton}"/>
+                
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

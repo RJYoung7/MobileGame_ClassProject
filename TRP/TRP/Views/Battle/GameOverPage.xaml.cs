@@ -16,6 +16,7 @@ namespace TRP.Views.Battle
 	{
         private CharactersViewModel _viewModel; // View model for this page
 
+        // Constructor: create page and load view model
         public GameOverPage ()
 		{
 			InitializeComponent ();
@@ -23,11 +24,13 @@ namespace TRP.Views.Battle
             BindingContext = _viewModel = CharactersViewModel.Instance;
         }
 
+        // When this button is clicked, add new Scores page onto stack
         private async void HighScoreButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ScoresPage());
         }
 
+        // When this button is clicked, create new Battle Begin (manual battle page) and add to stack 
         private async void HomeButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new BattleBeginPage());

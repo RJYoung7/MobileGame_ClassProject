@@ -19,20 +19,20 @@
                        FontFamily="{StaticResource Title}"/>
 
                 <Button Text="Select Penguins"
-                        VerticalOptions="Center" 
-                        HorizontalOptions="CenterAndExpand" 
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="Center" 
                         Clicked="SelectCharactersButton_Command"
                         Style="{StaticResource LargeButton}"/>
 
-                <Button Text="Select Monsters"
-                        VerticalOptions="Center" 
-                        HorizontalOptions="CenterAndExpand" 
+                <!--<Button Text="Select Monsters"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="Center" 
                         Clicked="SelectMonstersButton_Command"
-                        Style="{StaticResource LargeButton}"/>
+                        Style="{StaticResource LargeButton}"/>-->
 
                 <Button Text="Start Battle"
-                        VerticalOptions="Center"
-                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="Center"
                         Clicked="SelectStartButton_Command" 
                         Style="{StaticResource LargeButton}"/>
 
@@ -46,14 +46,14 @@
                 <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
                 <Button Text="Round End"
                         VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand" 
+                        HorizontalOptions="Center" 
                         Clicked="RoundEndButton_Command"
                         Style="{StaticResource LargeButton}"/>
 
                 <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
                 <Button Text="Game Over"
                         VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand" 
+                        HorizontalOptions="Center" 
                         Clicked="Button_Clicked"
                         Style="{StaticResource LargeButton}"/>
             </StackLayout>
