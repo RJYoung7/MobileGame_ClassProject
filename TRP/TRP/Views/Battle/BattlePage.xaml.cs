@@ -16,5 +16,11 @@ namespace TRP.Views.Battle
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private async void AttackButton_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert(null, "Attacked", null, "Next");
+
+        }
+    }
 }

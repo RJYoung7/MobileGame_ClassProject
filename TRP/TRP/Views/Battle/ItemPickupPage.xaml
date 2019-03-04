@@ -4,6 +4,8 @@
              x:Class="TRP.Views.Battle.ItemPickupPage">
     <ContentPage.Content>
         <StackLayout>
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Dropped Items"
+                   FontSize="Large" FontAttributes="Bold"/>
             <ListView x:Name="ItemsListView" 
                       ItemsSource="{Binding Dataset}"
                       VerticalOptions="FillAndExpand"

@@ -4,7 +4,7 @@
              x:Class="TRP.Views.Battle.BattlePage">
     
     <ContentPage.Content>
-        <StackLayout Spacing="10" >
+        <StackLayout Spacing="10" Padding="10" >
             <Label Text="Round 1" FontSize="Medium" 
                    HorizontalTextAlignment="Center"
                    VerticalOptions="Start"
@@ -143,7 +143,8 @@
                             </StackLayout>
                             <Button Text="ATTACK!" 
                                     HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
+                                    VerticalOptions="Center"
+                                    Clicked="AttackButton_Clicked"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -163,7 +164,8 @@
                             </StackLayout>
                             <Button Text="ATTACK!" 
                                     HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
+                                    VerticalOptions="Center"
+                                    Clicked="AttackButton_Clicked"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -182,7 +184,8 @@
                             </StackLayout>
                             <Button Text="ATTACK!" 
                                     HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
+                                    VerticalOptions="Center"
+                                    Clicked="AttackButton_Clicked"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -201,7 +204,8 @@
                             </StackLayout>
                             <Button Text="ATTACK!" 
                                     HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
+                                    VerticalOptions="Center"
+                                    Clicked="AttackButton_Clicked"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -220,7 +224,8 @@
                             </StackLayout>
                             <Button Text="ATTACK!" 
                                     HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
+                                    VerticalOptions="Center"
+                                    Clicked="AttackButton_Clicked"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -239,7 +244,8 @@
                             </StackLayout>
                             <Button Text="ATTACK!" 
                                     HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
+                                    VerticalOptions="Center"
+                                    Clicked="AttackButton_Clicked"/>
                         </StackLayout>
 
 

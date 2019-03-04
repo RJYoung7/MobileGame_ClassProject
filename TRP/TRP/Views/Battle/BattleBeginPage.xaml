@@ -44,7 +44,12 @@
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" 
                         Clicked="RoundEndButton_Command"/>
-
+                
+                <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
+                <Button Text="Game Over"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" 
+                        Clicked="Button_Clicked"/>
             </StackLayout>
         </StackLayout>
 

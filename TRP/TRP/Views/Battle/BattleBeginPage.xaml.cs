@@ -48,5 +48,9 @@ namespace TRP.Views.Battle
             await Navigation.PushAsync(new RoundEndPage());
         }
 
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new GameOverPage());
+        }
     }
 }

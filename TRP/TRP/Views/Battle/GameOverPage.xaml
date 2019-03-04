@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TRP.Views.Battle.GameOverPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Game Over" FontSize="Large" FontAttributes="Bold" />
+            <ScrollView>
+                <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell >
+                                <StackLayout Padding="10"
+                                             Orientation="Horizontal"
+                                             VerticalOptions="Start"
+                                             HorizontalOptions="Start">
+                                    <Label Text="IMAGE HERE" />
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="NAME" />
+                                        <Label Text="INFO" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            
+            <Button Text="View High Scores" FontSize="Medium"
+                    Clicked="HighScoreButton_Clicked"/>
+            <Button Text="Home" FontSize="Medium"
+                    Clicked="HomeButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

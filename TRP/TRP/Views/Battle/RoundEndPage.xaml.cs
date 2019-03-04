@@ -16,5 +16,16 @@ namespace TRP.Views.Battle
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private async void ItemPickupButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ItemPickupPage());
+        }
+
+        private async void NextRoundButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new BattlePage());
+        }
+
+    }
 }
