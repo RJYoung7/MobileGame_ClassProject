@@ -30,21 +30,18 @@ namespace TRP.Services
                     ScoresViewModel.Instance.SetDataStore(DataStoreEnum.Mock);
                     break;
 
-                case DataStoreEnum.Sql:
+                case DataStoreEnum.SQL:
                 default:
-                    _dataStoreEnum = DataStoreEnum.Sql;
-                    ItemsViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
-                    CharactersViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
-                    MonstersViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
-                    ScoresViewModel.Instance.SetDataStore(DataStoreEnum.Sql);
+                    _dataStoreEnum = DataStoreEnum.SQL;
+                    ItemsViewModel.Instance.SetDataStore(DataStoreEnum.SQL);
+                    CharactersViewModel.Instance.SetDataStore(DataStoreEnum.SQL);
+                    MonstersViewModel.Instance.SetDataStore(DataStoreEnum.SQL);
+                    ScoresViewModel.Instance.SetDataStore(DataStoreEnum.SQL);
                     break;
             }
 
             // Load the Data
-            ItemsViewModel.Instance.ForceDataRefresh();
-            MonstersViewModel.Instance.ForceDataRefresh();
-            CharactersViewModel.Instance.ForceDataRefresh();
-            ScoresViewModel.Instance.ForceDataRefresh();
+            ForceDataRestoreAll();
         }
 
         // Force all modes to load data...

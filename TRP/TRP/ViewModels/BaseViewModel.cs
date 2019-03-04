@@ -37,6 +37,8 @@ namespace TRP.ViewModels
                     DataStore = DataStoreMock;
                     break;
 
+                case DataStoreEnum.SQL:
+                case DataStoreEnum.Unknown:
                 default:
                     DataStore = DataStoreSql;
                     break;

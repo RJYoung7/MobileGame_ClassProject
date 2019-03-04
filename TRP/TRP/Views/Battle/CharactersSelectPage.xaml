@@ -21,14 +21,13 @@
             
             <!-- List view of the characters-->
             <ListView x:Name="CharactersListView" 
-            ItemsSource="{Binding Dataset}"
-            VerticalOptions="FillAndExpand"
-                HasUnevenRows="true"
-                RefreshCommand="{Binding LoadItemsCommand}"
-                IsPullToRefreshEnabled="true"
-                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
-                >
+                      ItemsSource="{Binding Dataset}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      RefreshCommand="{Binding LoadItemsCommand}"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -57,9 +56,9 @@
                                                FontSize="16" />
                                     </StackLayout>
                                     <Label Text="{Binding PenguinType}" 
-                                         LineBreakMode="NoWrap"
-                                         Style="{DynamicResource ListItemDetailTextStyle}"
-                                         FontSize="13" x:Name="label" />
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" x:Name="label" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

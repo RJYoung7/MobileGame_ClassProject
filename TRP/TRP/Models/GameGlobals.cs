@@ -7,17 +7,25 @@ namespace TRP.Models
         // Available slots for penguin party
         public const int availCharactersSlots = 6;
 
+        public const int MaxNumberPartyPlayers = 6;
+
         // Available slots for monster party
         public const int availMonstersSlots = 6;
+
+        // Holds the random value for the sytem
+        private static int _ForcedRandomValue = 1;
+
+        // What number should return for random numbers (1 is good choice...)
+        public static int ForcedRandomValue
+        {
+            get => _ForcedRandomValue;
+        }
 
         // Available stat points for character create and edit
         public const int availStatPoints = 10;
 
         // Turn on to force Rolls to be non random
         public static bool ForceRollsToNotRandom = false;
-
-        // What number should return for random numbers (1 is good choice...)
-        public static int ForcedRandomValue = 1;
 
         // What number to use for ToHit values (1,2, 19, 20)
         public static int ForceToHitValue = 20;
@@ -34,11 +42,17 @@ namespace TRP.Models
         public static bool AllowMonsterDropItems = true;
 
         // Turn Off Random Number Generation, and use the passed in values.
-        public static void SetForcedRandomNumbers(int value, int hit)
+        public static void SetForcedRandomNumbersValueAndToHit(int value, int hit)
         {
-            ForceRollsToNotRandom = true;
-            ForcedRandomValue = value;
+            SetForcedRandomNumbersValue(value);
             ForceToHitValue = hit;
+        }
+
+        // Turn Off Random Number Generation, and use the passed in values.
+        public static void SetForcedRandomNumbersValue(int value)
+        {
+            EnableRandomValues();
+            _ForcedRandomValue = value;
         }
 
         // Flip the Random State (false to true etc...)
@@ -48,6 +62,17 @@ namespace TRP.Models
             ForceRollsToNotRandom = !ForceRollsToNotRandom;
         }
 
+        // Turn Random State Off
+        public static void DisableRandomValues()
+        {
+            ForceRollsToNotRandom = false;
+        }
+
+        // Turn Random State On
+        public static void EnableRandomValues()
+        {
+            ForceRollsToNotRandom = true;
+        }
 
         // Debug Settings
         public static bool EnableCriticalMissProblems = true;

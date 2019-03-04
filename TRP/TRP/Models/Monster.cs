@@ -3,6 +3,7 @@ using SQLite;
 using TRP.Controllers;
 using TRP.ViewModels;
 using System.Collections.Generic;
+using TRP.GameEngine;
 
 namespace TRP.Models
 {
@@ -25,7 +26,7 @@ namespace TRP.Models
             MonsterTypeString = "";
 
             // Scale up to the level
-            // // Implement ScaleLevel(Level);
+            ScaleLevel(Level);
         }
 
         // Create a monster from datastore
@@ -72,9 +73,51 @@ namespace TRP.Models
         }
 
         // Upgrades a monster to a set level
-        public void ScaleLevel(int level)
+        public bool ScaleLevel(int level)
         {
-            // Implement
+            // Level of < 1 does not need changing
+            if (level < 1)
+            {
+                return false;
+            }
+
+            // Don't exit on same level, because the settings below need to be calculated
+            //// Same level does not need changing
+            //if (level == this.Level)
+            //{
+            //    return false;
+            //}
+
+            // Don't go down in level...
+            if (level < this.Level)
+            {
+                return false;
+            }
+
+            // Level > Max Level
+            if (level > LevelTable.MaxLevel)
+            {
+                return false;
+            }
+
+            // Calculate Experience Remaining based on Lookup...
+            Level = level;
+
+            // Get the number of points at the next level, and set it for Experience Total...
+            ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level + 1].Experience;
+            ExperienceRemaining = ExperienceTotal;
+
+            Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[Level].Attack;
+            Attribute.Attack = LevelTable.Instance.LevelDetailsList[Level].Attack;
+            Attribute.Defense = LevelTable.Instance.LevelDetailsList[Level].Defense;
+            Attribute.Speed = LevelTable.Instance.LevelDetailsList[Level].Speed;
+
+            Attribute.MaxHealth = HelperEngine.RollDice(Level, HealthDice);
+            Attribute.CurrentHealth = Attribute.MaxHealth;
+
+            AttributeString = AttributeBase.GetAttributeString(Attribute);
+
+            return true;
         }
 
         // Update the values passed in
@@ -115,13 +158,13 @@ namespace TRP.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var UniqueOutput = "Implement";
+            //var UniqueOutput = "Implement";
 
-            var myReturn = "Implement";
+            var myReturn = this.Name;
 
             // Implement
 
-            myReturn += " , Unique Item : " + UniqueOutput;
+            //myReturn += " , Unique Item : " + UniqueOutput;
 
             return myReturn;
         }
@@ -131,8 +174,30 @@ namespace TRP.Models
         // Needs to be called before applying damage
         public int CalculateExperienceEarned(int damage)
         {
-            // Implement
-            return 0;
+            if (damage < 1)
+            {
+                return 0;
+            }
+
+            int remainingHealth = Math.Max(Attribute.CurrentHealth - damage, 0); // Go to 0 is OK...
+            double rawPercent = (double)remainingHealth / (double)Attribute.CurrentHealth;
+            double deltaPercent = 1 - rawPercent;
+            var pointsAllocate = (int)Math.Floor(ExperienceRemaining * deltaPercent);
+
+            // Catch rounding of low values, and force to 1.
+            if (pointsAllocate < 1)
+            {
+                pointsAllocate = 1;
+            }
+
+            // Take away the points from remaining experience
+            ExperienceRemaining -= pointsAllocate;
+            if (ExperienceRemaining < 0)
+            {
+                pointsAllocate = 0;
+            }
+
+            return pointsAllocate;
 
         }
 
@@ -220,8 +285,11 @@ namespace TRP.Models
             // Drop all Items
             Item myItem;
 
-            // Implement
-
+            myItem = ItemsViewModel.Instance.GetItem(UniqueItem);
+            if (myItem != null)
+            {
+                myReturn.Add(myItem);
+            }
             return myReturn;
         }
 
@@ -233,10 +301,18 @@ namespace TRP.Models
         // monsters give experience to characters.  Characters don't accept expereince from monsters
         public void TakeDamage(int damage)
         {
-            // Implement
-            return;
+            if (damage <= 0)
+            {
+                return;
+            }
 
-            // Implement   CauseDeath();
+            Attribute.CurrentHealth = Attribute.CurrentHealth - damage;
+            if (Attribute.CurrentHealth <= 0)
+            {
+                Attribute.CurrentHealth = 0;
+                // Death...
+                CauseDeath();
+            }
         }
     }
 }

@@ -12,6 +12,9 @@ namespace TRP.Models
         // Level of the character, or difficulty level of the monster
         public int Level { get; set; }
 
+        // The Dice to use when leveling up, defualt is d10
+        public int HealthDice { get; set; } = 10;
+
         // Current experience gained, or to give
         public int ExperienceTotal { get; set; }
 

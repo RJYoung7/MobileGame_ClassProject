@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TRP.Models;
@@ -30,7 +31,7 @@ namespace TRP.Services
         private SQLDataStore()
         {
             CreateTables();
-            InitializeDatabaseNewTables();
+            //InitializeDatabaseNewTables();
         }
 
         // Create the Database Tables
@@ -83,54 +84,62 @@ namespace TRP.Services
             // Default SQL Items
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Slush Helmet", Description = "A helmet made from slush.",
                 ImageURI= "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", Range=0, Value=1, Damage=0, Location=ItemLocationEnum.Head,
-                Attribute = AttributeEnum.Defense });
+                Attribute = AttributeEnum.Defense, Consumable = false });
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Ice Boots", Description = "Boots with harden iced.",
                 ImageURI= "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", Range=0, Value=3, Damage=0, Location=ItemLocationEnum.Feet,
-                Attribute=AttributeEnum.Defense });
+                Attribute=AttributeEnum.Defense, Consumable = false });
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Flame Bow", Description = "Crafted from artic flames.",
                 ImageURI= "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png",
-                Range=4, Value=3, Damage=3, Location=ItemLocationEnum.PrimaryHand, Attribute=AttributeEnum.Attack });
+                Range=4, Value=3, Damage=3, Location=ItemLocationEnum.PrimaryHand, Attribute=AttributeEnum.Attack, Consumable = false });
 
             // Default SQL Characters
-            await AddAsync_Character(new Character("SQLPoppy", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
-            await AddAsync_Character(new Character("SQLPerry", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
-            await AddAsync_Character(new Character("SQLPaco", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
-            await AddAsync_Character(new Character("SQLPatrick", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
+            await AddAsync_Character(new Character("PoppySQL", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
+            await AddAsync_Character(new Character("PerrySQL", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Little));
+            await AddAsync_Character(new Character("PacoSQL", new AttributeBase(10, 3, 3, 4), PenguinTypeEnum.Gentoo));
+            await AddAsync_Character(new Character("PatrickSQL", new AttributeBase(10, 3, 4, 3), PenguinTypeEnum.Macaroni));
+            await AddAsync_Character(new Character("PennieSQL", new AttributeBase(10, 4, 2, 4), PenguinTypeEnum.Adelie));
+            await AddAsync_Character(new Character("PercySQL", new AttributeBase(10, 4, 3, 3), PenguinTypeEnum.Magellanic));
+            await AddAsync_Character(new Character("PattySQL", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Rockhopper));
+            await AddAsync_Character(new Character("PenelopeSQL", new AttributeBase(10, 3, 5, 2), PenguinTypeEnum.King));
 
             // Default SQL Monsters
-            await AddAsync_Monster(new Monster("SQLLeonard", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.LeopardSeal));
-            await AddAsync_Monster(new Monster("SQLArnie", new AttributeBase(5, 1, 1, 1), MonsterTypeEnum.Fox));
+            await AddAsync_Monster(new Monster("LeonardSQL", new AttributeBase(5, 1, 1, 6), MonsterTypeEnum.LeopardSeal));
+            await AddAsync_Monster(new Monster("ArnieSQL", new AttributeBase(5, 1, 1, 3), MonsterTypeEnum.Fox));
+            await AddAsync_Monster(new Monster("OscarSQL", new AttributeBase(15, 3, 3, 2), MonsterTypeEnum.Orca));
+            await AddAsync_Monster(new Monster("SallySQL", new AttributeBase(5, 1, 1, 5), MonsterTypeEnum.SeaLion));
+            await AddAsync_Monster(new Monster("PhilipSQL", new AttributeBase(10, 2, 2, 3), MonsterTypeEnum.PolarBear));
+            await AddAsync_Monster(new Monster("ScottSQL", new AttributeBase(5, 1, 1, 6), MonsterTypeEnum.SeaEagle));
+            await AddAsync_Monster(new Monster("SueSQL", new AttributeBase(5, 1, 1, 2), MonsterTypeEnum.Skua));
+            await AddAsync_Monster(new Monster("SaulSQL", new AttributeBase(10, 2, 2, 1), MonsterTypeEnum.Shark));
 
             // Default SQL Scores
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFirst Score", ScoreTotal = 111 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSecond Score", ScoreTotal = 222 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLThird Score", ScoreTotal = 333 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFourth Score", ScoreTotal = 444 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLFifth Score", ScoreTotal = 555 });
-            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQLSixth Score", ScoreTotal = 666 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 1", ScoreTotal = 111, BattleNumber = 1 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 2", ScoreTotal = 222, BattleNumber = 2 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 3", ScoreTotal = 333, BattleNumber = 3 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 4", ScoreTotal = 444, BattleNumber = 4 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 5", ScoreTotal = 555, BattleNumber = 5 });
+            await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "SQL Battle 6", ScoreTotal = 666, BattleNumber = 6 });
         }
 
         #region Item
         // Item
 
-        // Add InsertUpdateAsync_Item Method
-
-        // Check to see if the item exists
-        // Add your code here.
-
-        // If it does not exist, then Insert it into the DB
-        // Add your code here.
-        // return true;
-
-        // If it does exist, Update it into the DB
-        // Add your code here
-        // return true;
-
-        // If you got to here then return false;
-
+        // Check if item exists, if not, add to database, otherwise, update db
         public async Task<bool> InsertUpdateAsync_Item(Item data)
         {
-            // Implement
+            var oldData = await GetAsync_Item(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Item(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Item(data);
+            if (UpdateResult)
+            {
+                return true;
+            }
 
             return false;
         }
@@ -174,8 +183,15 @@ namespace TRP.Services
         // Get the item from the database
         public async Task<Item> GetAsync_Item(string id)
         {
-            var result = await App.Database.GetAsync<Item>(id);
-            return result;
+            try
+            {
+                var result = await App.Database.GetAsync<Item>(id);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         // Get a list of items from the database
@@ -187,10 +203,24 @@ namespace TRP.Services
         #endregion Item
 
         #region Character
-        // Character
+
+        // Check if character exists in db, if not, add it, otherwise update it
         public async Task<bool> InsertUpdateAsync_Character(Character data)
         {
-            // Implement
+            // Check to see if the item exist
+            var oldData = await GetAsync_Character(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Character(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Character(data);
+            if (UpdateResult)
+            {
+                return true;
+            }
 
             return false;
         }
@@ -242,7 +272,7 @@ namespace TRP.Services
             var castData = new BaseCharacter(data);
 
             // Delete BaseMonster from DB
-            var result = await App.Database.DeleteAsync(data);
+            var result = await App.Database.DeleteAsync(castData);
 
             // If delete was successful, return true
             if (result == 1)
@@ -281,7 +311,27 @@ namespace TRP.Services
         #endregion Character
 
         #region Monster
-        //Monster
+        // Check if monster exists in database, if so, update it, if not, add it
+        public async Task<bool> InsertUpdateAsync_Monster(Monster data)
+        {
+
+            // Check to see if the item exist
+            var oldData = await GetAsync_Monster(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Monster(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Monster(data);
+            if (UpdateResult)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         // Convert monster to BaseMonster and Add it to the SQL database
         public async Task<bool> AddAsync_Monster(Monster data)
@@ -356,6 +406,14 @@ namespace TRP.Services
         {
             // Get list of BaseMonsters from BaseMonster table.
             var result = await App.Database.Table<BaseMonster>().ToListAsync();
+            //if (result == null)
+            //{
+            //    Debug.WriteLine("Nothing in SQL");
+            //    var secondResult = App.Database.QueryAsync<BaseMonster>("SELECT * FROM [BaseMonster]");
+
+            //    var listofMonsters = new List<Monster>();
+
+            //}
 
             // Convert list of BaseMonsters to Monsters
             var ret = result.Select(m => new Monster(m)).ToList();
@@ -365,10 +423,24 @@ namespace TRP.Services
         #endregion Monster
 
         #region Score
-        // Score
+
+        // Check if score exists in db, if not, add it, otherwise update it
         public async Task<bool> InsertUpdateAsync_Score(Score data)
         {
-            // Implement
+            // Check to see if the item exist
+            var oldData = await GetAsync_Score(data.Id);
+            if (oldData == null)
+            {
+                await AddAsync_Score(data);
+                return true;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Score(data);
+            if (UpdateResult)
+            {
+                return true;
+            }
 
             return false;
         }

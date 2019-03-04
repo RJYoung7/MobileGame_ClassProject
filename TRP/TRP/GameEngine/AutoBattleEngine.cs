@@ -9,7 +9,7 @@ using TRP.Models;
 
 namespace TRP.GameEngine
 {
-    class AutoBattleEngine : BattleEngine
+    public class AutoBattleEngine : BattleEngine
     {
         public BattleEngine BattleEngine = new BattleEngine();
 
@@ -33,8 +33,7 @@ namespace TRP.GameEngine
             // Start a battle
             BattleEngine.StartBattle(true);
             Debug.WriteLine("Starting Battle with " + BattleEngine.CharacterList.Count + " Characters.\n");
-
-
+            
             // start game by initializing a round 
             BattleEngine.StartRound();
 

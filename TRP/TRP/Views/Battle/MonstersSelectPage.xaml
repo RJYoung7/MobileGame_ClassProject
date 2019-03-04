@@ -15,14 +15,13 @@
                 <Label Text="0" x:Name="partysize" HorizontalOptions="Center"/>
             </StackLayout>
             <ListView x:Name="MonstersListView" 
-            ItemsSource="{Binding Dataset}"
-            VerticalOptions="FillAndExpand"
-                HasUnevenRows="true"
-                RefreshCommand="{Binding LoadItemsCommand}"
-                IsPullToRefreshEnabled="true"
-                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
-                >
+                      ItemsSource="{Binding Dataset}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      RefreshCommand="{Binding LoadItemsCommand}"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -51,9 +50,9 @@
                                                FontSize="16" />
                                     </StackLayout>
                                     <Label Text="{Binding MonsterType}" 
-                                         LineBreakMode="NoWrap"
-                                         Style="{DynamicResource ListItemDetailTextStyle}"
-                                         FontSize="13" x:Name="label" />
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" x:Name="label" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

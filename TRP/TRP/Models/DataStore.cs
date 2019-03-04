@@ -5,7 +5,7 @@ namespace TRP.Models
     public enum DataStoreEnum
     {
         Unknown = 0,
-        Sql = 1,
+        SQL = 1,
         Mock = 2
     }
 }
