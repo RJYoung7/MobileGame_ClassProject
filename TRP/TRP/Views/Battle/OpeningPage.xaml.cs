@@ -13,11 +13,13 @@ namespace TRP.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class OpeningPage : ContentPage
 	{
+        // Constructor: initialize page 
 		public OpeningPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 
+        // When this button is clicked, run auto battle and return results 
         private async void AutoBattleButton_Command(object sender, EventArgs e)
         {
             // Can create a new battle engine...
@@ -45,11 +47,13 @@ namespace TRP.Views
             }
         }
 
+        // When this button is clicked, create Battle page (for manual battle) and add onto stack
         private async void ManualBattleButton_Command(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new BattleBeginPage());
         }
 
+        // When this button is clicked, create About page and add onto stack
         private async void AboutButton_Command(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AboutPage());
