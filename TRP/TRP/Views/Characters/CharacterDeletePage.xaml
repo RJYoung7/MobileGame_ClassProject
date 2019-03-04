@@ -7,11 +7,14 @@
     <StackLayout Spacing="20" Padding="15">
         <StackLayout Padding="10">
             <Label Text="Are you sure you want to delete"
-                   Style="{StaticResource MediumLabel}"/>
+                   Style="{StaticResource MediumLabel}"
+                   HorizontalOptions="Center"/>
             <Label Text="{Binding Data.Name}" 
-                   Style="{StaticResource MediumLabel}"/>
+                   Style="{StaticResource TitleLabel}"
+                   HorizontalOptions="Center"/>
             <Label Text="from Character list?" 
-                   Style="{StaticResource MediumLabel}"/>
+                   Style="{StaticResource MediumLabel}"
+                   HorizontalOptions="Center"/>
         </StackLayout>
 
         <StackLayout Padding="10" Orientation="Horizontal"

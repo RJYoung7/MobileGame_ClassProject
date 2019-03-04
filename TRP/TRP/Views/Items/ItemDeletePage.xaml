@@ -5,15 +5,9 @@
             Title="Delete Item">
     <StackLayout Spacing="20" Padding="15">
         <StackLayout Padding="10">
-            <Label Text="Are you sure you want to delete" FontSize="Medium"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
-            <Label Text="{Binding Data.Name}" FontSize="Medium"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
-            <Label Text="from item list?" FontSize="Medium"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
+            <Label Text="Are you sure you want to delete" Style="{StaticResource MediumLabel}" />
+            <Label Text="{Binding Data.Name}" Style="{StaticResource MediumLabel}"/>
+            <Label Text="from item list?" Style="{StaticResource MediumLabel}"/>
         </StackLayout>
 
         <StackLayout Padding="10" Orientation="Horizontal"
