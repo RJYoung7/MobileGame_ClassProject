@@ -46,9 +46,11 @@
                 </ListView>
             </ScrollView>
             <Button Text="Items Dropped"
-                    Clicked="ItemPickupButton_Clicked"/>
+                    Clicked="ItemPickupButton_Clicked"
+                    Style="{StaticResource LargeButton}"/>
             <Button Text="Begin Next Round" FontSize="Medium"
-                    Clicked="NextRoundButton_Clicked"/>
+                    Clicked="NextRoundButton_Clicked"
+                    Style="{StaticResource LargeButton}"/>
 
         </StackLayout>
     </ContentPage.Content>

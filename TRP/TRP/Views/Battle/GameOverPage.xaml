@@ -10,14 +10,27 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell >
-                                <StackLayout Padding="10"
-                                             Orientation="Horizontal"
-                                             VerticalOptions="Start"
-                                             HorizontalOptions="Start">
-                                    <Label Text="IMAGE HERE" />
-                                    <StackLayout Orientation="Vertical">
-                                        <Label Text="NAME" />
-                                        <Label Text="INFO" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding ImageURI}"
+                                       WidthRequest="100"
+                                       HeightRequest="100" 
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Aspect="AspectFill"/>
+
+                                    <!-- Labels for Character (name, desc, etc.) -->
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Name}" 
+                                               LineBreakMode="NoWrap" 
+                                               Style="{DynamicResource ListItemTextStyle}" 
+                                               FontSize="16" />
+                                        </StackLayout>
+                                        <Label Text="{Binding PenguinType}" 
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" x:Name="label" />
+
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>
@@ -26,10 +39,14 @@
                 </ListView>
             </ScrollView>
             
-            <Button Text="View High Scores" FontSize="Medium"
-                    Clicked="HighScoreButton_Clicked"/>
-            <Button Text="Home" FontSize="Medium"
-                    Clicked="HomeButton_Clicked"/>
+            <Button Text="View High Scores" FontSize="Default"
+                    Clicked="HighScoreButton_Clicked"
+                    Style="{StaticResource LargeButton}"/>
+            
+            <Button Text="Home" FontSize="Default"
+                    Clicked="HomeButton_Clicked"
+                    Style="{StaticResource LargeButton}"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

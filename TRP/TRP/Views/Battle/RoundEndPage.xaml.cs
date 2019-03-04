@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using TRP.ViewModels;
+
 namespace TRP.Views.Battle
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RoundEndPage : ContentPage
 	{
-		public RoundEndPage ()
+        private CharactersViewModel _viewModel; // View model for this page
+
+        public RoundEndPage ()
 		{
 			InitializeComponent ();
-		}
+            BindingContext = _viewModel = CharactersViewModel.Instance;
+
+        }
 
         private async void ItemPickupButton_Clicked(object sender, EventArgs e)
         {

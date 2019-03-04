@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.Battle.BattleBeginPage">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout HorizontalOptions="Center" 
-                     VerticalOptions="Start"
-                     Orientation="Vertical" >
+        <ScrollView Padding="10">
+
+            <StackLayout Orientation="Vertical" >
 
                 <Image Source="Little.png" 
                        VerticalOptions="Center" 
@@ -21,37 +20,43 @@
                 <Button Text="Select Penguins"
                         VerticalOptions="Center" 
                         HorizontalOptions="CenterAndExpand" 
-                        Clicked="SelectCharactersButton_Command"/>
+                        Clicked="SelectCharactersButton_Command"
+                        Style="{StaticResource LargeButton}"/>
 
                 <Button Text="Select Monsters"
                         VerticalOptions="Center" 
                         HorizontalOptions="CenterAndExpand" 
-                        Clicked="SelectMonstersButton_Command"/>
+                        Clicked="SelectMonstersButton_Command"
+                        Style="{StaticResource LargeButton}"/>
 
                 <Button Text="Start Battle"
                         VerticalOptions="Center"
                         HorizontalOptions="CenterAndExpand"
-                        Clicked="SelectStartButton_Command" />
+                        Clicked="SelectStartButton_Command" 
+                        Style="{StaticResource LargeButton}"/>
 
                 <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
                 <Button Text="Item Pickup"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" 
-                        Clicked="ItemPickupButton_Command"/>
-                
+                        Clicked="ItemPickupButton_Command"
+                        Style="{StaticResource LargeButton}"/>
+
                 <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
                 <Button Text="Round End"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" 
-                        Clicked="RoundEndButton_Command"/>
-                
+                        Clicked="RoundEndButton_Command"
+                        Style="{StaticResource LargeButton}"/>
+
                 <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
                 <Button Text="Game Over"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" 
-                        Clicked="Button_Clicked"/>
+                        Clicked="Button_Clicked"
+                        Style="{StaticResource LargeButton}"/>
             </StackLayout>
-        </StackLayout>
-
+        </ScrollView>
+   
     </ContentPage.Content>
 </ContentPage>

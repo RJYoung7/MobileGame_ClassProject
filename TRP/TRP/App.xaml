@@ -63,12 +63,19 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
             </Style>
 
-            <Style TargetType="Button">
+            <Style TargetType="Button" x:Key="MediumButton">
                 <Setter Property="WidthRequest" Value="100" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
-            </Style>    
+            </Style>
+
+            <Style TargetType="Button" x:Key="LargeButton">
+                <Setter Property="WidthRequest" Value="150" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

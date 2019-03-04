@@ -26,17 +26,20 @@
             <Button Text="AutoBattle"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" 
-                    Clicked="AutoBattleButton_Command"/>
+                    Clicked="AutoBattleButton_Command"
+                    Style="{StaticResource MediumButton}"/>
 
             <Button Text="Battle"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" 
-                    Clicked="ManualBattleButton_Command"/>
+                    Clicked="ManualBattleButton_Command"
+                    Style="{StaticResource MediumButton}"/>
 
-                <Button Text="About"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand" 
-                        Clicked="AboutButton_Command"/>
+            <Button Text="About"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    Clicked="AboutButton_Command"
+                    Style="{StaticResource MediumButton}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
