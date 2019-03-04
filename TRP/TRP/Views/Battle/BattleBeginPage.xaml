@@ -24,11 +24,11 @@
                         Clicked="SelectCharactersButton_Command"
                         Style="{StaticResource LargeButton}"/>
 
-                <Button Text="Select Monsters"
+                <!--<Button Text="Select Monsters"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="Center" 
                         Clicked="SelectMonstersButton_Command"
-                        Style="{StaticResource LargeButton}"/>
+                        Style="{StaticResource LargeButton}"/>-->
 
                 <Button Text="Start Battle"
                         VerticalOptions="CenterAndExpand"
