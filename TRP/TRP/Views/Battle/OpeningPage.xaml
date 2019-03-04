@@ -14,37 +14,32 @@
 
                 <Label FontSize="Large"
                        Text="The Righteous Penguins"
-                       VerticalOptions="Center" 
-                       HorizontalOptions="CenterAndExpand"
-                       FontFamily="{StaticResource Title}"/>
+                       Style="{StaticResource TitleLabel}"/>
         </StackLayout>
 
         <StackLayout>
             <Label Text="Start Here"
                    VerticalOptions="CenterAndExpand" 
                    HorizontalOptions="CenterAndExpand"
-                   FontFamily="{StaticResource Body}"/>
+                   Style="{StaticResource LargeLabel}"/>
 
             <Button Text="AutoBattle"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" 
                     Clicked="AutoBattleButton_Command"
-                    Style="{StaticResource LargeButton}"
-                    FontFamily="{StaticResource Body}"/>
+                    Style="{StaticResource LargeButton}"/>
 
             <Button Text="Battle"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" 
                     Clicked="ManualBattleButton_Command"
-                    Style="{StaticResource LargeButton}"
-                    FontFamily="{StaticResource Body}"/>
+                    Style="{StaticResource LargeButton}"/>
 
             <Button Text="About"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" 
                     Clicked="AboutButton_Command"
-                    Style="{StaticResource LargeButton}"
-                    FontFamily="{StaticResource Body}"/>
+                    Style="{StaticResource LargeButton}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
