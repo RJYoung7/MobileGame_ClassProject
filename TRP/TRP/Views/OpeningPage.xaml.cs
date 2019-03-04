@@ -31,5 +31,7 @@ namespace TRP.Views
         {
             await Navigation.PushAsync(new AboutPage());
         }
+
+
     }
 }

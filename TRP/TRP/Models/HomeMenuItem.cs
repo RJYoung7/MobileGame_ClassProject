@@ -6,8 +6,12 @@ namespace TRP.Models
 {
     public enum MenuItemType
     {
-        Browse,
-        About
+        Home,
+        About,
+        Characters,
+        Monsters,
+        Items,
+        History
     }
     public class HomeMenuItem
     {
@@ -15,4 +19,5 @@ namespace TRP.Models
 
         public string Title { get; set; }
     }
+
 }
