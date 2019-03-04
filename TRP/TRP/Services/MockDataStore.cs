@@ -42,14 +42,14 @@ namespace TRP.Services
             // Load items
             await AddAsync_Item(new Item("Slush Helmet", "A helmet made from slush",
                 "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", 0, 1, 0, ItemLocationEnum.Head,
-                AttributeEnum.Defense));
+                AttributeEnum.Defense,false));
             await AddAsync_Item(new Item("Ice Boots", "Boots with harden iced attached",
                 "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", 0, 3, 0, ItemLocationEnum.Feet,
-                AttributeEnum.Defense));
+                AttributeEnum.Defense,false));
             
             await AddAsync_Item(new Item("Fire Bow", "Crafted from artic flames",
                 "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png", 
-                4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack));
+                4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack, false));
 
 
             // Load characters

@@ -148,6 +148,7 @@ namespace TRP.Views
             {
                 // Call to the SQL DataStore and have it clear the tables.
                 SQLDataStore.Instance.InitializeDatabaseNewTables();
+                MockDataStore.Instance.InitializeDatabaseNewTables();
             }
         }
 

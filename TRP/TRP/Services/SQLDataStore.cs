@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TRP.Models;
@@ -30,6 +31,7 @@ namespace TRP.Services
         private SQLDataStore()
         {
             CreateTables();
+            //InitializeDatabaseNewTables();
         }
 
         // Create the Database Tables
@@ -82,13 +84,13 @@ namespace TRP.Services
             // Default SQL Items
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Slush Helmet", Description = "A helmet made from slush.",
                 ImageURI= "https://www.iconsdb.com/icons/preview/caribbean-blue/helmet-xxl.png", Range=0, Value=1, Damage=0, Location=ItemLocationEnum.Head,
-                Attribute = AttributeEnum.Defense });
+                Attribute = AttributeEnum.Defense, Consumable = false });
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Ice Boots", Description = "Boots with harden iced.",
                 ImageURI= "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", Range=0, Value=3, Damage=0, Location=ItemLocationEnum.Feet,
-                Attribute=AttributeEnum.Defense });
+                Attribute=AttributeEnum.Defense, Consumable = false });
             await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "SQL Flame Bow", Description = "Crafted from artic flames.",
                 ImageURI= "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png",
-                Range=4, Value=3, Damage=3, Location=ItemLocationEnum.PrimaryHand, Attribute=AttributeEnum.Attack });
+                Range=4, Value=3, Damage=3, Location=ItemLocationEnum.PrimaryHand, Attribute=AttributeEnum.Attack, Consumable = false });
 
             // Default SQL Characters
             await AddAsync_Character(new Character("PoppySQL", new AttributeBase(10, 4, 4, 2), PenguinTypeEnum.Emperor));
@@ -404,6 +406,14 @@ namespace TRP.Services
         {
             // Get list of BaseMonsters from BaseMonster table.
             var result = await App.Database.Table<BaseMonster>().ToListAsync();
+            //if (result == null)
+            //{
+            //    Debug.WriteLine("Nothing in SQL");
+            //    var secondResult = App.Database.QueryAsync<BaseMonster>("SELECT * FROM [BaseMonster]");
+
+            //    var listofMonsters = new List<Monster>();
+
+            //}
 
             // Convert list of BaseMonsters to Monsters
             var ret = result.Select(m => new Monster(m)).ToList();

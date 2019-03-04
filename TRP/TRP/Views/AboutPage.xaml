@@ -29,7 +29,7 @@
                        HorizontalOptions="Fill"/>
 
                 <Label FontSize="Large"
-                       Text="Class Dungeon"
+                       Text="The Righteous Penguins"
                        VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand" />
 

@@ -155,6 +155,13 @@
                                  VerticalOptions="Center"
                                  x:Name="ItemDamage"/>
                     </StackLayout>
+
+                    <!--Controls whether item is consumable-->
+                    <Label Grid.Row="6" Grid.Column="0" Text="Consumable: " />
+                    <Switch Grid.Row="6" Grid.Column="1" x:Name="Consumable"
+                            HorizontalOptions="StartAndExpand"
+                            Toggled="Consumable_Toggled"
+                            IsToggled="{Binding Data.Consumable, Mode=TwoWay}" />
                 </Grid>
             </StackLayout>
         </ScrollView>

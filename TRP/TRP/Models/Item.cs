@@ -29,6 +29,8 @@ namespace TRP.Models
         // The Value item modifies.  So a ring of Health +3, has a Value of 3
         public int Value { get; set; }
 
+        public bool Consumable { get; set; }
+
         // Inheritated properties
         // Id comes from BaseEntity class
         // Name comes from the Entity class... 
@@ -54,6 +56,7 @@ namespace TRP.Models
 
             Location = ItemLocationEnum.Unknown;
             Attribute = AttributeEnum.Unknown;
+            Consumable = false;
 
             ImageURI = null;
         }
@@ -75,7 +78,7 @@ namespace TRP.Models
         }
 
         // Constructor for Item called if needed to create a new item with set values.
-        public Item(string name, string description, string imageuri, int range, int value, int damage, ItemLocationEnum location, AttributeEnum attribute)
+        public Item(string name, string description, string imageuri, int range, int value, int damage, ItemLocationEnum location, AttributeEnum attribute, bool consumable)
         {
             // Create default, and then override...
             CreateDefaultItem();
@@ -90,6 +93,7 @@ namespace TRP.Models
 
             Location = location;
             Attribute = attribute;
+            Consumable = Consumable;
         }
 
         // Update for Item, that will update the fields one by one.
@@ -111,6 +115,7 @@ namespace TRP.Models
             ImageURI = newData.ImageURI;
             Range = newData.Range;
             Damage = newData.Damage;
+            Consumable = newData.Consumable;
         }
 
         // Will update the Item to be stronger...
