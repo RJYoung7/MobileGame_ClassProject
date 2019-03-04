@@ -163,8 +163,9 @@ namespace TRP.GameEngine
                         monster.ScaleLevel(rndScale);
                         MonsterList.Add(monster);
                     }
-
+               
                 } while (MonsterList.Count() < 6);
+
             }
             else
             {
@@ -179,6 +180,17 @@ namespace TRP.GameEngine
                     
                 }
             }
+
+            var monstersOutput = "Chosen monsters: \n";
+
+            monstersOutput += "Count: ";
+            monstersOutput += MonsterList.Count() + "\n";
+
+            foreach (var mon in MonsterList)
+            {
+                monstersOutput += mon.FormatOutput() + "\n";
+            }
+            Debug.WriteLine(monstersOutput);
         }
 
         // At the end of the round

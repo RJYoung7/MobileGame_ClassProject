@@ -8,13 +8,13 @@
                          VerticalOptions="Start"
                          Orientation="Vertical">
 
-                <Image Source="d20.png" 
+                <Image Source="Baby.png" 
                        VerticalOptions="Center" 
                        HeightRequest="150"
                        HorizontalOptions="Fill"/>
 
                 <Label FontSize="Large"
-                       Text="Class Dungeon"
+                       Text="TRP Auto Battle"
                        VerticalOptions="Center" 
                        HorizontalOptions="CenterAndExpand" />
 

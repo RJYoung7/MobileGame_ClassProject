@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using TRP.Models;
 using TRP.Views;
+using TRP.Controllers;
 using System.Linq;
 using TRP.GameEngine;
 using TRP.Views.Battle;
@@ -33,19 +34,178 @@ namespace TRP.ViewModels
         }
 
         // Battle Engine
-        private BattleEngine battleEngine;
+        private BattleEngine BattleEngine;
+
+        public ObservableCollection<Character> SelectedCharacters { get; set; } //selected party of characters
+        public ObservableCollection<Character> AvailableCharacters { get; set; } //available characters left
+
+        public Command LoadDataCommand { get; set; } // load data command 
+
+        private bool _needsRefresh; // boolean for whether data is stale or not
 
         // Constructor: loads data and listens for broadcast from views
         public BattleViewModel()
         {
             Title = "Battle Begin";
-            battleEngine = new BattleEngine();
+            BattleEngine = new BattleEngine();
+
+            SelectedCharacters = new ObservableCollection<Character>();
+            AvailableCharacters = new ObservableCollection<Character>(); 
+
+            LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+
+            ExecuteLoadDataCommand().GetAwaiter().GetResult();
 
             // For adding Characters to party
             MessagingCenter.Subscribe<CharactersSelectPage, IList<Character>>(this, "AddData", (obj, data) =>
             {
-                battleEngine.CharacterList = data.ToList<Character>();
+                BattleEngine.CharacterList = data.ToList<Character>();
             });
+
+            //Messages for adding a character to party, removing a character from party
+
+            //Messages to start and end battle
+
+            //Messages to start and end rounds
+
+            //Messages for turns in round 
         }
+
+        // Calls engine to start battle
+        public void StartBattle()
+        {
+            Instance.BattleEngine.StartBattle(false);
+        }
+
+        // Calls engine to end battle
+        public void EndBattle()
+        {
+            Instance.BattleEngine.EndBattle();
+        }
+
+        // Calls engine to start round 
+        public void StartRound()
+        {
+            Instance.BattleEngine.StartRound();
+        }
+
+        // Loads copies of selected characters into battle engine
+        public void LoadCharacters()
+        {
+            foreach (var data in SelectedCharacters)
+            {
+                BattleViewModel.Instance.BattleEngine.CharacterList.Add(new Character(data));
+            }
+
+        }
+
+        // Calls engine for next turn in a round
+        public void RoundNextTurn()
+        {
+            BattleViewModel.Instance.BattleEngine.RoundNextTurn();
+        }
+
+        //Calls engine for a new round 
+        public void NewRound()
+        {
+            BattleViewModel.Instance.BattleEngine.NewRound();
+        }
+
+        #region DataOperations
+        // Call to database to remove a character from the party
+        public bool SelectedListRemove(Character data)
+        {
+            SelectedCharacters.Remove(data);
+            return true;
+        }
+
+        // Call to database to add a character to party
+        public bool SelectedListAdd(Character data)
+        {
+            SelectedCharacters.Add(data);
+            return true;
+        }
+
+        // Call to database to grab character
+        public Character Get(string id)
+        {
+            var myData = SelectedCharacters.FirstOrDefault(arg => arg.Id == id);
+            if (myData == null)
+            {
+                return null;
+            }
+
+            return myData;
+
+        }
+        #endregion DataOperations
+
+        // Clear current lists so they can be reused 
+        public void ClearCharacterLists()
+        {
+            AvailableCharacters.Clear();
+            SelectedCharacters.Clear();
+            ExecuteLoadDataCommand();
+        }
+
+        // Returns whether refhres is needed. If true, then set false.
+        public bool NeedsRefresh()
+        {
+            if (_needsRefresh)
+            {
+                _needsRefresh = false;
+                return true;
+            }
+
+            return false;
+        }
+
+        // Sets the need to refresh
+        public void SetNeedsRefresh(bool value)
+        {
+            _needsRefresh = value;
+        }
+
+        // Command that Loads the Data
+        private async Task ExecuteLoadDataCommand()
+        {
+            if (IsBusy)
+            {
+                return;
+            }
+
+            IsBusy = true;
+
+            try
+            {
+                // SelectedCharacters, no need to change them.
+
+                // Reload the Character List from the Character View Moel
+                AvailableCharacters.Clear();
+                var availableCharacters = CharactersViewModel.Instance.Dataset;
+                foreach (var data in availableCharacters)
+                {
+                    AvailableCharacters.Add(data);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public void ForceDataRefresh()
+        {
+            // Reset
+            var canExecute = LoadDataCommand.CanExecute(null);
+            LoadDataCommand.Execute(null);
+        }
+
     }
 }
