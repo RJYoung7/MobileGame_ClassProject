@@ -30,7 +30,7 @@ namespace TRP.Views.Battle
 
         private async void NextRoundButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new BattlePage());
+            await Navigation.PushAsync(new BattlePage(BattleViewModel.Instance));
         }
 
     }

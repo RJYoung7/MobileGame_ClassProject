@@ -34,10 +34,11 @@ namespace TRP.ViewModels
         }
 
         // Battle Engine
-        private BattleEngine BattleEngine;
+        public BattleEngine BattleEngine;
 
         public ObservableCollection<Character> SelectedCharacters { get; set; } //selected party of characters
         public ObservableCollection<Character> AvailableCharacters { get; set; } //available characters left
+        public ObservableCollection<Monster> SelectedMonsters { get; set; } //selected party of characters
 
         public Command LoadDataCommand { get; set; } // load data command 
 
@@ -50,7 +51,8 @@ namespace TRP.ViewModels
             BattleEngine = new BattleEngine();
 
             SelectedCharacters = new ObservableCollection<Character>();
-            AvailableCharacters = new ObservableCollection<Character>(); 
+            AvailableCharacters = new ObservableCollection<Character>();
+            SelectedMonsters = new ObservableCollection<Monster>();
 
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
@@ -60,6 +62,11 @@ namespace TRP.ViewModels
             MessagingCenter.Subscribe<CharactersSelectPage, IList<Character>>(this, "AddData", (obj, data) =>
             {
                 BattleEngine.CharacterList = data.ToList<Character>();
+                foreach (var c in data) {
+                    SelectedCharacters.Add(c);
+                }
+                //SelectedCharacters = data.ToArray();
+                
             });
 
             //Messages for adding a character to party, removing a character from party

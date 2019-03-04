@@ -10,8 +10,164 @@
                    VerticalOptions="Start"
                    HorizontalOptions="Center"
                    FontFamily="{StaticResource Title}"/>
-
             <StackLayout Spacing="0">
+                <Grid RowSpacing="3"
+                      ColumnSpacing="3"
+                      VerticalOptions="Start">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75*" />
+                        <RowDefinition Height="25*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--Characters-->
+                    <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
+                        <ListView x:Name="CharactersListView" 
+                                  ItemsSource="{Binding SelectedCharacters}"
+                                  VerticalOptions="FillAndExpand"
+                                  HasUnevenRows="true"
+                                  RefreshCommand="{Binding LoadItemsCommand}"
+                                  IsPullToRefreshEnabled="true"
+                                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                  CachingStrategy="RecycleElement">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="0"
+                                                     Spacing="0"
+                                                     Orientation="Horizontal"
+                                                     VerticalOptions="Start"
+                                                     HorizontalOptions="Start">
+
+                                            <!-- Image -->
+                                            <Image Source="{Binding ImageURI}"
+                                           WidthRequest="65"
+                                           HeightRequest="65" 
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           Aspect="AspectFill"/>
+
+                                            <!-- Labels for Character (name, desc, etc.) -->
+                                            <StackLayout Spacing="0" Orientation="Vertical">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" 
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" 
+                                                   FontSize="16" />
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="HP:" FontSize="13" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Attribute.CurrentHealth}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                                           FontSize="13" x:Name="hp" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Alive:" FontSize="13" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Alive}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                                           FontSize="13" x:Name="Alive" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    
+                    <!--Monsters-->
+                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
+                        <ListView x:Name="MonstersListView" 
+                                  ItemsSource="{Binding SelectedMonsters}"
+                                  VerticalOptions="FillAndExpand"
+                                  HasUnevenRows="true"
+                                  RefreshCommand="{Binding LoadItemsCommand}"
+                                  IsPullToRefreshEnabled="true"
+                                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                  CachingStrategy="RecycleElement">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="0"
+                                                     Spacing="0"
+                                             Orientation="Horizontal"
+                                             VerticalOptions="Start"
+                                             HorizontalOptions="FillAndExpand">
+
+                                            <!-- Image -->
+                                            <Image Source="{Binding ImageURI}"
+                                           WidthRequest="65"
+                                           HeightRequest="65" 
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           Aspect="AspectFill"/>
+
+                                            <!-- Labels for Monster (name, desc, etc.) -->
+                                            <StackLayout Spacing="0">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" 
+                                                   LineBreakMode="NoWrap" 
+                                                   Style="{DynamicResource ListItemTextStyle}" 
+                                                   FontSize="16" />
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="HP:" FontSize="13" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Attribute.CurrentHealth}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                                           FontSize="13" x:Name="hp" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Alive:" FontSize="13" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Alive}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                                           FontSize="13" x:Name="Alive" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="CenterAndExpand" 
+                                                         VerticalOptions="Center">
+                                                <Button Text="Attack" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                    <!--Battle Messages-->
+                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                        <ScrollView>
+                            <StackLayout>
+                                <Label Text="BATTLE MESSAGE 1" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 2" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 3" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 4" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 5" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 6" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 7" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 8" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 9" FontSize="Micro" />
+                                <Label Text="BATTLE MESSAGE 10" FontSize="Micro" />
+
+                            </StackLayout>
+
+                        </ScrollView>
+                    </StackLayout>
+                </Grid>
+
+                <!--<StackLayout Spacing="0">
                 <Grid RowSpacing="3"
                       ColumnSpacing="3"
                       VerticalOptions="Start">
@@ -30,7 +186,9 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!--Characters-->
+                    -->
+                <!--Characters-->
+                <!--
                     <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
                         <StackLayout Orientation="Horizontal" Spacing="10">
                             <Image Source="Little.png" 
@@ -40,7 +198,8 @@
                                    HorizontalOptions="Center"/>
 
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-                                <Label Text="Character 1" FontSize="10"/>
+                                <Label 
+                                    Text="{Binding viewmodel.CharacterList.ElementAt(0).Name}" FontSize="10"/>
                                 <Label Text="Level 1" FontSize="10" />
                                 <Label Text="Current HP: 10" FontSize="10" />
                                 <Label Text="Alive" FontSize="10" />
@@ -128,7 +287,9 @@
                         </StackLayout>
                     </StackLayout>
 
-                    <!--Monsters-->
+                    -->
+                <!--Monsters-->
+                <!--
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
                         <StackLayout Orientation="Horizontal" Spacing="10">
                             <Image Source="Orca.png"
@@ -271,10 +432,11 @@
                         </ScrollView>
                     </StackLayout>
 
-                </Grid>
-                
-  
+                </Grid>-->
 
+
+
+                <!--</StackLayout>-->
             </StackLayout>
         </StackLayout>
 

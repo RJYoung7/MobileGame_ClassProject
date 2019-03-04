@@ -23,6 +23,7 @@ namespace TRP.Views.Battle
         {
             InitializeComponent();
             BindingContext = _viewModel = CharactersViewModel.Instance;
+            
         }
 
         // Returns whether party is full 
