@@ -25,10 +25,14 @@ namespace TRP.Views.Battle
 
             _viewModel.BattleEngine.StartRound();
 
-            foreach (var m in _viewModel.BattleEngine.MonsterList)
+            // Add monsters if there weren't any 
+            if (BattleViewModel.Instance.SelectedMonsters.Count == 0)
             {
-                BattleViewModel.Instance.SelectedMonsters.Add(m);
-                
+                foreach (var m in _viewModel.BattleEngine.MonsterList)
+                {
+                    BattleViewModel.Instance.SelectedMonsters.Add(m);
+                    
+                }
             }
             //BattleViewModel.Instance.SelectedMonsters.ElementAt(0).Alive;
             //var char1 =_viewModel.BattleEngine.CharacterList.ElementAt(0);
