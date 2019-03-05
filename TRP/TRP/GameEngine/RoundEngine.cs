@@ -99,6 +99,7 @@ namespace TRP.GameEngine
             {
                 return;
             }
+            
 
             //var ScaleLevelMax = 0;
             //var ScaleLevelMin = 0;
@@ -133,7 +134,7 @@ namespace TRP.GameEngine
 
             // Make suure monster list exists and is loaded...
             var myMonsterViewModel = MonstersViewModel.Instance;
-            myMonsterViewModel.ForceDataRefresh();
+            //myMonsterViewModel.ForceDataRefresh();
 
             if(myMonsterViewModel.Dataset.Count() > 0)
             {

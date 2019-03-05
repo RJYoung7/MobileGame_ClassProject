@@ -52,7 +52,8 @@ namespace TRP.GameEngine
             isBattleRunning = false;
 
             // Save the Score to the Datastore
-            ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
+            ScoresViewModel.Instance.Dataset.Add(BattleScore);
+            //ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
         }
 
         // Initializes the Battle to begin

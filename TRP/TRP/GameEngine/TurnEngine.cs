@@ -457,7 +457,8 @@ namespace TRP.GameEngine
                         // Item does not exist, so add it to the datstore
 
                         // TODO:  Need way to not save the Item
-                        ItemsViewModel.Instance.InsertUpdateAsync(item).GetAwaiter().GetResult();
+                        myItemsViewModel.Dataset.Add(item);
+                        //ItemsViewModel.Instance.InsertUpdateAsync(item).GetAwaiter().GetResult();
                     }
                     else
                     {
