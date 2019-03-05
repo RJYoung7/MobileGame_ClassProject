@@ -31,15 +31,14 @@
                              VerticalOptions="Start">
                     <!-- Name label -->
                     <Label Text="{Binding Data.Name}" 
-                           FontAttributes="Bold"
-                           Style="{StaticResource MediumLabel}"/>
+                           Style="{StaticResource TitleLabel}"/>
 
                     <Label Text="{Binding Data.MonsterTypeString}" 
                            Style="{StaticResource SmallLabel}"/>
                 </StackLayout>
             </StackLayout>
 
-            <Label Text="Base Attributes: " Style="{StaticResource MediumLabel}" VerticalOptions="Start"/>
+            <Label Text="Base Attributes: " Style="{StaticResource LargeLabel}" VerticalOptions="Start"/>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -48,17 +47,17 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" Style="{StaticResource SmallLabel}" />
-                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" Style="{StaticResource MediumLabel}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" Style="{StaticResource MediumLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="1" Text="Attack:" Style="{StaticResource SmallLabel}"/>
-                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute.Attack}" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="Attack:" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute.Attack}" Style="{StaticResource MediumLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Text="Defense:" Style="{StaticResource SmallLabel}"/>
-                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Attribute.Defense}" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="0" Grid.Row="2" Text="Defense:" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Attribute.Defense}" Style="{StaticResource MediumLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Text="Speed:" Style="{StaticResource SmallLabel}"/>
-                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="0" Grid.Row="3" Text="Speed:" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" Style="{StaticResource MediumLabel}"/>
             </Grid>
 
         </StackLayout>

@@ -55,9 +55,18 @@
                 <Setter Property="FontFamily" Value="{StaticResource Title}"/>
             </Style>
 
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="{StaticResource Body}"/>
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+            </Style>
 
+            <Style TargetType="Picker">
+                <Setter Property="FontFamily" Value="{StaticResource Body}" />
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+            </Style>
+            
             <Style TargetType="Label" x:Key="SmallLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
-                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
             

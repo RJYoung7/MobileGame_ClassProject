@@ -9,22 +9,24 @@
         <StackLayout Padding="10">
             <Label Text="Are you sure you want to delete" FontSize="Medium"
                    HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
+                   Style="{StaticResource MediumLabel}" />
             <Label Text="{Binding Data.Name}" FontSize="Medium"
                    HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
+                   Style="{StaticResource MediumLabel}" />
             <Label Text="from Monster list?" FontSize="Medium"
                    HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
+                   Style="{StaticResource MediumLabel}"/>
         </StackLayout>
 
         <StackLayout Padding="10" Orientation="Horizontal"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
             <Button Text="Delete"
-                    Clicked="Delete_Clicked"/>
+                    Clicked="Delete_Clicked"
+                    Style="{StaticResource LargeButton}"/>
             <Button Text="Cancel"
-                    Clicked="Cancel_Clicked" />
+                    Clicked="Cancel_Clicked"
+                    Style="{StaticResource LargeButton}"/>
         </StackLayout>
 
 

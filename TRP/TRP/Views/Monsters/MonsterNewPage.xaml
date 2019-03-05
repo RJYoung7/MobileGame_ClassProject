@@ -28,7 +28,7 @@
                 <Entry Keyboard="Text" Placeholder="Enter Character Name" Text="{Binding Data.Name}" />
                 <StackLayout Orientation="Horizontal">
                     <!-- Monster type -->
-                    <Label Text="Select Type: " HorizontalOptions="Start" FontSize="Small"/>
+                    <Label Text="Select Type: " HorizontalOptions="Start" Style="{StaticResource MediumLabel}"/>
                     <Picker HorizontalOptions="FillAndExpand"
                             ItemsSource="{x:Static local:MonsterTypeList.GetMonsterTypeList}"
                             SelectedItem="{Binding Data.MonsterType, Converter={StaticResource StringEnum}, Mode=TwoWay}"
@@ -51,16 +51,14 @@
                     <!-- Attack incrementer -->
                     <StackLayout Grid.Row="0" Grid.Column="0">
                         <Label Text="Attack:" 
-                               FontSize="Small" 
-                               HorizontalOptions="Start"/>
+                               Style="{StaticResource MediumLabel}" />
                     </StackLayout>
 
                     <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
                         <Label Text="{Binding Data.Attribute.Attack}" 
-                               FontSize="Small" 
-                               HorizontalOptions="Center"
-                               x:Name="AttackValue"
-                               VerticalOptions="Center"/>
+                               Style="{StaticResource MediumLabel}"
+                               HorizontalOptions="Start"
+                               x:Name="AttackValue"/>
 
                         <Stepper Value="{Binding Data.Attribute.Attack, Mode=TwoWay}"
                                  Minimum="0"
@@ -75,16 +73,14 @@
                     <!-- Defense incrementer -->
                     <StackLayout Grid.Row="1" Grid.Column="0">
                         <Label Text="Defense:" 
-                               FontSize="Small" 
-                               HorizontalOptions="Start"/>
+                               Style="{StaticResource MediumLabel}"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                         <Label Text="{Binding Data.Attribute.Defense}" 
-                               FontSize="Small" 
-                               HorizontalOptions="Center"
-                               x:Name="DefenseValue"
-                               VerticalOptions="Center"/>
+                               Style="{StaticResource MediumLabel}" 
+                               HorizontalOptions="Start"
+                               x:Name="DefenseValue"/>
 
                         <Stepper Value="{Binding Data.Attribute.Defense, Mode=TwoWay}"
                                  Minimum="0"
@@ -99,16 +95,14 @@
                     <!-- Speed incrementer -->
                     <StackLayout Grid.Row="2" Grid.Column="0" >
                         <Label Text="Speed:" 
-                               FontSize="Small" 
-                               HorizontalOptions="Start"/>
+                               Style="{StaticResource MediumLabel}"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                         <Label Text="{Binding Data.Attribute.Speed}" 
-                               FontSize="Small" 
-                               HorizontalOptions="Center"
-                               x:Name="SpeedValue"
-                               VerticalOptions="Center"/>
+                               Style="{StaticResource MediumLabel}"
+                               HorizontalOptions="Start"
+                               x:Name="SpeedValue"/>
 
                         <Stepper Value="{Binding Data.Attribute.Speed, Mode=TwoWay}"
                                  Minimum="0"
@@ -121,8 +115,8 @@
                     </StackLayout>
 
                     <!-- Stat points available -->
-                    <Label Grid.Row="3" Grid.Column="0" Text="Points left:  " FontSize="Small"/>
-                    <Label Grid.Row="3" Grid.Column="1" Text="10" x:Name="statPoints" FontSize="Medium"/>
+                    <Label Grid.Row="3" Grid.Column="0" Text="Points left:  " Style="{StaticResource MediumLabel}"/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="10" x:Name="statPoints" Style="{StaticResource MediumLabel}"/>
                 </Grid>
 
             </StackLayout>

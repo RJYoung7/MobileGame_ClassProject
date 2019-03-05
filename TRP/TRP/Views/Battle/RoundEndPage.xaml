@@ -4,8 +4,8 @@
              x:Class="TRP.Views.Battle.RoundEndPage">
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Success: Round 1 Cleared!" FontSize="Large" FontFamily="{StaticResource Body}"/>
-            <ScrollView >
+            <Label Text="Success: Round 1 Cleared!" Style="{StaticResource TitleLabel}"/>
+            <ScrollView>
                 <ListView x:Name="CharactersListView" 
                           ItemsSource="{Binding Dataset}"
                           VerticalOptions="FillAndExpand"
@@ -17,7 +17,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" Padding="5">
                                     <Image Source="{Binding ImageURI}"
                                        WidthRequest="100"
                                        HeightRequest="100" 
@@ -30,13 +30,11 @@
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="{Binding Name}" 
                                                LineBreakMode="NoWrap" 
-                                               Style="{DynamicResource ListItemTextStyle}" 
-                                               FontSize="16" />
+                                               Style="{StaticResource TitleLabel}" />
                                         </StackLayout>
                                         <Label Text="{Binding PenguinType}" 
                                            LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="13" x:Name="label" />
+                                           Style="{StaticResource SmallLabel}"/>
                                         
                                     </StackLayout>
                                 </StackLayout>
