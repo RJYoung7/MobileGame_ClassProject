@@ -230,7 +230,7 @@ namespace TRP.ViewModels
                 return null;
             }
 
-            Item myData = DataStore.GetAsync_Item(ItemID).GetAwaiter().GetResult();
+            Item myData = Dataset.Where(a => a.Guid == ItemID).FirstOrDefault();
             if (myData == null)
             {
                 return null;
