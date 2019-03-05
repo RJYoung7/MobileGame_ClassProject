@@ -17,7 +17,7 @@ namespace TRP.Views.Battle
 	{
         private BattleViewModel _viewModel;
 
-
+        // Constructor: initialize battle page 
         public BattlePage (BattleViewModel viewmodel)
 		{
 			InitializeComponent ();
@@ -25,8 +25,8 @@ namespace TRP.Views.Battle
 
             _viewModel.BattleEngine.StartRound();
 
-            // Add monsters if there weren't any 
-            if (BattleViewModel.Instance.SelectedMonsters.Count == 0)
+            // Add monsters if there weren't any, and only if there are penguins in party
+            if (BattleViewModel.Instance.SelectedMonsters.Count == 0 && BattleViewModel.Instance.SelectedCharacters.Count >= 1)
             {
                 foreach (var m in _viewModel.BattleEngine.MonsterList)
                 {
@@ -46,6 +46,7 @@ namespace TRP.Views.Battle
 
         }
 
+        // Before the page appears, remove anything that was there prior, and load data to view model
         protected override void OnAppearing()
         {
             base.OnAppearing();
