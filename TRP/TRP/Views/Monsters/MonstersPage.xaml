@@ -40,11 +40,11 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" 
                                                LineBreakMode="NoWrap" 
-                                               Style="{StaticResource SmallLabel}" />
+                                               Style="{StaticResource TitleLabel}" />
                                     </StackLayout>
                                     <Label Text="{Binding MonsterTypeString}" 
                                          LineBreakMode="NoWrap"
-                                         Style="{StaticResource MicroLabel}" />
+                                         Style="{StaticResource SmallLabel}" />
                                 </StackLayout>
 
                             </StackLayout>

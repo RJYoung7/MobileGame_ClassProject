@@ -5,11 +5,11 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="10" Padding="10" >
-            <Label Text="Round 1" FontSize="Medium" 
+            <Label Text="Round 1" 
                    HorizontalTextAlignment="Center"
                    VerticalOptions="Start"
                    HorizontalOptions="Center"
-                   FontFamily="{StaticResource Title}"/>
+                   Style="{StaticResource TitleLabel}"/>
             <StackLayout Spacing="0">
                 <Grid RowSpacing="3"
                       ColumnSpacing="3"
@@ -45,34 +45,34 @@
 
                                             <!-- Image -->
                                             <Image Source="{Binding ImageURI}"
-                                           WidthRequest="65"
-                                           HeightRequest="65" 
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           Aspect="AspectFill"/>
+                                                   WidthRequest="65"
+                                                   HeightRequest="65" 
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
 
                                             <!-- Labels for Character (name, desc, etc.) -->
-                                            <StackLayout Spacing="0" Orientation="Vertical">
+                                            <StackLayout Spacing="0" Orientation="Vertical" Padding="2">
                                                 <StackLayout Orientation="Horizontal">
                                                     <Label Text="{Binding Name}" 
-                                                   LineBreakMode="NoWrap" 
-                                                   Style="{DynamicResource ListItemTextStyle}" 
-                                                   FontSize="16" />
+                                                           LineBreakMode="NoWrap" 
+                                                           Style="{StaticResource TitleLabel}"
+                                                           FontSize="16"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Text="HP:" FontSize="13" HorizontalOptions="Start"/>
+                                                    <Label Text="HP:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start" />
                                                     <Label Text="{Binding Attribute.CurrentHealth}" 
                                                            LineBreakMode="NoWrap"
-                                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                                           FontSize="13" x:Name="hp" 
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="hp" 
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Text="Alive:" FontSize="13" HorizontalOptions="Start"/>
+                                                    <Label Text="Alive:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start"/>
                                                     <Label Text="{Binding Alive}" 
                                                            LineBreakMode="NoWrap"
-                                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                                           FontSize="13" x:Name="Alive" 
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="Alive" 
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                             </StackLayout>
@@ -98,46 +98,47 @@
                                     <ViewCell>
                                         <StackLayout Padding="0"
                                                      Spacing="0"
-                                             Orientation="Horizontal"
-                                             VerticalOptions="Start"
-                                             HorizontalOptions="FillAndExpand">
+                                                     Orientation="Horizontal"
+                                                     VerticalOptions="Start"
+                                                     HorizontalOptions="FillAndExpand">
 
                                             <!-- Image -->
                                             <Image Source="{Binding ImageURI}"
-                                           WidthRequest="65"
-                                           HeightRequest="65" 
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           Aspect="AspectFill"/>
+                                                   WidthRequest="65"
+                                                   HeightRequest="65" 
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
 
                                             <!-- Labels for Monster (name, desc, etc.) -->
                                             <StackLayout Spacing="0">
                                                 <StackLayout Orientation="Horizontal">
                                                     <Label Text="{Binding Name}" 
-                                                   LineBreakMode="NoWrap" 
-                                                   Style="{DynamicResource ListItemTextStyle}" 
-                                                   FontSize="16" />
+                                                           LineBreakMode="NoWrap" 
+                                                           Style="{StaticResource TitleLabel}"
+                                                           FontSize="16"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
                                                     <Label Text="HP:" FontSize="13" HorizontalOptions="Start"/>
                                                     <Label Text="{Binding Attribute.CurrentHealth}" 
                                                            LineBreakMode="NoWrap"
-                                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                                           FontSize="13" x:Name="hp" 
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="hp" 
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
                                                     <Label Text="Alive:" FontSize="13" HorizontalOptions="Start"/>
                                                     <Label Text="{Binding Alive}" 
                                                            LineBreakMode="NoWrap"
-                                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                                           FontSize="13" x:Name="Alive" 
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="Alive" 
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                             </StackLayout>
                                             <StackLayout HorizontalOptions="CenterAndExpand" 
                                                          VerticalOptions="Center">
-                                                <Button Text="Attack" />
+                                                <Button Text="Attack" 
+                                                        Clicked="AttackButton_Clicked"/>
                                             </StackLayout>
                                         </StackLayout>
                                     </ViewCell>

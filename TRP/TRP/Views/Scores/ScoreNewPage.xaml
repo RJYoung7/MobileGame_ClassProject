@@ -13,37 +13,38 @@
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
 
-                <Label Text="Score Create Page" FontSize="Small" />
+                <Label Text="Score Create Page" Style="{StaticResource TitleLabel}"/>
 
-                <Label Text="Name" FontSize="Medium" />
-                <Entry Text="{Binding Data.Name}" FontSize="Small" />
+                <Label Text="Name" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.Name}"/>
 
-                <Label Text="Score:" FontSize="Medium" />
-                <Entry Text="{Binding Data.ScoreTotal}" FontSize="Small"/>
+                <Label Text="Score:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.ScoreTotal}"/>
 
-                <Label Text="Game Date:" FontSize="Medium" />
-                <Entry Text="{Binding Data.GameDate}" FontSize="Small"/>
+                <Label Text="Game Date:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.GameDate}"/>
 
-                <Label Text="AutoBattle:" FontSize="Medium" />
-                <Entry Text="{Binding Data.AutoBattle}" FontSize="Small"/>
+                <Label Text="AutoBattle:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.AutoBattle}" />
 
-                <Label Text="Number of Turns:" FontSize="Medium" />
-                <Entry Text="{Binding Data.TurnCount}" FontSize="Small"/>
+                <Label Text="Number of Turns:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.TurnCount}" />
 
-                <Label Text="Number of Monsters Slain:" FontSize="Medium" />
-                <Entry Text="{Binding Data.MonsterSlainNumber}" FontSize="Small"/>
+                <Label Text="Number of Monsters Slain:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.MonsterSlainNumber}" />
 
-                <Label Text="Total Experience Gained:" FontSize="Medium" />
-                <Entry Text="{Binding Data.ExperienceGainedTotal}" FontSize="Small"/>
+                <Label Text="Total Experience Gained:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.ExperienceGainedTotal}" />
 
-                <Label Text="Characters at Death:" FontSize="Medium" />
-                <Entry Text="{Binding Data.CharacterAtDeathList}" FontSize="Small"/>
+                <Label Text="Characters at Death:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.CharacterAtDeathList}" />
 
-                <Label Text="Monsters Killed:" FontSize="Medium" />
-                <Entry Text="{Binding Data.MonstersKilledList}" FontSize="Small"/>
+                <Label Text="Monsters Killed:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.MonstersKilledList}" />
 
-                <Label Text="Items Dropped:" FontSize="Medium" />
-                <Entry Text="{Binding Data.ItemsDroppedList}" FontSize="Small"/>
+                <Label Text="Items Dropped:" Style="{StaticResource MediumLabel}"/>
+                <Entry Text="{Binding Data.ItemsDroppedList}" />
+
 
             </StackLayout>
         </ScrollView>
