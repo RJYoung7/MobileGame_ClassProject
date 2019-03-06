@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TRP.Views.Battle.ItemPickupPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="Dropped Items"
-                   FontSize="Large" FontAttributes="Bold"/>
+        <StackLayout Padding="10">
+            <Label HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand" 
+                   Text="Dropped Items"
+                   Style="{StaticResource TitleLabel}"
+                   FontSize="50"/>
             <ListView x:Name="ItemsListView" 
                       ItemsSource="{Binding Dataset}"
                       VerticalOptions="FillAndExpand"
@@ -34,26 +37,22 @@
                                     <StackLayout Orientation="Vertical" Spacing="0">
                                         <Label Text="{Binding Name}" 
                                                LineBreakMode="NoWrap" 
-                                               Style="{DynamicResource ListItemTextStyle}" 
-                                               FontSize="16" />
+                                               Style="{StaticResource TitleLabel}" />
                                         
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                                             <Label Text="{Binding Attribute}" 
                                                    LineBreakMode="NoWrap" 
-                                                   Style="{DynamicResource ListItemTextStyle}" 
-                                                   FontSize="16" />
+                                                   Style="{StaticResource MediumLabel}" />
                                             
                                             <Label Text="{Binding Value}" 
                                                    LineBreakMode="NoWrap" 
-                                                   Style="{DynamicResource ListItemTextStyle}" 
-                                                   FontSize="16"/>
+                                                   Style="{StaticResource MediumLabel}"/>
                                             
                                         </StackLayout>
                                         
                                         <Label Text="{Binding Description}" 
                                                LineBreakMode="NoWrap"
-                                               Style="{DynamicResource ListItemDetailTextStyle}"
-                                               FontSize="13" />
+                                               Style="{StaticResource SmallLabel}" />
                                         
                                     </StackLayout>
                                     

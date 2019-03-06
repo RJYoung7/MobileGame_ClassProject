@@ -7,14 +7,21 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using TRP.ViewModels;
+
 namespace TRP.Views.Battle
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ItemPickupPage : ContentPage
 	{
-		public ItemPickupPage ()
+
+        private ItemsViewModel _viewModel; // View model for this page
+
+        public ItemPickupPage ()
 		{
 			InitializeComponent ();
-		}
+
+            BindingContext = _viewModel = ItemsViewModel.Instance;
+        }
 	}
 }
