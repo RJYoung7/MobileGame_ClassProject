@@ -9,7 +9,7 @@
                              VerticalOptions="Start"
                              Orientation="Vertical">
 
-                    <Label Text="GAME OVER" FontSize="50" FontAttributes="Italic" />
+                    <Label Text="GAME OVER" FontSize="50" Style="{StaticResource TitleLabel}"/>
                     <Image Source="https://i.pinimg.com/originals/8b/ff/a6/8bffa65b762f772ec803c3778b8879af.jpg"
                            WidthRequest="200"
                            HeightRequest="200" 
@@ -18,11 +18,11 @@
                            Aspect="AspectFill"/>
 
                     <!-- Dummy text for now but will bind to passed data later -->
-                    <Label Text ="All Penguins Are Dead" FontSize ="20" FontAttributes="Bold"/>
-                    <Label Text ="Battle: 2456" FontSize ="15"/>
-                    <Label Text ="Rounds: 602" FontSize ="15"/>
-                    <Label Text ="Monsters killed: 3068" FontSize ="15"/>
-                    <Label Text ="Final score: 135485" FontSize ="15"/>
+                    <Label Text ="All Penguins Are Dead" FontSize ="20" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label Text ="Battle: 2456" FontSize ="15" HorizontalOptions="Center"/>
+                    <Label Text ="Rounds: 602" FontSize ="15" HorizontalOptions="Center"/>
+                    <Label Text ="Monsters killed: 3068" FontSize ="15" HorizontalOptions="Center"/>
+                    <Label Text ="Final score: 135485" FontSize ="15" HorizontalOptions="Center"/>
                 </StackLayout>
 
                 <Button Text="View High Scores" FontSize="Default"

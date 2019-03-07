@@ -13,7 +13,7 @@
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
 
-                <Label Text="Score Create Page" Style="{StaticResource TitleLabel}"/>
+                <Label Text="Score Create Page" Style="{StaticResource TitleLabel}" FontSize="50"/>
 
                 <Label Text="Name" Style="{StaticResource MediumLabel}"/>
                 <Entry Text="{Binding Data.Name}"/>
