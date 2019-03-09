@@ -70,6 +70,15 @@ namespace TRP.ViewModels
             });
 
             //Messages for adding a character to party, removing a character from party
+            MessagingCenter.Subscribe<CharactersSelectPage, Character>(this, "AddSelectedCharacter", async (obj, data) =>
+            {
+                SelectedListAdd(data);
+            });
+
+            MessagingCenter.Subscribe<CharactersSelectPage, Character>(this, "RemoveSelectedCharacter", async (obj, data) =>
+            {
+                SelectedListRemove(data);
+            });
 
             //Messages to start and end battle
 
