@@ -111,7 +111,7 @@
                                                    Aspect="AspectFill"/>
 
                                             <!-- Labels for Monster (name, desc, etc.) -->
-                                            <StackLayout Spacing="0">
+                                            <StackLayout Spacing="0" Padding="2">
                                                 <StackLayout Orientation="Horizontal">
                                                     <Label Text="{Binding Name}" 
                                                            LineBreakMode="NoWrap" 

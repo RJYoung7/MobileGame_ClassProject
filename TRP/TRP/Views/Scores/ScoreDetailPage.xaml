@@ -11,7 +11,7 @@
     </ContentPage.ToolbarItems>
     <ScrollView Padding="10">
         <StackLayout VerticalOptions="Start">
-            <Label Text="Score Detail Page" Style="{StaticResource TitleLabel}" FontSize="50" />
+            <Label Text="Score Detail Page" Style="{StaticResource TitleLabel}" FontSize="50" HorizontalTextAlignment="Center"/>
             
             <!-- Score Details -->
             <Grid>

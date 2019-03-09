@@ -53,7 +53,7 @@
                                     </StackLayout>
                                     <Label Text="{Binding Description}" 
                                            LineBreakMode="NoWrap"
-                                            Style="{StaticResource SmallLabel}" />
+                                           Style="{StaticResource SmallLabel}" />
                                 </StackLayout>
                                 </StackLayout>
                             </StackLayout>

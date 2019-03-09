@@ -21,18 +21,22 @@
 
             <StackLayout HorizontalOptions="CenterAndExpand"
                          VerticalOptions="CenterAndExpand"
-                         Orientation="Vertical">
+                         Orientation="Vertical"
+                         Padding="10">
+
+
+                <Label FontSize="50"
+                       Text="The Righteous Penguins"
+                       VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand" 
+                       HorizontalTextAlignment="Center"
+                       FontFamily="{StaticResource Title}"/>
+
 
                 <Image Source="Baby.png"
                        VerticalOptions="Center"
                        HeightRequest="150"
                        HorizontalOptions="Fill"/>
-
-                <Label FontSize="Large"
-                       Text="The Righteous Penguins"
-                       VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" 
-                       FontFamily="{StaticResource Title}"/>
 
 
                 <StackLayout x:Name="DateRoot"
@@ -44,7 +48,8 @@
 
             <StackLayout VerticalOptions="StartAndExpand"
                          HorizontalOptions="CenterAndExpand"
-                         Orientation="Vertical">
+                         Orientation="Vertical"
+                         Padding="10">
 
                 <!--Database Settings-->
                 <StackLayout>

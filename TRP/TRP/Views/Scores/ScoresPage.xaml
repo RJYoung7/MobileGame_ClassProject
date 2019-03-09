@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
 
-            <Label Text="Scores List Page" Style="{StaticResource TitleLabel}" FontSize="50" />
+            <Label Text="Scores List Page" Style="{StaticResource TitleLabel}" FontSize="50" HorizontalTextAlignment="Center"/>
 
             <!-- Listview of scores -->
             <ListView x:Name="ScoreListView" 
