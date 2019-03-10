@@ -15,6 +15,8 @@ namespace TRP.GameEngine
         // The status of the actual battle, running or not (over)
         private bool isBattleRunning = false;
 
+        public RoundEnum RoundStateEnum = RoundEnum.Unknown;
+
         // Constructor calls Init
         public BattleEngine()
         {
@@ -151,6 +153,22 @@ namespace TRP.GameEngine
         public bool AutoBattle()
         {
             return true;
+        }
+
+        public string GetResultsOutput()
+        {
+
+            string myResult = "" +
+                    " Battle Ended" + BattleScore.ScoreTotal +
+                    " Total Score :" + BattleScore.ExperienceGainedTotal +
+                    " Total Experience :" + BattleScore.ExperienceGainedTotal +
+                    " Rounds :" + BattleScore.RoundCount +
+                    " Turns :" + BattleScore.TurnCount +
+                    " Monster Kills :" + BattleScore.MonstersKilledList;
+
+            Debug.WriteLine(myResult);
+
+            return myResult;
         }
 
     }

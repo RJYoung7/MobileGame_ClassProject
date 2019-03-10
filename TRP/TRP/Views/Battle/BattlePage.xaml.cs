@@ -54,9 +54,56 @@ namespace TRP.Views.Battle
 
         private async void AttackButton_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert(null, "Attacked", null, "Next");
+            _viewModel.RoundNextTurn();
+            //MessagingCenter.Send(this, "RoundNextTurn");
 
+            // Hold the current state
+            var CurrentRoundState = _viewModel.BattleEngine.RoundStateEnum;
+
+            // If the round is over start a new one...
+            if (CurrentRoundState == RoundEnum.NewRound)
+            {
+                _viewModel.NewRound();
+                // MessagingCenter.Send(this, "NewRound");
+
+                Debug.WriteLine("New Round :" + _viewModel.BattleEngine.BattleScore.RoundCount);
+
+               // ShowModalPageMonsterList();
+            }
+
+            // Check for Game Over
+            if (CurrentRoundState == RoundEnum.GameOver)
+            {
+                _viewModel.EndBattle();
+                //MessagingCenter.Send(this, "EndBattle");
+                Debug.WriteLine("End Battle");
+
+                // Output Formatted Results 
+                var myResult = _viewModel.BattleEngine.GetResultsOutput();
+                Debug.Write(myResult);
+
+                // Let the user know the game is over
+                //ClearMessages();    // Clear message
+                AppendMessage("Game Over\n"); // Show Game Over
+
+                // Clear the players from the center of the board
+                //DrawGameBoardClear();
+
+                //// Change to the Game Over Button
+                //GameNextButton.IsVisible = false;
+                //GameOverButton.IsVisible = true;
+
+                return;
+            }
+
+            // Output the Game Board
+            //DrawGameBoardAttackerDefender();
+
+            // Output The Message that happened.
+            gameMessage();
         }
+
+    
 
         public void ClearMessages() 
         {
