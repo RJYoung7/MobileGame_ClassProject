@@ -15,7 +15,7 @@ namespace TRP.GameEngine
         // The status of the actual battle, running or not (over)
         private bool isBattleRunning = false;
 
-        public RoundEnum RoundStateEnum = RoundEnum.Unknown;
+        //public RoundEnum RoundStateEnum = RoundEnum.Unknown;
 
         // Constructor calls Init
         public BattleEngine()

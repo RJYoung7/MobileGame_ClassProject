@@ -217,6 +217,7 @@ namespace TRP.GameEngine
         // RoundNextTurn
         public RoundEnum RoundNextTurn()
         {
+            Debug.WriteLine("From Round Engine: " + RoundStateEnum);
             // No charaacters, game is over...
             if(CharacterList.Count < 1)
             {

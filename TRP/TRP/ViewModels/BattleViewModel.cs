@@ -112,6 +112,11 @@ namespace TRP.ViewModels
             Instance.BattleEngine.EndBattle();
         }
 
+        public RoundEnum currentRoundEnum()
+        {
+            return Instance.BattleEngine.RoundStateEnum;
+        }
+
         // Calls engine to start round 
         public void StartRound()
         {
