@@ -16,6 +16,7 @@ namespace TRP.Views.Battle
 	{
         private CharactersViewModel _viewModel; // View model for this page
 
+
         public IList<Character> party = new List<Character>();  // List to hold party of characters
 
         // Constructor: creates new instance of this page, which initializes the xaml 

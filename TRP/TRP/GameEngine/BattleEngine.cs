@@ -27,6 +27,7 @@ namespace TRP.GameEngine
             BattleScore = new Score();
             CharacterList = new List<Character>();
             ItemPool = new List<Item>();
+            BattleMessage = new BattleMessages();
         }
 
         // Determine if Auto Battle is On or Off

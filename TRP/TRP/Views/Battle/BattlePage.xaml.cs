@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using TRP.ViewModels;
 using TRP.Models;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace TRP.Views.Battle
 {
@@ -17,13 +18,24 @@ namespace TRP.Views.Battle
 	{
         private BattleViewModel _viewModel;
 
+        CharactersSelectPage _myCharactersSelectPage;
+
+        GameOverPage _myGameOverPage;
+
+        HtmlWebViewSource htmlSource = new HtmlWebViewSource();
+        
+
         // Constructor: initialize battle page 
         public BattlePage (BattleViewModel viewmodel)
 		{
 			InitializeComponent ();
             BindingContext = _viewModel = BattleViewModel.Instance;
 
+            _viewModel.BattleEngine.StartBattle(false);
+            Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
+
             _viewModel.BattleEngine.StartRound();
+            Debug.WriteLine("Round Start Monsters: " + _viewModel.BattleEngine.MonsterList.Count);
 
             // Add monsters if there weren't any, and only if there are penguins in party
             if (BattleViewModel.Instance.SelectedMonsters.Count == 0 && BattleViewModel.Instance.SelectedCharacters.Count >= 1)
@@ -43,6 +55,30 @@ namespace TRP.Views.Battle
         private async void AttackButton_Clicked(object sender, EventArgs e)
         {
             await DisplayAlert(null, "Attacked", null, "Next");
+
+        }
+
+        public void ClearMessages() 
+        {
+            MessageText.Text = "";
+            htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLBlankMessage();
+            HtmlBox.Source = htmlSource;
+        }
+
+        public void AppendMessage(string message)
+        {
+            MessageText.Text = message + "\n" + MessageText.Text;
+        }
+
+        public void gameMessage()
+        {
+            var message = _viewModel.BattleEngine.TurnMessage;
+            Debug.WriteLine("Message: " + message);
+
+            AppendMessage(message);
+
+            htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
+            HtmlBox.Source = HtmlBox.Source = htmlSource;
 
         }
 
