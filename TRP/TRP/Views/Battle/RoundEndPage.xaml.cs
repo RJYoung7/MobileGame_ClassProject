@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using TRP.Models;
 using TRP.ViewModels;
 
 namespace TRP.Views.Battle
@@ -31,6 +32,18 @@ namespace TRP.Views.Battle
         private async void NextRoundButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new BattlePage(BattleViewModel.Instance));
+        }
+
+        private async void OnCharacterSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var data = args.SelectedItem as Character;
+            if (data == null)
+                return;
+
+            await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(data)));
+
+            // Manually deselect item.
+            CharactersListView.SelectedItem = null;
         }
 
     }
