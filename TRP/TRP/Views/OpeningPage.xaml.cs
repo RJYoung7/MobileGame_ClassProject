@@ -29,7 +29,7 @@ namespace TRP.Views
             //var result = myBattleEngine.AddCharactersToBattle();
 
             // Start AutoBattle
-            myBattleEngine.RunAutoBattle();
+            myBattleEngine.RunAutoBattle(); 
 
             // Display result of AutoBattle
             await DisplayAlert(null, myBattleEngine.GetResultOutput(), null, "Next");

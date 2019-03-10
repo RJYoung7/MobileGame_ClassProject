@@ -55,18 +55,19 @@ namespace TRP.Views.Battle
         private async void AttackButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.RoundNextTurn();
-            //MessagingCenter.Send(this, "RoundNextTurn");
+            MessagingCenter.Send(this, "RoundNextTurn");
 
             // Hold the current state
             var CurrentRoundState = _viewModel.BattleEngine.RoundStateEnum;
+            Debug.WriteLine("Round: " + CurrentRoundState);
 
             // If the round is over start a new one...
             if (CurrentRoundState == RoundEnum.NewRound)
             {
                 _viewModel.NewRound();
-                // MessagingCenter.Send(this, "NewRound");
+                MessagingCenter.Send(this, "NewRound");
 
-                Debug.WriteLine("New Round :" + _viewModel.BattleEngine.BattleScore.RoundCount);
+                Debug.WriteLine("New Round: " + _viewModel.BattleEngine.BattleScore.RoundCount);
 
                // ShowModalPageMonsterList();
             }
@@ -75,7 +76,7 @@ namespace TRP.Views.Battle
             if (CurrentRoundState == RoundEnum.GameOver)
             {
                 _viewModel.EndBattle();
-                //MessagingCenter.Send(this, "EndBattle");
+                MessagingCenter.Send(this, "EndBattle");
                 Debug.WriteLine("End Battle");
 
                 // Output Formatted Results 
@@ -83,7 +84,7 @@ namespace TRP.Views.Battle
                 Debug.Write(myResult);
 
                 // Let the user know the game is over
-                //ClearMessages();    // Clear message
+                ClearMessages();    // Clear message
                 AppendMessage("Game Over\n"); // Show Game Over
 
                 // Clear the players from the center of the board
@@ -98,13 +99,12 @@ namespace TRP.Views.Battle
 
             // Output the Game Board
             //DrawGameBoardAttackerDefender();
+            _viewModel.LoadDataCommand.Execute(null);
 
             // Output The Message that happened.
             gameMessage();
         }
-
-    
-
+        
         public void ClearMessages() 
         {
             MessageText.Text = "";

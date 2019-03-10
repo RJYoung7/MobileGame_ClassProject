@@ -17,6 +17,8 @@ namespace TRP.GameEngine
         // Player currently engaged
         public PlayerInfo PlayerCurrent;
 
+        public RoundEnum RoundStateEnum = RoundEnum.Unknown;
+
         public RoundEngine()
         {
             ClearLists();
@@ -218,14 +220,16 @@ namespace TRP.GameEngine
             // No charaacters, game is over...
             if(CharacterList.Count < 1)
             {
-                return RoundEnum.GameOver;
+                RoundStateEnum = RoundEnum.GameOver;
+                return RoundStateEnum;
             }
 
             // Check if round is over
             if(MonsterList.Count < 1)
             {
                 // If over, New Round
-                return RoundEnum.NewRound;
+                RoundStateEnum = RoundEnum.NewRound;
+                return RoundStateEnum;
             }
 
             // Decide Who gets next turn
@@ -252,7 +256,8 @@ namespace TRP.GameEngine
                 TakeTurn(myPlayer);
             }
 
-            return RoundEnum.NextTurn;
+            RoundStateEnum = RoundEnum.NextTurn;
+            return RoundStateEnum;
             // Game Over
             //return RoundEnum.GameOver;
         }

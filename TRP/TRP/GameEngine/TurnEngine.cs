@@ -129,9 +129,9 @@ namespace TRP.GameEngine
             BattleMessage.TargetName = Target.Name;
             BattleMessage.AttackerName = Attacker.Name;
 
-            var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
+            var HitStatus = RollToHitTarget(AttackScore, DefenseScore);
 
-            if (BattleMessage.HitStatus == HitStatusEnum.Miss)
+            if (HitStatus == HitStatusEnum.Miss)
             {
                 BattleMessage.TurnMessage = Attacker.Name + " misses " + Target.Name;
                 Debug.WriteLine(BattleMessage.TurnMessage);
@@ -460,7 +460,7 @@ namespace TRP.GameEngine
                         // Item does not exist, so add it to the datstore
 
                         // TODO:  Need way to not save the Item
-                        myItemsViewModel.Dataset.Add(item);
+                        myItemsViewModel.AddItem_Sync(item);
                         //ItemsViewModel.Instance.InsertUpdateAsync(item).GetAwaiter().GetResult();
                     }
                     else

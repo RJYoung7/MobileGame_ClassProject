@@ -83,8 +83,21 @@ namespace TRP.ViewModels
             //Messages to start and end battle
 
             //Messages to start and end rounds
+            MessagingCenter.Subscribe<BattleEngine, RoundEnum>(this, "NewRound", async (obj, data) =>
+            {
+                BattleEngine.NewRound();
+            });
+
+            MessagingCenter.Subscribe<BattleEngine, RoundEnum>(this, "EndBattle", async (obj, data) =>
+            {
+                BattleEngine.EndBattle();
+            });
 
             //Messages for turns in round 
+            MessagingCenter.Subscribe<BattlePage, RoundEnum>(this, "RoundNextTurn", async (obj, data) =>
+            {
+                BattleEngine.RoundNextTurn();
+            });
         }
 
         // Calls engine to start battle

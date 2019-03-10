@@ -75,6 +75,11 @@ namespace TRP.ViewModels
                 _needsRefresh = true;
 
             });
+
+            MessagingCenter.Subscribe<Views.Battle.BattlePage, Score>(this, "AddData", async (obj, data) =>
+            {
+                await AddAsync(data);
+            });
         }
 
         #region DataOperations
