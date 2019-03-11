@@ -61,6 +61,7 @@ namespace TRP.ViewModels
             // For adding Characters to party
             MessagingCenter.Subscribe<CharactersSelectPage, IList<Character>>(this, "AddData", (obj, data) =>
             {
+                SelectedCharacters.Clear();
                 BattleEngine.CharacterList = data.ToList<Character>();
                 foreach (var c in data) {
                     SelectedCharacters.Add(c);
