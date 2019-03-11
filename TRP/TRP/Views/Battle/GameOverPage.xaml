@@ -17,12 +17,28 @@
                            VerticalOptions="Center"
                            Aspect="AspectFill"/>
 
-                    <!-- Dummy text for now but will bind to passed data later -->
-                    <Label Text ="All Penguins Are Dead" FontSize ="20" FontAttributes="Bold" HorizontalOptions="Center"/>
-                    <Label Text ="Battle: 2456" FontSize ="15" HorizontalOptions="Center"/>
-                    <Label Text ="Rounds: 602" FontSize ="15" HorizontalOptions="Center"/>
-                    <Label Text ="Monsters killed: 3068" FontSize ="15" HorizontalOptions="Center"/>
-                    <Label Text ="Final score: 135485" FontSize ="15" HorizontalOptions="Center"/>
+                    <Label Text ="All Penguins Are Dead" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                    <!-- Battle details -->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text ="Battle: " FontSize="15" HorizontalOptions="Center"/>
+                        <Label Text ="" x:Name="battleNum" FontSize="15" HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text ="Rounds: " FontSize="15" HorizontalOptions="Center"/>
+                        <Label Text ="{Binding}" x:Name="numRounds" FontSize="15" HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text ="Monsters killed: " FontSize="15" HorizontalOptions="Center"/>
+                        <Label Text ="" x:Name="numMonstersKilled" FontSize="15" HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text ="Final score: " FontSize="15" HorizontalOptions="Center"/>
+                        <Label Text ="" x:Name="finalScore" FontSize="15" HorizontalOptions="Center"/>
+                    </StackLayout>
                 </StackLayout>
 
                 <Button Text="View High Scores" FontSize="Default"

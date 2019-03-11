@@ -14,14 +14,18 @@ namespace TRP.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class GameOverPage : ContentPage
 	{
-        private CharactersViewModel _viewModel; // View model for this page
+        private BattleViewModel _viewModel; // View model for this page
 
         // Constructor: create page and load view model
         public GameOverPage ()
 		{
 			InitializeComponent ();
 
-            BindingContext = _viewModel = CharactersViewModel.Instance;
+            BindingContext = _viewModel = BattleViewModel.Instance;
+            battleNum.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.BattleNumber);
+            numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
+            numMonstersKilled.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.MonsterSlainNumber);
+            finalScore.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.ScoreTotal);
         }
 
         // When this button is clicked, add new Scores page onto stack
