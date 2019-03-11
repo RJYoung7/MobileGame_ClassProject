@@ -5,12 +5,24 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="10" Padding="10" >
-            <Label Text="Round 1" 
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Center"
-                   Style="{StaticResource TitleLabel}"/>
-            <StackLayout Spacing="0">
+
+                <!-- Round counter -->
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Round " 
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource TitleLabel}"/>
+                    <Label Text="1"
+                           x:Name="numRounds"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource TitleLabel}"/>
+                </StackLayout>
+
+
+                <StackLayout Spacing="0">
                 <Grid RowSpacing="3"
                       ColumnSpacing="3"
                       VerticalOptions="Start">
@@ -147,7 +159,7 @@
                         </ListView>
                     </StackLayout>
 
-                    <!--Battle Messages-->
+                        <!--Battle Messages-->
                     <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ScrollView>
                             <StackLayout>
@@ -171,6 +183,15 @@
                         </ScrollView>
                     </StackLayout>
                 </Grid>
+
+                    <!-- Finish turn button -->
+                    <StackLayout>
+                        <Button Text="Next Turn"
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand"
+                               Style="{StaticResource LargeLabel}"
+                               Clicked="NextTurnButton_Clicked"/>
+                    </StackLayout>
 
                 <!--<StackLayout Spacing="0">
                 <Grid RowSpacing="3"

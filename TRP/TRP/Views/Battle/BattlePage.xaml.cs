@@ -50,12 +50,12 @@ namespace TRP.Views.Battle
             //var char1 =_viewModel.BattleEngine.CharacterList.ElementAt(0);
             //char1Name.Text = char1.Name;
 
+            numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
         }
 
-        private async void AttackButton_Clicked(object sender, EventArgs e)
+        private async void NextTurnButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.RoundNextTurn();
-          // MessagingCenter.Send(this, "RoundNextTurn");
 
             // Hold the current state
             var CurrentRoundState = _viewModel.BattleEngine.RoundStateEnum;
@@ -65,18 +65,16 @@ namespace TRP.Views.Battle
             if (CurrentRoundState == RoundEnum.NewRound)
             {
                 _viewModel.NewRound();
-               // MessagingCenter.Send(this, "NewRound");
+                // MessagingCenter.Send(this, "NewRound");
                 await Navigation.PushAsync(new RoundEndPage());
                 Debug.WriteLine("New Round: " + _viewModel.BattleEngine.BattleScore.RoundCount);
-
-               // ShowModalPageMonsterList();
             }
 
             // Check for Game Over
             if (CurrentRoundState == RoundEnum.GameOver)
             {
-                _viewModel.EndBattle();
-                //MessagingCenter.Send(this, "EndBattle");
+                //_viewModel.EndBattle();
+                MessagingCenter.Send(this, "EndBattle");
                 Debug.WriteLine("End Battle");
 
                 // Output Formatted Results 
@@ -87,22 +85,19 @@ namespace TRP.Views.Battle
                 ClearMessages();    // Clear message
                 AppendMessage("Game Over\n"); // Show Game Over
                 await Navigation.PushAsync(new GameOverPage());
-                // Clear the players from the center of the board
-                //DrawGameBoardClear();
-
-                //// Change to the Game Over Button
-                //GameNextButton.IsVisible = false;
-                //GameOverButton.IsVisible = true;
-
                 return;
             }
 
             // Output the Game Board
-            //DrawGameBoardAttackerDefender();
             _viewModel.LoadDataCommand.Execute(null);
 
             // Output The Message that happened.
             gameMessage();
+        }
+
+        private async void AttackButton_Clicked(object sender, EventArgs e)
+        {
+            //should only be pressed during character's turn 
         }
         
         public void ClearMessages() 
@@ -153,6 +148,7 @@ namespace TRP.Views.Battle
             }
 
             BindingContext = _viewModel;
+            numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
         }
     }
 }
