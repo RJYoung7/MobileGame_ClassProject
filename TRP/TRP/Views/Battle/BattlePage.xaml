@@ -149,8 +149,8 @@
                                             </StackLayout>
                                             <StackLayout HorizontalOptions="CenterAndExpand" 
                                                          VerticalOptions="Center">
-                                                <Button Text="Attack" 
-                                                        Clicked="AttackButton_Clicked"/>
+                                                <!--<Button Text="Attack" 
+                                                        Clicked="AttackButton_Clicked"/>-->
                                             </StackLayout>
                                         </StackLayout>
                                     </ViewCell>
@@ -185,11 +185,11 @@
                 </Grid>
 
                     <!-- Finish turn button -->
-                    <StackLayout>
+                    <StackLayout Padding="10">
                         <Button Text="Next Turn"
                                VerticalOptions="CenterAndExpand" 
                                HorizontalOptions="CenterAndExpand"
-                               Style="{StaticResource LargeLabel}"
+                               Style="{StaticResource LargeButton}"
                                Clicked="NextTurnButton_Clicked"/>
                     </StackLayout>
 
