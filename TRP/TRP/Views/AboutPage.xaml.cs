@@ -126,6 +126,7 @@ namespace TRP.Views
         private void ForcedHitValue_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             ForcedHitValue.Text = String.Format("{0}", e.NewValue);
+            GameGlobals.SetForcedHitValue(Convert.ToInt16(ForcedHitValue.Text));
         }
 
         // Turn on Critical Misses

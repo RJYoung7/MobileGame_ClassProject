@@ -55,6 +55,12 @@ namespace TRP.Models
             _ForcedRandomValue = value;
         }
 
+        // Set the forced hit value
+        public static void SetForcedHitValue(int hit)
+        {
+            ForceToHitValue = hit;
+        }
+
         // Flip the Random State (false to true etc...)
         // Call this after setting, to restore...
         public static void ToggleRandomState()
