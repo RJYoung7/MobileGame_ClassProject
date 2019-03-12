@@ -16,7 +16,6 @@ namespace TRP.Views.Battle
 	{
         private BattleViewModel _viewModel; // View model for this page
 
-
         public IList<Character> party = new List<Character>();  // List to hold party of characters
 
         // Constructor: creates new instance of this page, which initializes the xaml 
@@ -97,6 +96,7 @@ namespace TRP.Views.Battle
             await Navigation.PopAsync();
         }
 
+        // Creates copy of selected characters 
         private IList<Character> copyParty(IList<Character> party)
         {
             IList<Character> copy = new List<Character>();
