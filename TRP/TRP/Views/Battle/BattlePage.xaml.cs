@@ -34,7 +34,7 @@ namespace TRP.Views.Battle
             _viewModel.BattleEngine.StartBattle(false);
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
 
-            _viewModel.BattleEngine.StartRound();
+            _viewModel.BattleEngine.NewRound();
             Debug.WriteLine("Round Start Monsters: " + _viewModel.BattleEngine.MonsterList.Count);
 
             // Add monsters if there weren't any, and only if there are penguins in party
@@ -64,9 +64,9 @@ namespace TRP.Views.Battle
             // If the round is over start a new one...
             if (CurrentRoundState == RoundEnum.NewRound)
             {
-                _viewModel.NewRound();
-                // MessagingCenter.Send(this, "NewRound");
-                await Navigation.PushAsync(new RoundEndPage());
+                //_viewModel.NewRound();
+                MessagingCenter.Send(this, "NewRound");
+                await Navigation.PushAsync(new RoundEndPage(_viewModel));
                 Debug.WriteLine("New Round: " + _viewModel.BattleEngine.BattleScore.RoundCount);
             }
 
@@ -91,6 +91,8 @@ namespace TRP.Views.Battle
             // Output the Game Board
             _viewModel.LoadDataCommand.Execute(null);
 
+            //InitializeComponent();
+            numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
             // Output The Message that happened.
             gameMessage();
         }

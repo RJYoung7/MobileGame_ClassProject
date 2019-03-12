@@ -7,13 +7,14 @@
         <StackLayout Spacing="10" Padding="10" >
 
                 <!-- Round counter -->
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
                     <Label Text="Round " 
                            HorizontalTextAlignment="Center"
                            VerticalOptions="Start"
                            HorizontalOptions="Center"
                            Style="{StaticResource TitleLabel}"/>
-                    <Label Text="1"
+                    <Label Text=""
                            x:Name="numRounds"
                            HorizontalTextAlignment="Center"
                            VerticalOptions="Start"

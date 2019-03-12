@@ -97,6 +97,7 @@ namespace TRP.ViewModels
             //Messages for turns in round 
             MessagingCenter.Subscribe<BattlePage, RoundEnum>(this, "RoundNextTurn", async (obj, data) =>
             {
+                ExecuteLoadDataCommand().GetAwaiter().GetResult();
                 BattleEngine.RoundNextTurn();
             });
         }
@@ -222,6 +223,16 @@ namespace TRP.ViewModels
                 {
                     AvailableCharacters.Add(data);
                 }
+
+                SelectedMonsters.Clear();
+                var selectedMon = BattleEngine.MonsterList;
+                foreach (var mon in selectedMon)
+                {
+                    SelectedMonsters.Add(mon);
+                }
+                
+                
+
             }
 
             catch (Exception ex)

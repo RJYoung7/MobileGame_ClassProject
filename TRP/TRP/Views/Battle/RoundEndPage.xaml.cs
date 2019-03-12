@@ -17,10 +17,11 @@ namespace TRP.Views.Battle
 	{
         private CharactersViewModel _viewModel; // View model for this page
 
-        public RoundEndPage ()
+        public RoundEndPage(BattleViewModel battleViewModel)
 		{
 			InitializeComponent ();
             BindingContext = _viewModel = CharactersViewModel.Instance;
+            numRoundsText.Text = "Success! Round " + Convert.ToString(battleViewModel.BattleEngine.BattleScore.RoundCount) + " Cleared";
 
         }
 
