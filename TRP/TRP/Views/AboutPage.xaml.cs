@@ -107,6 +107,8 @@ namespace TRP.Views
                 GameGlobals.EnableRandomValues();
 
                 GameGlobals.SetForcedRandomNumbersValue(Convert.ToInt16(ForcedValue.Text));
+                ForcedHitValue.Text = GameGlobals.ForceToHitValue.ToString();
+                forcehit.Value = GameGlobals.ForceToHitValue;
             }
             else
             {

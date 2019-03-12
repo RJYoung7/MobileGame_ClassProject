@@ -278,7 +278,8 @@
                                          Increment="1"
                                          ValueChanged="ForcedHitValue_OnStepperValueChanged"
                                          HorizontalOptions="End"
-                                         VerticalOptions="Center"/>
+                                         VerticalOptions="Center"
+                                         x:Name="forcehit"/>
                             </Grid>
                         </StackLayout>
                     </StackLayout>
