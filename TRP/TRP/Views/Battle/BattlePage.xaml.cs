@@ -1,30 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
+
 using TRP.ViewModels;
 using TRP.Models;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace TRP.Views.Battle
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BattlePage : ContentPage
 	{
-        private BattleViewModel _viewModel;
+        private BattleViewModel _viewModel; // view model for the page 
 
-        CharactersSelectPage _myCharactersSelectPage;
-
-        GameOverPage _myGameOverPage;
-
-        HtmlWebViewSource htmlSource = new HtmlWebViewSource();
+        HtmlWebViewSource htmlSource = new HtmlWebViewSource(); // window for messages
         
-
         // Constructor: initialize battle page 
         public BattlePage (BattleViewModel viewmodel)
 		{
@@ -46,13 +36,12 @@ namespace TRP.Views.Battle
                     
                 }
             }
-            //BattleViewModel.Instance.SelectedMonsters.ElementAt(0).Alive;
-            //var char1 =_viewModel.BattleEngine.CharacterList.ElementAt(0);
-            //char1Name.Text = char1.Name;
 
+            // round number at top of page
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
         }
 
+        // When next turn is clicked, start next turn, or end game by checking game state
         private async void NextTurnButton_Clicked(object sender, EventArgs e)
         {
             _viewModel.RoundNextTurn();
@@ -93,15 +82,18 @@ namespace TRP.Views.Battle
 
             //InitializeComponent();
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
+
             // Output The Message that happened.
             gameMessage();
         }
 
+        // TODO
         private async void AttackButton_Clicked(object sender, EventArgs e)
         {
             //should only be pressed during character's turn 
         }
         
+        // Clears messages in html box 
         public void ClearMessages() 
         {
             MessageText.Text = "";
@@ -109,11 +101,13 @@ namespace TRP.Views.Battle
             HtmlBox.Source = htmlSource;
         }
 
+        // Adds message to be shown in html box 
         public void AppendMessage(string message)
         {
             MessageText.Text = message + "\n" + MessageText.Text;
         }
 
+        // Writes message in html box 
         public void gameMessage()
         {
             var message = _viewModel.BattleEngine.TurnMessage;
