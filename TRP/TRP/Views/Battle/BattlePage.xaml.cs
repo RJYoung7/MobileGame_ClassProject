@@ -20,6 +20,7 @@ namespace TRP.Views.Battle
 		{
 			InitializeComponent ();
             BindingContext = _viewModel = BattleViewModel.Instance;
+            _viewModel.ClearCharacterLists();
 
             _viewModel.BattleEngine.StartBattle(false);
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
@@ -133,6 +134,7 @@ namespace TRP.Views.Battle
             }
 
             InitializeComponent();
+            _viewModel.ClearCharacterLists();
 
             if (_viewModel.BattleEngine.CharacterList.Count == 0 || _viewModel.BattleEngine.MonsterList.Count == 0)
             {

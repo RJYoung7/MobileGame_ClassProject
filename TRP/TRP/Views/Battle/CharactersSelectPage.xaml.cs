@@ -14,7 +14,7 @@ namespace TRP.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CharactersSelectPage : ContentPage
 	{
-        private CharactersViewModel _viewModel; // View model for this page
+        private BattleViewModel _viewModel; // View model for this page
 
 
         public IList<Character> party = new List<Character>();  // List to hold party of characters
@@ -23,8 +23,8 @@ namespace TRP.Views.Battle
         public CharactersSelectPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = CharactersViewModel.Instance;
-            
+            BindingContext = _viewModel = BattleViewModel.Instance;
+            BattleViewModel.Instance.ClearCharacterLists();
         }
 
         // Returns whether party is full 
@@ -68,9 +68,10 @@ namespace TRP.Views.Battle
                 ToolbarItems.RemoveAt(0);
             }
 
+            _viewModel.ClearCharacterLists();
             InitializeComponent();
-
-            if (_viewModel.Dataset.Count == 0)
+            
+            if (_viewModel.AvailableCharacters.Count == 0)
             {
                 _viewModel.LoadDataCommand.Execute(null);
             }

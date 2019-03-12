@@ -181,6 +181,7 @@ namespace TRP.ViewModels
         {
             AvailableCharacters.Clear();
             SelectedCharacters.Clear();
+            SelectedMonsters.Clear();
             ExecuteLoadDataCommand();
         }
 
