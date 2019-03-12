@@ -230,8 +230,13 @@ namespace TRP.ViewModels
                 {
                     SelectedMonsters.Add(mon);
                 }
-                
-                
+
+                SelectedCharacters.Clear();
+                var selectedChar = BattleEngine.CharacterList;
+                foreach (var ch in selectedChar)
+                {
+                    SelectedCharacters.Add(ch);
+                }
 
             }
 
