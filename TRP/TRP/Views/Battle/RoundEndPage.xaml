@@ -36,15 +36,19 @@
                                        Aspect="AspectFill"/>
 
                                     <!-- Labels for Character (name, desc, etc.) -->
-                                    <StackLayout>
-                                        <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Vertical">
                                             <Label Text="{Binding Name}" 
-                                               LineBreakMode="NoWrap" 
-                                               Style="{StaticResource TitleLabel}" />
-                                        </StackLayout>
-                                        <Label Text="{Binding PenguinType}" 
-                                           LineBreakMode="NoWrap"
-                                           Style="{StaticResource SmallLabel}"/>
+                                                Style="{StaticResource TitleLabel}" />
+                                            <Label Text="{Binding PenguinType}" 
+                                                Style="{StaticResource SmallLabel}"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                                <Label Text="Total Experience: " 
+                                                Style="{StaticResource SmallLabel}"/>
+                                                <Label Text="{Binding ExperienceTotal}" 
+                                                Style="{StaticResource SmallLabel}"/>
+                                            </StackLayout>
+                                            
+                                            
                                         
                                     </StackLayout>
                                 </StackLayout>
