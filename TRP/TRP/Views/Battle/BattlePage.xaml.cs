@@ -73,8 +73,9 @@ namespace TRP.Views.Battle
             // Check for Game Over
             if (CurrentRoundState == RoundEnum.GameOver)
             {
-                //_viewModel.EndBattle();
+                _viewModel.EndBattle();
                 MessagingCenter.Send(this, "EndBattle");
+
                 Debug.WriteLine("End Battle");
 
                 // Output Formatted Results 
