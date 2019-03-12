@@ -30,7 +30,9 @@ namespace TRP.Views.Battle
         // Button for next round in game
         private async void NextRoundButton_Clicked(object sender, EventArgs e)
         {
+            _viewModel.NewRound();
             await Navigation.PushAsync(new BattlePage(BattleViewModel.Instance));
+            Navigation.RemovePage(this);
         }
 
         // When character is selected, should go to details of character
