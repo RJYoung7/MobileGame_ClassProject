@@ -49,7 +49,7 @@ namespace TRP.Services
             await AddAsync_Item(new Item("Fire Bow", "Crafted from artic flames",
                 "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png", 
                 4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack, false));
-            await AddAsync_Item(new Item("Snow Ball", "Densely packed snow.", "https://img2.cgtrader.com/items/800899/bf8faed5fc/large/snowball-3d-model-low-poly-max.jpg",
+            await AddAsync_Item(new Item("Snow Ball", "Densely packed snow.", "http://www.stickpng.com/assets/thumbs/5a9687969fc609199d0fefbe.png",
                 0, 0, 5, ItemLocationEnum.Unknown, AttributeEnum.CurrentHealth, true));
 
 
