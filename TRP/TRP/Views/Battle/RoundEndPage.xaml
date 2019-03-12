@@ -16,7 +16,7 @@
             <StackLayout>
             <ScrollView>
                 <ListView x:Name="CharactersListView" 
-                          ItemsSource="{Binding Dataset}"
+                          ItemsSource="{Binding SelectedCharacters}"
                           VerticalOptions="FillAndExpand"
                           HasUnevenRows="true"
                           RefreshCommand="{Binding LoadItemsCommand}"

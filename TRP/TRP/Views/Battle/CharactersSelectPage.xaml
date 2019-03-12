@@ -21,7 +21,7 @@
             
             <!-- List view of the characters-->
             <ListView x:Name="CharactersListView" 
-                      ItemsSource="{Binding Dataset}"
+                      ItemsSource="{Binding AvailableCharacters}"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="true"
                       RefreshCommand="{Binding LoadItemsCommand}"

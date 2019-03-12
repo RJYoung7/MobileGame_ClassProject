@@ -20,22 +20,12 @@ namespace TRP.Views.Battle
 		{
 			InitializeComponent ();
             BindingContext = _viewModel = BattleViewModel.Instance;
+            _viewModel.ClearCharacterLists();
 
             _viewModel.BattleEngine.StartBattle(false);
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
 
-            _viewModel.BattleEngine.NewRound();
             Debug.WriteLine("Round Start Monsters: " + _viewModel.BattleEngine.MonsterList.Count);
-
-            // Add monsters if there weren't any, and only if there are penguins in party
-            if (BattleViewModel.Instance.SelectedMonsters.Count == 0 && BattleViewModel.Instance.SelectedCharacters.Count >= 1)
-            {
-                foreach (var m in _viewModel.BattleEngine.MonsterList)
-                {
-                    BattleViewModel.Instance.SelectedMonsters.Add(m);
-                    
-                }
-            }
 
             // round number at top of page
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
@@ -57,6 +47,7 @@ namespace TRP.Views.Battle
                 MessagingCenter.Send(this, "NewRound");
                 await Navigation.PushAsync(new RoundEndPage(_viewModel));
                 Debug.WriteLine("New Round: " + _viewModel.BattleEngine.BattleScore.RoundCount);
+                Navigation.RemovePage(this);
             }
 
             // Check for Game Over
@@ -74,6 +65,7 @@ namespace TRP.Views.Battle
                 ClearMessages();    // Clear message
                 AppendMessage("Game Over\n"); // Show Game Over
                 await Navigation.PushAsync(new GameOverPage());
+                Navigation.RemovePage(this);
                 return;
             }
 
@@ -110,14 +102,13 @@ namespace TRP.Views.Battle
         // Writes message in html box 
         public void gameMessage()
         {
-            var message = _viewModel.BattleEngine.TurnMessage;
+            var message = _viewModel.BattleEngine.BattleMessage.TurnMessage;
             Debug.WriteLine("Message: " + message);
 
             AppendMessage(message);
 
             htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
             HtmlBox.Source = HtmlBox.Source = htmlSource;
-
         }
 
         // Before the page appears, remove anything that was there prior, and load data to view model
@@ -133,6 +124,7 @@ namespace TRP.Views.Battle
             }
 
             InitializeComponent();
+            _viewModel.ClearCharacterLists();
 
             if (_viewModel.BattleEngine.CharacterList.Count == 0 || _viewModel.BattleEngine.MonsterList.Count == 0)
             {

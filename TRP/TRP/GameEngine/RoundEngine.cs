@@ -16,14 +16,17 @@ namespace TRP.GameEngine
 
         // Player currently engaged
         public PlayerInfo PlayerCurrent;
-
+        
+        // Enum for round status
         public RoundEnum RoundStateEnum = RoundEnum.Unknown;
 
+        // Clears round 
         public RoundEngine()
         {
             ClearLists();
         }
 
+        // Creates new lists
         private void ClearLists()
         {
             ItemPool = new List<Item>();
@@ -138,6 +141,7 @@ namespace TRP.GameEngine
             var myMonsterViewModel = MonstersViewModel.Instance;
             //myMonsterViewModel.ForceDataRefresh();
 
+            // Scale monsters based on current character levels
             if(myMonsterViewModel.Dataset.Count() > 0)
             {
                 // Scale monsters to be within the range of the characters
@@ -167,7 +171,7 @@ namespace TRP.GameEngine
                         MonsterList.Add(monster);
                     }
                
-                } while (MonsterList.Count() < 6);
+                } while (MonsterList.Count() < 1);
 
             }
             else
@@ -214,7 +218,7 @@ namespace TRP.GameEngine
 
         // Rember Who's Turn
 
-        // RoundNextTurn
+        // Starts next turn during round
         public RoundEnum RoundNextTurn()
         {
             Debug.WriteLine("From Round Engine: " + RoundStateEnum);
@@ -236,6 +240,11 @@ namespace TRP.GameEngine
             // Decide Who gets next turn
             // Remember who just went...
             PlayerCurrent = GetNextPlayerInList();
+
+            while (PlayerCurrent.Alive == false)
+            {
+                PlayerCurrent = GetNextPlayerInList();
+            }
 
             // Decide Who to Attack
             //Do the Turn
@@ -286,6 +295,7 @@ namespace TRP.GameEngine
                 }
             }
 
+            // Updates list order with monsters
             foreach (var data in MonsterList)
             {
                 if (data.Alive)
@@ -319,6 +329,7 @@ namespace TRP.GameEngine
             Debug.WriteLine(playerListToString);
         }
 
+        // Updates player to lists
         public PlayerInfo GetNextPlayerInList()
         {
             if (PlayerList.Count == 0)
@@ -351,6 +362,7 @@ namespace TRP.GameEngine
             return PlayerCurrent;
         }
 
+        // Assigns items to characters based on need.
         public void PickupItemsFromPool(Character character)
         {
             // Have the character, walk the items in the pool, and decide if any are better than current one.
@@ -370,6 +382,7 @@ namespace TRP.GameEngine
             GetItemFromPoolIfBetter(character, ItemLocationEnum.Feet);
         }
 
+        // Replaces an item assigned to character if there is a better item avaliable.
         public void GetItemFromPoolIfBetter(Character character, ItemLocationEnum setLocation)
         {
             var myList = ItemPool.Where(a => a.Location == setLocation)

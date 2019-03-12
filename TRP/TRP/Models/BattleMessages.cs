@@ -110,11 +110,14 @@ namespace TRP.Models
                     break;
             }
 
+
+
             var htmlBody = string.Empty;
             htmlBody += string.Format(@"{0}{1}</span>", AttackerStyle, AttackerName);
             htmlBody += string.Format(@"{0}{1}</span>", SwingResult, GetSwingResult());
             htmlBody += string.Format(@"{0}{1}</span>", DefenderStyle, TargetName);
-            htmlBody += string.Format(@"<span>{0}</span>", TurnMessageSpecial);
+            htmlBody += string.Format(@"<br><span>{0}</span>", TurnMessageSpecial);
+            htmlBody += string.Format(@"<br><span>{0}</span>", LevelUpMessage);
 
             myResult = htmlHead + htmlBody + htmlTail;
             return myResult;

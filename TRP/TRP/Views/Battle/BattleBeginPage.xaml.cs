@@ -31,6 +31,7 @@ namespace TRP.Views.Battle
         // When this button is clicked, create Battle page (with no info for now)
         private async void SelectStartButton_Command(object sender, EventArgs e)
         {
+            _viewModel.StartRound();
             await Navigation.PushAsync(new BattlePage(BattleViewModel.Instance));
         }
     }

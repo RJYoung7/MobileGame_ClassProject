@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameEngine\AutoBattleEngineUnitTests.cs" />
+    <Compile Include="GameEngine\BattleEngineUnitTests.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

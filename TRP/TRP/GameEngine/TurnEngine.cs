@@ -166,7 +166,7 @@ namespace TRP.GameEngine
                 AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
             }
 
-            BattleMessage.TurnMessageSpecial = Target.Name + "has remaining health of " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial = Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
@@ -175,7 +175,7 @@ namespace TRP.GameEngine
                 CharacterList.Remove(Target);
 
                 // Mark Status in output
-                BattleMessage.TurnMessageSpecial = " and causes death";
+                BattleMessage.TurnMessageSpecial = " and causes death.\n";
 
                 // Add the monster to the killed list
                 BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
@@ -187,13 +187,13 @@ namespace TRP.GameEngine
                 foreach (var item in myItemList)
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    BattleMessage.TurnMessageSpecial += "\n\tItem: " + item.Name + " dropped";
+                    BattleMessage.TurnMessageSpecial += "\n\tItem: " + item.Name + " dropped.\n";
                 }
 
                 ItemPool.AddRange(myItemList);
             }
 
-            BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
+            BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + ".\n" + BattleMessage.TurnMessageSpecial;
             Debug.WriteLine(BattleMessage.TurnMessage);
 
             return true;
@@ -274,7 +274,7 @@ namespace TRP.GameEngine
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
                 {
-                    BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and is now " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
+                    BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and to " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
                     Debug.WriteLine(BattleMessage.LevelUpMessage);
                 }
 

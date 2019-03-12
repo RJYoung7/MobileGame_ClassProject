@@ -37,6 +37,7 @@ namespace TRP.Views.Battle
         // When this button is clicked, create new Battle Begin (manual battle page) and add to stack 
         private async void HomeButton_Clicked(object sender, EventArgs e)
         {
+            _viewModel.BattleEngine.BattleEngineClearData();
             await Navigation.PushAsync(new BattleBeginPage());
         }
     }
