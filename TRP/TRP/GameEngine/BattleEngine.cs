@@ -26,10 +26,22 @@ namespace TRP.GameEngine
         // Sets the new state for the variables for Battle
         private void BattleEngineInit()
         {
+            CharacterList.Clear();
+            BattleEngineClearData();
+        }
+
+        // Sets the new state for the variables for Battle
+        public void BattleEngineClearData()
+        {
             BattleScore = new Score();
-            CharacterList = new List<Character>();
-            ItemPool = new List<Item>();
             BattleMessage = new BattleMessages();
+
+            ItemPool.Clear();
+            MonsterList.Clear();
+            CharacterList.Clear();
+
+            // Reset current player
+            PlayerCurrent = null;
         }
 
         // Determine if Auto Battle is On or Off

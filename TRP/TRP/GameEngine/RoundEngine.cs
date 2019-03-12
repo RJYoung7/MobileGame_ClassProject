@@ -241,6 +241,11 @@ namespace TRP.GameEngine
             // Remember who just went...
             PlayerCurrent = GetNextPlayerInList();
 
+            while (PlayerCurrent.Alive == false)
+            {
+                PlayerCurrent = GetNextPlayerInList();
+            }
+
             // Decide Who to Attack
             //Do the Turn
             if (PlayerCurrent.PlayerType == PlayerTypeEnum.Character)
