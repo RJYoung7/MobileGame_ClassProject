@@ -155,6 +155,7 @@ namespace TRP.GameEngine
             return true;
         }
 
+        // Returns string of battle summary
         public string GetResultsOutput()
         {
 

@@ -108,6 +108,7 @@ namespace TRP.GameEngine
         // Monster Attacks Character
         public bool TurnAsAttack(Monster Attacker, int AttackScore, Character Target, int DefenseScore)
         {
+            // Holds messages for messsage outputs
             BattleMessage.TurnMessage = string.Empty;
             BattleMessage.TurnMessageSpecial = string.Empty;
             BattleMessage.AttackStatus = string.Empty;
@@ -125,12 +126,13 @@ namespace TRP.GameEngine
             BattleScore.TurnCount++;
 
             // Choose who to attack
-
             BattleMessage.TargetName = Target.Name;
             BattleMessage.AttackerName = Attacker.Name;
 
+            // Determine whether attack is successfull.
             var HitStatus = RollToHitTarget(AttackScore, DefenseScore);
 
+            // If hit misses...
             if (HitStatus == HitStatusEnum.Miss)
             {
                 BattleMessage.TurnMessage = Attacker.Name + " misses " + Target.Name;
@@ -138,6 +140,7 @@ namespace TRP.GameEngine
                 return true;
             }
 
+            // If critical miss...
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
                 BattleMessage.TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
@@ -151,12 +154,14 @@ namespace TRP.GameEngine
 
             DamageAmount += GameGlobals.ForceMonsterDamangeBonusValue;  // Add The forced damage bonus
 
+            // Normal hit
             if (HitStatus == HitStatusEnum.Hit)
             {
                 Target.TakeDamage(DamageAmount);
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
             }
 
+            // Critical hit
             if (HitStatus == HitStatusEnum.CriticalHit)
             {
                 //2x damage
@@ -202,6 +207,7 @@ namespace TRP.GameEngine
         // Character attacks Monster
         public bool TurnAsAttack(Character Attacker, int AttackScore, Monster Target, int DefenseScore)
         {
+            // Holds battle messages for message output
             BattleMessage.TurnMessage = string.Empty;
             BattleMessage.TurnMessageSpecial = string.Empty;
             BattleMessage.AttackStatus = string.Empty;
@@ -225,8 +231,10 @@ namespace TRP.GameEngine
             BattleMessage.AttackerName = Attacker.Name;
             //Debug.WriteLine(AttackerName + " chooses to attack " + TargetName);
 
+            // Determine whether attack is successful.
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
+            // If miss...
             if (BattleMessage.HitStatus == HitStatusEnum.Miss)
             {
                 BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName;
@@ -235,6 +243,7 @@ namespace TRP.GameEngine
                 return true;
             }
 
+            // If critical miss...
             if (BattleMessage.HitStatus == HitStatusEnum.CriticalMiss)
             {
                 BattleMessage.TurnMessage = BattleMessage.AttackerName + " swings and critically misses " + BattleMessage.TargetName;
@@ -250,34 +259,44 @@ namespace TRP.GameEngine
             // It's a Hit or a Critical Hit
             if (BattleMessage.HitStatus == HitStatusEnum.Hit || BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
             {
-                //Calculate Damage
+                // Calculate normal damage
                 BattleMessage.DamageAmount = Attacker.GetDamageRollValue();
 
                 BattleMessage.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
+                // Format message for normal hit.
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
 
+                // Check to see if critical hit
                 if (GameGlobals.EnableCriticalHitDamage)
                 {
                     if (BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
                     {
                         //2x damage
                         BattleMessage.DamageAmount += DamageAmount;
+                        // Update message
                         AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount) + ".\n";
                     }
                 }
 
+                // Apply damage
                 Target.TakeDamage(BattleMessage.DamageAmount);
 
+                // Calculate experience.
                 var experienceEarned = Target.CalculateExperienceEarned(DamageAmount);
 
+                // Apply experience
                 var LevelUp = Attacker.AddExperience(experienceEarned);
+
+                // Check if character levels up
                 if (LevelUp)
                 {
+                    // Message for leveling up.
                     BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and is now " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
                     Debug.WriteLine(BattleMessage.LevelUpMessage);
                 }
 
+                // Add experience to score.
                 BattleScore.ExperienceGainedTotal += experienceEarned;
             }
 
@@ -321,6 +340,7 @@ namespace TRP.GameEngine
             return true;
         }
 
+        // Calculates the hit status.
         public HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
 

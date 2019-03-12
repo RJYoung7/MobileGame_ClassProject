@@ -31,6 +31,7 @@ namespace TRP.GameEngine
                 return 0;
             }
 
+            // Forces roll to be specified value from debug switch
             if (Models.GameGlobals.ForceRollsToNotRandom)
             {
                 return rolls * Models.GameGlobals.ForcedRandomValue;
