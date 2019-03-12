@@ -43,7 +43,7 @@ namespace TRP.Views.Battle
         // Remove after BattleEngine hoockup
         private async void RoundEndButton_Command(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RoundEndPage());
+            await Navigation.PushAsync(new RoundEndPage(_viewModel));
         }
 
         // Remove after BattleEngine hookup
