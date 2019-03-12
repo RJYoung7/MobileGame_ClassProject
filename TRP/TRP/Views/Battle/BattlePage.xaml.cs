@@ -99,13 +99,14 @@ namespace TRP.Views.Battle
             MessageText.Text = message + "\n" + MessageText.Text;
         }
 
-        // Writes message in html box 
+        // TODO: fix messages above box
+        // Displays the messages in the game 
         public void gameMessage()
         {
-            var message = _viewModel.BattleEngine.BattleMessage.TurnMessage;
-            Debug.WriteLine("Message: " + message);
+            //var message = _viewModel.BattleEngine.BattleMessage.TurnMessage;
+            //Debug.WriteLine("Message: " + message);
 
-            AppendMessage(message);
+            //AppendMessage(message);
 
             htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
             HtmlBox.Source = HtmlBox.Source = htmlSource;
