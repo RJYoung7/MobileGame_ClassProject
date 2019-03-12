@@ -81,11 +81,11 @@
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Text="Alive:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start"/>
-                                                    <Label Text="{Binding Alive}" 
+                                                    <Label Text="Level:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Level}" 
                                                            LineBreakMode="NoWrap"
                                                            Style="{StaticResource MicroLabel}"
-                                                           x:Name="Alive" 
+                                                           x:Name="Level" 
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                             </StackLayout>
@@ -140,11 +140,11 @@
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Text="Alive:" FontSize="13" HorizontalOptions="Start"/>
-                                                    <Label Text="{Binding Alive}" 
+                                                    <Label Text="Level:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Level}" 
                                                            LineBreakMode="NoWrap"
                                                            Style="{StaticResource MicroLabel}"
-                                                           x:Name="Alive" 
+                                                           x:Name="Level" 
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                             </StackLayout>

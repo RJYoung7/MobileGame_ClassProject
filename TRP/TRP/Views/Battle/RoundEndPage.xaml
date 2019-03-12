@@ -36,9 +36,9 @@
                                        Aspect="AspectFill"/>
 
                                     <!-- Labels for Character (name, desc, etc.) -->
-                                        <StackLayout Orientation="Vertical">
+                                        <StackLayout Orientation="Vertical" Spacing="-6">
                                             <Label Text="{Binding Name}" 
-                                                Style="{StaticResource TitleLabel}" />
+                                                Style="{StaticResource TitleLabel}"/>
                                             <Label Text="{Binding PenguinType}" 
                                                 Style="{StaticResource SmallLabel}"/>
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
@@ -47,9 +47,7 @@
                                                 <Label Text="{Binding ExperienceTotal}" 
                                                 Style="{StaticResource SmallLabel}"/>
                                             </StackLayout>
-                                            
-                                            
-                                        
+                                              
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>

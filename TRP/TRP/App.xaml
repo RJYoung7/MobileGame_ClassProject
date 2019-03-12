@@ -48,7 +48,7 @@
 
             <Style TargetType="Label" x:Key="TitleLabel" >
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <!--<Setter Property="VerticalOptions" Value="CenterAndExpand" />-->
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="Large" />
