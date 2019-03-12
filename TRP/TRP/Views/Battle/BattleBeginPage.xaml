@@ -5,18 +5,29 @@
     <ContentPage.Content>
         <ScrollView Padding="10">
 
-            <StackLayout Orientation="Vertical" >
+            <StackLayout Orientation="Vertical" VerticalOptions="Center">
 
                 <Image Source="Little.png" 
                        VerticalOptions="Center" 
                        HeightRequest="150"
                        HorizontalOptions="Fill"/>
 
-                <Label Text="Current Party"
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="Current Party "
                        FontSize="Large"
                        VerticalOptions="Center" 
-                       HorizontalOptions="CenterAndExpand"
+                       HorizontalOptions="Center"
                        FontFamily="{StaticResource Title}"/>
+
+                    <Label Text="{Binding SelectedCharacters.Count}" 
+                       FontSize="Large"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Start"
+                       FontFamily="{StaticResource Title}"
+                       x:Name="partycount"/>
+                           
+                </StackLayout>
+
 
                 <Button Text="Select Penguins"
                         VerticalOptions="CenterAndExpand" 
@@ -24,38 +35,12 @@
                         Clicked="SelectCharactersButton_Command"
                         Style="{StaticResource LargeButton}"/>
 
-                <!--<Button Text="Select Monsters"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="Center" 
-                        Clicked="SelectMonstersButton_Command"
-                        Style="{StaticResource LargeButton}"/>-->
-
                 <Button Text="Start Battle"
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="Center"
                         Clicked="SelectStartButton_Command" 
                         Style="{StaticResource LargeButton}"/>
 
-                <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
-                <Button Text="Item Pickup"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand" 
-                        Clicked="ItemPickupButton_Command"
-                        Style="{StaticResource LargeButton}"/>
-
-                <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
-                <Button Text="Round End"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="Center" 
-                        Clicked="RoundEndButton_Command"
-                        Style="{StaticResource LargeButton}"/>
-
-                <!--REMOVE AFTER BATTLE ENGINE HOOKUP-->
-                <Button Text="Game Over"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="Center" 
-                        Clicked="Button_Clicked"
-                        Style="{StaticResource LargeButton}"/>
             </StackLayout>
         </ScrollView>
    

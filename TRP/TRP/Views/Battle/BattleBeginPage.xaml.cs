@@ -33,24 +33,5 @@ namespace TRP.Views.Battle
         {
             await Navigation.PushAsync(new BattlePage(BattleViewModel.Instance));
         }
-
-        // Remove after BattleEngine hookup
-        private async void ItemPickupButton_Command(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ItemPickupPage());
-        }
-
-        // Remove after BattleEngine hoockup
-        private async void RoundEndButton_Command(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new RoundEndPage(_viewModel));
-        }
-
-        // Remove after BattleEngine hookup
-        // When this button is clicked, add Game Over page and add onto stack 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new GameOverPage());
-        }
     }
 }
