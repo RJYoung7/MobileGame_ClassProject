@@ -89,7 +89,7 @@ namespace TRP.ViewModels
                 BattleEngine.NewRound();
             });
 
-            MessagingCenter.Subscribe<BattleEngine, RoundEnum>(this, "EndBattle", async (obj, data) =>
+            MessagingCenter.Subscribe<BattlePage, RoundEnum>(this, "EndBattle", async (obj, data) =>
             {
                 BattleEngine.EndBattle();
             });
