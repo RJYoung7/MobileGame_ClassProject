@@ -167,7 +167,7 @@ namespace TRP.GameEngine
                         MonsterList.Add(monster);
                     }
                
-                } while (MonsterList.Count() < 6);
+                } while (MonsterList.Count() < 1);
 
             }
             else

@@ -9,15 +9,16 @@ namespace TRP.Views.Battle
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RoundEndPage : ContentPage
-	{
-        private CharactersViewModel _viewModel; // View model for this page
+    {
+        private BattleViewModel _viewModel;
 
         // Constructor: initialize the page
         public RoundEndPage(BattleViewModel battleViewModel)
 		{
 			InitializeComponent ();
-            BindingContext = _viewModel = CharactersViewModel.Instance;
+            BindingContext = _viewModel = BattleViewModel.Instance;
             numRoundsText.Text = "Success! Round " + Convert.ToString(battleViewModel.BattleEngine.BattleScore.RoundCount) + " Cleared";
+           
         }
 
         // Button to go to page that displays items picked up in round
