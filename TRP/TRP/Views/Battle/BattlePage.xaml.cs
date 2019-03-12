@@ -102,14 +102,13 @@ namespace TRP.Views.Battle
         // Writes message in html box 
         public void gameMessage()
         {
-            var message = _viewModel.BattleEngine.TurnMessage;
+            var message = _viewModel.BattleEngine.BattleMessage.TurnMessage;
             Debug.WriteLine("Message: " + message);
 
             AppendMessage(message);
 
             htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
             HtmlBox.Source = HtmlBox.Source = htmlSource;
-
         }
 
         // Before the page appears, remove anything that was there prior, and load data to view model

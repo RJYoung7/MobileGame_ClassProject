@@ -166,7 +166,7 @@ namespace TRP.GameEngine
                 AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
             }
 
-            BattleMessage.TurnMessageSpecial = Target.Name + "has remaining health of " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial = Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
@@ -274,7 +274,7 @@ namespace TRP.GameEngine
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
                 {
-                    BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and is now " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
+                    BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and to" + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
                     Debug.WriteLine(BattleMessage.LevelUpMessage);
                 }
 
