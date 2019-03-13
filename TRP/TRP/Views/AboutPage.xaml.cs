@@ -248,15 +248,5 @@ namespace TRP.Views
             GameGlobals.EnableRevivalOnce = e.Value;
         }
 
-        private void EnableReverseOrder_OnToggled(object sender, ToggledEventArgs e)
-        {
-            GameGlobals.EnableReverseOrder = e.Value;
-        }
-
-        private async void SetReverseChance(object sender, EventArgs e)
-        {
-            GameGlobals.ReverseChance = Convert.ToInt32(ReverseOrderChance.Text);
-        }
-
     }
 }

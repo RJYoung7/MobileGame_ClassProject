@@ -85,8 +85,6 @@ namespace TRP.Models
         public static bool EnableCriticalHitDamage = true;
         public static bool EnableMonsterStolenItem = false;
         public static bool EnableRevivalOnce = false;
-        public static bool EnableReverseOrder = false;
-        public static double ReverseChance = 0;
 
         // Set switch for allowing monsters to steal items 
         public static void SetMonstersToStealItems(bool val)
@@ -94,16 +92,10 @@ namespace TRP.Models
             EnableMonsterStolenItem = val;
         }
 
-        public static void SetReverseOrder(bool val)
-        {
-            EnableReverseOrder = val;
-        }
-
+        // Set switch for allowing monsters to steal items 
         public static void SetMiracleMaxUsage(bool val)
         {
             EnableRevivalOnce = val;
         }
-
-
     }
 }

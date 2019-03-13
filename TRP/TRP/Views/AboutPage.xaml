@@ -199,6 +199,7 @@
                                         IsToggled="False"/>
                             </StackLayout>
 
+                            <!-- Enable monsters to steal items when dropped -->
                             <StackLayout HorizontalOptions="FillAndExpand"
                                          Orientation="Horizontal">
 
@@ -223,30 +224,6 @@
                                         Toggled="EnableMiracleMax_OnToggled"
                                         IsToggled="False"/>
                             </StackLayout>
-                            <!-- Enable Time Warp -->
-                            <StackLayout HorizontalOptions="FillAndExpand"
-                                         Orientation="Horizontal">
-
-                                <Label Text="Reverse Attack Order Chance"
-                                       Style="{DynamicResource DebugSwitchLabel}"/>
-
-                                <Switch x:Name="EnableReverseAttackOrderChance"
-                                        HorizontalOptions="EndAndExpand"
-                                        Toggled="EnableReverseOrder_OnToggled"
-                                        IsToggled="False"/>
-                                
-                                <Entry x:Name="ReverseOrderChance"
-                                           Text="1" 
-                                           MaxLength="3"
-                                           CursorPosition="0" 
-                                           SelectionLength = "3" />
-                                <Button Text="SET"
-                                            Clicked="SetReverseChance"
-                                            HorizontalOptions="EndAndExpand"
-                                            TextColor="Black" 
-                                            Style="{StaticResource MediumButton}"/>
-                            </StackLayout>
-
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
