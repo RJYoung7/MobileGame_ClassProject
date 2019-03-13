@@ -199,6 +199,7 @@
                                         IsToggled="False"/>
                             </StackLayout>
 
+                            <!-- Enable monsters to steal items when dropped -->
                             <StackLayout HorizontalOptions="FillAndExpand"
                                          Orientation="Horizontal">
 
@@ -208,6 +209,19 @@
                                 <Switch x:Name="EnableMonsterStolenItem"
                                         HorizontalOptions="EndAndExpand"
                                         Toggled="EnableStolenItem_OnToggled"
+                                        IsToggled="False"/>
+                            </StackLayout>
+
+                            <!-- Enable revival of characters once -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Character To Revive"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableRevivalOnce"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableMiracleMax_OnToggled"
                                         IsToggled="False"/>
                             </StackLayout>
                         </StackLayout>

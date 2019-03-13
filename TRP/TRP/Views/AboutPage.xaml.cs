@@ -242,5 +242,11 @@ namespace TRP.Views
             GameGlobals.EnableMonsterStolenItem = e.Value;
         }
 
+        // Turn on feature to enable a monster to have chance to steal dropped item from character
+        private void EnableMiracleMax_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableRevivalOnce = e.Value;
+        }
+
     }
 }

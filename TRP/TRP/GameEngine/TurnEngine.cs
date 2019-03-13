@@ -171,40 +171,51 @@ namespace TRP.GameEngine
             // Check for alive
             if (Target.Alive == false)
             {
-                // Remover target from list...
-                CharacterList.Remove(Target);
-
                 // Mark Status in output
                 BattleMessage.TurnMessageSpecial = " and causes death.\n";
 
-                // Add the monster to the killed list
-                BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
-
-                // Drop Items to item Pool
-                var myItemList = Target.DropAllItems();
-
-                // Add to Score
-                BattleMessage.TurnMessageSpecial += "\nItems dropped are (";
-                foreach (var item in myItemList)
+                // If character has not been revived yet, they can be revived
+                if (!Target.IsRevived && GameGlobals.EnableRevivalOnce)
                 {
-                    BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    BattleMessage.TurnMessageSpecial += item.Name;
+                    Target.IsRevived = true;
+                    Target.Revive();
+                    BattleMessage.TurnMessageSpecial += Target.Name + " has been revived by Miracle Max!";
                 }
-                BattleMessage.TurnMessageSpecial += ")";
 
-                // Calculate chance for monster to steal item
-                if (GameGlobals.EnableMonsterStolenItem)
-                {
-                    var itemStolen = MonsterStealsItem(myItemList);
-                
-                    if (itemStolen != null)
+                // Otherwise, character has been revived and stays dead
+                else {
+                    // Remover target from list...
+                    CharacterList.Remove(Target);
+
+                    // Add the character to the killed list
+                    BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
+
+                    // Drop Items to item Pool
+                    var myItemList = Target.DropAllItems();
+
+                    // Add to Score
+                    BattleMessage.TurnMessageSpecial += "\nItems dropped are (";
+                    foreach (var item in myItemList)
                     {
-                        BattleMessage.TurnMessageSpecial += "\n" + itemStolen.Name + " was stolen! It's gone.\n";
-                        myItemList.Remove(itemStolen);
+                        BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
+                        BattleMessage.TurnMessageSpecial += item.Name;
                     }
-                }
+                    BattleMessage.TurnMessageSpecial += ")";
 
-                ItemPool.AddRange(myItemList);
+                    // Calculate chance for monster to steal item
+                    if (GameGlobals.EnableMonsterStolenItem)
+                    {
+                        var itemStolen = MonsterStealsItem(myItemList);
+                    
+                        if (itemStolen != null)
+                        {
+                            BattleMessage.TurnMessageSpecial += "\n" + itemStolen.Name + " was stolen! It's gone.\n";
+                            myItemList.Remove(itemStolen);
+                        }
+                    }
+
+                    ItemPool.AddRange(myItemList);
+                }
             }
 
             BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + ".\n" + BattleMessage.TurnMessageSpecial;
