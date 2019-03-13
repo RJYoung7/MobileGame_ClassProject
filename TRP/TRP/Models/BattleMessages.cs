@@ -16,6 +16,8 @@ namespace TRP.Models
         public string TurnMessageSpecial = string.Empty;
         public string LevelUpMessage = string.Empty;
 
+        public string TimeWarpMessage = string.Empty;
+
         public int DamageAmount = 0;
         public int CurrentHealth = 0;
 
@@ -120,6 +122,14 @@ namespace TRP.Models
             htmlBody += string.Format(@"<br><span>{0}</span>", LevelUpMessage);
 
             myResult = htmlHead + htmlBody + htmlTail;
+            return myResult;
+        }
+
+        public string GetHTMLFormattedRoundMessage()
+        {
+            var myResult = string.Empty;
+            myResult += TurnMessageSpecial;
+
             return myResult;
         }
     }

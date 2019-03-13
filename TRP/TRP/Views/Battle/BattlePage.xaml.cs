@@ -26,6 +26,8 @@ namespace TRP.Views.Battle
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
 
             Debug.WriteLine("Round Start Monsters: " + _viewModel.BattleEngine.MonsterList.Count);
+            _viewModel.LoadDataCommand.Execute(null);
+            RoundStartMessage();
 
             // round number at top of page
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
@@ -109,6 +111,13 @@ namespace TRP.Views.Battle
             //AppendMessage(message);
 
             htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
+            HtmlBox.Source = HtmlBox.Source = htmlSource;
+        }
+
+        //
+        public void RoundStartMessage()
+        {
+            htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedRoundMessage();
             HtmlBox.Source = HtmlBox.Source = htmlSource;
         }
 

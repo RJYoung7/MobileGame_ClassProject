@@ -171,7 +171,7 @@ namespace TRP.GameEngine
                         MonsterList.Add(monster);
                     }
                
-                } while (MonsterList.Count() < 6);
+                } while (MonsterList.Count() < 1);
 
             }
             else
@@ -221,7 +221,7 @@ namespace TRP.GameEngine
         // Starts next turn during round
         public RoundEnum RoundNextTurn()
         {
-            //Debug.WriteLine("From Round Engine: " + RoundStateEnum);
+            Debug.WriteLine("From Round Engine: " + RoundStateEnum);
             // No charaacters, game is over...
             if(CharacterList.Count < 1)
             {
@@ -322,11 +322,63 @@ namespace TRP.GameEngine
                 .ToList();
 
             var playerListToString = "Player list this round: ";
+
             foreach (PlayerInfo p in PlayerList)
             {
                 playerListToString += p.Name + " ";
             }
             Debug.WriteLine(playerListToString);
+
+            // Check to see if timewarp chance is enabled.
+            if (GameGlobals.EnableReverseOrder)
+            {
+                // Determine if neworder is needed
+                var newOrder = orderChange();
+
+                // if new order is needed...
+                if (newOrder == true)
+                {
+                    // Let player know, and reverse list.
+                    BattleMessage.TurnMessageSpecial += "\n" + "Time gets wonky, slowest player goes first.\n";
+                    PlayerList.Reverse();
+
+                    playerListToString = "Player list this round: ";
+
+                    foreach (PlayerInfo p in PlayerList)
+                    {
+                        playerListToString += p.Name + " ";
+                    }
+                    Debug.WriteLine(playerListToString);
+                } else
+                {
+                    BattleMessage.TurnMessageSpecial += "\n Time feels normal.\n"; 
+                }
+            }
+
+        }
+
+        // Determine whether time warp occurs based on user provided input.
+        public bool orderChange()
+        {
+            Debug.WriteLine("Checking if time warped");
+
+            var revChance = 20 - ((GameGlobals.ReverseChance/100)*20);
+            Debug.WriteLine("revChance: " + revChance);
+
+            var roll = HelperEngine.RollDice(1, 20);
+            Debug.WriteLine("Roll: " + roll);
+
+            if (roll >= revChance)
+            {
+                Debug.WriteLine("TIME WARP!");
+                return true;
+            }
+            else
+            {
+                Debug.WriteLine("Normal Time");
+                return false;
+            }
+            
         }
 
         // Updates player to lists
