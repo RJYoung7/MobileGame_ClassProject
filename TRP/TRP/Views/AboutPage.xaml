@@ -224,6 +224,31 @@
                                         Toggled="EnableMiracleMax_OnToggled"
                                         IsToggled="False"/>
                             </StackLayout>
+                            
+                            <!-- Enable Time Warp-->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Time Warp"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableTimeWarp"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableReverseOrder_OnToggled"
+                                        IsToggled="False"/>
+                                <Entry x:Name="ReverseOrderChance"
+                                           Text="1" 
+                                           MaxLength="3"
+                                           CursorPosition="0" 
+                                           SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                            Clicked="SetReverseChance"
+                                            HorizontalOptions="EndAndExpand"
+                                            TextColor="Black" 
+                                            Style="{StaticResource MediumButton}"/>
+
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

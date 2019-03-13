@@ -248,5 +248,17 @@ namespace TRP.Views
             GameGlobals.EnableRevivalOnce = e.Value;
         }
 
+        // Toggle to enable time warp
+        private void EnableReverseOrder_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableReverseOrder = e.Value;
+        }
+
+        // Set's chance of time warp
+        private async void SetReverseChance(object sender, EventArgs e)
+        {
+            GameGlobals.ReverseChance = Convert.ToInt32(ReverseOrderChance.Text);
+        }
+
     }
 }
