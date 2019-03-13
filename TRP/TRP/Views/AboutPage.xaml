@@ -211,6 +211,19 @@
                                         IsToggled="False"/>
                             </StackLayout>
 
+                            <!-- Enable revival of characters once -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Character To Revive"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableRevivalOnce"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableMiracleMax_OnToggled"
+                                        IsToggled="False"/>
+                            </StackLayout>
+                            <!-- Enable Time Warp -->
                             <StackLayout HorizontalOptions="FillAndExpand"
                                          Orientation="Horizontal">
 

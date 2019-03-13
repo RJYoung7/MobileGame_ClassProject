@@ -84,6 +84,7 @@ namespace TRP.Models
         public static bool EnableCriticalMissProblems = true;
         public static bool EnableCriticalHitDamage = true;
         public static bool EnableMonsterStolenItem = false;
+        public static bool EnableRevivalOnce = false;
         public static bool EnableReverseOrder = false;
         public static double ReverseChance = 0;
 
@@ -98,6 +99,11 @@ namespace TRP.Models
             EnableReverseOrder = val;
         }
 
-        
+        public static void SetMiracleMaxUsage(bool val)
+        {
+            EnableRevivalOnce = val;
+        }
+
+
     }
 }
