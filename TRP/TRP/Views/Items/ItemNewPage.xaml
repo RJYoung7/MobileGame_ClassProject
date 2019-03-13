@@ -41,9 +41,8 @@
                     <!-- Item URI -->
                     <StackLayout Grid.Row="0" Grid.Column="0">
                         <Label Text="Image: " 
-                               FontSize="Medium" 
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center"/>
+                               Style="{StaticResource MediumLabel}"
+                               VerticalOptions="Start"/>
                     </StackLayout>
                     <StackLayout Grid.Row="0" Grid.Column="1">
                         <Entry Text="{Binding Data.ImageURI}" 
@@ -55,9 +54,8 @@
                     <!-- Item attribute -->
                     <StackLayout Grid.Row="1" Grid.Column="0">
                         <Label Text="Select Attribute: " 
-                               FontSize="Medium" 
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center"/>
+                               Style="{StaticResource MediumLabel}"
+                               VerticalOptions="Start"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="1" Grid.Column="1">
@@ -70,9 +68,9 @@
                     <!-- Item attribute -->
                     <StackLayout Grid.Row="2" Grid.Column="0">
                         <Label Text="Select Location: " 
-                               FontSize="Medium" 
+                               Style="{StaticResource MediumLabel}"
                                HorizontalOptions="Start"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Start"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="2" Grid.Column="1">
@@ -86,16 +84,14 @@
                     <!-- Value incrementer -->
                     <StackLayout Grid.Row="3" Grid.Column="0">
                         <Label Text="Start Value:" 
-                               FontSize="Small" 
-                               HorizontalOptions="Start"/>
+                               Style="{StaticResource MediumLabel}"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                         <Label Text="{Binding Data.Value}" 
-                               FontSize="Small" 
-                               HorizontalOptions="Center"
-                               x:Name="ValueValue"
-                               VerticalOptions="Center"/>
+                               Style="{StaticResource MediumLabel}"
+                               HorizontalOptions="Start"
+                               x:Name="ValueValue"/>
 
                         <Stepper Value="{Binding Data.Value, Mode=TwoWay}"
                                  Minimum="0"
@@ -110,16 +106,14 @@
                     <!-- Range incrementer -->
                     <StackLayout Grid.Row="4" Grid.Column="0" >
                         <Label Text="Start Range:" 
-                               FontSize="Small" 
-                               HorizontalOptions="Start"/>
+                               Style="{StaticResource MediumLabel}"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
                         <Label Text="{Binding Data.Range}" 
-                               FontSize="Small" 
-                               HorizontalOptions="Center"
-                               x:Name="RangeValue"
-                               VerticalOptions="Center"/>
+                               Style="{StaticResource MediumLabel}"
+                               HorizontalOptions="Start"
+                               x:Name="RangeValue"/>
 
                         <Stepper Value="{Binding Data.Range, Mode=TwoWay}"
                                  Minimum="0"
@@ -135,16 +129,14 @@
                     <!-- Damage incrementer -->
                     <StackLayout Grid.Row="5" Grid.Column="0" >
                         <Label Text="Start Damage:" 
-                               FontSize="Small" 
-                               HorizontalOptions="Start"/>
+                               Style="{StaticResource MediumLabel}"/>
                     </StackLayout>
 
                     <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
                         <Label Text="{Binding Data.Damage}" 
-                               FontSize="Small" 
-                               HorizontalOptions="Center"
-                               x:Name="DamageValue"
-                               VerticalOptions="Center"/>
+                               Style="{StaticResource MediumLabel}"
+                               HorizontalOptions="Start"
+                               x:Name="DamageValue"/>
 
                         <Stepper Value="{Binding Data.Damage, Mode=TwoWay}"
                                  Minimum="0"
@@ -157,7 +149,7 @@
                     </StackLayout>
 
                     <!--Controls whether item is consumable-->
-                    <Label Grid.Row="6" Grid.Column="0" Text="Consumable: " />
+                    <Label Grid.Row="6" Grid.Column="0" Text="Consumable: " Style="{StaticResource MediumLabel}"/>
                     <Switch Grid.Row="6" Grid.Column="1" x:Name="Consumable"
                             HorizontalOptions="StartAndExpand"
                             Toggled="Consumable_Toggled"

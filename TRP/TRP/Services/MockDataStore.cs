@@ -45,11 +45,12 @@ namespace TRP.Services
                 AttributeEnum.Defense,false));
             await AddAsync_Item(new Item("Ice Boots", "Boots with harden iced attached",
                 "https://vikings.help/users/vikings/imgExtCatalog/big/m321.png", 0, 3, 0, ItemLocationEnum.Feet,
-                AttributeEnum.Defense,false));
-            
+                AttributeEnum.Defense,false));            
             await AddAsync_Item(new Item("Fire Bow", "Crafted from artic flames",
                 "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png", 
                 4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack, false));
+            await AddAsync_Item(new Item("Snow Ball", "Densely packed snow.", "http://www.stickpng.com/assets/thumbs/5a9687969fc609199d0fefbe.png",
+                0, 0, 5, ItemLocationEnum.Unknown, AttributeEnum.CurrentHealth, true));
 
 
             // Load characters

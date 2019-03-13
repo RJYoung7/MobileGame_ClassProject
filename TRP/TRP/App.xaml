@@ -19,7 +19,17 @@
             <Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
             <Color x:Key="LightTextColor">#999999</Color>
 
+            <OnPlatform x:TypeArguments="x:String" x:Key="Title">
+                <On Platform="Android" Value="Iceberg.ttf#Iceberg" />
+                <On Platform="UWP" Value="/Assets/Iceberg.ttf#Iceberg" />
+                <On Platform="iOS" Value="Iceberg.ttf" />
+            </OnPlatform>
 
+            <OnPlatform x:TypeArguments="x:String" x:Key="Body">
+                <On Platform="Android" Value="Under The Snow.ttf#Under The Snow" />
+                <On Platform="UWP" Value="/Assets/Under The Snow.ttf#Under The Snow" />
+                <On Platform="iOS" Value="Under The Snow.ttf" />
+            </OnPlatform>
 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
@@ -33,6 +43,46 @@
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
                 <Setter Property="FontAttributes" Value="None" />
                 <Setter Property="FontSize" Value="Small" />
+                <Setter Property="FontFamily" Value="{StaticResource Body}" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="TitleLabel" >
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <!--<Setter Property="VerticalOptions" Value="CenterAndExpand" />-->
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontFamily" Value="{StaticResource Title}"/>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="{StaticResource Body}"/>
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+            </Style>
+
+            <Style TargetType="Picker">
+                <Setter Property="FontFamily" Value="{StaticResource Body}" />
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="SmallLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="MicroLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="MediumLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="LargeLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontAttributes" Value="Bold" />
             </Style>
 
             <Style TargetType="Label"
@@ -61,14 +111,24 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
+                <Setter Property="FontFamily" Value="{StaticResource Body}" />
             </Style>
 
-            <Style TargetType="Button">
+            <Style TargetType="Button" x:Key="MediumButton">
                 <Setter Property="WidthRequest" Value="100" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
-            </Style>    
+                <Setter Property="FontFamily" Value="{StaticResource Body}" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="LargeButton">
+                <Setter Property="WidthRequest" Value="175" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
+                <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+                <Setter Property="FontFamily" Value="{StaticResource Body}" />
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

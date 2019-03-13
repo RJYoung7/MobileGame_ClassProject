@@ -25,6 +25,8 @@ namespace TRP.GameEngine
         // Holds the official score
         public Score BattleScore = new Score();
 
+        public BattleMessages BattleMessage = new BattleMessages();
+
         public string AttackerName = string.Empty;
         public string TargetName = string.Empty;
         public string AttackStatus = string.Empty;
@@ -106,9 +108,9 @@ namespace TRP.GameEngine
         // Monster Attacks Character
         public bool TurnAsAttack(Monster Attacker, int AttackScore, Character Target, int DefenseScore)
         {
-            TurnMessage = string.Empty;
-            TurnMessageSpecial = string.Empty;
-            AttackStatus = string.Empty;
+            BattleMessage.TurnMessage = string.Empty;
+            BattleMessage.TurnMessageSpecial = string.Empty;
+            BattleMessage.AttackStatus = string.Empty;
 
             if (Attacker == null)
             {
@@ -124,22 +126,22 @@ namespace TRP.GameEngine
 
             // Choose who to attack
 
-            TargetName = Target.Name;
-            AttackerName = Attacker.Name;
+            BattleMessage.TargetName = Target.Name;
+            BattleMessage.AttackerName = Attacker.Name;
 
-            var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
+            var HitStatus = RollToHitTarget(AttackScore, DefenseScore);
 
             if (HitStatus == HitStatusEnum.Miss)
             {
-                TurnMessage = Attacker.Name + " misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
+                BattleMessage.TurnMessage = Attacker.Name + " misses " + Target.Name;
+                Debug.WriteLine(BattleMessage.TurnMessage);
                 return true;
             }
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
-                TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
+                BattleMessage.TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
+                Debug.WriteLine(BattleMessage.TurnMessage);
                 return true;
             }
 
@@ -164,7 +166,7 @@ namespace TRP.GameEngine
                 AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
             }
 
-            TurnMessageSpecial = Target.Name + "has remaining health of " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial = Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
@@ -173,7 +175,7 @@ namespace TRP.GameEngine
                 CharacterList.Remove(Target);
 
                 // Mark Status in output
-                TurnMessageSpecial = " and causes death";
+                BattleMessage.TurnMessageSpecial = " and causes death.\n";
 
                 // Add the monster to the killed list
                 BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
@@ -185,14 +187,14 @@ namespace TRP.GameEngine
                 foreach (var item in myItemList)
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    TurnMessageSpecial += "\n\tItem: " + item.Name + " dropped";
+                    BattleMessage.TurnMessageSpecial += "\n\tItem: " + item.Name + " dropped.\n";
                 }
 
                 ItemPool.AddRange(myItemList);
             }
 
-            TurnMessage = Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
-            Debug.WriteLine(TurnMessage);
+            BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + ".\n" + BattleMessage.TurnMessageSpecial;
+            Debug.WriteLine(BattleMessage.TurnMessage);
 
             return true;
         }
@@ -200,10 +202,10 @@ namespace TRP.GameEngine
         // Character attacks Monster
         public bool TurnAsAttack(Character Attacker, int AttackScore, Monster Target, int DefenseScore)
         {
-            TurnMessage = string.Empty;
-            TurnMessageSpecial = string.Empty;
-            AttackStatus = string.Empty;
-            LevelUpMessage = string.Empty;
+            BattleMessage.TurnMessage = string.Empty;
+            BattleMessage.TurnMessageSpecial = string.Empty;
+            BattleMessage.AttackStatus = string.Empty;
+            BattleMessage.LevelUpMessage = string.Empty;
 
             if (Attacker == null)
             {
@@ -219,67 +221,67 @@ namespace TRP.GameEngine
 
             // Choose who to attack
 
-            TargetName = Target.Name;
-            AttackerName = Attacker.Name;
+            BattleMessage.TargetName = Target.Name;
+            BattleMessage.AttackerName = Attacker.Name;
             //Debug.WriteLine(AttackerName + " chooses to attack " + TargetName);
 
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
-            if (HitStatus == HitStatusEnum.Miss)
+            if (BattleMessage.HitStatus == HitStatusEnum.Miss)
             {
-                TurnMessage = Attacker.Name + " misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
+                BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName;
+                Debug.WriteLine(BattleMessage.TurnMessage);
 
                 return true;
             }
 
-            if (HitStatus == HitStatusEnum.CriticalMiss)
+            if (BattleMessage.HitStatus == HitStatusEnum.CriticalMiss)
             {
-                TurnMessage = Attacker.Name + " swings and critically misses " + Target.Name;
-                Debug.WriteLine(TurnMessage);
+                BattleMessage.TurnMessage = BattleMessage.AttackerName + " swings and critically misses " + BattleMessage.TargetName;
+                Debug.WriteLine(BattleMessage.TurnMessage);
 
                 if (GameGlobals.EnableCriticalMissProblems)
                 {
-                    TurnMessage += DetermineCriticalMissProblem(Attacker);
+                    BattleMessage.TurnMessage += DetermineCriticalMissProblem(Attacker);
                 }
                 return true;
             }
 
             // It's a Hit or a Critical Hit
-            if (HitStatus == HitStatusEnum.Hit || HitStatus == HitStatusEnum.CriticalHit)
+            if (BattleMessage.HitStatus == HitStatusEnum.Hit || BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
             {
                 //Calculate Damage
-                DamageAmount = Attacker.GetDamageRollValue();
+                BattleMessage.DamageAmount = Attacker.GetDamageRollValue();
 
-                DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
+                BattleMessage.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
                 AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
 
                 if (GameGlobals.EnableCriticalHitDamage)
                 {
-                    if (HitStatus == HitStatusEnum.CriticalHit)
+                    if (BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
                     {
                         //2x damage
-                        DamageAmount += DamageAmount;
+                        BattleMessage.DamageAmount += DamageAmount;
                         AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount) + ".\n";
                     }
                 }
 
-                Target.TakeDamage(DamageAmount);
+                Target.TakeDamage(BattleMessage.DamageAmount);
 
                 var experienceEarned = Target.CalculateExperienceEarned(DamageAmount);
 
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
                 {
-                    LevelUpMessage = Attacker.Name + " is leveled up and is now " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
-                    Debug.WriteLine(LevelUpMessage);
+                    BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and to " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
+                    Debug.WriteLine(BattleMessage.LevelUpMessage);
                 }
 
                 BattleScore.ExperienceGainedTotal += experienceEarned;
             }
 
-            TurnMessageSpecial = "\t" + " remaining health: " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial = "\t" + " remaining health: " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
@@ -288,7 +290,7 @@ namespace TRP.GameEngine
                 MonsterList.Remove(Target);
 
                 // Mark Status in output
-                TurnMessageSpecial = "\n\t" + Target.Name + " dies.\n";
+                BattleMessage.TurnMessageSpecial = "\n\t" + Target.Name + " dies.\n";
 
                 // Add one to the monsters killd count...
                 BattleScore.MonsterSlainNumber++;
@@ -306,14 +308,15 @@ namespace TRP.GameEngine
                 foreach (var item in myItemList)
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n\n";
-                    TurnMessageSpecial += " Item " + item.Name + " dropped\n";
+                    BattleMessage.TurnMessageSpecial += " Item " + item.Name + " dropped\n";
                 }
 
                 ItemPool.AddRange(myItemList);
             }
 
-            TurnMessage = "-" + Attacker.Name + AttackStatus + Target.Name + TurnMessageSpecial;
-            Debug.WriteLine(TurnMessage + "\n");
+            BattleMessage.TurnMessage = "-" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
+            
+            Debug.WriteLine(BattleMessage.TurnMessage + "\n");
             
             return true;
         }
@@ -338,32 +341,32 @@ namespace TRP.GameEngine
             if (d20 == 1)
             {
                 // Force Miss
-                HitStatus = HitStatusEnum.CriticalMiss;
-                return HitStatus;
+                BattleMessage.HitStatus = HitStatusEnum.CriticalMiss;
+                return BattleMessage.HitStatus;
             }
 
             if (d20 == 20)
             {
                 // Force Hit
-                HitStatus = HitStatusEnum.CriticalHit;
-                return HitStatus;
+                BattleMessage.HitStatus = HitStatusEnum.CriticalHit;
+                return BattleMessage.HitStatus;
             }
 
             var ToHitScore = d20 + AttackScore;
             if (ToHitScore < DefenseScore)
             {
-                AttackStatus = " misses ";
+                BattleMessage.AttackStatus = " misses ";
                 // Miss
-                HitStatus = HitStatusEnum.Miss;
-                DamageAmount = 0;
+                BattleMessage.HitStatus = HitStatusEnum.Miss;
+                BattleMessage.DamageAmount = 0;
             }
             else
             {
                 // Hit
-                HitStatus = HitStatusEnum.Hit;
+                BattleMessage.HitStatus = HitStatusEnum.Hit;
             }
 
-            return HitStatus;
+            return BattleMessage.HitStatus;
         }
 
         // Decide which to attack
@@ -457,7 +460,8 @@ namespace TRP.GameEngine
                         // Item does not exist, so add it to the datstore
 
                         // TODO:  Need way to not save the Item
-                        ItemsViewModel.Instance.InsertUpdateAsync(item).GetAwaiter().GetResult();
+                        myItemsViewModel.AddItem_Sync(item);
+                        //ItemsViewModel.Instance.InsertUpdateAsync(item).GetAwaiter().GetResult();
                     }
                     else
                     {
@@ -537,6 +541,11 @@ namespace TRP.GameEngine
             }
 
             return myReturn;
+        }
+
+        public string turnMessage(string message)
+        {
+            return message;
         }
     }
 }

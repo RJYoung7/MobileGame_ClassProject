@@ -18,7 +18,7 @@
                          Spacing="20"
                          Padding="15">
 
-            <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0">
+            <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0" Padding="5">
                 <!-- Picture of character -->
                 <Image Source="{Binding Data.ImageURI}"
                        WidthRequest="150"
@@ -31,14 +31,13 @@
                              VerticalOptions="Start">
                     <!-- Name label -->
                     <Label Text="{Binding Data.Name}" 
-                           FontAttributes="Bold"
-                           FontSize="Medium" 
+                           Style="{StaticResource TitleLabel}" 
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>
                     <!-- Description of character -->
 
                     <Label Text="{Binding Data.PenguinType}" 
-                           FontSize="Medium" 
+                           Style="{StaticResource SmallLabel}"
                            FontAttributes="Italic"
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>
@@ -46,9 +45,8 @@
             </StackLayout>
 
             <Label Text="Base Attributes: " 
-                   FontSize="Medium" 
-                   VerticalOptions="Start" 
-                   FontAttributes="Bold"/>
+                   Style="{StaticResource MediumLabel}"
+                   VerticalOptions="Start" />
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -57,20 +55,17 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" />
-                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" />
+                 <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" Style="{StaticResource SmallLabel}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="1" Text="Attack:" />
-                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute.Attack}" />
+                <Label Grid.Column="0" Grid.Row="1" Text="Attack:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute.Attack}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Text="Defense:" />
-                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Attribute.Defense}" />
+                <Label Grid.Column="0" Grid.Row="2" Text="Defense:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Attribute.Defense}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Text="Speed:" />
-                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" />
-
-                <Label Grid.Column="0" Grid.Row="4" Text="Bonus:" />
-                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Data.BonusString}"/>
+                <Label Grid.Column="0" Grid.Row="3" Text="Speed:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" Style="{StaticResource SmallLabel}"/>
             </Grid>
             
             </StackLayout>

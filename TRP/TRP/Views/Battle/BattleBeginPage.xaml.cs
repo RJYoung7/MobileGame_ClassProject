@@ -15,38 +15,24 @@ namespace TRP.Views.Battle
 	{
         private BattleViewModel _viewModel; // View model for this page
 
+        // Constructor: load view model
         public BattleBeginPage ()
 		{
 			InitializeComponent ();
             BindingContext = _viewModel = BattleViewModel.Instance;
 		}
 
+        // When this button is clicked, create SelectCharacters page and add onto stack
         private async void SelectCharactersButton_Command(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CharactersSelectPage());
         }
 
-        private async void SelectMonstersButton_Command(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new MonstersSelectPage());
-        }
-
+        // When this button is clicked, create Battle page (with no info for now)
         private async void SelectStartButton_Command(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new BattlePage());
+            _viewModel.StartRound();
+            await Navigation.PushAsync(new BattlePage(BattleViewModel.Instance));
         }
-
-        // Remove after BattleEngine hookup
-        private async void ItemPickupButton_Command(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ItemPickupPage());
-        }
-
-        // Remove after BattleEngine hoockup
-        private async void RoundEndButton_Command(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new RoundEndPage());
-        }
-
     }
 }

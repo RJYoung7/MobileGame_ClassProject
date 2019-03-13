@@ -34,10 +34,11 @@ namespace TRP.ViewModels
         }
 
         // Battle Engine
-        private BattleEngine BattleEngine;
+        public BattleEngine BattleEngine;
 
         public ObservableCollection<Character> SelectedCharacters { get; set; } //selected party of characters
         public ObservableCollection<Character> AvailableCharacters { get; set; } //available characters left
+        public ObservableCollection<Monster> SelectedMonsters { get; set; } //selected party of characters
 
         public Command LoadDataCommand { get; set; } // load data command 
 
@@ -50,7 +51,8 @@ namespace TRP.ViewModels
             BattleEngine = new BattleEngine();
 
             SelectedCharacters = new ObservableCollection<Character>();
-            AvailableCharacters = new ObservableCollection<Character>(); 
+            AvailableCharacters = new ObservableCollection<Character>();
+            SelectedMonsters = new ObservableCollection<Monster>();
 
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
@@ -59,16 +61,45 @@ namespace TRP.ViewModels
             // For adding Characters to party
             MessagingCenter.Subscribe<CharactersSelectPage, IList<Character>>(this, "AddData", (obj, data) =>
             {
+                SelectedCharacters.Clear();
                 BattleEngine.CharacterList = data.ToList<Character>();
+                foreach (var c in data) {
+                    SelectedCharacters.Add(c);
+                }
+                //SelectedCharacters = data.ToArray();
+                
             });
 
             //Messages for adding a character to party, removing a character from party
+            MessagingCenter.Subscribe<CharactersSelectPage, Character>(this, "AddSelectedCharacter", async (obj, data) =>
+            {
+                SelectedListAdd(data);
+            });
+
+            MessagingCenter.Subscribe<CharactersSelectPage, Character>(this, "RemoveSelectedCharacter", async (obj, data) =>
+            {
+                SelectedListRemove(data);
+            });
 
             //Messages to start and end battle
 
             //Messages to start and end rounds
+            MessagingCenter.Subscribe<BattleEngine, RoundEnum>(this, "NewRound", async (obj, data) =>
+            {
+                BattleEngine.NewRound();
+            });
+
+            MessagingCenter.Subscribe<BattlePage, RoundEnum>(this, "EndBattle", async (obj, data) =>
+            {
+                BattleEngine.EndBattle();
+            });
 
             //Messages for turns in round 
+            MessagingCenter.Subscribe<BattlePage, RoundEnum>(this, "RoundNextTurn", async (obj, data) =>
+            {
+                ExecuteLoadDataCommand().GetAwaiter().GetResult();
+                BattleEngine.RoundNextTurn();
+            });
         }
 
         // Calls engine to start battle
@@ -81,6 +112,11 @@ namespace TRP.ViewModels
         public void EndBattle()
         {
             Instance.BattleEngine.EndBattle();
+        }
+
+        public RoundEnum currentRoundEnum()
+        {
+            return Instance.BattleEngine.RoundStateEnum;
         }
 
         // Calls engine to start round 
@@ -145,6 +181,7 @@ namespace TRP.ViewModels
         {
             AvailableCharacters.Clear();
             SelectedCharacters.Clear();
+            SelectedMonsters.Clear();
             ExecuteLoadDataCommand();
         }
 
@@ -187,6 +224,21 @@ namespace TRP.ViewModels
                 {
                     AvailableCharacters.Add(data);
                 }
+
+                SelectedMonsters.Clear();
+                var selectedMon = BattleEngine.MonsterList;
+                foreach (var mon in selectedMon)
+                {
+                    SelectedMonsters.Add(mon);
+                }
+
+                SelectedCharacters.Clear();
+                var selectedChar = BattleEngine.CharacterList;
+                foreach (var ch in selectedChar)
+                {
+                    SelectedCharacters.Add(ch);
+                }
+
             }
 
             catch (Exception ex)

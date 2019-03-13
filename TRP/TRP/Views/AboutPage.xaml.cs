@@ -107,6 +107,8 @@ namespace TRP.Views
                 GameGlobals.EnableRandomValues();
 
                 GameGlobals.SetForcedRandomNumbersValue(Convert.ToInt16(ForcedValue.Text));
+                ForcedHitValue.Text = GameGlobals.ForceToHitValue.ToString();
+                forcehit.Value = GameGlobals.ForceToHitValue;
             }
             else
             {
@@ -126,6 +128,7 @@ namespace TRP.Views
         private void ForcedHitValue_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             ForcedHitValue.Text = String.Format("{0}", e.NewValue);
+            GameGlobals.SetForcedHitValue(Convert.ToInt16(ForcedHitValue.Text));
         }
 
         // Turn on Critical Misses

@@ -21,17 +21,22 @@
 
             <StackLayout HorizontalOptions="CenterAndExpand"
                          VerticalOptions="CenterAndExpand"
-                         Orientation="Vertical">
+                         Orientation="Vertical"
+                         Padding="10">
+
+
+                <Label FontSize="50"
+                       Text="The Righteous Penguins"
+                       VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand" 
+                       HorizontalTextAlignment="Center"
+                       FontFamily="{StaticResource Title}"/>
+
 
                 <Image Source="Baby.png"
                        VerticalOptions="Center"
                        HeightRequest="150"
                        HorizontalOptions="Fill"/>
-
-                <Label FontSize="Large"
-                       Text="The Righteous Penguins"
-                       VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" />
 
 
                 <StackLayout x:Name="DateRoot"
@@ -43,7 +48,8 @@
 
             <StackLayout VerticalOptions="StartAndExpand"
                          HorizontalOptions="CenterAndExpand"
-                         Orientation="Vertical">
+                         Orientation="Vertical"
+                         Padding="10">
 
                 <!--Database Settings-->
                 <StackLayout>
@@ -53,7 +59,8 @@
 
                         <Label Text="Database Settings"
                                HorizontalOptions="StartAndExpand"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+                               FontFamily="{StaticResource Body}"/>
 
                         <Switch x:Name="DatabaseSettings"
                                 HorizontalOptions="EndAndExpand"
@@ -75,7 +82,8 @@
                                 <Label FontSize="Small"
                                        Text="Use Mock DataStore"
                                        HorizontalTextAlignment="Start"
-                                       HorizontalOptions="StartAndExpand"/>
+                                       HorizontalOptions="StartAndExpand"
+                                       FontFamily="{StaticResource Body}"/>
 
                                 <Switch x:Name="UseMockDataSource"
                                         HorizontalOptions="EndAndExpand"
@@ -92,12 +100,14 @@
                                     <Label FontSize="Small"
                                            Text="Clear Database"
                                            HorizontalTextAlignment="Start"
-                                           HorizontalOptions="Start"/>
+                                           HorizontalOptions="Start"
+                                           FontFamily="{StaticResource Body}"/>
 
                                     <Button Text="Clear"
                                             Clicked="ClearDatabase_Command"
                                             HorizontalOptions="Fill"
-                                            TextColor="Black" />
+                                            TextColor="Black" 
+                                            Style="{StaticResource MediumButton}"/>
                                 </StackLayout>
                             </StackLayout>
 
@@ -110,7 +120,8 @@
                                     <Label FontSize="Small"
                                            Text="# of Items "
                                            HorizontalTextAlignment="Start"
-                                           HorizontalOptions="Start"/>
+                                           HorizontalOptions="Start"
+                                           FontFamily="{StaticResource Body}"/>
 
                                     <Entry x:Name="ServerItemValue"
                                            Text="1" 
@@ -121,12 +132,14 @@
                                     <Button Text="Get"
                                             Clicked="GetItems_Command"
                                             HorizontalOptions="EndAndExpand"
-                                            TextColor="Black" />
+                                            TextColor="Black" 
+                                            Style="{StaticResource MediumButton}"/>
 
                                     <Button Text="Post"
                                             Clicked="GetItemsPost_Command"
                                             HorizontalOptions="EndAndExpand"
-                                            TextColor="Black" />
+                                            TextColor="Black" 
+                                            Style="{StaticResource MediumButton}"/>
 
                                 </StackLayout>
                             </StackLayout>
@@ -146,7 +159,8 @@
                         <Label FontSize="Small"
                                Text="Debug Settings"
                                HorizontalTextAlignment="Start"
-                               HorizontalOptions="Start"/>
+                               HorizontalOptions="Start"
+                               FontFamily="{StaticResource Body}"/>
 
                         <Switch x:Name="EnableDebugSettings"
                                 HorizontalOptions="EndAndExpand"
@@ -264,7 +278,8 @@
                                          Increment="1"
                                          ValueChanged="ForcedHitValue_OnStepperValueChanged"
                                          HorizontalOptions="End"
-                                         VerticalOptions="Center"/>
+                                         VerticalOptions="Center"
+                                         x:Name="forcehit"/>
                             </Grid>
                         </StackLayout>
                     </StackLayout>

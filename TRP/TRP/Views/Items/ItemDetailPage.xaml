@@ -17,7 +17,7 @@
                      Spacing="20"
                      Padding="15">
 
-            <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0">
+            <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0" Padding="5">
                 <!-- Picture of item -->
                 <Image Source="{Binding Data.ImageURI}"
                        WidthRequest="150"
@@ -32,23 +32,17 @@
                     
                     <!-- Item name -->
                     <Label Text="{Binding Data.Name}" 
-                           FontAttributes="Bold"
-                           FontSize="Medium" 
-                           HorizontalOptions="Start"
-                           VerticalOptions="Start"/>
+                           Style="{StaticResource TitleLabel}"/>
                     
                     <!-- Description of item -->
                     <Label Text="{Binding Data.Description}" 
-                           FontSize="Medium" 
-                           FontAttributes="Italic"
-                           HorizontalOptions="Start"
-                           VerticalOptions="Start"/>
+                           Style="{StaticResource SmallLabel}"/>
 
                 </StackLayout>
             </StackLayout>
 
             <!-- Attributes -->
-            <Label Text="Base Attributes: " FontSize="Medium" VerticalOptions="Start" FontAttributes="Bold"/>
+            <Label Text="Base Attributes: " Style="{StaticResource LargeLabel}"/>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -58,23 +52,23 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Text="Consumable:" />
-                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Consumable}" />
-                
-                <Label Grid.Column="0" Grid.Row="1" Text="Attribute:" />
-                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute}" />
+                <Label Grid.Column="0" Grid.Row="0" Text="Consumable:" Style="{StaticResource MediumLabel}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Consumable}" Style="{StaticResource MediumLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Text="Value:" />
-                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Value}" />
+                <Label Grid.Column="0" Grid.Row="1" Text="Attribute:" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute}" Style="{StaticResource MediumLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Text="Range:" />
-                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Range}" />
+                <Label Grid.Column="0" Grid.Row="2" Text="Value:" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Value}" Style="{StaticResource MediumLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="4" Text="Damage:" />
-                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Data.Damage}" />
+                <Label Grid.Column="0" Grid.Row="3" Text="Range:" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Range}" Style="{StaticResource MediumLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="5" Text="Location:" />
-                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Data.Location}"/>
+                <Label Grid.Column="0" Grid.Row="4" Text="Damage:" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Data.Damage}" Style="{StaticResource MediumLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="5" Text="Location:" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Data.Location}" Style="{StaticResource MediumLabel}"/>
             </Grid>
         </StackLayout>
     </ScrollView>

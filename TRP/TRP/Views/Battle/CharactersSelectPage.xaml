@@ -21,7 +21,7 @@
             
             <!-- List view of the characters-->
             <ListView x:Name="CharactersListView" 
-                      ItemsSource="{Binding Dataset}"
+                      ItemsSource="{Binding AvailableCharacters}"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="true"
                       RefreshCommand="{Binding LoadItemsCommand}"
@@ -31,7 +31,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10"
+                            <StackLayout Padding="5"
                                          Orientation="Horizontal"
                                          VerticalOptions="Start"
                                          HorizontalOptions="Start">
@@ -41,24 +41,21 @@
 
                                 <!-- Image -->
                                 <Image Source="{Binding ImageURI}"
-                                       WidthRequest="100"
-                                       HeightRequest="100" 
+                                       WidthRequest="60"
+                                       HeightRequest="60" 
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
                                        Aspect="AspectFill"/>
 
                                 <!-- Labels for Character (name, desc, etc.) -->
-                                <StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Name}" 
-                                               LineBreakMode="NoWrap" 
-                                               Style="{DynamicResource ListItemTextStyle}" 
-                                               FontSize="16" />
-                                    </StackLayout>
+                                <StackLayout Spacing="0">
+                                    <Label Text="{Binding Name}" 
+                                            LineBreakMode="NoWrap" 
+                                            Style="{StaticResource TitleLabel}"/>
+                                    
                                     <Label Text="{Binding PenguinType}" 
                                            LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="13" x:Name="label" />
+                                           Style="{StaticResource MediumLabel}" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

@@ -8,9 +8,9 @@
         <ToolbarItem Text="Add" Clicked="AddScore_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10">
 
-            <Label Text="Scores List Page" FontSize="Small" />
+            <Label Text="Scores List Page" Style="{StaticResource TitleLabel}" FontSize="50" HorizontalTextAlignment="Center"/>
 
             <!-- Listview of scores -->
             <ListView x:Name="ScoreListView" 
@@ -28,12 +28,11 @@
                             <StackLayout Padding="10">
                                 <Label Text="{Binding Name}" 
                                        LineBreakMode="NoWrap" 
-                                       Style="{DynamicResource ListItemTextStyle}" 
-                                       FontSize="16" />
+                                       Style="{StaticResource MediumLabel}" />
+                                
                                 <Label Text="{Binding ScoreTotal}" 
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="13" />
+                                       Style="{StaticResource SmallLabel}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

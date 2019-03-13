@@ -16,12 +16,17 @@ namespace TRP.GameEngine
 
         // Player currently engaged
         public PlayerInfo PlayerCurrent;
+        
+        // Enum for round status
+        public RoundEnum RoundStateEnum = RoundEnum.Unknown;
 
+        // Clears round 
         public RoundEngine()
         {
             ClearLists();
         }
 
+        // Creates new lists
         private void ClearLists()
         {
             ItemPool = new List<Item>();
@@ -99,6 +104,7 @@ namespace TRP.GameEngine
             {
                 return;
             }
+            
 
             //var ScaleLevelMax = 0;
             //var ScaleLevelMin = 0;
@@ -133,8 +139,9 @@ namespace TRP.GameEngine
 
             // Make suure monster list exists and is loaded...
             var myMonsterViewModel = MonstersViewModel.Instance;
-            myMonsterViewModel.ForceDataRefresh();
+            //myMonsterViewModel.ForceDataRefresh();
 
+            // Scale monsters based on current character levels
             if(myMonsterViewModel.Dataset.Count() > 0)
             {
                 // Scale monsters to be within the range of the characters
@@ -164,7 +171,7 @@ namespace TRP.GameEngine
                         MonsterList.Add(monster);
                     }
                
-                } while (MonsterList.Count() < 6);
+                } while (MonsterList.Count() < 1);
 
             }
             else
@@ -211,25 +218,33 @@ namespace TRP.GameEngine
 
         // Rember Who's Turn
 
-        // RoundNextTurn
+        // Starts next turn during round
         public RoundEnum RoundNextTurn()
         {
+            Debug.WriteLine("From Round Engine: " + RoundStateEnum);
             // No charaacters, game is over...
             if(CharacterList.Count < 1)
             {
-                return RoundEnum.GameOver;
+                RoundStateEnum = RoundEnum.GameOver;
+                return RoundStateEnum;
             }
 
             // Check if round is over
             if(MonsterList.Count < 1)
             {
                 // If over, New Round
-                return RoundEnum.NewRound;
+                RoundStateEnum = RoundEnum.NewRound;
+                return RoundStateEnum;
             }
 
             // Decide Who gets next turn
             // Remember who just went...
             PlayerCurrent = GetNextPlayerInList();
+
+            while (PlayerCurrent.Alive == false)
+            {
+                PlayerCurrent = GetNextPlayerInList();
+            }
 
             // Decide Who to Attack
             //Do the Turn
@@ -251,7 +266,8 @@ namespace TRP.GameEngine
                 TakeTurn(myPlayer);
             }
 
-            return RoundEnum.NextTurn;
+            RoundStateEnum = RoundEnum.NextTurn;
+            return RoundStateEnum;
             // Game Over
             //return RoundEnum.GameOver;
         }
@@ -279,6 +295,7 @@ namespace TRP.GameEngine
                 }
             }
 
+            // Updates list order with monsters
             foreach (var data in MonsterList)
             {
                 if (data.Alive)
@@ -312,6 +329,7 @@ namespace TRP.GameEngine
             Debug.WriteLine(playerListToString);
         }
 
+        // Updates player to lists
         public PlayerInfo GetNextPlayerInList()
         {
             if (PlayerList.Count == 0)
@@ -344,6 +362,7 @@ namespace TRP.GameEngine
             return PlayerCurrent;
         }
 
+        // Assigns items to characters based on need.
         public void PickupItemsFromPool(Character character)
         {
             // Have the character, walk the items in the pool, and decide if any are better than current one.
@@ -363,6 +382,7 @@ namespace TRP.GameEngine
             GetItemFromPoolIfBetter(character, ItemLocationEnum.Feet);
         }
 
+        // Replaces an item assigned to character if there is a better item avaliable.
         public void GetItemFromPoolIfBetter(Character character, ItemLocationEnum setLocation)
         {
             var myList = ItemPool.Where(a => a.Location == setLocation)
@@ -401,5 +421,6 @@ namespace TRP.GameEngine
                 }
             }
         }
+
     }
 }

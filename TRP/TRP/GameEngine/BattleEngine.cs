@@ -15,6 +15,8 @@ namespace TRP.GameEngine
         // The status of the actual battle, running or not (over)
         private bool isBattleRunning = false;
 
+        //public RoundEnum RoundStateEnum = RoundEnum.Unknown;
+
         // Constructor calls Init
         public BattleEngine()
         {
@@ -24,9 +26,22 @@ namespace TRP.GameEngine
         // Sets the new state for the variables for Battle
         private void BattleEngineInit()
         {
+            CharacterList.Clear();
+            BattleEngineClearData();
+        }
+
+        // Sets the new state for the variables for Battle
+        public void BattleEngineClearData()
+        {
             BattleScore = new Score();
-            CharacterList = new List<Character>();
-            ItemPool = new List<Item>();
+            BattleMessage = new BattleMessages();
+
+            ItemPool.Clear();
+            MonsterList.Clear();
+            CharacterList.Clear();
+
+            // Reset current player
+            PlayerCurrent = null;
         }
 
         // Determine if Auto Battle is On or Off
@@ -52,7 +67,8 @@ namespace TRP.GameEngine
             isBattleRunning = false;
 
             // Save the Score to the Datastore
-            ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
+            ScoresViewModel.Instance.Dataset.Add(BattleScore);
+            //ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
         }
 
         // Initializes the Battle to begin
@@ -149,6 +165,23 @@ namespace TRP.GameEngine
         public bool AutoBattle()
         {
             return true;
+        }
+
+        // Returns string of battle summary
+        public string GetResultsOutput()
+        {
+
+            string myResult = "" +
+                    " Battle Ended" + BattleScore.ScoreTotal +
+                    " Total Score :" + BattleScore.ExperienceGainedTotal +
+                    " Total Experience :" + BattleScore.ExperienceGainedTotal +
+                    " Rounds :" + BattleScore.RoundCount +
+                    " Turns :" + BattleScore.TurnCount +
+                    " Monster Kills :" + BattleScore.MonstersKilledList;
+
+            Debug.WriteLine(myResult);
+
+            return myResult;
         }
 
     }

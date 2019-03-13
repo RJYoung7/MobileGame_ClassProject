@@ -4,270 +4,197 @@
              x:Class="TRP.Views.Battle.BattlePage">
     
     <ContentPage.Content>
-        <StackLayout Spacing="10" >
-            <Label Text="Round 1" FontSize="Medium" 
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Center"/>
+        <StackLayout Spacing="10" Padding="10" >
 
-            <StackLayout Spacing="0">
+                <!-- Round counter -->
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label Text="Round " 
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource TitleLabel}"/>
+                    <Label Text=""
+                           x:Name="numRounds"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Center"
+                           Style="{StaticResource TitleLabel}"/>
+                </StackLayout>
+
+
+                <StackLayout Spacing="0">
                 <Grid RowSpacing="3"
                       ColumnSpacing="3"
                       VerticalOptions="Start">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="75*" />
+                        <RowDefinition Height="25*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-
+                    
                     <!--Characters-->
                     <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Little.png" 
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
+                        <ListView x:Name="CharactersListView" 
+                                  ItemsSource="{Binding SelectedCharacters}"
+                                  VerticalOptions="FillAndExpand"
+                                  HasUnevenRows="true"
+                                  RefreshCommand="{Binding LoadItemsCommand}"
+                                  IsPullToRefreshEnabled="true"
+                                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                  CachingStrategy="RecycleElement">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="0"
+                                                     Spacing="0"
+                                                     Orientation="Horizontal"
+                                                     VerticalOptions="Start"
+                                                     HorizontalOptions="Start">
 
-                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-                                <Label Text="Character 1" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                        </StackLayout>                        
+                                            <!-- Image -->
+                                            <Image Source="{Binding ImageURI}"
+                                                   WidthRequest="65"
+                                                   HeightRequest="65" 
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
+
+                                            <!-- Labels for Character (name, desc, etc.) -->
+                                            <StackLayout Spacing="0" Orientation="Vertical" Padding="2">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" 
+                                                           LineBreakMode="NoWrap" 
+                                                           Style="{StaticResource TitleLabel}"
+                                                           FontSize="16"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="HP:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start" />
+                                                    <Label Text="{Binding Attribute.CurrentHealth}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="hp" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Level:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Level}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="Level" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
-
-                    <StackLayout Grid.Column="0" Grid.Row="1" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Little.png" 
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-                                <Label Text="Character 2" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="0" Grid.Row="2" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Little.png" 
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-                                <Label Text="Character 3" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="0" Grid.Row="3" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Little.png" 
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-                                <Label Text="Character 4" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="0" Grid.Row="4" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Little.png" 
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-                                <Label Text="Character 5" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="0" Grid.Row="5" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Little.png" 
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="0">
-                                <Label Text="Character 6" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
-
+                    
                     <!--Monsters-->
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Orca.png"
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
-                                <Label Text="Monster 1" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />    
-                            </StackLayout>
-                            <Button Text="ATTACK!" 
-                                    HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
-                        </StackLayout>
+                        <ListView x:Name="MonstersListView" 
+                                  ItemsSource="{Binding SelectedMonsters}"
+                                  VerticalOptions="FillAndExpand"
+                                  HasUnevenRows="true"
+                                  RefreshCommand="{Binding LoadItemsCommand}"
+                                  IsPullToRefreshEnabled="true"
+                                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                  CachingStrategy="RecycleElement">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="0"
+                                                     Spacing="0"
+                                                     Orientation="Horizontal"
+                                                     VerticalOptions="Start"
+                                                     HorizontalOptions="FillAndExpand">
+
+                                            <!-- Image -->
+                                            <Image Source="{Binding ImageURI}"
+                                                   WidthRequest="65"
+                                                   HeightRequest="65" 
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
+
+                                            <!-- Labels for Monster (name, desc, etc.) -->
+                                            <StackLayout Spacing="0" Padding="2">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" 
+                                                           LineBreakMode="NoWrap" 
+                                                           Style="{StaticResource TitleLabel}"
+                                                           FontSize="16"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="HP:" FontSize="13" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Attribute.CurrentHealth}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="hp" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Level:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Level}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="Level" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="CenterAndExpand" 
+                                                         VerticalOptions="Center">
+                                                <!--<Button Text="Attack" 
+                                                        Clicked="AttackButton_Clicked"/>-->
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
 
-
-                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Orca.png"
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
-                                <Label Text="Monster 2" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                            <Button Text="ATTACK!" 
-                                    HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Orca.png"
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
-                                <Label Text="Monster 3" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                            <Button Text="ATTACK!" 
-                                    HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="1" Grid.Row="3" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Orca.png"
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
-                                <Label Text="Monster 4" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                            <Button Text="ATTACK!" 
-                                    HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="1" Grid.Row="4" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Orca.png"
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
-                                <Label Text="Monster 5" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                            <Button Text="ATTACK!" 
-                                    HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
-                        </StackLayout>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="1" Grid.Row="5" Spacing="0" BackgroundColor="#eee9e9">
-                        <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Image Source="Orca.png"
-                                   HeightRequest="50"
-                                   WidthRequest="50"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Center"/>
-                            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Spacing="0">
-                                <Label Text="Monster 6" FontSize="10"/>
-                                <Label Text="Level 1" FontSize="10" />
-                                <Label Text="Current HP: 10" FontSize="10" />
-                                <Label Text="Alive" FontSize="10" />
-                            </StackLayout>
-                            <Button Text="ATTACK!" 
-                                    HorizontalOptions="CenterAndExpand" 
-                                    VerticalOptions="Center"/>
-                        </StackLayout>
-
-
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2">
+                        <!--Battle Messages-->
+                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ScrollView>
                             <StackLayout>
-                                <Label Text="BATTLE MESSAGE 1" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 2" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 3" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 4" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 5" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 6" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 7" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 8" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 9" FontSize="Micro" />
-                                <Label Text="BATTLE MESSAGE 10" FontSize="Micro" />
-
+                                <Label x:Name ="MessageText"
+                                       LineBreakMode="WordWrap"
+                                       MaxLines="5"
+                                       HeightRequest="50">
+                                </Label>
+                                <WebView
+                                    WidthRequest="100"
+                                    MinimumWidthRequest="100"
+                                    HeightRequest="100"
+                                    MinimumHeightRequest="100"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Start"
+                                    BackgroundColor="Transparent"
+                                    x:Name="HtmlBox">
+                                </WebView>
                             </StackLayout>
 
                         </ScrollView>
                     </StackLayout>
-
                 </Grid>
-                
-  
 
+                    <!-- Finish turn button -->
+                    <StackLayout Padding="10">
+                        <Button Text="Next Turn"
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand"
+                               Style="{StaticResource LargeButton}"
+                               Clicked="NextTurnButton_Clicked"/>
+                    </StackLayout>
+
+                <!--</StackLayout>-->
             </StackLayout>
         </StackLayout>
 

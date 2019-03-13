@@ -193,6 +193,22 @@ namespace TRP.ViewModels
             return myReturn;
         }
 
+        /// <summary>
+        /// This method is for the game engine to call to add an item to the item list
+        /// It is not async, so it can be called from the game engine on it's thread
+        /// It sets the needs refresh flag
+        /// Items added to the list this way, are not saved to the DB, they are temporary during the game.
+        /// Refactor for the future would be to create a separate item list for the game to add to, and work with.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public bool AddItem_Sync(Item data)
+        {
+            Dataset.Add(data);
+            SetNeedsRefresh(true);
+            return true;
+        }
+
         // Check if the passed in item exists in the current data set
         public Item CheckIfItemExists(Item data)
         {
@@ -230,7 +246,7 @@ namespace TRP.ViewModels
                 return null;
             }
 
-            Item myData = DataStore.GetAsync_Item(ItemID).GetAwaiter().GetResult();
+            Item myData = Dataset.Where(a => a.Guid == ItemID).FirstOrDefault();
             if (myData == null)
             {
                 return null;

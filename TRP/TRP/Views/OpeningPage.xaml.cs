@@ -1,25 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Diagnostics;
 using TRP.GameEngine;
 using TRP.ViewModels;
+using TRP.Views;   
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TRP.Views.Battle
+using TRP.Views.Battle;
+
+namespace TRP.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AutoBattlePage : ContentPage
+	public partial class OpeningPage : ContentPage
 	{
-		public AutoBattlePage ()
+        // Constructor: initialize page 
+		public OpeningPage ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 
+        // When this button is clicked, run auto battle and return results 
         private async void AutoBattleButton_Command(object sender, EventArgs e)
         {
             // Can create a new battle engine...
@@ -29,7 +29,7 @@ namespace TRP.Views.Battle
             //var result = myBattleEngine.AddCharactersToBattle();
 
             // Start AutoBattle
-            myBattleEngine.RunAutoBattle();
+            myBattleEngine.RunAutoBattle(); 
 
             // Display result of AutoBattle
             await DisplayAlert(null, myBattleEngine.GetResultOutput(), null, "Next");
@@ -45,6 +45,18 @@ namespace TRP.Views.Battle
             {
                 await Navigation.PushAsync(new ScoreDetailPage(new ScoreDetailViewModel(myBattleEngine.GetScoreObject())));
             }
+        }
+
+        // When this button is clicked, create Battle page (for manual battle) and add onto stack
+        private async void ManualBattleButton_Command(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new BattleBeginPage());
+        }
+
+        // When this button is clicked, create About page and add onto stack
+        private async void AboutButton_Command(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AboutPage());
         }
     }
 }
