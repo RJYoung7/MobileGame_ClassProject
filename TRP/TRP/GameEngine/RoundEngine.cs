@@ -339,7 +339,7 @@ namespace TRP.GameEngine
                 if (newOrder == true)
                 {
                     // Let player know, and reverse list.
-                    BattleMessage.TurnMessageSpecial += "\n" + "Time gets wonky, slowest player goes first.\n";
+                    BattleMessage.TimeWarpMessage += "Time gets wonky, slowest player goes first.\n";
                     PlayerList.Reverse();
 
                     playerListToString = "Player list this round: ";
@@ -351,7 +351,7 @@ namespace TRP.GameEngine
                     Debug.WriteLine(playerListToString);
                 } else
                 {
-                    BattleMessage.TurnMessageSpecial += "\n Time feels normal.\n"; 
+                    BattleMessage.TimeWarpMessage += "\n Time feels normal.\n"; 
                 }
             }
 

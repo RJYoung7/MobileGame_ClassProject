@@ -112,9 +112,8 @@ namespace TRP.Models
                     break;
             }
 
-
-
             var htmlBody = string.Empty;
+
             htmlBody += string.Format(@"{0}{1}</span>", AttackerStyle, AttackerName);
             htmlBody += string.Format(@"{0}{1}</span>", SwingResult, GetSwingResult());
             htmlBody += string.Format(@"{0}{1}</span>", DefenderStyle, TargetName);
@@ -122,14 +121,26 @@ namespace TRP.Models
             htmlBody += string.Format(@"<br><span>{0}</span>", LevelUpMessage);
 
             myResult = htmlHead + htmlBody + htmlTail;
+
+            myResult = AttackerName + GetSwingResult() + TargetName + TurnMessageSpecial + LevelUpMessage;
+            
             return myResult;
+        }
+
+        public string GetTurnMessageString()
+        {
+            var myResult = AttackerName + GetSwingResult() + TargetName + "\n" + TurnMessageSpecial + "\n" + LevelUpMessage;
+
+            return myResult;
+
         }
 
         public string GetHTMLFormattedRoundMessage()
         {
-            var myResult = string.Empty;
-            myResult += TurnMessageSpecial;
+            var htmlBody = string.Empty;
+            htmlBody += string.Format(@"<br><span>{0}</span>",TimeWarpMessage);
 
+            var myResult = htmlHead + htmlBody +htmlTail;
             return myResult;
         }
     }

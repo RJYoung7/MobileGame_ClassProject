@@ -54,7 +54,7 @@ namespace TRP.Models
             MessageList.Add(new MessageDetailHitEnum { HitStatus = HitStatusEnum.Unknown, Message = "Unknown" });
             MessageList.Add(new MessageDetailHitEnum { HitStatus = HitStatusEnum.Hit, Message = " hits " });
             MessageList.Add(new MessageDetailHitEnum { HitStatus = HitStatusEnum.Miss, Message = " misses " });
-            MessageList.Add(new MessageDetailHitEnum { HitStatus = HitStatusEnum.CriticalMiss, Message = " misses really badly" });
+            MessageList.Add(new MessageDetailHitEnum { HitStatus = HitStatusEnum.CriticalMiss, Message = " misses really badly " });
             MessageList.Add(new MessageDetailHitEnum { HitStatus = HitStatusEnum.CriticalHit, Message = " hits really hard " });
         }
 

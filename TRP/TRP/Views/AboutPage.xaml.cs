@@ -258,6 +258,8 @@ namespace TRP.Views
         private async void SetReverseChance(object sender, EventArgs e)
         {
             GameGlobals.ReverseChance = Convert.ToInt32(ReverseOrderChance.Text);
+            var message = "Time Warp chance set to: " + ReverseOrderChance.Text + "%";
+            await DisplayAlert(message, null, "OK");
         }
 
     }

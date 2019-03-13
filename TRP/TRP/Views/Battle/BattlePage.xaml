@@ -166,10 +166,9 @@
                             <StackLayout>
                                 <Label x:Name ="MessageText"
                                        LineBreakMode="WordWrap"
-                                       MaxLines="5"
-                                       HeightRequest="50">
+                                       Text="{Binding Data}">
                                 </Label>
-                                <WebView
+                                <!--<WebView
                                     WidthRequest="100"
                                     MinimumWidthRequest="100"
                                     HeightRequest="100"
@@ -178,7 +177,7 @@
                                     VerticalOptions="Start"
                                     BackgroundColor="Transparent"
                                     x:Name="HtmlBox">
-                                </WebView>
+                                </WebView>-->
                             </StackLayout>
 
                         </ScrollView>
