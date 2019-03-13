@@ -184,10 +184,24 @@ namespace TRP.GameEngine
                 var myItemList = Target.DropAllItems();
 
                 // Add to Score
+                BattleMessage.TurnMessageSpecial += "\nItems dropped are (";
                 foreach (var item in myItemList)
                 {
                     BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    BattleMessage.TurnMessageSpecial += "\n\tItem: " + item.Name + " dropped.\n";
+                    BattleMessage.TurnMessageSpecial += item.Name;
+                }
+                BattleMessage.TurnMessageSpecial += ")";
+
+                // Calculate chance for monster to steal item
+                if (GameGlobals.EnableMonsterStolenItem)
+                {
+                    var itemStolen = MonsterStealsItem(myItemList);
+                
+                    if (itemStolen != null)
+                    {
+                        BattleMessage.TurnMessageSpecial += "\n" + itemStolen.Name + " was stolen! It's gone.\n";
+                        myItemList.Remove(itemStolen);
+                    }
                 }
 
                 ItemPool.AddRange(myItemList);
@@ -197,6 +211,18 @@ namespace TRP.GameEngine
             Debug.WriteLine(BattleMessage.TurnMessage);
 
             return true;
+        }
+
+        // Rolls a dice and if roll is >= 17, an item from dropped items list is stolen
+        public Item MonsterStealsItem(List<Item> itemsDropped)
+        {
+            var roll = HelperEngine.RollDice(1, 20);
+            if (roll >= 2)
+            {
+                var item = itemsDropped.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+                return item;
+            }
+            return null;
         }
 
         // Character attacks Monster

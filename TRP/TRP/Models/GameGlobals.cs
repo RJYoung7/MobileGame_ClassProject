@@ -83,5 +83,12 @@ namespace TRP.Models
         // Debug Settings
         public static bool EnableCriticalMissProblems = true;
         public static bool EnableCriticalHitDamage = true;
+        public static bool EnableMonsterStolenItem = false;
+
+        // Set switch for allowing monsters to steal items 
+        public static void SetMonstersToStealItems(bool val)
+        {
+            EnableMonsterStolenItem = val;
+        }
     }
 }

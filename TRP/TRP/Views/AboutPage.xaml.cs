@@ -43,6 +43,7 @@ namespace TRP.Views
             // Set debug settings
             EnableCriticalMissProblems.IsToggled = GameGlobals.EnableCriticalMissProblems;
             EnableCriticalHitDamage.IsToggled = GameGlobals.EnableCriticalHitDamage;
+            EnableMonsterStolenItem.IsToggled = GameGlobals.EnableMonsterStolenItem;
 
             // Turn off the Debug Frame
             DebugSettingsFrame.IsVisible = false;
@@ -155,6 +156,7 @@ namespace TRP.Views
             }
         }
 
+        #region GetPostCommands
         /// <summary>
         /// The GetItems_Command will use a GET call to retrieve items from the server
         /// </summary>
@@ -231,6 +233,13 @@ namespace TRP.Views
                 // Display the list of items return with details in a dialog box
                 await DisplayAlert("Returned List", myOutput, "OK");
             }
+        }
+        #endregion
+
+        // Turn on feature to enable a monster to have chance to steal dropped item from character
+        private void EnableStolenItem_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableMonsterStolenItem = e.Value;
         }
 
     }

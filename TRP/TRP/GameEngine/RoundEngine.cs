@@ -171,7 +171,7 @@ namespace TRP.GameEngine
                         MonsterList.Add(monster);
                     }
                
-                } while (MonsterList.Count() < 1);
+                } while (MonsterList.Count() < 6);
 
             }
             else
@@ -221,7 +221,7 @@ namespace TRP.GameEngine
         // Starts next turn during round
         public RoundEnum RoundNextTurn()
         {
-            Debug.WriteLine("From Round Engine: " + RoundStateEnum);
+            //Debug.WriteLine("From Round Engine: " + RoundStateEnum);
             // No charaacters, game is over...
             if(CharacterList.Count < 1)
             {

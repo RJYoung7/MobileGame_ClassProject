@@ -198,6 +198,18 @@
                                         Toggled="EnableCriticalMissProblems_OnToggled"
                                         IsToggled="False"/>
                             </StackLayout>
+
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Monster To Steal Items"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableMonsterStolenItem"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableStolenItem_OnToggled"
+                                        IsToggled="False"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
