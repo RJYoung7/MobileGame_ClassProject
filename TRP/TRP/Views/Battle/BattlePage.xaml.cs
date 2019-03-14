@@ -29,6 +29,7 @@ namespace TRP.Views.Battle
 
             // round number at top of page
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
+            
         }
 
         // When next turn is clicked, start next turn, or end game by checking game state
@@ -153,6 +154,7 @@ namespace TRP.Views.Battle
 
             BindingContext = _viewModel;
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
+            MessageText.Text = _viewModel.BattleEngine.BattleMessage.TimeWarpMessage;
         }
     }
 }
