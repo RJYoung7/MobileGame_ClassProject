@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 using TRP.ViewModels;
 using TRP.Models;
+using TRP.GameEngine;
 
 namespace TRP.Views.Battle
 {
@@ -21,6 +22,8 @@ namespace TRP.Views.Battle
 			InitializeComponent ();
             BindingContext = _viewModel = BattleViewModel.Instance;
             _viewModel.ClearCharacterLists();
+
+
 
             _viewModel.BattleEngine.StartBattle(false);
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
