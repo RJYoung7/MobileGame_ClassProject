@@ -284,8 +284,22 @@ namespace TRP.Views
         // Set Rebound chance
         private async void SetReboundChance(object sender, EventArgs e)
         {
-            GameGlobals.MulliganChance = Convert.ToInt32(ReboundChance.Text);
+            GameGlobals.ReboundChance = Convert.ToInt32(ReboundChance.Text);
             var message = "Set Rebound chance to " + GameGlobals.ReboundChance + "%";
+            await DisplayAlert(message, null, "Okay");
+        }
+
+        // Toggle to enable zomnies
+        private void EnableZombies_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableZombies = e.Value;
+        }
+
+        // Toggle for set percent
+        private async void SetZombieChance(object sender, EventArgs e)
+        {
+            GameGlobals.ZombieChance = Convert.ToInt32(ZombieChance.Text);
+            var message = "Set Zombie chance to " + GameGlobals.ZombieChance;
             await DisplayAlert(message, null, "Okay");
         }
 
