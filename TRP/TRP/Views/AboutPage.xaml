@@ -284,7 +284,7 @@
 
                                 <Switch x:Name="EnableRebound"
                                         HorizontalOptions="EndAndExpand"
-                                        Toggled="EnableRebound_onToggled"
+                                        Toggled="EnableRebound_OnToggled"
                                         IsToggled="False"/>
 
                                 <Entry x:Name="ReboundChance"
