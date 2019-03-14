@@ -89,6 +89,8 @@ namespace TRP.Models
         public static double ReverseChance = 0;
         public static bool EnableMulligan = false;
         public static double MulliganChance = 0;
+        public static bool EnableRebound = false;
+        public static double ReboundChance = 0;
 
         // Set switch for allowing monsters to steal items 
         public static void SetMonstersToStealItems(bool val)
@@ -113,5 +115,10 @@ namespace TRP.Models
             EnableMonsterStolenItem = val;
         }
 
+        // Set switch for allowing mulligan e.g. second chance to hit after a miss
+        public static void SetRebound(bool val)
+        {
+            EnableRebound = val;
+        }
     }
 }
