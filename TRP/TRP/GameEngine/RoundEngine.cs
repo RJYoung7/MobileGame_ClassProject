@@ -321,6 +321,7 @@ namespace TRP.GameEngine
                 .ThenBy(a => a.ListOrder)
                 .ToList();
 
+            // Format list for output
             var playerListToString = "Player list this round: ";
 
             foreach (PlayerInfo p in PlayerList)
@@ -342,6 +343,7 @@ namespace TRP.GameEngine
                     BattleMessage.TimeWarpMessage += "Time gets wonky, slowest player goes first.\n";
                     PlayerList.Reverse();
 
+                    // Format new list for output
                     playerListToString = "Player list this round: ";
 
                     foreach (PlayerInfo p in PlayerList)
@@ -362,12 +364,15 @@ namespace TRP.GameEngine
         {
             Debug.WriteLine("Checking if time warped");
 
+            // Get threshold for timewarp
             var revChance = 20 - ((GameGlobals.ReverseChance/100)*20);
             Debug.WriteLine("revChance: " + revChance);
 
+            // Roll to determine timewarp
             var roll = HelperEngine.RollDice(1, 20);
             Debug.WriteLine("Roll: " + roll);
 
+            // if roll succeeds, Return true for timewarp.
             if (roll >= revChance)
             {
                 Debug.WriteLine("TIME WARP!");
