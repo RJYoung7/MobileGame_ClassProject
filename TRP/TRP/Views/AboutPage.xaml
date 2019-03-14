@@ -210,6 +210,18 @@
                                         HorizontalOptions="EndAndExpand"
                                         Toggled="EnableStolenItem_OnToggled"
                                         IsToggled="False"/>
+
+                                <Entry x:Name="MonsterStealsChance"
+                                       Text="1" 
+                                       MaxLength="3"
+                                       CursorPosition="0" 
+                                       SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                        Clicked="SetMonsterStealsChance"
+                                        HorizontalOptions="EndAndExpand"
+                                        TextColor="Black" 
+                                        Style="{StaticResource MediumButton}"/>
                             </StackLayout>
 
                             <!-- Enable revival of characters once -->

@@ -228,9 +228,10 @@ namespace TRP.GameEngine
         // Rolls a dice and if roll is >= 17, an item from dropped items list is stolen
         public Item MonsterStealsItem(List<Item> itemsDropped)
         {
+            var chance = 20 - ((GameGlobals.MonsterStealsChance / 100) * 20);
             var roll = HelperEngine.RollDice(1, 20);
-            if (roll >= 2)
-            {
+
+            if (roll >= chance) { 
                 var item = itemsDropped.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
                 return item;
             }
@@ -397,32 +398,51 @@ namespace TRP.GameEngine
             // Check for alive
             if (Target.Alive == false)
             {
-                // Remove target from list...
-                MonsterList.Remove(Target);
-
-                // Mark Status in output
-                BattleMessage.TurnMessageSpecial += Target.Name + " dies.\n";
-
-                // Add one to the monsters killd count...
-                BattleScore.MonsterSlainNumber++;
-
-                // Add the monster to the killed list
-                BattleScore.AddMonsterToKillList(Target);
-
-                // Drop Items to item Pool
-                var myItemList = Target.DropAllItems();
-
-                // If Random drops are enabled, then add some....
-                myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
-
-                // Add to Score
-                foreach (var item in myItemList)
+                // Check if zombies setting is on
+                if (GameGlobals.EnableZombies && !Target.HasBeenZombie)
                 {
-                    BattleScore.ItemsDroppedList += item.FormatOutput() + "\n\n";
-                    BattleMessage.TurnMessageSpecial += " Item " + item.Name + " dropped\n";
+                    var chance = 20 - ((GameGlobals.ZombieChance / 100) * 20);
+                    var roll = HelperEngine.RollDice(1, 20);
+
+                    // and roll to turn monster to zombie
+                    if (roll >= chance)
+                    {
+                        BattleMessage.TurnMessageSpecial += "\n" + Target.Name + " dies but returns as a zombie.";
+                        Target.isZombie("Zombie " + Target.Name);
+                        Target.Alive = true;
+                    }
+                }
+                // Otherwise, remove monster and items 
+                else
+                {
+                    // Remove target from list...
+                    MonsterList.Remove(Target);
+
+                    // Mark Status in output
+                    BattleMessage.TurnMessageSpecial += Target.Name + " dies.\n";
+
+                    // Add one to the monsters killd count...
+                    BattleScore.MonsterSlainNumber++;
+
+                    // Add the monster to the killed list
+                    BattleScore.AddMonsterToKillList(Target);
+
+                    // Drop Items to item Pool
+                    var myItemList = Target.DropAllItems();
+
+                    // If Random drops are enabled, then add some....
+                    myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
+
+                    // Add to Score
+                    foreach (var item in myItemList)
+                    {
+                        BattleScore.ItemsDroppedList += item.FormatOutput() + "\n\n";
+                        BattleMessage.TurnMessageSpecial += " Item " + item.Name + " dropped\n";
+                    }
+
+                    ItemPool.AddRange(myItemList);
                 }
 
-                ItemPool.AddRange(myItemList);
             }
 
             //BattleMessage.TurnMessage += "\n" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;

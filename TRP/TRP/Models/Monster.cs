@@ -17,6 +17,9 @@ namespace TRP.Models
         [Ignore]
         public AttributeBase Attribute { get; set; }
 
+        // If monster has died and become zombie 
+        public bool HasBeenZombie { get; set; }
+
         // Make sure Attribute is instantiated in the constructor
         public Monster()
         {
@@ -153,6 +156,16 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+
+            HasBeenZombie = false;
+        }
+
+        // Update name and make monster a zombie
+        public void isZombie(String newName)
+        {
+            Name = newName;
+            Attribute.CurrentHealth = GetHealthMax() / 2;
+            HasBeenZombie = true;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
