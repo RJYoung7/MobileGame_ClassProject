@@ -108,9 +108,7 @@ namespace TRP.GameEngine
         // Monster Attacks Character
         public bool TurnAsAttack(Monster Attacker, int AttackScore, Character Target, int DefenseScore)
         {
-            BattleMessage.TurnMessage = string.Empty;
-            BattleMessage.TurnMessageSpecial = string.Empty;
-            BattleMessage.AttackStatus = string.Empty;
+            BattleMessage.ResetBattleMessages();
 
             if (Attacker == null)
             {
@@ -166,13 +164,13 @@ namespace TRP.GameEngine
                 AttackStatus = string.Format(" hits really hard for {0} damage on ", BattleMessage.DamageAmount);
             }
 
-            BattleMessage.TurnMessageSpecial = Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial += Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
             {
                 // Mark Status in output
-                BattleMessage.TurnMessageSpecial = " and causes death.\n";
+                BattleMessage.TurnMessageSpecial += " and causes death.\n";
 
                 // If character has not been revived yet, they can be revived
                 if (!Target.IsRevived && GameGlobals.EnableRevivalOnce)
@@ -239,10 +237,7 @@ namespace TRP.GameEngine
         // Character attacks Monster
         public bool TurnAsAttack(Character Attacker, int AttackScore, Monster Target, int DefenseScore)
         {
-            BattleMessage.TurnMessage = string.Empty;
-            BattleMessage.TurnMessageSpecial = string.Empty;
-            BattleMessage.AttackStatus = string.Empty;
-            BattleMessage.LevelUpMessage = string.Empty;
+            BattleMessage.ResetBattleMessages();
 
             if (Attacker == null)
             {
@@ -271,7 +266,7 @@ namespace TRP.GameEngine
                 // If mulligan is enabled, character can retry their attack
                 if (GameGlobals.EnableMulligan)
                 {
-                    BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName + "\n";
+                    BattleMessage.TurnMessage += BattleMessage.AttackerName + " misses " + BattleMessage.TargetName + "\n";
                     var chance = 20 - ((GameGlobals.MulliganChance / 100) * 20);
                     var roll = HelperEngine.RollDice(1, 20);
 
@@ -279,14 +274,13 @@ namespace TRP.GameEngine
                     {
                         missed = true;
                         BattleMessage.HitStatus = HitStatusEnum.Hit;
-                        BattleMessage.TurnMessageSpecial += "However, there is a Mulligan.";
                         Debug.WriteLine("However, there is a Mulligan");
                     }
                 }
                 // Otherwise they miss as normal
                 else
                 {
-                    BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName;
+                    BattleMessage.TurnMessage += BattleMessage.AttackerName + " misses " + BattleMessage.TargetName;
 
                     Debug.WriteLine(BattleMessage.TurnMessage);
 
@@ -299,7 +293,7 @@ namespace TRP.GameEngine
                 // If mulligan is enabled, character can retry their attack
                 if (GameGlobals.EnableMulligan)
                 {
-                    BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName + "\n";
+                    BattleMessage.TurnMessage += BattleMessage.AttackerName + " misses " + BattleMessage.TargetName + "\n";
                     var chance = 20 - ((GameGlobals.MulliganChance / 100) * 20);
                     var roll = HelperEngine.RollDice(1, 20);
 
@@ -307,14 +301,13 @@ namespace TRP.GameEngine
                     {
                         missed = true;
                         BattleMessage.HitStatus = HitStatusEnum.Hit;
-                        BattleMessage.TurnMessageSpecial += "However, there is a Mulligan.";
                         Debug.WriteLine("However, there is a Mulligan");
                     }
                 }
                 // Otherwise they miss as normal
                 else
                 {
-                    BattleMessage.TurnMessage = BattleMessage.AttackerName + " swings and critically misses " +
+                    BattleMessage.TurnMessage += BattleMessage.AttackerName + " swings and critically misses " +
                                                 BattleMessage.TargetName;
                     Debug.WriteLine(BattleMessage.TurnMessage);
 
@@ -336,6 +329,7 @@ namespace TRP.GameEngine
                 if (missed)
                 {
                     Debug.WriteLine("Mulligan occured ");
+                    BattleMessage.TurnMessageSpecial += "Mulligan occured.\n";
                     BattleMessage.DamageAmount /= 2;
                     BattleMessage.DamageAmount += 1;
                     missed = false;
@@ -343,7 +337,7 @@ namespace TRP.GameEngine
 
                 BattleMessage.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
-                BattleMessage.AttackStatus = string.Format(" hits for {0} damage on ", BattleMessage.DamageAmount);
+                BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name, BattleMessage.DamageAmount);
 
                 if (GameGlobals.EnableCriticalHitDamage)
                 {
@@ -369,7 +363,7 @@ namespace TRP.GameEngine
                 BattleScore.ExperienceGainedTotal += experienceEarned;
             }
 
-            BattleMessage.TurnMessageSpecial = "\t" + " remaining health: " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial += "\nRemaining health: " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
@@ -378,7 +372,7 @@ namespace TRP.GameEngine
                 MonsterList.Remove(Target);
 
                 // Mark Status in output
-                BattleMessage.TurnMessageSpecial = "\n\t" + Target.Name + " dies.\n";
+                BattleMessage.TurnMessageSpecial += "\n" + Target.Name + " dies.\n";
 
                 // Add one to the monsters killd count...
                 BattleScore.MonsterSlainNumber++;
@@ -402,7 +396,7 @@ namespace TRP.GameEngine
                 ItemPool.AddRange(myItemList);
             }
 
-            BattleMessage.TurnMessage = "-" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
+            BattleMessage.TurnMessage += "\n" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
             
             Debug.WriteLine(BattleMessage.TurnMessage + "\n");
             

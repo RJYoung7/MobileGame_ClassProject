@@ -129,11 +129,30 @@ namespace TRP.Models
 
         public string GetTurnMessageString()
         {
-            var myResult = AttackerName + GetSwingResult() + TargetName + "\n" + TurnMessageSpecial + "\n" + LevelUpMessage;
+            var myResult = TurnMessage + "\n";
+            myResult += AttackStatus + "\n";
+            myResult += TurnMessageSpecial + "\n" + LevelUpMessage;
+
+            ResetBattleMessages();
 
             return myResult;
 
         }
+
+        public void ResetBattleMessages()
+        {
+            AttackerName = string.Empty;
+            TargetName = string.Empty;
+            AttackStatus = string.Empty;
+
+            TurnMessage = string.Empty;
+            TurnMessageSpecial = string.Empty;
+            LevelUpMessage = string.Empty;
+
+            TimeWarpMessage = string.Empty;
+            DamageAmount = 0;
+            CurrentHealth = 0;
+    }
 
         public string GetHTMLFormattedRoundMessage()
         {
