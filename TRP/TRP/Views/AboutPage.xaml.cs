@@ -275,5 +275,19 @@ namespace TRP.Views
             await DisplayAlert(message, null, "Okay");
         }
 
+        // Toggle to enable Rebound
+        private void EnableRebound_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableRebound = e.Value;
+        }
+
+        // Set Rebound chance
+        private async void SetReboundChance(object sender, EventArgs e)
+        {
+            GameGlobals.MulliganChance = Convert.ToInt32(ReboundChance.Text);
+            var message = "Set Rebound chance to " + GameGlobals.ReboundChance + "%";
+            await DisplayAlert(message, null, "Okay");
+        }
+
     }
 }
