@@ -138,7 +138,15 @@ namespace TRP.GameEngine
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
-                BattleMessage.TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
+                
+                var rnd = HelperEngine.RollDice(1, ItemsViewModel.Instance.Dataset.Count);
+                Item randItem = ItemsViewModel.Instance.Dataset[1 - rnd];
+                ItemPool.Add(randItem);
+
+                BattleMessage.TurnMessage += "CRITICAL MISS-- " + Attacker.Name + " swings and critically misses " +
+                                                Target.Name + " and adds " + randItem.Name + " to item pool";
+
+
                 Debug.WriteLine(BattleMessage.TurnMessage);
                 return true;
             }
@@ -311,8 +319,8 @@ namespace TRP.GameEngine
                 // Otherwise they miss as normal
                 else
                 {
-                    BattleMessage.TurnMessage += BattleMessage.AttackerName + " swings and critically misses " +
-                                                BattleMessage.TargetName;
+                    BattleMessage.TurnMessage += "CRITICAL MISS-- " + Attacker.Name + " swings and critically misses " +
+                                                Target.Name;
                     Debug.WriteLine(BattleMessage.TurnMessage);
 
                     if (GameGlobals.EnableCriticalMissProblems)

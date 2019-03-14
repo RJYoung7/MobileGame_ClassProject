@@ -33,26 +33,6 @@ namespace TRP.Views.Battle
         // When this button is clicked, create Battle page (with no info for now)
         private async void SelectStartButton_Command(object sender, EventArgs e)
         {
-            while (BattleViewModel.Instance.SelectedCharacters.Count < 6)
-            {
-                var rnd = HelperEngine.RollDice(1, CharactersViewModel.Instance.Dataset.Count);
-
-                if (rnd > CharactersViewModel.Instance.Dataset.Count)
-                {
-                    rnd = CharactersViewModel.Instance.Dataset.Count;
-                }
-
-                var character = new Character(CharactersViewModel.Instance.Dataset[rnd - 1]);
-
-                BattleViewModel.Instance.SelectedCharacters.Add(character);
-
-            }
-
-            
-            foreach (var c in BattleViewModel.Instance.SelectedCharacters)
-            {
-                BattleViewModel.Instance.BattleEngine.CharacterList.Add(c);
-            }
             _viewModel.StartRound();
             await Navigation.PushAsync(new BattlePage(BattleViewModel.Instance));
         }
