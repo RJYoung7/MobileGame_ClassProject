@@ -242,6 +242,14 @@ namespace TRP.Views
             GameGlobals.EnableMonsterStolenItem = e.Value;
         }
 
+        // Sets percent for monster stealing stuff 
+        private async void SetMonsterStealsChance(object sender, EventArgs e)
+        {
+            GameGlobals.MonsterStealsChance = Convert.ToInt32(MonsterStealsChance.Text);
+            var message = "Set steal chance to " + GameGlobals.MonsterStealsChance;
+            await DisplayAlert(message, null, "Okay");
+        }
+
         // Turn on feature to enable a monster to have chance to steal dropped item from character
         private void EnableMiracleMax_OnToggled(object sender, ToggledEventArgs e)
         {
