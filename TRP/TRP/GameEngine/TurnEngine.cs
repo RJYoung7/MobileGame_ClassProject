@@ -372,7 +372,7 @@ namespace TRP.GameEngine
                 MonsterList.Remove(Target);
 
                 // Mark Status in output
-                BattleMessage.TurnMessageSpecial += "\n" + Target.Name + " dies.\n";
+                BattleMessage.TurnMessageSpecial += Target.Name + " dies.\n";
 
                 // Add one to the monsters killd count...
                 BattleScore.MonsterSlainNumber++;
@@ -396,7 +396,7 @@ namespace TRP.GameEngine
                 ItemPool.AddRange(myItemList);
             }
 
-            BattleMessage.TurnMessage += "\n" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
+            //BattleMessage.TurnMessage += "\n" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
             
             Debug.WriteLine(BattleMessage.TurnMessage + "\n");
             
