@@ -264,6 +264,8 @@ namespace TRP.GameEngine
 
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
+            bool missed = false;
+
             if (BattleMessage.HitStatus == HitStatusEnum.Miss)
             {
                 // If mulligan is enabled, character can retry their attack
@@ -275,70 +277,21 @@ namespace TRP.GameEngine
 
                     if (roll >= chance)
                     {
+                        missed = true;
+                        BattleMessage.HitStatus = HitStatusEnum.Hit;
                         BattleMessage.TurnMessageSpecial += "However, there is a Mulligan.";
                         Debug.WriteLine("However, there is a Mulligan");
-
-                        // Re-roll their attack
-                        BattleMessage.DamageAmount = Attacker.GetDamageRollValue();
-                        BattleMessage.AttackStatus = string.Format(" hits for {0} damage on ", BattleMessage.DamageAmount);
-                        Debug.WriteLine(BattleMessage.AttackStatus);
-
-                        // Apply 50% 
-                        BattleMessage.DamageAmount /= 2;
-                        BattleMessage.DamageAmount += 1;
-
-                        // Deal damage and calculate experience
-                        Target.TakeDamage(BattleMessage.DamageAmount);
-                        var experienceEarned = Target.CalculateExperienceEarned(BattleMessage.DamageAmount);
-
-                        var LevelUp = Attacker.AddExperience(experienceEarned);
-                        if (LevelUp)
-                        {
-                            BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and to " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
-                            Debug.WriteLine(BattleMessage.LevelUpMessage);
-                        }
-                        BattleScore.ExperienceGainedTotal += experienceEarned;
-
-                        if (Target.Alive == false)
-                        {
-                            // Remove target from list...
-                            MonsterList.Remove(Target);
-
-                            // Mark Status in output
-                            BattleMessage.TurnMessageSpecial = "\n\t" + Target.Name + " dies.\n";
-
-                            // Add one to the monsters killd count...
-                            BattleScore.MonsterSlainNumber++;
-
-                            // Add the monster to the killed list
-                            BattleScore.AddMonsterToKillList(Target);
-
-                            // Drop Items to item Pool
-                            var myItemList = Target.DropAllItems();
-
-                            // If Random drops are enabled, then add some....
-                            myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
-
-                            // Add to Score
-                            foreach (var item in myItemList)
-                            {
-                                BattleScore.ItemsDroppedList += item.FormatOutput() + "\n\n";
-                                BattleMessage.TurnMessageSpecial += " Item " + item.Name + " dropped\n";
-                            }
-
-                            ItemPool.AddRange(myItemList);
-                        }
-
-                        return true;
                     }
                 }
-
                 // Otherwise they miss as normal
-                BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName;
+                else
+                {
+                    BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName;
 
-                Debug.WriteLine(BattleMessage.TurnMessage);
+                    Debug.WriteLine(BattleMessage.TurnMessage);
 
-                return true;
+                    return true;
+                }
             }
 
             if (BattleMessage.HitStatus == HitStatusEnum.CriticalMiss)
@@ -346,79 +299,32 @@ namespace TRP.GameEngine
                 // If mulligan is enabled, character can retry their attack
                 if (GameGlobals.EnableMulligan)
                 {
-                    BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName + "really badly\n";
+                    BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName + "\n";
                     var chance = 20 - ((GameGlobals.MulliganChance / 100) * 20);
                     var roll = HelperEngine.RollDice(1, 20);
 
                     if (roll >= chance)
                     {
+                        missed = true;
+                        BattleMessage.HitStatus = HitStatusEnum.Hit;
                         BattleMessage.TurnMessageSpecial += "However, there is a Mulligan.";
                         Debug.WriteLine("However, there is a Mulligan");
-
-                        // Re-roll their attack
-                        BattleMessage.DamageAmount = Attacker.GetDamageRollValue();
-                        BattleMessage.AttackStatus = string.Format(" hits for {0} damage on ", BattleMessage.DamageAmount);
-                        Debug.WriteLine(BattleMessage.AttackStatus);
-
-                        // Apply 50% 
-                        BattleMessage.DamageAmount /= 2;
-                        BattleMessage.DamageAmount += 1;
-
-                        // Deal damage and calculate experience
-                        Target.TakeDamage(BattleMessage.DamageAmount);
-                        var experienceEarned = Target.CalculateExperienceEarned(BattleMessage.DamageAmount);
-
-                        var LevelUp = Attacker.AddExperience(experienceEarned);
-                        if (LevelUp)
-                        {
-                            BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and to " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
-                            Debug.WriteLine(BattleMessage.LevelUpMessage);
-                        }
-                        BattleScore.ExperienceGainedTotal += experienceEarned;
-
-                        if (Target.Alive == false)
-                        {
-                            // Remove target from list...
-                            MonsterList.Remove(Target);
-
-                            // Mark Status in output
-                            BattleMessage.TurnMessageSpecial = "\n\t" + Target.Name + " dies.\n";
-
-                            // Add one to the monsters killd count...
-                            BattleScore.MonsterSlainNumber++;
-
-                            // Add the monster to the killed list
-                            BattleScore.AddMonsterToKillList(Target);
-
-                            // Drop Items to item Pool
-                            var myItemList = Target.DropAllItems();
-
-                            // If Random drops are enabled, then add some....
-                            myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
-
-                            // Add to Score
-                            foreach (var item in myItemList)
-                            {
-                                BattleScore.ItemsDroppedList += item.FormatOutput() + "\n\n";
-                                BattleMessage.TurnMessageSpecial += " Item " + item.Name + " dropped\n";
-                            }
-
-                            ItemPool.AddRange(myItemList);
-                        }
-
-                        return true;
                     }
                 }
-
-                // Otherwise, they miss as normal 
-                BattleMessage.TurnMessage = BattleMessage.AttackerName + " swings and critically misses " + BattleMessage.TargetName;
-                Debug.WriteLine(BattleMessage.TurnMessage);
-
-                if (GameGlobals.EnableCriticalMissProblems)
+                // Otherwise they miss as normal
+                else
                 {
-                    BattleMessage.TurnMessage += DetermineCriticalMissProblem(Attacker);
+                    BattleMessage.TurnMessage = BattleMessage.AttackerName + " swings and critically misses " +
+                                                BattleMessage.TargetName;
+                    Debug.WriteLine(BattleMessage.TurnMessage);
+
+                    if (GameGlobals.EnableCriticalMissProblems)
+                    {
+                        BattleMessage.TurnMessage += DetermineCriticalMissProblem(Attacker);
+                    }
+
+                    return true;
                 }
-                return true;
             }
 
             // It's a Hit or a Critical Hit
@@ -426,6 +332,14 @@ namespace TRP.GameEngine
             {
                 //Calculate Damage
                 BattleMessage.DamageAmount = Attacker.GetDamageRollValue();
+
+                if (missed)
+                {
+                    Debug.WriteLine("Mulligan occured ");
+                    BattleMessage.DamageAmount /= 2;
+                    BattleMessage.DamageAmount += 1;
+                    missed = false;
+                }
 
                 BattleMessage.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
