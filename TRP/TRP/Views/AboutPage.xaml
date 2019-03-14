@@ -249,6 +249,32 @@
                                             Style="{StaticResource MediumButton}"/>
 
                             </StackLayout>
+
+                            <!-- Switch for Mulligan -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Mulligan"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableMulligan"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableMulligan_OnToggled"
+                                        IsToggled="False"/>
+
+                                <Entry x:Name="MulliganChance"
+                                       Text="1" 
+                                       MaxLength="3"
+                                       CursorPosition="0" 
+                                       SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                        Clicked="SetMulliganChance"
+                                        HorizontalOptions="EndAndExpand"
+                                        TextColor="Black" 
+                                        Style="{StaticResource MediumButton}"/>
+                            </StackLayout>
+
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

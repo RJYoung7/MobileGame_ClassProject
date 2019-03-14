@@ -262,5 +262,18 @@ namespace TRP.Views
             await DisplayAlert(message, null, "OK");
         }
 
+        // Toggle to enable Mulligan
+        private void EnableMulligan_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableMulligan = e.Value;
+        }
+
+        private async void SetMulliganChance(object sender, EventArgs e)
+        {
+            GameGlobals.MulliganChance = Convert.ToInt32(MulliganChance.Text);
+            var message = "Set Mulligan chance to " + GameGlobals.MulliganChance;
+            await DisplayAlert(message, null, "Okay");
+        }
+
     }
 }
