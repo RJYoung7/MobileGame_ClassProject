@@ -35,7 +35,7 @@ namespace TRP.GameEngine
         public string TurnMessageSpecial = string.Empty;
         public string LevelUpMessage = string.Empty;
 
-        public int DamageAmount = 0;
+        
         public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
 
         public List<Item> ItemPool = new List<Item>();
@@ -147,23 +147,23 @@ namespace TRP.GameEngine
 
             // It's a Hit or a Critical Hit
             //Calculate Damage
-            DamageAmount = Attacker.GetDamageRollValue();
+            BattleMessage.DamageAmount = Attacker.GetDamageRollValue();
 
-            DamageAmount += GameGlobals.ForceMonsterDamangeBonusValue;  // Add The forced damage bonus
+            BattleMessage.DamageAmount += GameGlobals.ForceMonsterDamangeBonusValue;  // Add The forced damage bonus
 
             if (HitStatus == HitStatusEnum.Hit)
             {
-                Target.TakeDamage(DamageAmount);
-                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                Target.TakeDamage(BattleMessage.DamageAmount);
+                AttackStatus = string.Format(" hits for {0} damage on ", BattleMessage.DamageAmount);
             }
 
             if (HitStatus == HitStatusEnum.CriticalHit)
             {
                 //2x damage
-                DamageAmount += DamageAmount;
+                BattleMessage.DamageAmount += BattleMessage.DamageAmount;
 
-                Target.TakeDamage(DamageAmount);
-                AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
+                Target.TakeDamage(BattleMessage.DamageAmount);
+                AttackStatus = string.Format(" hits really hard for {0} damage on ", BattleMessage.DamageAmount);
             }
 
             BattleMessage.TurnMessageSpecial = Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
@@ -343,21 +343,21 @@ namespace TRP.GameEngine
 
                 BattleMessage.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
-                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                BattleMessage.AttackStatus = string.Format(" hits for {0} damage on ", BattleMessage.DamageAmount);
 
                 if (GameGlobals.EnableCriticalHitDamage)
                 {
                     if (BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
                     {
                         //2x damage
-                        BattleMessage.DamageAmount += DamageAmount;
-                        AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount) + ".\n";
+                        BattleMessage.DamageAmount += BattleMessage.DamageAmount;
+                        AttackStatus = string.Format(" hits really hard for {0} damage on ", BattleMessage.DamageAmount) + ".\n";
                     }
                 }
 
                 Target.TakeDamage(BattleMessage.DamageAmount);
 
-                var experienceEarned = Target.CalculateExperienceEarned(DamageAmount);
+                var experienceEarned = Target.CalculateExperienceEarned(BattleMessage.DamageAmount);
 
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
