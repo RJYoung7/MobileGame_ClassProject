@@ -43,6 +43,7 @@ namespace TRP.Views
             // Set debug settings
             EnableCriticalMissProblems.IsToggled = GameGlobals.EnableCriticalMissProblems;
             EnableCriticalHitDamage.IsToggled = GameGlobals.EnableCriticalHitDamage;
+            EnableMonsterStolenItem.IsToggled = GameGlobals.EnableMonsterStolenItem;
 
             // Turn off the Debug Frame
             DebugSettingsFrame.IsVisible = false;
@@ -155,6 +156,7 @@ namespace TRP.Views
             }
         }
 
+        #region GetPostCommands
         /// <summary>
         /// The GetItems_Command will use a GET call to retrieve items from the server
         /// </summary>
@@ -231,6 +233,82 @@ namespace TRP.Views
                 // Display the list of items return with details in a dialog box
                 await DisplayAlert("Returned List", myOutput, "OK");
             }
+        }
+        #endregion
+
+        // Turn on feature to enable a monster to have chance to steal dropped item from character
+        private void EnableStolenItem_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableMonsterStolenItem = e.Value;
+        }
+
+        // Sets percent for monster stealing stuff 
+        private async void SetMonsterStealsChance(object sender, EventArgs e)
+        {
+            GameGlobals.MonsterStealsChance = Convert.ToInt32(MonsterStealsChance.Text);
+            var message = "Set steal chance to " + GameGlobals.MonsterStealsChance;
+            await DisplayAlert(message, null, "Okay");
+        }
+
+        // Turn on feature to enable a monster to have chance to steal dropped item from character
+        private void EnableMiracleMax_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableRevivalOnce = e.Value;
+        }
+
+        // Toggle to enable time warp
+        private void EnableReverseOrder_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableReverseOrder = e.Value;
+        }
+
+        // Set's chance of time warp
+        private async void SetReverseChance(object sender, EventArgs e)
+        {
+            GameGlobals.ReverseChance = Convert.ToInt32(ReverseOrderChance.Text);
+            var message = "Time Warp chance set to: " + ReverseOrderChance.Text + "%";
+            await DisplayAlert(message, null, "OK");
+        }
+
+        // Toggle to enable Mulligan
+        private void EnableMulligan_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableMulligan = e.Value;
+        }
+
+        private async void SetMulliganChance(object sender, EventArgs e)
+        {
+            GameGlobals.MulliganChance = Convert.ToInt32(MulliganChance.Text);
+            var message = "Set Mulligan chance to " + GameGlobals.MulliganChance;
+            await DisplayAlert(message, null, "Okay");
+        }
+
+        // Toggle to enable Rebound
+        private void EnableRebound_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableRebound = e.Value;
+        }
+
+        // Set Rebound chance
+        private async void SetReboundChance(object sender, EventArgs e)
+        {
+            GameGlobals.ReboundChance = Convert.ToInt32(ReboundChance.Text);
+            var message = "Set Rebound chance to " + GameGlobals.ReboundChance + "%";
+            await DisplayAlert(message, null, "Okay");
+        }
+
+        // Toggle to enable zomnies
+        private void EnableZombies_OnToggled(object sender, ToggledEventArgs e)
+        {
+            GameGlobals.EnableZombies = e.Value;
+        }
+
+        // Toggle for set percent
+        private async void SetZombieChance(object sender, EventArgs e)
+        {
+            GameGlobals.ZombieChance = Convert.ToInt32(ZombieChance.Text);
+            var message = "Set Zombie chance to " + GameGlobals.ZombieChance;
+            await DisplayAlert(message, null, "Okay");
         }
 
     }

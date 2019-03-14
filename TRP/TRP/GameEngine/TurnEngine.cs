@@ -35,7 +35,7 @@ namespace TRP.GameEngine
         public string TurnMessageSpecial = string.Empty;
         public string LevelUpMessage = string.Empty;
 
-        public int DamageAmount = 0;
+        
         public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
 
         public List<Item> ItemPool = new List<Item>();
@@ -108,9 +108,7 @@ namespace TRP.GameEngine
         // Monster Attacks Character
         public bool TurnAsAttack(Monster Attacker, int AttackScore, Character Target, int DefenseScore)
         {
-            BattleMessage.TurnMessage = string.Empty;
-            BattleMessage.TurnMessageSpecial = string.Empty;
-            BattleMessage.AttackStatus = string.Empty;
+            BattleMessage.ResetBattleMessages();
 
             if (Attacker == null)
             {
@@ -140,72 +138,118 @@ namespace TRP.GameEngine
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
-                BattleMessage.TurnMessage = Attacker.Name + " swings and really misses " + Target.Name;
+                
+                var rnd = HelperEngine.RollDice(1, ItemsViewModel.Instance.Dataset.Count);
+                Item randItem = ItemsViewModel.Instance.Dataset[1 - rnd];
+                ItemPool.Add(randItem);
+
+                BattleMessage.TurnMessage += "CRITICAL MISS-- " + Attacker.Name + " swings and critically misses " +
+                                                Target.Name + " and adds " + randItem.Name + " to item pool";
+
+
                 Debug.WriteLine(BattleMessage.TurnMessage);
                 return true;
             }
 
             // It's a Hit or a Critical Hit
             //Calculate Damage
-            DamageAmount = Attacker.GetDamageRollValue();
+            BattleMessage.DamageAmount = Attacker.GetDamageRollValue();
 
-            DamageAmount += GameGlobals.ForceMonsterDamangeBonusValue;  // Add The forced damage bonus
+            BattleMessage.DamageAmount += GameGlobals.ForceMonsterDamangeBonusValue;  // Add The forced damage bonus
 
             if (HitStatus == HitStatusEnum.Hit)
             {
-                Target.TakeDamage(DamageAmount);
-                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                Target.TakeDamage(BattleMessage.DamageAmount);
+                BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name, BattleMessage.DamageAmount);
             }
 
-            if (HitStatus == HitStatusEnum.CriticalHit)
+            if (GameGlobals.EnableCriticalHitDamage)
             {
-                //2x damage
-                DamageAmount += DamageAmount;
+                if (BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
+                {
+                    //2x damage
+                    BattleMessage.DamageAmount += BattleMessage.DamageAmount;
 
-                Target.TakeDamage(DamageAmount);
-                AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount);
+                    Target.TakeDamage(BattleMessage.DamageAmount);
+                    BattleMessage.AttackStatus = string.Format("CRITICAL HIT -- " + Attacker.Name + " hits really hard for {0} damage on " + Target.Name, BattleMessage.DamageAmount) + ".\n";
+                }
             }
 
-            BattleMessage.TurnMessageSpecial = Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial += Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
             {
-                // Remover target from list...
-                CharacterList.Remove(Target);
-
                 // Mark Status in output
-                BattleMessage.TurnMessageSpecial = " and causes death.\n";
+                BattleMessage.TurnMessageSpecial += " and causes death.\n";
 
-                // Add the monster to the killed list
-                BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
-
-                // Drop Items to item Pool
-                var myItemList = Target.DropAllItems();
-
-                // Add to Score
-                foreach (var item in myItemList)
+                // If character has not been revived yet, they can be revived
+                if (!Target.IsRevived && GameGlobals.EnableRevivalOnce)
                 {
-                    BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                    BattleMessage.TurnMessageSpecial += "\n\tItem: " + item.Name + " dropped.\n";
+                    Target.IsRevived = true;
+                    Target.Revive();
+                    BattleMessage.TurnMessageSpecial += Target.Name + " has been revived by Miracle Max!";
                 }
 
-                ItemPool.AddRange(myItemList);
+                // Otherwise, character has been revived and stays dead
+                else {
+                    // Remover target from list...
+                    CharacterList.Remove(Target);
+
+                    // Add the character to the killed list
+                    BattleScore.CharacterAtDeathList += Target.FormatOutput() + "\n";
+
+                    // Drop Items to item Pool
+                    var myItemList = Target.DropAllItems();
+
+                    // Add to Score
+                    BattleMessage.TurnMessageSpecial += "\nItems dropped are (";
+                    foreach (var item in myItemList)
+                    {
+                        BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
+                        BattleMessage.TurnMessageSpecial += item.Name;
+                    }
+                    BattleMessage.TurnMessageSpecial += ")";
+
+                    // Calculate chance for monster to steal item
+                    if (GameGlobals.EnableMonsterStolenItem)
+                    {
+                        var itemStolen = MonsterStealsItem(myItemList);
+                    
+                        if (itemStolen != null)
+                        {
+                            BattleMessage.TurnMessageSpecial += "\n" + itemStolen.Name + " was stolen! It's gone.\n";
+                            myItemList.Remove(itemStolen);
+                        }
+                    }
+
+                    ItemPool.AddRange(myItemList);
+                }
             }
 
-            BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + ".\n" + BattleMessage.TurnMessageSpecial;
+            //BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + ".\n" + BattleMessage.TurnMessageSpecial;
             Debug.WriteLine(BattleMessage.TurnMessage);
 
             return true;
         }
 
+        // Rolls a dice and if roll is >= 17, an item from dropped items list is stolen
+        public Item MonsterStealsItem(List<Item> itemsDropped)
+        {
+            var chance = 20 - ((GameGlobals.MonsterStealsChance / 100) * 20);
+            var roll = HelperEngine.RollDice(1, 20);
+
+            if (roll >= chance) { 
+                var item = itemsDropped.OrderBy(x => Guid.NewGuid()).FirstOrDefault();
+                return item;
+            }
+            return null;
+        }
+
         // Character attacks Monster
         public bool TurnAsAttack(Character Attacker, int AttackScore, Monster Target, int DefenseScore)
         {
-            BattleMessage.TurnMessage = string.Empty;
-            BattleMessage.TurnMessageSpecial = string.Empty;
-            BattleMessage.AttackStatus = string.Empty;
-            BattleMessage.LevelUpMessage = string.Empty;
+            BattleMessage.ResetBattleMessages();
 
             if (Attacker == null)
             {
@@ -227,24 +271,65 @@ namespace TRP.GameEngine
 
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
+            bool missed = false;
+
             if (BattleMessage.HitStatus == HitStatusEnum.Miss)
             {
-                BattleMessage.TurnMessage = BattleMessage.AttackerName + " misses " + BattleMessage.TargetName;
-                Debug.WriteLine(BattleMessage.TurnMessage);
+                // If mulligan is enabled, character can retry their attack
+                if (GameGlobals.EnableMulligan)
+                {
+                    BattleMessage.TurnMessage += BattleMessage.AttackerName + " misses " + BattleMessage.TargetName + "\n";
+                    var chance = 20 - ((GameGlobals.MulliganChance / 100) * 20);
+                    var roll = HelperEngine.RollDice(1, 20);
 
-                return true;
+                    if (roll >= chance)
+                    {
+                        missed = true;
+                        BattleMessage.HitStatus = HitStatusEnum.Hit;
+                        Debug.WriteLine("However, there is a Mulligan");
+                    }
+                }
+                // Otherwise they miss as normal
+                else
+                {
+                    BattleMessage.TurnMessage += BattleMessage.AttackerName + " misses " + BattleMessage.TargetName;
+
+                    Debug.WriteLine(BattleMessage.TurnMessage);
+
+                    return true;
+                }
             }
 
             if (BattleMessage.HitStatus == HitStatusEnum.CriticalMiss)
             {
-                BattleMessage.TurnMessage = BattleMessage.AttackerName + " swings and critically misses " + BattleMessage.TargetName;
-                Debug.WriteLine(BattleMessage.TurnMessage);
-
-                if (GameGlobals.EnableCriticalMissProblems)
+                // If mulligan is enabled, character can retry their attack
+                if (GameGlobals.EnableMulligan)
                 {
-                    BattleMessage.TurnMessage += DetermineCriticalMissProblem(Attacker);
+                    BattleMessage.TurnMessage += BattleMessage.AttackerName + " misses " + BattleMessage.TargetName + "\n";
+                    var chance = 20 - ((GameGlobals.MulliganChance / 100) * 20);
+                    var roll = HelperEngine.RollDice(1, 20);
+
+                    if (roll >= chance)
+                    {
+                        missed = true;
+                        BattleMessage.HitStatus = HitStatusEnum.Hit;
+                        Debug.WriteLine("However, there is a Mulligan");
+                    }
                 }
-                return true;
+                // Otherwise they miss as normal
+                else
+                {
+                    BattleMessage.TurnMessage += "CRITICAL MISS-- " + Attacker.Name + " swings and critically misses " +
+                                                Target.Name;
+                    Debug.WriteLine(BattleMessage.TurnMessage);
+
+                    if (GameGlobals.EnableCriticalMissProblems)
+                    {
+                        BattleMessage.TurnMessage += DetermineCriticalMissProblem(Attacker);
+                    }
+
+                    return true;
+                }
             }
 
             // It's a Hit or a Critical Hit
@@ -253,23 +338,58 @@ namespace TRP.GameEngine
                 //Calculate Damage
                 BattleMessage.DamageAmount = Attacker.GetDamageRollValue();
 
+                if (missed)
+                {
+                    Debug.WriteLine("Mulligan occured ");
+                    BattleMessage.TurnMessageSpecial += "Mulligan occured.\n";
+                    BattleMessage.DamageAmount /= 2;
+                    BattleMessage.DamageAmount += 1;
+                    missed = false;
+                }
+
                 BattleMessage.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
-                AttackStatus = string.Format(" hits for {0} damage on ", DamageAmount);
+                // Normal hit message
+                if (BattleMessage.HitStatus == HitStatusEnum.Hit)
+                {
+                    BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name, BattleMessage.DamageAmount);
+                }
 
                 if (GameGlobals.EnableCriticalHitDamage)
                 {
                     if (BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
                     {
                         //2x damage
-                        BattleMessage.DamageAmount += DamageAmount;
-                        AttackStatus = string.Format(" hits really hard for {0} damage on ", DamageAmount) + ".\n";
+                        BattleMessage.DamageAmount += BattleMessage.DamageAmount;
+                        BattleMessage.AttackStatus = string.Format("CRITICAL HIT -- " + Attacker.Name + " hits really hard for {0} damage on " + Target.Name, BattleMessage.DamageAmount) + ".\n";
                     }
                 }
 
                 Target.TakeDamage(BattleMessage.DamageAmount);
 
-                var experienceEarned = Target.CalculateExperienceEarned(DamageAmount);
+                // See if a rebound occurs after dealing damage to monster
+                if (ReboundDamage())
+                {
+                    // Calculate rebound damage
+                    var rebDmg = HelperEngine.RollDice(1, (BattleMessage.DamageAmount / 2));
+
+                    // Apply damange
+                    if (Attacker.GetHealthCurrent() <= rebDmg)
+                    {
+                        // If rebound damage would cause death, set it so that character only has one HP left.
+                        rebDmg = Attacker.GetHealthCurrent() - 1;
+                        Attacker.TakeDamage(rebDmg);
+                        BattleMessage.TurnMessageSpecial = string.Format(Attacker.Name + " gets hit by rebound for {0}.", rebDmg);
+                    }
+                    else
+                    {
+                        // Otherwise, apply damage
+                        Attacker.TakeDamage(rebDmg);
+                        BattleMessage.TurnMessageSpecial = string.Format(Attacker.Name + " gets hit by rebound for {0}.", rebDmg);
+                    }
+                }
+
+                var experienceEarned = Target.CalculateExperienceEarned(BattleMessage.DamageAmount);
 
                 var LevelUp = Attacker.AddExperience(experienceEarned);
                 if (LevelUp)
@@ -281,45 +401,85 @@ namespace TRP.GameEngine
                 BattleScore.ExperienceGainedTotal += experienceEarned;
             }
 
-            BattleMessage.TurnMessageSpecial = "\t" + " remaining health: " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial += "\nRemaining health: " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
             {
-                // Remove target from list...
-                MonsterList.Remove(Target);
-
-                // Mark Status in output
-                BattleMessage.TurnMessageSpecial = "\n\t" + Target.Name + " dies.\n";
-
-                // Add one to the monsters killd count...
-                BattleScore.MonsterSlainNumber++;
-
-                // Add the monster to the killed list
-                BattleScore.AddMonsterToKillList(Target);
-
-                // Drop Items to item Pool
-                var myItemList = Target.DropAllItems();
-
-                // If Random drops are enabled, then add some....
-                myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
-
-                // Add to Score
-                foreach (var item in myItemList)
+                // Check if zombies setting is on
+                if (GameGlobals.EnableZombies && !Target.HasBeenZombie)
                 {
-                    BattleScore.ItemsDroppedList += item.FormatOutput() + "\n\n";
-                    BattleMessage.TurnMessageSpecial += " Item " + item.Name + " dropped\n";
+                    var chance = 20 - ((GameGlobals.ZombieChance / 100) * 20);
+                    var roll = HelperEngine.RollDice(1, 20);
+
+                    // and roll to turn monster to zombie
+                    if (roll >= chance)
+                    {
+                        BattleMessage.TurnMessageSpecial += "\n" + Target.Name + " dies but returns as a zombie.";
+                        Target.isZombie("Zombie " + Target.Name);
+                        Target.Alive = true;
+                    }
+                }
+                // Otherwise, remove monster and items 
+                else
+                {
+                    // Remove target from list...
+                    MonsterList.Remove(Target);
+
+                    // Mark Status in output
+                    BattleMessage.TurnMessageSpecial += Target.Name + " dies.\n";
+
+                    // Add one to the monsters killd count...
+                    BattleScore.MonsterSlainNumber++;
+
+                    // Add the monster to the killed list
+                    BattleScore.AddMonsterToKillList(Target);
+
+                    // Drop Items to item Pool
+                    var myItemList = Target.DropAllItems();
+
+                    // If Random drops are enabled, then add some....
+                    myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
+
+                    // Add to Score
+                    foreach (var item in myItemList)
+                    {
+                        BattleScore.ItemsDroppedList += item.FormatOutput() + "\n\n";
+                        BattleMessage.TurnMessageSpecial += " Item " + item.Name + " dropped\n";
+                    }
+
+                    ItemPool.AddRange(myItemList);
                 }
 
-                ItemPool.AddRange(myItemList);
             }
 
-            BattleMessage.TurnMessage = "-" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
+            //BattleMessage.TurnMessage += "\n" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
             
             Debug.WriteLine(BattleMessage.TurnMessage + "\n");
             
             return true;
         }
+
+        // Determine if rebound occurs
+        public bool ReboundDamage()
+        {
+            // Get rebound chance value
+            var rebChance = 20 - ((GameGlobals.ReboundChance / 100) * 20);
+
+            // Roll to see if rebound happens.
+            var roll = HelperEngine.RollDice(1, 20);
+
+            if (roll >= rebChance)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
 
         public HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
@@ -341,14 +501,28 @@ namespace TRP.GameEngine
             if (d20 == 1)
             {
                 // Force Miss
-                BattleMessage.HitStatus = HitStatusEnum.CriticalMiss;
+                if(GameGlobals.EnableCriticalMissProblems)
+                {
+                    BattleMessage.HitStatus = HitStatusEnum.CriticalMiss;
+                    return BattleMessage.HitStatus;
+
+                }
+                BattleMessage.HitStatus = HitStatusEnum.Miss;
+
                 return BattleMessage.HitStatus;
             }
 
             if (d20 == 20)
             {
                 // Force Hit
-                BattleMessage.HitStatus = HitStatusEnum.CriticalHit;
+                if (GameGlobals.EnableCriticalHitDamage)
+                {
+                    BattleMessage.HitStatus = HitStatusEnum.CriticalHit;
+                    return BattleMessage.HitStatus;
+                }
+
+                BattleMessage.HitStatus = HitStatusEnum.Hit;
+
                 return BattleMessage.HitStatus;
             }
 

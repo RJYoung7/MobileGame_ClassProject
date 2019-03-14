@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using TRP.ViewModels;
+using TRP.Models;
+using TRP.GameEngine;
 
 namespace TRP.Views.Battle
 {

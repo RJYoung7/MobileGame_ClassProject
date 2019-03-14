@@ -161,6 +161,11 @@ namespace TRP.GameEngine
                 {
                     var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
                     {
+                        if (rnd > myMonsterViewModel.Dataset.Count())
+                        {
+                            rnd = myMonsterViewModel.Dataset.Count();
+                        }
+
                         var monster = new Monster(myMonsterViewModel.Dataset[rnd - 1]);
 
                         // Scale the monster to be between the average level of the characters+1
@@ -321,12 +326,69 @@ namespace TRP.GameEngine
                 .ThenBy(a => a.ListOrder)
                 .ToList();
 
+            // Format list for output
             var playerListToString = "Player list this round: ";
+
             foreach (PlayerInfo p in PlayerList)
             {
                 playerListToString += p.Name + " ";
             }
             Debug.WriteLine(playerListToString);
+
+            // Check to see if timewarp chance is enabled.
+            if (GameGlobals.EnableReverseOrder)
+            {
+                // Determine if neworder is needed
+                var newOrder = orderChange();
+
+                // if new order is needed...
+                if (newOrder == true)
+                {
+                    // Let player know, and reverse list.
+                    BattleMessage.TimeWarpMessage += "Time gets wonky, slowest player goes first.\n";
+                    PlayerList.Reverse();
+
+                    // Format new list for output
+                    playerListToString = "Player list this round: ";
+
+                    foreach (PlayerInfo p in PlayerList)
+                    {
+                        playerListToString += p.Name + " ";
+                    }
+                    Debug.WriteLine(playerListToString);
+                } else
+                {
+                    BattleMessage.TimeWarpMessage += "\n Time feels normal.\n"; 
+                }
+            }
+
+        }
+
+        // Determine whether time warp occurs based on user provided input.
+        public bool orderChange()
+        {
+            Debug.WriteLine("Checking if time warped");
+
+            // Get threshold for timewarp
+            var revChance = 20 - ((GameGlobals.ReverseChance/100)*20);
+            Debug.WriteLine("revChance: " + revChance);
+
+            // Roll to determine timewarp
+            var roll = HelperEngine.RollDice(1, 20);
+            Debug.WriteLine("Roll: " + roll);
+
+            // if roll succeeds, Return true for timewarp.
+            if (roll >= revChance)
+            {
+                Debug.WriteLine("TIME WARP!");
+                return true;
+            }
+            else
+            {
+                Debug.WriteLine("Normal Time");
+                return false;
+            }
+            
         }
 
         // Updates player to lists

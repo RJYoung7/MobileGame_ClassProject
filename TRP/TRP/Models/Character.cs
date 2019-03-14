@@ -13,6 +13,9 @@ namespace TRP.Models
         [Ignore]
         public AttributeBase Attribute { get; set; }
 
+        // Whether a character has been revived from brink of death via Miracle Max
+        public bool IsRevived { get; set; }
+
         // Make sure Attribute is instantiated in the constructor
         public Character()
         {
@@ -144,6 +147,9 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+
+            // Revive
+            IsRevived = false;
         }
 
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
@@ -616,6 +622,13 @@ namespace TRP.Models
                 // Death...
                 CauseDeath();
             }
+        }
+
+        // Use Miracle Max
+        public void Revive()
+        {
+            IsRevived = true;
+            Attribute.CurrentHealth = GetHealthMax();
         }
     }
 }

@@ -198,6 +198,145 @@
                                         Toggled="EnableCriticalMissProblems_OnToggled"
                                         IsToggled="False"/>
                             </StackLayout>
+
+                            <!-- Enable monsters to steal items when dropped -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Monster To Steal Items"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableMonsterStolenItem"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableStolenItem_OnToggled"
+                                        IsToggled="False"/>
+
+                                <Entry x:Name="MonsterStealsChance"
+                                       Text="1" 
+                                       MaxLength="3"
+                                       CursorPosition="0" 
+                                       SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                        Clicked="SetMonsterStealsChance"
+                                        HorizontalOptions="EndAndExpand"
+                                        TextColor="Black" 
+                                        Style="{StaticResource MediumButton}"/>
+                            </StackLayout>
+
+                            <!-- Enable revival of characters once -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Character To Revive"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableRevivalOnce"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableMiracleMax_OnToggled"
+                                        IsToggled="False"/>
+                            </StackLayout>
+                            
+                            <!-- Enable Time Warp-->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Time Warp"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableTimeWarp"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableReverseOrder_OnToggled"
+                                        IsToggled="False"/>
+                                <Entry x:Name="ReverseOrderChance"
+                                           Text="1" 
+                                           MaxLength="3"
+                                           CursorPosition="0" 
+                                           SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                            Clicked="SetReverseChance"
+                                            HorizontalOptions="EndAndExpand"
+                                            TextColor="Black" 
+                                            Style="{StaticResource MediumButton}"/>
+
+                            </StackLayout>
+
+                            <!-- Switch for Mulligan -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Mulligan"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableMulligan"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableMulligan_OnToggled"
+                                        IsToggled="False"/>
+
+                                <Entry x:Name="MulliganChance"
+                                       Text="1" 
+                                       MaxLength="3"
+                                       CursorPosition="0" 
+                                       SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                        Clicked="SetMulliganChance"
+                                        HorizontalOptions="EndAndExpand"
+                                        TextColor="Black" 
+                                        Style="{StaticResource MediumButton}"/>
+                            </StackLayout>
+
+                            <!-- Switch for Rebound -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Rebound"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableRebound"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableRebound_OnToggled"
+                                        IsToggled="False"/>
+
+                                <Entry x:Name="ReboundChance"
+                                       Text="1" 
+                                       MaxLength="3"
+                                       CursorPosition="0" 
+                                       SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                        Clicked="SetReboundChance"
+                                        HorizontalOptions="EndAndExpand"
+                                        TextColor="Black" 
+                                        Style="{StaticResource MediumButton}"/>
+                            </StackLayout>
+
+                            <!-- Switch for Zombies -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Zombies"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableZombies"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableZombies_OnToggled"
+                                        IsToggled="False"/>
+
+                                <Entry x:Name="ZombieChance"
+                                       Text="1" 
+                                       MaxLength="3"
+                                       CursorPosition="0" 
+                                       SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                        Clicked="SetZombieChance"
+                                        HorizontalOptions="EndAndExpand"
+                                        TextColor="Black" 
+                                        Style="{StaticResource MediumButton}"/>
+                            </StackLayout>
+
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

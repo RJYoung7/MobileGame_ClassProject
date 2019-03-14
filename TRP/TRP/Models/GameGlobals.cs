@@ -83,5 +83,52 @@ namespace TRP.Models
         // Debug Settings
         public static bool EnableCriticalMissProblems = true;
         public static bool EnableCriticalHitDamage = true;
+        public static bool EnableMonsterStolenItem = false;
+        public static double MonsterStealsChance = 0;
+        public static bool EnableRevivalOnce = false;
+        public static bool EnableReverseOrder = false;
+        public static double ReverseChance = 0;
+        public static bool EnableMulligan = false;
+        public static double MulliganChance = 0;
+        public static bool EnableRebound = false;
+        public static double ReboundChance = 0;
+        public static bool EnableZombies = false;
+        public static double ZombieChance = 0;
+
+        // Set switch for allowing monsters to steal items 
+        public static void SetMonstersToStealItems(bool val)
+        {
+            EnableMonsterStolenItem = val;
+        }
+
+        // Set switch for allowing monsters to steal items 
+        public static void SetMiracleMaxUsage(bool val)
+        {
+            EnableRevivalOnce = val;
+        }
+
+        public static void SetReverseOrder(bool val)
+        {
+            EnableReverseOrder = val;
+        }
+
+        // Set switch for allowing mulligan e.g. second chance to hit after a miss
+        public static void SetMulligan(bool val)
+        {
+            EnableMulligan = val;
+        }
+
+        // Set switch for allowing mulligan e.g. second chance to hit after a miss
+        public static void SetRebound(bool val)
+        {
+            EnableRebound = val;
+        }
+
+        //Set switch for allowing zombies
+        public static void SetZombies(bool val)
+        {
+            EnableZombies = val;
+        }
+
     }
 }

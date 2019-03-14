@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 using TRP.ViewModels;
 using TRP.Models;
+using TRP.GameEngine;
 
 namespace TRP.Views.Battle
 {
@@ -22,6 +23,8 @@ namespace TRP.Views.Battle
             BindingContext = _viewModel = BattleViewModel.Instance;
             _viewModel.ClearCharacterLists();
 
+
+
             _viewModel.BattleEngine.StartBattle(false);
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
 
@@ -29,11 +32,13 @@ namespace TRP.Views.Battle
 
             // round number at top of page
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
+            
         }
 
         // When next turn is clicked, start next turn, or end game by checking game state
         private async void NextTurnButton_Clicked(object sender, EventArgs e)
         {
+            ClearMessages();
             _viewModel.RoundNextTurn();
 
             // Hold the current state
@@ -47,6 +52,7 @@ namespace TRP.Views.Battle
                 MessagingCenter.Send(this, "NewRound");
                 await Navigation.PushAsync(new RoundEndPage(_viewModel));
                 Debug.WriteLine("New Round: " + _viewModel.BattleEngine.BattleScore.RoundCount);
+                RoundStartMessage();
                 Navigation.RemovePage(this);
             }
 
@@ -75,6 +81,7 @@ namespace TRP.Views.Battle
             //InitializeComponent();
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
 
+            RoundStartMessage();
             // Output The Message that happened.
             gameMessage();
         }
@@ -89,8 +96,8 @@ namespace TRP.Views.Battle
         public void ClearMessages() 
         {
             MessageText.Text = "";
-            htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLBlankMessage();
-            HtmlBox.Source = htmlSource;
+            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLBlankMessage();
+            //HtmlBox.Source = htmlSource;
         }
 
         // Adds message to be shown in html box 
@@ -103,13 +110,25 @@ namespace TRP.Views.Battle
         // Displays the messages in the game 
         public void gameMessage()
         {
-            //var message = _viewModel.BattleEngine.BattleMessage.TurnMessage;
-            //Debug.WriteLine("Message: " + message);
+            var message = _viewModel.BattleEngine.BattleMessage.GetTurnMessageString();
+            Debug.WriteLine("Message: " + message);
 
-            //AppendMessage(message);
+            MessageText.Text = message;
 
-            htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
-            HtmlBox.Source = HtmlBox.Source = htmlSource;
+            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
+            //HtmlBox.Source = HtmlBox.Source = htmlSource;
+        }
+
+        //
+        public void RoundStartMessage()
+        {
+
+            var message = _viewModel.BattleEngine.BattleMessage.TimeWarpMessage;
+
+            MessageText.Text = message;
+
+            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedRoundMessage();
+            //HtmlBox.Source = HtmlBox.Source = htmlSource;
         }
 
         // Before the page appears, remove anything that was there prior, and load data to view model
@@ -138,6 +157,7 @@ namespace TRP.Views.Battle
 
             BindingContext = _viewModel;
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
+            MessageText.Text = _viewModel.BattleEngine.BattleMessage.TimeWarpMessage;
         }
     }
 }

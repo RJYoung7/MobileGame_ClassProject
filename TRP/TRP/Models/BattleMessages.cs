@@ -16,6 +16,8 @@ namespace TRP.Models
         public string TurnMessageSpecial = string.Empty;
         public string LevelUpMessage = string.Empty;
 
+        public string TimeWarpMessage = string.Empty;
+
         public int DamageAmount = 0;
         public int CurrentHealth = 0;
 
@@ -110,9 +112,8 @@ namespace TRP.Models
                     break;
             }
 
-
-
             var htmlBody = string.Empty;
+
             htmlBody += string.Format(@"{0}{1}</span>", AttackerStyle, AttackerName);
             htmlBody += string.Format(@"{0}{1}</span>", SwingResult, GetSwingResult());
             htmlBody += string.Format(@"{0}{1}</span>", DefenderStyle, TargetName);
@@ -120,6 +121,45 @@ namespace TRP.Models
             htmlBody += string.Format(@"<br><span>{0}</span>", LevelUpMessage);
 
             myResult = htmlHead + htmlBody + htmlTail;
+
+            myResult = AttackerName + GetSwingResult() + TargetName + TurnMessageSpecial + LevelUpMessage;
+            
+            return myResult;
+        }
+
+        public string GetTurnMessageString()
+        {
+            var myResult = TurnMessage + "\n";
+            myResult += AttackStatus + "\n";
+            myResult += TurnMessageSpecial + "\n" + LevelUpMessage;
+
+            ResetBattleMessages();
+
+            return myResult;
+
+        }
+
+        public void ResetBattleMessages()
+        {
+            AttackerName = string.Empty;
+            TargetName = string.Empty;
+            AttackStatus = string.Empty;
+
+            TurnMessage = string.Empty;
+            TurnMessageSpecial = string.Empty;
+            LevelUpMessage = string.Empty;
+
+            TimeWarpMessage = string.Empty;
+            DamageAmount = 0;
+            CurrentHealth = 0;
+    }
+
+        public string GetHTMLFormattedRoundMessage()
+        {
+            var htmlBody = string.Empty;
+            htmlBody += string.Format(@"<br><span>{0}</span>",TimeWarpMessage);
+
+            var myResult = htmlHead + htmlBody +htmlTail;
             return myResult;
         }
     }
