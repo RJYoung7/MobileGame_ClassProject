@@ -161,6 +161,11 @@ namespace TRP.GameEngine
                 {
                     var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
                     {
+                        if (rnd > myMonsterViewModel.Dataset.Count())
+                        {
+                            rnd = myMonsterViewModel.Dataset.Count();
+                        }
+
                         var monster = new Monster(myMonsterViewModel.Dataset[rnd - 1]);
 
                         // Scale the monster to be between the average level of the characters+1

@@ -152,16 +152,19 @@ namespace TRP.GameEngine
             if (HitStatus == HitStatusEnum.Hit)
             {
                 Target.TakeDamage(BattleMessage.DamageAmount);
-                AttackStatus = string.Format(" hits for {0} damage on ", BattleMessage.DamageAmount);
+                BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name, BattleMessage.DamageAmount);
             }
 
-            if (HitStatus == HitStatusEnum.CriticalHit)
+            if (GameGlobals.EnableCriticalHitDamage)
             {
-                //2x damage
-                BattleMessage.DamageAmount += BattleMessage.DamageAmount;
+                if (BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
+                {
+                    //2x damage
+                    BattleMessage.DamageAmount += BattleMessage.DamageAmount;
 
-                Target.TakeDamage(BattleMessage.DamageAmount);
-                AttackStatus = string.Format(" hits really hard for {0} damage on ", BattleMessage.DamageAmount);
+                    Target.TakeDamage(BattleMessage.DamageAmount);
+                    BattleMessage.AttackStatus = string.Format("CRITICAL HIT -- " + Attacker.Name + " hits really hard for {0} damage on " + Target.Name, BattleMessage.DamageAmount) + ".\n";
+                }
             }
 
             BattleMessage.TurnMessageSpecial += Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
@@ -216,7 +219,7 @@ namespace TRP.GameEngine
                 }
             }
 
-            BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + ".\n" + BattleMessage.TurnMessageSpecial;
+            //BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + ".\n" + BattleMessage.TurnMessageSpecial;
             Debug.WriteLine(BattleMessage.TurnMessage);
 
             return true;
@@ -337,7 +340,11 @@ namespace TRP.GameEngine
 
                 BattleMessage.DamageAmount += GameGlobals.ForceCharacterDamangeBonusValue;   // Add the Forced Damage Bonus (used for testing...)
 
-                BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name, BattleMessage.DamageAmount);
+                // Normal hit message
+                if (BattleMessage.HitStatus == HitStatusEnum.Hit)
+                {
+                    BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name, BattleMessage.DamageAmount);
+                }
 
                 if (GameGlobals.EnableCriticalHitDamage)
                 {
@@ -345,7 +352,7 @@ namespace TRP.GameEngine
                     {
                         //2x damage
                         BattleMessage.DamageAmount += BattleMessage.DamageAmount;
-                        AttackStatus = string.Format(" hits really hard for {0} damage on ", BattleMessage.DamageAmount) + ".\n";
+                        BattleMessage.AttackStatus = string.Format("CRITICAL HIT -- " + Attacker.Name + " hits really hard for {0} damage on " + Target.Name, BattleMessage.DamageAmount) + ".\n";
                     }
                 }
 
@@ -423,14 +430,28 @@ namespace TRP.GameEngine
             if (d20 == 1)
             {
                 // Force Miss
-                BattleMessage.HitStatus = HitStatusEnum.CriticalMiss;
+                if(GameGlobals.EnableCriticalMissProblems)
+                {
+                    BattleMessage.HitStatus = HitStatusEnum.CriticalMiss;
+                    return BattleMessage.HitStatus;
+
+                }
+                BattleMessage.HitStatus = HitStatusEnum.Miss;
+
                 return BattleMessage.HitStatus;
             }
 
             if (d20 == 20)
             {
                 // Force Hit
-                BattleMessage.HitStatus = HitStatusEnum.CriticalHit;
+                if (GameGlobals.EnableCriticalHitDamage)
+                {
+                    BattleMessage.HitStatus = HitStatusEnum.CriticalHit;
+                    return BattleMessage.HitStatus;
+                }
+
+                BattleMessage.HitStatus = HitStatusEnum.Hit;
+
                 return BattleMessage.HitStatus;
             }
 
