@@ -275,6 +275,56 @@
                                         Style="{StaticResource MediumButton}"/>
                             </StackLayout>
 
+                            <!-- Switch for Rebound -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Rebound"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableRebound"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableRebound_OnToggled"
+                                        IsToggled="False"/>
+
+                                <Entry x:Name="ReboundChance"
+                                       Text="1" 
+                                       MaxLength="3"
+                                       CursorPosition="0" 
+                                       SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                        Clicked="SetReboundChance"
+                                        HorizontalOptions="EndAndExpand"
+                                        TextColor="Black" 
+                                        Style="{StaticResource MediumButton}"/>
+                            </StackLayout>
+
+                            <!-- Switch for Zombies -->
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                         Orientation="Horizontal">
+
+                                <Label Text="Enable Zombies"
+                                       Style="{DynamicResource DebugSwitchLabel}"/>
+
+                                <Switch x:Name="EnableZombies"
+                                        HorizontalOptions="EndAndExpand"
+                                        Toggled="EnableZombies_OnToggled"
+                                        IsToggled="False"/>
+
+                                <Entry x:Name="ZombieChance"
+                                       Text="1" 
+                                       MaxLength="3"
+                                       CursorPosition="0" 
+                                       SelectionLength = "3" />
+
+                                <Button Text="Set"
+                                        Clicked="SetZombieChance"
+                                        HorizontalOptions="EndAndExpand"
+                                        TextColor="Black" 
+                                        Style="{StaticResource MediumButton}"/>
+                            </StackLayout>
+
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
