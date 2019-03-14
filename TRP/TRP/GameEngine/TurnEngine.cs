@@ -358,6 +358,28 @@ namespace TRP.GameEngine
 
                 Target.TakeDamage(BattleMessage.DamageAmount);
 
+                // See if a rebound occurs after dealing damage to monster
+                if (ReboundDamage())
+                {
+                    // Calculate rebound damage
+                    var rebDmg = HelperEngine.RollDice(1, (BattleMessage.DamageAmount / 2));
+
+                    // Apply damange
+                    if (Attacker.GetHealthCurrent() <= rebDmg)
+                    {
+                        // If rebound damage would cause death, set it so that character only has one HP left.
+                        rebDmg = Attacker.GetHealthCurrent() - 1;
+                        Attacker.TakeDamage(rebDmg);
+                        BattleMessage.TurnMessageSpecial = string.Format(Attacker.Name + " gets hit by rebound for {0}.", rebDmg);
+                    }
+                    else
+                    {
+                        // Otherwise, apply damage
+                        Attacker.TakeDamage(rebDmg);
+                        BattleMessage.TurnMessageSpecial = string.Format(Attacker.Name + " gets hit by rebound for {0}.", rebDmg);
+                    }
+                }
+
                 var experienceEarned = Target.CalculateExperienceEarned(BattleMessage.DamageAmount);
 
                 var LevelUp = Attacker.AddExperience(experienceEarned);
@@ -409,6 +431,27 @@ namespace TRP.GameEngine
             
             return true;
         }
+
+        // Determine if rebound occurs
+        public bool ReboundDamage()
+        {
+            // Get rebound chance value
+            var rebChance = 20 - ((GameGlobals.ReboundChance / 100) * 20);
+
+            // Roll to see if rebound happens.
+            var roll = HelperEngine.RollDice(1, 20);
+
+            if (roll >= rebChance)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
 
         public HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
