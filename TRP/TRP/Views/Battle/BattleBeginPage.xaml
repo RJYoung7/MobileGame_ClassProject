@@ -14,30 +14,20 @@
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <Label Text="Current Party "
-                       FontSize="Large"
-                       VerticalOptions="Center" 
-                       HorizontalOptions="Center"
-                       FontFamily="{StaticResource Title}"/>
+                           Style="{StaticResource TitleLabel}"/>
 
                     <Label Text="{Binding SelectedCharacters.Count}" 
-                       FontSize="Large"
-                       VerticalOptions="Center" 
-                       HorizontalOptions="Start"
-                       FontFamily="{StaticResource Title}"
-                       x:Name="partycount"/>
-                           
+                          Style="{StaticResource TitleLabel}"
+                           x:Name="partycount"/>
+
                 </StackLayout>
 
 
                 <Button Text="Select Penguins"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="Center" 
                         Clicked="SelectCharactersButton_Command"
                         Style="{StaticResource LargeButton}"/>
 
                 <Button Text="Start Battle"
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="Center"
                         Clicked="SelectStartButton_Command" 
                         Style="{StaticResource LargeButton}"/>
 
