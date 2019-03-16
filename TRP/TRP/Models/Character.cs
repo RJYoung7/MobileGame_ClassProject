@@ -527,6 +527,11 @@ namespace TRP.Models
                     LeftFinger = itemID;
                     break;
 
+                case ItemLocationEnum.Bag:
+                    myReturn = GetItem(Bag);
+                    Bag = itemID;
+                    break;
+
                 default:
                     myReturn = null;
                     break;
@@ -609,21 +614,25 @@ namespace TRP.Models
             return myReturn;
         }
 
+        // Use an item, currently only applies to health.
         public void UseItem(Item consume)
         {
             if(consume == null)
             {
                 return;
             }
+
             var maxHP = Attribute.MaxHealth;
             var currentHP = Attribute.CurrentHealth;
 
+            // Prevent increaseing health past max health
             if(currentHP + consume.Value > maxHP)
             {
                 Attribute.CurrentHealth = maxHP;
             }
             else
             {
+                // Increase health by item value
                 Attribute.CurrentHealth += consume.Value;
             }
 

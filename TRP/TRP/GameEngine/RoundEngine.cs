@@ -179,7 +179,7 @@ namespace TRP.GameEngine
                         MonsterList.Add(monster);
                     }
                
-                } while (MonsterList.Count() < 6);
+                } while (MonsterList.Count() < 3);
 
             }
             else
@@ -497,6 +497,7 @@ namespace TRP.GameEngine
             }
         }
 
+        // Returns a character for item use.
         public Character PlayerCharacter(PlayerInfo player)
         {
             

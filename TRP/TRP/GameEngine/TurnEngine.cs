@@ -138,9 +138,10 @@ namespace TRP.GameEngine
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
-                
-                var rnd = HelperEngine.RollDice(1, ItemsViewModel.Instance.Dataset.Count);
-                Item randItem = ItemsViewModel.Instance.Dataset[1 - rnd];
+                var iNum = ItemsViewModel.Instance.Dataset.Count; 
+                var rnd = HelperEngine.RollDice(1, iNum);
+                var idx = rnd - 1;
+                Item randItem = ItemsViewModel.Instance.Dataset[idx];
                 ItemPool.Add(randItem);
 
                 BattleMessage.TurnMessage += "CRITICAL MISS-- " + Attacker.Name + " swings and critically misses " +
@@ -250,6 +251,7 @@ namespace TRP.GameEngine
         public bool TurnAsAttack(Character Attacker, int AttackScore, Monster Target, int DefenseScore)
         {
             BattleMessage.ResetBattleMessages();
+            Debug.WriteLine("Item: " + Attacker.GetItemByLocation(ItemLocationEnum.Bag));
 
             if (Attacker == null)
             {
@@ -716,22 +718,43 @@ namespace TRP.GameEngine
             return myReturn;
         }
 
+        // Allows user to consume an item
         public void ConsumeItem(Character c)
         {
-            
+            // If no character is populated do nothing.
+            if(c == null)
+            {
+                return;
+            }
+            // If nothing consumable is equipped, do nothing
             if(c.Bag == null)
             {
                 BattleMessage.TurnMessageSpecial = "No items to use.";
             }
-            if(c.GetHealthCurrent() == c.GetHealthMax())
-            {
-                BattleMessage.TurnMessageSpecial = "Penguin has full health!";
-            }
+            // Else use item
             else
             {
+                Debug.WriteLine("Character: " + c.Name);
+                Debug.WriteLine("Turn: " + BattleScore.TurnCount);
+                
+                // Get consumable item
                 var consumable = c.GetItemByLocation(ItemLocationEnum.Bag);
-                c.UseItem(consumable);
-                TurnMessageSpecial = consumable.Name + " was Used. +" + consumable.Value + " " + consumable.Attribute;
+
+                Debug.WriteLine("Bag: " + c.Bag);
+                Debug.WriteLine("Consumable: " + consumable);
+
+                // If health is full, do not use item
+                if (c.GetHealthCurrent() == c.GetHealthMax())
+                {
+                    BattleMessage.TurnMessageSpecial = c.Name + " has full health!";
+                }
+                // Use item
+                else
+                {
+                    TurnMessageSpecial = consumable.Name + " was Used. +" + consumable.Value + " " + consumable.Attribute;
+                    c.UseItem(consumable);
+                }
+
             }
 
             

@@ -101,6 +101,12 @@ namespace TRP.Views.Battle
                 _viewModel.BattleEngine.BattleMessage.TurnMessageSpecial = "All Characters full health";
                 gameMessage();
             }
+            if (_viewModel.BattleEngine.PlayerCurrent == null|| _viewModel.BattleEngine.PlayerCurrent.PlayerType == PlayerTypeEnum.Monster)
+            {
+                _viewModel.BattleEngine.BattleMessage.TurnMessageSpecial = "Not your turn.";
+                gameMessage();
+            }
+
             else
             {
                
@@ -138,7 +144,7 @@ namespace TRP.Views.Battle
             //HtmlBox.Source = HtmlBox.Source = htmlSource;
         }
 
-        //
+        // 
         public void RoundStartMessage()
         {
 
