@@ -184,17 +184,24 @@
                     </StackLayout>
                 </Grid>
 
+                    <!-- User Actions -->
+                <StackLayout Padding="5" Orientation="Horizontal">
+                    <!-- Use Item -->
+                    <StackLayout Padding="10">
+                        <Button Text="Use ITem"
+                                Style="{StaticResource LargeButton}"
+                                Clicked="UseItemButton_Clicked"/>
+                    </StackLayout>
+                    </StackLayout>
                     <!-- Finish turn button -->
                     <StackLayout Padding="10">
                         <Button Text="Next Turn"
-                               VerticalOptions="CenterAndExpand" 
-                               HorizontalOptions="CenterAndExpand"
-                               Style="{StaticResource LargeButton}"
-                               Clicked="NextTurnButton_Clicked"/>
+                                Style="{StaticResource LargeButton}"
+                                Clicked="NextTurnButton_Clicked"/>
                     </StackLayout>
 
-                <!--</StackLayout>-->
-            </StackLayout>
+                </StackLayout>
+
         </StackLayout>
 
     </ContentPage.Content>

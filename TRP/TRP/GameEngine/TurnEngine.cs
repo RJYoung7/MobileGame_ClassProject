@@ -479,8 +479,7 @@ namespace TRP.GameEngine
             }
 
         }
-
-
+        
         public HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
 
@@ -717,9 +716,25 @@ namespace TRP.GameEngine
             return myReturn;
         }
 
-        public string turnMessage(string message)
+        public void ConsumeItem(Character c)
         {
-            return message;
+            
+            if(c.Bag == null)
+            {
+                BattleMessage.TurnMessageSpecial = "No items to use.";
+            }
+            if(c.GetHealthCurrent() == c.GetHealthMax())
+            {
+                BattleMessage.TurnMessageSpecial = "Penguin has full health!";
+            }
+            else
+            {
+                var consumable = c.GetItemByLocation(ItemLocationEnum.Bag);
+                c.UseItem(consumable);
+                TurnMessageSpecial = consumable.Name + " was Used. +" + consumable.Value + " " + consumable.Attribute;
+            }
+
+            
         }
     }
 }

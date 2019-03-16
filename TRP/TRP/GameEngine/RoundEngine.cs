@@ -16,6 +16,9 @@ namespace TRP.GameEngine
 
         // Player currently engaged
         public PlayerInfo PlayerCurrent;
+
+        // Current character as player
+        public Character CurrentCharacter;
         
         // Enum for round status
         public RoundEnum RoundStateEnum = RoundEnum.Unknown;
@@ -176,7 +179,7 @@ namespace TRP.GameEngine
                         MonsterList.Add(monster);
                     }
                
-                } while (MonsterList.Count() < 1);
+                } while (MonsterList.Count() < 6);
 
             }
             else
@@ -226,6 +229,7 @@ namespace TRP.GameEngine
         // Starts next turn during round
         public RoundEnum RoundNextTurn()
         {
+            Debug.WriteLine("Starting RoundEngine...");
             Debug.WriteLine("From Round Engine: " + RoundStateEnum);
             // No charaacters, game is over...
             if(CharacterList.Count < 1)
@@ -245,6 +249,14 @@ namespace TRP.GameEngine
             // Decide Who gets next turn
             // Remember who just went...
             PlayerCurrent = GetNextPlayerInList();
+            Debug.WriteLine(PlayerCurrent.Name);
+
+            if(PlayerCurrent.PlayerType == PlayerTypeEnum.Character)
+            {
+                CurrentCharacter = PlayerCharacter(PlayerCurrent);
+                Debug.WriteLine("It's a Character!");
+            }
+    
 
             while (PlayerCurrent.Alive == false)
             {
@@ -442,6 +454,7 @@ namespace TRP.GameEngine
             GetItemFromPoolIfBetter(character, ItemLocationEnum.RightFinger);
             GetItemFromPoolIfBetter(character, ItemLocationEnum.LeftFinger);
             GetItemFromPoolIfBetter(character, ItemLocationEnum.Feet);
+            GetItemFromPoolIfBetter(character, ItemLocationEnum.Bag);
         }
 
         // Replaces an item assigned to character if there is a better item avaliable.
@@ -482,6 +495,20 @@ namespace TRP.GameEngine
                     }
                 }
             }
+        }
+
+        public Character PlayerCharacter(PlayerInfo player)
+        {
+            
+            foreach(var c in CharacterList)
+            {
+                if(player.Guid == c.Guid)
+                {
+                    return c;
+                }
+            }
+
+            return null;
         }
 
     }

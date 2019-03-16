@@ -15,8 +15,6 @@ namespace TRP.GameEngine
         // The status of the actual battle, running or not (over)
         private bool isBattleRunning = false;
 
-        //public RoundEnum RoundStateEnum = RoundEnum.Unknown;
-
         // Constructor calls Init
         public BattleEngine()
         {
@@ -150,6 +148,7 @@ namespace TRP.GameEngine
             myData.RightFinger = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.RightFinger, AttributeEnum.Unknown);
             myData.LeftFinger = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.LeftFinger, AttributeEnum.Unknown);
             myData.Feet = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Feet, AttributeEnum.Unknown);
+            myData.Bag = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Bag, AttributeEnum.Unknown);
 
             return myData;
         }

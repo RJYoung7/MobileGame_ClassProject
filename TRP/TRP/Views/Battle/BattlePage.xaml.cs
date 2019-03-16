@@ -91,6 +91,25 @@ namespace TRP.Views.Battle
         {
             //should only be pressed during character's turn 
         }
+
+        // Use consumable item
+        private async void UseItemButton_Clicked(object sender, EventArgs e)
+        {
+
+            if(_viewModel.BattleEngine.BattleScore.TurnCount < 1)
+            {
+                _viewModel.BattleEngine.BattleMessage.TurnMessageSpecial = "All Characters full health";
+                gameMessage();
+            }
+            else
+            {
+               
+                _viewModel.BattleEngine.ConsumeItem(_viewModel.BattleEngine.CurrentCharacter);
+
+                gameMessage();
+            }
+
+        }
         
         // Clears messages in html box 
         public void ClearMessages() 
