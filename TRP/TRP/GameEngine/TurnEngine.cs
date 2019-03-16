@@ -751,8 +751,9 @@ namespace TRP.GameEngine
                 // Use item
                 else
                 {
-                    TurnMessageSpecial = consumable.Name + " was Used. +" + consumable.Value + " " + consumable.Attribute;
+                    BattleMessage.TurnMessageSpecial = consumable.Name + " was Used. +" + consumable.Value + " " + consumable.Attribute;
                     c.UseItem(consumable);
+
                 }
 
             }
