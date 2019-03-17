@@ -165,6 +165,21 @@ namespace TRP.Models
         // Upgrades to a set level
         public void ScaleLevel(int level)
         {
+            if (level > LevelTable.MaxLevel)
+            {
+                return;
+            }
+
+            if (level <= 1)
+            {
+                return;
+            }
+
+            if (level < Level)
+            {
+                return;
+            }
+
             Level = level;
         }
 

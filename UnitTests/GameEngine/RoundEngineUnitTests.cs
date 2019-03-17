@@ -74,7 +74,7 @@ namespace UnitTests.GameEngine
 
         // Round engine with at least one character left should start next round 
         [Test]
-        public void RoundEngine_RoundNextTurn_1_Character_Should_Have_NextTurn_Should_Pass()
+        public void RoundEngine_RoundNextTurn_1_Character_Should_Have_NewRound_Should_Pass()
         {
             MockForms.Init();
 
@@ -88,5 +88,55 @@ namespace UnitTests.GameEngine
 
             Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
         }
+
+        // Round engine should return an average of character levels
+        [Test]
+        public void RoundEngine_GetAverageCharacterLevel_With_1_Character_Should_Pass()
+        {
+            MockForms.Init();
+
+            // Start round with one character
+            var myRoundEngine = new RoundEngine();
+            myRoundEngine.CharacterList.Add(new Character(DefaultModels.CharacterDefault()));
+            var Actual = myRoundEngine.GetAverageCharacterLevel();
+            var Expected = 1;
+
+            Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
+        }
+
+        // Round engine should return the max of all characters levels
+        [Test]
+        public void RoundEngine_GetMaxCharacterLevel_With_2_Characters_Should_Pass()
+        {
+            MockForms.Init();
+
+            // Start round with one strong character and one default character
+            var myRoundEngine = new RoundEngine();
+            var strongChar = new Character(DefaultModels.CharacterDefault());
+            strongChar.ScaleLevel(10);
+            var weakChar = new Character(DefaultModels.CharacterDefault());
+            myRoundEngine.CharacterList.Add(strongChar);
+            myRoundEngine.CharacterList.Add(weakChar);
+
+            var Actual = myRoundEngine.GetMaxCharacterLevel();
+            var Expected = 10;
+
+            Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
+        }
+
+        // Round engine should add monsters to round up to 6 (or whatever number is currently in round engine)
+        [Test]
+        public void RoundEngine_NewRound_AddMonstersToRound_6_Monsters_Should_Pass()
+        {
+            MockForms.Init();
+            var myRoundEngine = new RoundEngine();
+            myRoundEngine.NewRound();
+            var Expected = 6;
+            var Actual = myRoundEngine.MonsterList.Count;
+
+            Assert.AreEqual(Expected, Actual, TestContext.CurrentContext.Test.Name);
+        }
+
+
     }
 }
