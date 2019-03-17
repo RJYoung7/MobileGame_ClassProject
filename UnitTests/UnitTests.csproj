@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="GameEngine\AutoBattleEngineUnitTests.cs" />
     <Compile Include="GameEngine\BattleEngineUnitTests.cs" />
+    <Compile Include="GameEngine\RoundEngineUnitTests.cs" />
     <Compile Include="Models\Default\DefaultBaseCharacter.cs" />
     <Compile Include="Models\Default\DefaultBaseMonster.cs" />
     <Compile Include="Models\Default\DefaultCharacter.cs" />
