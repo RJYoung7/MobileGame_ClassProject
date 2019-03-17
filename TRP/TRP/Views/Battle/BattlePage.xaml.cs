@@ -176,6 +176,7 @@ namespace TRP.Views.Battle
         // Handles character attacking monster
         private async void Attack_ClickedAsync(object sender, EventArgs e)
         {
+            gameMessage();
             Button mon = sender as Button;
 
             Monster monster = mon.BindingContext as Monster;

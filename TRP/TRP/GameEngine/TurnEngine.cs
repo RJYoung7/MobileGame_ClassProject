@@ -755,6 +755,7 @@ namespace TRP.GameEngine
             if(c.Bag == null)
             {
                 BattleMessage.TurnMessageSpecial = "No items to use.";
+                Debug.WriteLine(BattleMessage.TurnMessageSpecial);
             }
             // Else use item
             else
@@ -772,11 +773,13 @@ namespace TRP.GameEngine
                 if (c.GetHealthCurrent() == c.GetHealthMax())
                 {
                     BattleMessage.TurnMessageSpecial = c.Name + " has full health!";
+                    Debug.WriteLine(BattleMessage.TurnMessageSpecial);
                 }
                 // Use item
                 else
                 {
                     BattleMessage.TurnMessageSpecial = consumable.Name + " was Used. +" + consumable.Value + " " + consumable.Attribute;
+                    Debug.WriteLine(BattleMessage.TurnMessageSpecial);
                     c.UseItem(consumable);
 
                 }
