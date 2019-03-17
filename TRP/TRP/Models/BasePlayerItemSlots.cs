@@ -34,6 +34,9 @@ namespace TRP.Models
         // LeftFinger is a string referencing the database table
         public string LeftFinger { get; set; }
 
+        // Bag is a string referencing the database table
+        public string Bag { get; set; }
+
         // This uses relfection, to get the property from a string
         // Then based on the property, it gets the value which will be the string pointing to the item
         // Then it calls to the view model who has the list of items, and asks for it

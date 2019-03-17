@@ -298,6 +298,31 @@ namespace TRP.Views.Battle
             }
            
         }
+
+        // Use consumable item
+        private async void UseItemButton_Clicked(object sender, EventArgs e)
+        {
+
+            if(_viewModel.BattleEngine.BattleScore.TurnCount < 1)
+            {
+                _viewModel.BattleEngine.BattleMessage.TurnMessageSpecial = "All Characters full health";
+                gameMessage();
+            }
+            if (_viewModel.BattleEngine.PlayerCurrent == null|| _viewModel.BattleEngine.PlayerCurrent.PlayerType == PlayerTypeEnum.Monster)
+            {
+                _viewModel.BattleEngine.BattleMessage.TurnMessageSpecial = "Not your turn.";
+                gameMessage();
+            }
+
+            else
+            {
+               
+                _viewModel.BattleEngine.ConsumeItem(_viewModel.BattleEngine.CurrentCharacter);
+
+                gameMessage();
+            }
+
+        }
         
         // Clears messages in html box 
         public void ClearMessages() 
@@ -326,7 +351,7 @@ namespace TRP.Views.Battle
             //HtmlBox.Source = HtmlBox.Source = htmlSource;
         }
 
-        //
+        // 
         public void RoundStartMessage()
         {
 

@@ -48,7 +48,8 @@
 
             <Style TargetType="Label" x:Key="TitleLabel" >
                 <Setter Property="HorizontalOptions" Value="StartAndExpand" />
-                <!--<Setter Property="VerticalOptions" Value="CenterAndExpand" />-->
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontSize" Value="Large" />
@@ -58,6 +59,7 @@
             <Style TargetType="Entry">
                 <Setter Property="FontFamily" Value="{StaticResource Body}"/>
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
+                
             </Style>
 
             <Style TargetType="Picker">
@@ -68,21 +70,33 @@
             <Style TargetType="Label" x:Key="SmallLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
             
             <Style TargetType="Label" x:Key="MicroLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
                 <Setter Property="FontSize" Value="10" />
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
 
             <Style TargetType="Label" x:Key="MediumLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
 
             <Style TargetType="Label" x:Key="LargeLabel" BasedOn="{StaticResource Xamarin.Forms.Label}">
                 <Setter Property="FontSize" Value="22" />
                 <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
 
             <Style TargetType="Label"
@@ -120,6 +134,8 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
                 <Setter Property="FontFamily" Value="{StaticResource Body}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" /> 
             </Style>
 
             <Style TargetType="Button" x:Key="LargeButton">
@@ -128,6 +144,8 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}" />
                 <Setter Property="TextColor" Value="{StaticResource MainFont}" />
                 <Setter Property="FontFamily" Value="{StaticResource Body}" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="Center" /> 
             </Style>
 
             <Style TargetType="Label"

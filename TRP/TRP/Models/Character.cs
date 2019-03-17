@@ -73,6 +73,7 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+            Bag = newData.Bag;
         }
 
         // Create a new character, based on existing Character
@@ -108,6 +109,7 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+            Bag = newData.Bag;
         }
 
         // Update the character information
@@ -147,6 +149,7 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+            Bag = newData.Bag;
 
             // Revive
             IsRevived = false;
@@ -470,6 +473,9 @@ namespace TRP.Models
 
                 case ItemLocationEnum.Feet:
                     return GetItem(Feet);
+
+                case ItemLocationEnum.Bag:
+                    return GetItem(Bag);
             }
 
             return null;
@@ -519,6 +525,11 @@ namespace TRP.Models
                 case ItemLocationEnum.LeftFinger:
                     myReturn = GetItem(LeftFinger);
                     LeftFinger = itemID;
+                    break;
+
+                case ItemLocationEnum.Bag:
+                    myReturn = GetItem(Bag);
+                    Bag = itemID;
                     break;
 
                 default:
@@ -601,6 +612,31 @@ namespace TRP.Models
             }
 
             return myReturn;
+        }
+
+        // Use an item, currently only applies to health.
+        public void UseItem(Item consume)
+        {
+            if(consume == null)
+            {
+                return;
+            }
+
+            var maxHP = Attribute.MaxHealth;
+            var currentHP = Attribute.CurrentHealth;
+
+            // Prevent increaseing health past max health
+            if(currentHP + consume.Value > maxHP)
+            {
+                Attribute.CurrentHealth = maxHP;
+            }
+            else
+            {
+                // Increase health by item value
+                Attribute.CurrentHealth += consume.Value;
+            }
+
+            RemoveItem(consume.Location);
         }
 
         #endregion Items

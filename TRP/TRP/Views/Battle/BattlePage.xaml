@@ -6,23 +6,24 @@
     <ContentPage.Content>
         <StackLayout Spacing="10" Padding="10" >
 
-            <!-- Round counter -->
-            <StackLayout Orientation="Horizontal"
+                <!-- Round counter -->
+                <StackLayout Orientation="Horizontal"
                              HorizontalOptions="Center">
-                <Label Text="Round " 
+                    <Label Text="Round " 
                            HorizontalTextAlignment="Center"
                            VerticalOptions="Start"
                            HorizontalOptions="Center"
                            Style="{StaticResource TitleLabel}"/>
-                <Label Text=""
+                    <Label Text=""
                            x:Name="numRounds"
                            HorizontalTextAlignment="Center"
                            VerticalOptions="Start"
                            HorizontalOptions="Center"
                            Style="{StaticResource TitleLabel}"/>
-            </StackLayout>
+                </StackLayout>
 
-            <StackLayout Spacing="0">
+
+                <StackLayout Spacing="0">
                 <Grid RowSpacing="3"
                       ColumnSpacing="3"
                       VerticalOptions="Start">
@@ -35,27 +36,131 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-
+                    
                     <!--Characters-->
-                    <StackLayout Grid.Column="0" Grid.Row="0" 
-                                 Spacing="0" 
-                                 BackgroundColor="#eee9e9"
-                                 x:Name="CharacterBox"
-                                 HorizontalOptions="FillAndExpand"
-                                 Orientation="Vertical"
-                                 
-                                 />
+                    <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
+                        <ListView x:Name="CharactersListView" 
+                                  ItemsSource="{Binding SelectedCharacters}"
+                                  VerticalOptions="FillAndExpand"
+                                  HasUnevenRows="true"
+                                  RefreshCommand="{Binding LoadItemsCommand}"
+                                  IsPullToRefreshEnabled="true"
+                                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                  CachingStrategy="RecycleElement">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="0"
+                                                     Spacing="0"
+                                                     Orientation="Horizontal"
+                                                     VerticalOptions="Start"
+                                                     HorizontalOptions="Start">
 
+                                            <!-- Image -->
+                                            <Image Source="{Binding ImageURI}"
+                                                   WidthRequest="65"
+                                                   HeightRequest="65" 
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
+
+                                            <!-- Labels for Character (name, desc, etc.) -->
+                                            <StackLayout Spacing="0" Orientation="Vertical" Padding="2">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" 
+                                                           LineBreakMode="NoWrap" 
+                                                           Style="{StaticResource TitleLabel}"
+                                                           FontSize="16"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="HP:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start" />
+                                                    <Label Text="{Binding Attribute.CurrentHealth}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="hp" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Level:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Level}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="Level" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    
                     <!--Monsters-->
-                    <StackLayout Grid.Column="1" Grid.Row="0" 
-                                 Spacing="0" 
-                                 BackgroundColor="#eee9e9"
-                                 x:Name="MonsterBox"
-                                 HorizontalOptions="FillAndExpand"
-                                 Orientation="Vertical">
+                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
+                        <ListView x:Name="MonstersListView" 
+                                  ItemsSource="{Binding SelectedMonsters}"
+                                  VerticalOptions="FillAndExpand"
+                                  HasUnevenRows="true"
+                                  RefreshCommand="{Binding LoadItemsCommand}"
+                                  IsPullToRefreshEnabled="true"
+                                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                  CachingStrategy="RecycleElement">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="0"
+                                                     Spacing="0"
+                                                     Orientation="Horizontal"
+                                                     VerticalOptions="Start"
+                                                     HorizontalOptions="FillAndExpand">
+
+                                            <!-- Image -->
+                                            <Image Source="{Binding ImageURI}"
+                                                   WidthRequest="65"
+                                                   HeightRequest="65" 
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
+
+                                            <!-- Labels for Monster (name, desc, etc.) -->
+                                            <StackLayout Spacing="0" Padding="2">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Name}" 
+                                                           LineBreakMode="NoWrap" 
+                                                           Style="{StaticResource TitleLabel}"
+                                                           FontSize="16"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="HP:" FontSize="13" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Attribute.CurrentHealth}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="hp" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Level:" Style="{StaticResource MicroLabel}" HorizontalOptions="Start"/>
+                                                    <Label Text="{Binding Level}" 
+                                                           LineBreakMode="NoWrap"
+                                                           Style="{StaticResource MicroLabel}"
+                                                           x:Name="Level" 
+                                                           HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="CenterAndExpand" 
+                                                         VerticalOptions="Center">
+                                                <!--<Button Text="Attack" 
+                                                        Clicked="AttackButton_Clicked"/>-->
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
 
-                    <!--Battle Messages-->
+                        <!--Battle Messages-->
                     <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ScrollView>
                             <StackLayout>
@@ -63,22 +168,41 @@
                                        LineBreakMode="WordWrap"
                                        Text="{Binding Data}">
                                 </Label>
+                                <!--<WebView
+                                    WidthRequest="100"
+                                    MinimumWidthRequest="100"
+                                    HeightRequest="100"
+                                    MinimumHeightRequest="100"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Start"
+                                    BackgroundColor="Transparent"
+                                    x:Name="HtmlBox">
+                                </WebView>-->
                             </StackLayout>
 
                         </ScrollView>
                     </StackLayout>
                 </Grid>
 
-                <!--Finish turn button-->
-                <StackLayout Padding="10">
-                    <Button Text="Next Turn"
-                               VerticalOptions="CenterAndExpand" 
-                               HorizontalOptions="CenterAndExpand"
-                               Style="{StaticResource LargeButton}"
-                               Clicked="NextTurnButton_Clicked"
-                            x:Name="NextButton"/>
+                    <!-- User Actions -->
+                <StackLayout Padding="5" Orientation="Horizontal">
+                    <!-- Use Item -->
+                    <StackLayout Padding="10">
+                        <Button Text="Use ITem"
+                                Style="{StaticResource LargeButton}"
+                                Clicked="UseItemButton_Clicked"/>
+                    </StackLayout>
+                    </StackLayout>
+                    <!-- Finish turn button -->
+                    <StackLayout Padding="10">
+                        <Button Text="Next Turn"
+                                Style="{StaticResource LargeButton}"
+                                Clicked="NextTurnButton_Clicked"/>
+                    </StackLayout>
+
                 </StackLayout>
-            </StackLayout>
+
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

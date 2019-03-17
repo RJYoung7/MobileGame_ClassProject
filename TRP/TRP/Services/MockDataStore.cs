@@ -50,7 +50,7 @@ namespace TRP.Services
                 "https://vignette.wikia.nocookie.net/callofduty/images/5/54/Kreeaho%27ahm_nal_Ahmhogaroc_third_person_BO3_Transparent.png", 
                 4, 3, 3, ItemLocationEnum.PrimaryHand, AttributeEnum.Attack, false));
             await AddAsync_Item(new Item("Snow Ball", "Densely packed snow.", "http://www.stickpng.com/assets/thumbs/5a9687969fc609199d0fefbe.png",
-                0, 0, 5, ItemLocationEnum.Unknown, AttributeEnum.CurrentHealth, true));
+                0, 5, 0, ItemLocationEnum.Bag, AttributeEnum.CurrentHealth, true));
 
 
             // Load characters

@@ -54,31 +54,6 @@ namespace TRP.GameEngine
         #endregion Properties
 
         // Character Attacks...
-        public bool TakeTurn(Character Attacker, Monster Target)
-        {
-            if (Attacker == null)
-                return false;
-
-            // Choose Move or Attack
-            if (!Attacker.Alive)
-                return false;
-
-            // For Attack, Choose Who
-            //var Target = AttackChoice(Attacker);
-            
-
-            if (Target == null)
-            {
-                return false;
-            }
-
-            // Do Attack
-            var AttackScore = Attacker.Level + Attacker.GetAttack();
-            var DefenseScore = Target.GetDefense() + Target.Level;
-            TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
-
-            return true;
-        }
         public bool TakeTurn(Character Attacker)
         {
             if (Attacker == null)
@@ -103,8 +78,6 @@ namespace TRP.GameEngine
 
             return true;
         }
-
-      
 
         // Monster Attacks...
         public bool TakeTurn(Monster Attacker)
@@ -165,9 +138,10 @@ namespace TRP.GameEngine
 
             if (HitStatus == HitStatusEnum.CriticalMiss)
             {
-                
-                var rnd = HelperEngine.RollDice(1, ItemsViewModel.Instance.Dataset.Count);
-                Item randItem = ItemsViewModel.Instance.Dataset[rnd - 1];
+                var iNum = ItemsViewModel.Instance.Dataset.Count; 
+                var rnd = HelperEngine.RollDice(1, iNum);
+                var idx = rnd - 1;
+                Item randItem = ItemsViewModel.Instance.Dataset[idx];
                 ItemPool.Add(randItem);
 
                 BattleMessage.TurnMessage += "CRITICAL MISS-- " + Attacker.Name + " swings and critically misses " +
@@ -277,6 +251,7 @@ namespace TRP.GameEngine
         public bool TurnAsAttack(Character Attacker, int AttackScore, Monster Target, int DefenseScore)
         {
             BattleMessage.ResetBattleMessages();
+            Debug.WriteLine("Item: " + Attacker.GetItemByLocation(ItemLocationEnum.Bag));
 
             if (Attacker == null)
             {
@@ -506,8 +481,7 @@ namespace TRP.GameEngine
             }
 
         }
-
-
+        
         public HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
 
@@ -744,9 +718,47 @@ namespace TRP.GameEngine
             return myReturn;
         }
 
-        public string turnMessage(string message)
+        // Allows user to consume an item
+        public void ConsumeItem(Character c)
         {
-            return message;
+            // If no character is populated do nothing.
+            if(c == null)
+            {
+                return;
+            }
+            // If nothing consumable is equipped, do nothing
+            if(c.Bag == null)
+            {
+                BattleMessage.TurnMessageSpecial = "No items to use.";
+            }
+            // Else use item
+            else
+            {
+                Debug.WriteLine("Character: " + c.Name);
+                Debug.WriteLine("Turn: " + BattleScore.TurnCount);
+                
+                // Get consumable item
+                var consumable = c.GetItemByLocation(ItemLocationEnum.Bag);
+
+                Debug.WriteLine("Bag: " + c.Bag);
+                Debug.WriteLine("Consumable: " + consumable);
+
+                // If health is full, do not use item
+                if (c.GetHealthCurrent() == c.GetHealthMax())
+                {
+                    BattleMessage.TurnMessageSpecial = c.Name + " has full health!";
+                }
+                // Use item
+                else
+                {
+                    BattleMessage.TurnMessageSpecial = consumable.Name + " was Used. +" + consumable.Value + " " + consumable.Attribute;
+                    c.UseItem(consumable);
+
+                }
+
+            }
+
+            
         }
     }
 }

@@ -27,10 +27,7 @@
 
                 <Label FontSize="50"
                        Text="The Righteous Penguins"
-                       VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" 
-                       HorizontalTextAlignment="Center"
-                       FontFamily="{StaticResource Title}"/>
+                       Style="{StaticResource TitleLabel}"/>
 
 
                 <Image Source="Baby.png"
@@ -58,9 +55,7 @@
                                  HorizontalOptions="StartAndExpand">
 
                         <Label Text="Database Settings"
-                               HorizontalOptions="StartAndExpand"
-                               VerticalOptions="Center"
-                               FontFamily="{StaticResource Body}"/>
+                               Style="{StaticResource MediumLabel}"/>
 
                         <Switch x:Name="DatabaseSettings"
                                 HorizontalOptions="EndAndExpand"
@@ -81,9 +76,7 @@
 
                                 <Label FontSize="Small"
                                        Text="Use Mock DataStore"
-                                       HorizontalTextAlignment="Start"
-                                       HorizontalOptions="StartAndExpand"
-                                       FontFamily="{StaticResource Body}"/>
+                                       Style="{StaticResource MediumLabel}"/>
 
                                 <Switch x:Name="UseMockDataSource"
                                         HorizontalOptions="EndAndExpand"
@@ -97,11 +90,8 @@
                                 <StackLayout HorizontalOptions="FillAndExpand"
                                              Orientation="Horizontal">
 
-                                    <Label FontSize="Small"
-                                           Text="Clear Database"
-                                           HorizontalTextAlignment="Start"
-                                           HorizontalOptions="Start"
-                                           FontFamily="{StaticResource Body}"/>
+                                    <Label Text="Clear Database"
+                                           Style="{StaticResource MediumLabel}"/>
 
                                     <Button Text="Clear"
                                             Clicked="ClearDatabase_Command"
@@ -117,11 +107,8 @@
                                 <StackLayout HorizontalOptions="FillAndExpand"
                                              Orientation="Horizontal">
 
-                                    <Label FontSize="Small"
-                                           Text="# of Items "
-                                           HorizontalTextAlignment="Start"
-                                           HorizontalOptions="Start"
-                                           FontFamily="{StaticResource Body}"/>
+                                    <Label Text="# of Items "
+                                           Style="{StaticResource MediumLabel}"/>
 
                                     <Entry x:Name="ServerItemValue"
                                            Text="1" 
@@ -131,13 +118,11 @@
 
                                     <Button Text="Get"
                                             Clicked="GetItems_Command"
-                                            HorizontalOptions="EndAndExpand"
                                             TextColor="Black" 
                                             Style="{StaticResource MediumButton}"/>
 
                                     <Button Text="Post"
                                             Clicked="GetItemsPost_Command"
-                                            HorizontalOptions="EndAndExpand"
                                             TextColor="Black" 
                                             Style="{StaticResource MediumButton}"/>
 

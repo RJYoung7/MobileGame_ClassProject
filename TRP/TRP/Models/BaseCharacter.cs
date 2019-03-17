@@ -66,6 +66,7 @@ namespace TRP.Models
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
             Feet = newData.Feet;
+            Bag = newData.Bag;
             PenguinType = newData.PenguinType;
         }
 
