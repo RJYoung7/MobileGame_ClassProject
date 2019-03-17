@@ -232,6 +232,7 @@ namespace TRP.Views.Battle
             await Navigation.PopAsync();
 
             NextButton.IsVisible = true;
+            UseItemButton.IsVisible = true;
             
         }
 
@@ -245,7 +246,8 @@ namespace TRP.Views.Battle
             if (nextPlayer.PlayerType == PlayerTypeEnum.Character)
             {
                 NextButton.IsVisible = false;
-                
+                UseItemButton.IsVisible = false;
+
                 currentChar = nextPlayer;
             }
             else
