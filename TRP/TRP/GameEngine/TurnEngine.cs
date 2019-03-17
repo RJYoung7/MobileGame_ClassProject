@@ -53,6 +53,31 @@ namespace TRP.GameEngine
         // Turn Over
         #endregion Properties
 
+        public bool TakeTurn(Character Attacker, Monster Target)
+        {
+            if (Attacker == null)
+                return false;
+
+            // Choose Move or Attack
+            if (!Attacker.Alive)
+                return false;
+
+            // For Attack, Choose Who
+            //var Target = AttackChoice(Attacker);
+
+
+            if (Target == null)
+            {
+                return false;
+            }
+
+            // Do Attack
+            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var DefenseScore = Target.GetDefense() + Target.Level;
+            TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
+
+            return true;
+        }
         // Character Attacks...
         public bool TakeTurn(Character Attacker)
         {
