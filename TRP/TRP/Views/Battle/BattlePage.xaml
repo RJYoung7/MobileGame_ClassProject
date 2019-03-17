@@ -40,9 +40,9 @@
                     <StackLayout Grid.Column="0" Grid.Row="0" 
                                  Spacing="0" 
                                  BackgroundColor="#eee9e9"
-                                x:Name="CharacterBox"
-                                HorizontalOptions="FillAndExpand"
-                                Orientation="Vertical"
+                                 x:Name="CharacterBox"
+                                 HorizontalOptions="FillAndExpand"
+                                 Orientation="Vertical"
                                  
                                  />
 

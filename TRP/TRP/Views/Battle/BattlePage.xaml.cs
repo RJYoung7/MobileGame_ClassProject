@@ -26,8 +26,6 @@ namespace TRP.Views.Battle
             BindingContext = _viewModel = BattleViewModel.Instance;
             _viewModel.ClearCharacterLists();
 
-
-
             _viewModel.BattleEngine.StartBattle(false);
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
 
@@ -88,8 +86,6 @@ namespace TRP.Views.Battle
 
         public void AddMonsterToScreen(Monster data, StackLayout PlayerStackLayout)
         {
-            
-
             var monster = data;
             var myName = new Label()
             {
@@ -166,6 +162,16 @@ namespace TRP.Views.Battle
             }
         }
 
+        public void justAddMonsterToScreen()
+        {
+            StackLayout myStackLayoutMonster = this.FindByName<StackLayout>("MonsterBox");
+            foreach (var data in _viewModel.BattleEngine.MonsterList)
+            {
+                //var temp = new PlayerInfo(data);
+                AddMonsterToScreen(data, myStackLayoutMonster);
+            }
+        }
+
         // Handles character attacking monster
         private async void Attack_ClickedAsync(object sender, EventArgs e)
         {
@@ -218,8 +224,7 @@ namespace TRP.Views.Battle
             RoundStartMessage();
             // Output The Message that happened.
             gameMessage();
-
-
+            justAddMonsterToScreen();
             NextButton.IsVisible = true;
             
         }
