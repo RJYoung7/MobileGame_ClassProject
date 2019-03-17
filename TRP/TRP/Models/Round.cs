@@ -51,6 +51,12 @@ namespace TRP.Models
         // Finally if all of the above are the same, sort based on who was loaded first into the list...
         public int ListOrder;
 
+        // Image for the PlayerInfo
+        public string ImageURI;
+
+        // Current health
+        public int health;
+
         // Need because of the instantiation below
         public PlayerInfo()
         {
@@ -67,6 +73,8 @@ namespace TRP.Models
             Level = data.Level;
             Name = data.Name;
             Speed = data.GetSpeed();
+            ImageURI = data.ImageURI;
+            health = data.Attribute.CurrentHealth;
         }
 
         // Take a monster and add it to the player
@@ -79,6 +87,7 @@ namespace TRP.Models
             Level = data.Level;
             Name = data.Name;
             Speed = data.GetSpeed();
+            ImageURI = data.ImageURI;
         }
     }
 }

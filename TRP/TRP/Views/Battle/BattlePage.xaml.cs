@@ -6,6 +6,7 @@ using System.Diagnostics;
 using TRP.ViewModels;
 using TRP.Models;
 using TRP.GameEngine;
+using System.Collections.Generic;
 
 namespace TRP.Views.Battle
 {
@@ -14,8 +15,10 @@ namespace TRP.Views.Battle
 	{
         private BattleViewModel _viewModel; // view model for the page 
 
+        PlayerInfo currentChar;
+
         HtmlWebViewSource htmlSource = new HtmlWebViewSource(); // window for messages
-        
+
         // Constructor: initialize battle page 
         public BattlePage (BattleViewModel viewmodel)
 		{
@@ -35,11 +38,142 @@ namespace TRP.Views.Battle
             
         }
 
-        // When next turn is clicked, start next turn, or end game by checking game state
-        private async void NextTurnButton_Clicked(object sender, EventArgs e)
+        public void AddCharacterToScreen(Character data, StackLayout PlayerStackLayout)
         {
-            ClearMessages();
-            _viewModel.RoundNextTurn();
+            var myName = new Label()
+            {
+                Text = data.Name,
+                Style = (Style)Application.Current.Resources["TeamPlayerText"]
+            };
+
+            var myHp = new Label()
+            {
+                Text = "Hp: " + data.Attribute.CurrentHealth.ToString(),
+                Style = (Style)Application.Current.Resources["TeamPlayerText"]
+
+            };
+
+            var myLevel = new Label()
+            {
+                Text = "Level: " + data.Level.ToString(),
+                Style = (Style)Application.Current.Resources["TeamPlayerText"]
+
+            };
+
+            var myImage = new Image()
+            {
+                Source = data.ImageURI,
+                Style = (Style)Application.Current.Resources["TeamPlayerImage"]
+            };
+
+            StackLayout OuterFrame = new StackLayout
+            {
+                Style = (Style)Application.Current.Resources["TeamPlayerBox"]
+            };
+
+            StackLayout InnerFrame = new StackLayout
+            {
+                Style = (Style)Application.Current.Resources["InnerTeamPlayerBox"]
+            };
+
+            OuterFrame.Children.Add(myImage);
+            InnerFrame.Children.Add(myName);
+            InnerFrame.Children.Add(myHp);
+            InnerFrame.Children.Add(myLevel);
+
+            PlayerStackLayout.Children.Add(OuterFrame);
+            OuterFrame.Children.Add(InnerFrame);
+
+        }
+
+        public void AddMonsterToScreen(Monster data, StackLayout PlayerStackLayout)
+        {
+            
+
+            var monster = data;
+            var myName = new Label()
+            {
+                Text = data.Name,
+                Style = (Style)Application.Current.Resources["TeamPlayerText"]
+            };
+
+            var myHp = new Label()
+            {
+                Text = "Hp: " + data.Attribute.CurrentHealth.ToString(),
+                Style = (Style)Application.Current.Resources["TeamPlayerText"]
+
+            };
+
+            var myLevel = new Label()
+            {
+                Text = "Level: " + data.Level.ToString(),
+                Style = (Style)Application.Current.Resources["TeamPlayerText"]
+
+            };
+
+            var myImage = new Image()
+            {
+                Source = data.ImageURI,
+                Style = (Style)Application.Current.Resources["TeamPlayerImage"]
+            };
+
+            StackLayout OuterFrame = new StackLayout
+            {
+                Style = (Style)Application.Current.Resources["TeamPlayerBox"]
+            };
+
+            StackLayout InnerFrame = new StackLayout
+            {
+                Style = (Style)Application.Current.Resources["InnerTeamPlayerBox"]
+            };
+
+            var attack = new Button()
+            {
+                BindingContext = data,
+                Text = "Attack",
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                
+            };
+
+            attack.Clicked += Attack_ClickedAsync;
+
+            OuterFrame.Children.Add(myImage);
+            InnerFrame.Children.Add(myName);
+            InnerFrame.Children.Add(myHp);
+            InnerFrame.Children.Add(myLevel);
+
+            PlayerStackLayout.Children.Add(OuterFrame);
+            OuterFrame.Children.Add(InnerFrame);
+            OuterFrame.Children.Add(attack);
+
+        }
+
+        public void AllCharactersToScreen()
+        {
+            StackLayout myStackLayoutCharacter = this.FindByName<StackLayout>("CharacterBox");
+            foreach (var data in _viewModel.BattleEngine.CharacterList)
+            {
+                //var temp = new PlayerInfo(data);
+                AddCharacterToScreen(data, myStackLayoutCharacter);
+            }
+
+            StackLayout myStackLayoutMonster = this.FindByName<StackLayout>("MonsterBox");
+            foreach (var data in _viewModel.BattleEngine.MonsterList)
+            {
+                //var temp = new PlayerInfo(data);
+                AddMonsterToScreen(data, myStackLayoutMonster);
+            }
+        }
+
+        // Handles character attacking monster
+        private async void Attack_ClickedAsync(object sender, EventArgs e)
+        {
+            Button mon = sender as Button;
+
+            Monster monster = mon.BindingContext as Monster;
+
+            _viewModel.RoundNextTurnCharacter(currentChar, monster); ;
 
             // Hold the current state
             var CurrentRoundState = _viewModel.BattleEngine.RoundStateEnum;
@@ -50,8 +184,8 @@ namespace TRP.Views.Battle
             {
                 //_viewModel.NewRound();
                 MessagingCenter.Send(this, "NewRound");
-                await Navigation.PushAsync(new RoundEndPage(_viewModel));
                 Debug.WriteLine("New Round: " + _viewModel.BattleEngine.BattleScore.RoundCount);
+                await Navigation.PushAsync(new RoundEndPage(_viewModel));
                 RoundStartMessage();
                 Navigation.RemovePage(this);
             }
@@ -84,12 +218,74 @@ namespace TRP.Views.Battle
             RoundStartMessage();
             // Output The Message that happened.
             gameMessage();
+
+
+            NextButton.IsVisible = true;
+            
         }
 
-        // TODO
-        private async void AttackButton_Clicked(object sender, EventArgs e)
+        // When next turn is clicked, start next turn, or end game by checking game state
+        private async void NextTurnButton_Clicked(object sender, EventArgs e)
         {
-            //should only be pressed during character's turn 
+            ClearMessages();
+
+            var nextPlayer = _viewModel.BattleEngine.GetNextPlayerInList();
+
+            if (nextPlayer.PlayerType == PlayerTypeEnum.Character)
+            {
+                NextButton.IsVisible = false;
+                
+                currentChar = nextPlayer;
+            }
+            else
+            {
+                _viewModel.RoundNextTurnMonster(nextPlayer);
+
+                // Hold the current state
+                var CurrentRoundState = _viewModel.BattleEngine.RoundStateEnum;
+                Debug.WriteLine("Round: " + CurrentRoundState);
+
+                // If the round is over start a new one...
+                if (CurrentRoundState == RoundEnum.NewRound)
+                {
+                    //_viewModel.NewRound();
+                    MessagingCenter.Send(this, "NewRound");
+                    await Navigation.PushAsync(new RoundEndPage(_viewModel));
+                    Debug.WriteLine("New Round: " + _viewModel.BattleEngine.BattleScore.RoundCount);
+                    RoundStartMessage();
+                    Navigation.RemovePage(this);
+                }
+
+                // Check for Game Over
+                if (CurrentRoundState == RoundEnum.GameOver)
+                {
+                    MessagingCenter.Send(this, "EndBattle", RoundEnum.GameOver);
+
+                    Debug.WriteLine("End Battle");
+
+                    // Output Formatted Results 
+                    var myResult = _viewModel.BattleEngine.GetResultsOutput();
+                    Debug.Write(myResult);
+
+                    // Let the user know the game is over
+                    ClearMessages();    // Clear message
+                    AppendMessage("Game Over\n"); // Show Game Over
+                    await Navigation.PushAsync(new GameOverPage());
+                    Navigation.RemovePage(this);
+                    return;
+                }
+
+                // Output the Game Board
+                _viewModel.LoadDataCommand.Execute(null);
+
+                //InitializeComponent();
+                numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
+
+                RoundStartMessage();
+                // Output The Message that happened.
+                gameMessage();
+            }
+           
         }
         
         // Clears messages in html box 
@@ -158,6 +354,7 @@ namespace TRP.Views.Battle
             BindingContext = _viewModel;
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
             MessageText.Text = _viewModel.BattleEngine.BattleMessage.TimeWarpMessage;
+            AllCharactersToScreen();
         }
     }
 }

@@ -176,7 +176,7 @@ namespace TRP.GameEngine
                         MonsterList.Add(monster);
                     }
                
-                } while (MonsterList.Count() < 1);
+                } while (MonsterList.Count() < 2);
 
             }
             else
@@ -219,23 +219,18 @@ namespace TRP.GameEngine
             ClearLists();
         }
 
-        // Get Round Turn Order
-
-        // Rember Who's Turn
-
-        // Starts next turn during round
         public RoundEnum RoundNextTurn()
         {
             Debug.WriteLine("From Round Engine: " + RoundStateEnum);
             // No charaacters, game is over...
-            if(CharacterList.Count < 1)
+            if (CharacterList.Count < 1)
             {
                 RoundStateEnum = RoundEnum.GameOver;
                 return RoundStateEnum;
             }
 
             // Check if round is over
-            if(MonsterList.Count < 1)
+            if (MonsterList.Count < 1)
             {
                 // If over, New Round
                 RoundStateEnum = RoundEnum.NewRound;
@@ -260,6 +255,108 @@ namespace TRP.GameEngine
 
                 // Do the turn...
                 TakeTurn(myPlayer);
+            }
+            // Add Monster turn here...
+            else if (PlayerCurrent.PlayerType == PlayerTypeEnum.Monster)
+            {
+                // Get the player
+                var myPlayer = MonsterList.Where(a => a.Guid == PlayerCurrent.Guid).FirstOrDefault();
+
+                // Do the turn...
+                TakeTurn(myPlayer);
+            }
+
+            RoundStateEnum = RoundEnum.NextTurn;
+            return RoundStateEnum;
+            // Game Over
+            //return RoundEnum.GameOver;
+        }
+
+        // Get Round Turn Order
+
+        // Rember Who's Turn
+
+        // Starts next turn during round
+        public RoundEnum RoundNextTurnMonster(PlayerInfo monster)
+        {
+            Debug.WriteLine("From Round Engine: " + RoundStateEnum);
+            // No charaacters, game is over...
+            if(CharacterList.Count < 1)
+            {
+                RoundStateEnum = RoundEnum.GameOver;
+                return RoundStateEnum;
+            }
+
+            // Check if round is over
+            if(MonsterList.Count < 1)
+            {
+                // If over, New Round
+                RoundStateEnum = RoundEnum.NewRound;
+                return RoundStateEnum;
+            }
+
+            // Decide Who gets next turn
+            // Remember who just went...
+            PlayerCurrent = monster;
+
+            while (PlayerCurrent.Alive == false)
+            {
+                PlayerCurrent = GetNextPlayerInList();
+            }
+
+
+            // Add Monster turn here...
+            if (PlayerCurrent.PlayerType == PlayerTypeEnum.Monster)
+            {
+                // Get the player
+                var myPlayer = MonsterList.Where(a => a.Guid == PlayerCurrent.Guid).FirstOrDefault();
+
+                // Do the turn...
+                TakeTurn(myPlayer);
+            }
+
+            RoundStateEnum = RoundEnum.NextTurn;
+            return RoundStateEnum;
+            // Game Over
+            //return RoundEnum.GameOver;
+        }
+
+        public RoundEnum RoundNextTurnCharacter(PlayerInfo character, Monster monster)
+        {
+            Debug.WriteLine("From Round Engine: " + RoundStateEnum);
+            // No charaacters, game is over...
+            if (CharacterList.Count < 1)
+            {
+                RoundStateEnum = RoundEnum.GameOver;
+                return RoundStateEnum;
+            }
+
+            // Check if round is over
+            if (MonsterList.Count < 1)
+            {
+                // If over, New Round
+                RoundStateEnum = RoundEnum.NewRound;
+                return RoundStateEnum;
+            }
+
+            // Decide Who gets next turn
+            // Remember who just went...
+            PlayerCurrent = character;
+
+            while (PlayerCurrent.Alive == false)
+            {
+                PlayerCurrent = GetNextPlayerInList();
+            }
+
+            // Decide Who to Attack
+            //Do the Turn
+            if (PlayerCurrent.PlayerType == PlayerTypeEnum.Character)
+            {
+                // Get the player
+                var myPlayer = CharacterList.Where(a => a.Guid == PlayerCurrent.Guid).FirstOrDefault();
+
+                // Do the turn...
+                TakeTurn(myPlayer, monster);
             }
             // Add Monster turn here...
             else if (PlayerCurrent.PlayerType == PlayerTypeEnum.Monster)

@@ -136,9 +136,15 @@ namespace TRP.ViewModels
         }
 
         // Calls engine for next turn in a round
-        public void RoundNextTurn()
+        public void RoundNextTurnMonster(PlayerInfo player)
         {
-            BattleViewModel.Instance.BattleEngine.RoundNextTurn();
+                BattleViewModel.Instance.BattleEngine.RoundNextTurnMonster(player);
+        }
+
+        // Calls engine for next turn in a round
+        public void RoundNextTurnCharacter(PlayerInfo player, Monster monster)
+        {
+            BattleViewModel.Instance.BattleEngine.RoundNextTurnCharacter(player, monster);
         }
 
         //Calls engine for a new round 

@@ -54,6 +54,31 @@ namespace TRP.GameEngine
         #endregion Properties
 
         // Character Attacks...
+        public bool TakeTurn(Character Attacker, Monster Target)
+        {
+            if (Attacker == null)
+                return false;
+
+            // Choose Move or Attack
+            if (!Attacker.Alive)
+                return false;
+
+            // For Attack, Choose Who
+            //var Target = AttackChoice(Attacker);
+            
+
+            if (Target == null)
+            {
+                return false;
+            }
+
+            // Do Attack
+            var AttackScore = Attacker.Level + Attacker.GetAttack();
+            var DefenseScore = Target.GetDefense() + Target.Level;
+            TurnAsAttack(Attacker, AttackScore, Target, DefenseScore);
+
+            return true;
+        }
         public bool TakeTurn(Character Attacker)
         {
             if (Attacker == null)
@@ -78,6 +103,8 @@ namespace TRP.GameEngine
 
             return true;
         }
+
+      
 
         // Monster Attacks...
         public bool TakeTurn(Monster Attacker)
@@ -140,7 +167,7 @@ namespace TRP.GameEngine
             {
                 
                 var rnd = HelperEngine.RollDice(1, ItemsViewModel.Instance.Dataset.Count);
-                Item randItem = ItemsViewModel.Instance.Dataset[1 - rnd];
+                Item randItem = ItemsViewModel.Instance.Dataset[rnd - 1];
                 ItemPool.Add(randItem);
 
                 BattleMessage.TurnMessage += "CRITICAL MISS-- " + Attacker.Name + " swings and critically misses " +
