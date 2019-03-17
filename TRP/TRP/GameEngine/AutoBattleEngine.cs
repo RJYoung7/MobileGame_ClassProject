@@ -19,6 +19,8 @@ namespace TRP.GameEngine
 
             var result = BattleEngine.AddCharactersToBattle();
 
+            BattleScore.BattleNumber += getLatestBattleNumber();
+
             var charactersOutput = "Chosen characters: \n";
 
             charactersOutput += "Count: ";
