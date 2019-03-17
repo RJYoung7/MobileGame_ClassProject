@@ -7,6 +7,7 @@ using TRP.ViewModels;
 using TRP.Models;
 using TRP.GameEngine;
 using System.Collections.Generic;
+using TRP.Views;
 
 namespace TRP.Views.Battle
 {
@@ -224,7 +225,12 @@ namespace TRP.Views.Battle
             RoundStartMessage();
             // Output The Message that happened.
             gameMessage();
-            justAddMonsterToScreen();
+
+            var updatedBattlePage = new BattlePage(_viewModel);
+            Navigation.InsertPageBefore(updatedBattlePage, this);
+                       
+            await Navigation.PopAsync();
+
             NextButton.IsVisible = true;
             
         }
