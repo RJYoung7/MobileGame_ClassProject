@@ -271,10 +271,12 @@ namespace TRP.GameEngine
             BattleMessage.AttackerName = Attacker.Name;
             //Debug.WriteLine(AttackerName + " chooses to attack " + TargetName);
 
+            // Get hit status
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
 
             bool missed = false;
 
+            // Logic for a miss
             if (BattleMessage.HitStatus == HitStatusEnum.Miss)
             {
                 // If mulligan is enabled, character can retry their attack
@@ -302,6 +304,7 @@ namespace TRP.GameEngine
                 }
             }
 
+            // Logic for a critical miss
             if (BattleMessage.HitStatus == HitStatusEnum.CriticalMiss)
             {
                 // If mulligan is enabled, character can retry their attack
@@ -334,7 +337,7 @@ namespace TRP.GameEngine
                 }
             }
 
-            // It's a Hit or a Critical Hit
+            // Logic for a hit or critical hit
             if (BattleMessage.HitStatus == HitStatusEnum.Hit || BattleMessage.HitStatus == HitStatusEnum.CriticalHit)
             {
                 //Calculate Damage
@@ -528,16 +531,18 @@ namespace TRP.GameEngine
             }
 
             var ToHitScore = d20 + AttackScore;
-            if (ToHitScore < DefenseScore)
+
+            // If tohitscore is not greater than defense score, you miss
+            if (ToHitScore <= DefenseScore)
             {
                 BattleMessage.AttackStatus = " misses ";
-                // Miss
+                // Set hitstatus to miss
                 BattleMessage.HitStatus = HitStatusEnum.Miss;
                 BattleMessage.DamageAmount = 0;
             }
             else
             {
-                // Hit
+                // Set hit status to hit
                 BattleMessage.HitStatus = HitStatusEnum.Hit;
             }
 

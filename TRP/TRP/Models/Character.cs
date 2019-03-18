@@ -165,21 +165,25 @@ namespace TRP.Models
         // Upgrades to a set level
         public void ScaleLevel(int level)
         {
+            // Check to see if level is greater than max level
             if (level > LevelTable.MaxLevel)
             {
                 return;
             }
 
+            // Check to see if level is less than or equal to lowest level
             if (level <= 1)
             {
                 return;
             }
 
+            // Check to see if scale level is less than current level
             if (level < Level)
             {
                 return;
             }
 
+            // Set level of character to new level
             Level = level;
         }
 
@@ -224,34 +228,6 @@ namespace TRP.Models
             }
 
             return false;
-        }
-
-        // Level up to a number, say Level 3
-        public int LevelUpToValue(int Value)
-        {
-            // Adjust the experience to the min for that level.
-            // That will trigger level up to happen
-
-            if (Value < 0)
-            {
-                // Skip, and return old level
-                return Level;
-            }
-
-            if (Value <= Level)
-            {
-                // Skip, and return old level
-                return Level;
-            }
-
-            if (Value > LevelTable.MaxLevel)
-            {
-                Value = LevelTable.MaxLevel;
-            }
-
-            AddExperience(LevelTable.Instance.LevelDetailsList[Value].Experience + 1);
-
-            return Level;
         }
 
         // Add experience
@@ -377,11 +353,20 @@ namespace TRP.Models
         {
             var myReturn = GetLevelBasedDamage();
 
-            var myItem = ItemsViewModel.Instance.GetItem(PrimaryHand);
-            if (myItem != null)
+            // Get primary hand weapon and determine damage
+            var primary = ItemsViewModel.Instance.GetItem(PrimaryHand);
+            if (primary != null)
             {
                 // Damage is base damage plus dice of the weapon.  So sword of Damage 10 is d10
-                myReturn += HelperEngine.RollDice(1, myItem.Damage);
+                myReturn += HelperEngine.RollDice(1, primary.Damage);
+            }
+
+            // Get off hand weapon and determine damage
+            var offhand = ItemsViewModel.Instance.GetItem(OffHand);
+            if (offhand != null)
+            {
+                // Damage is base damage plus dice of the weapon.  So sword of Damage 10 is d10
+                myReturn += HelperEngine.RollDice(1, offhand.Damage);
             }
 
             return myReturn;
