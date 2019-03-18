@@ -38,7 +38,7 @@ namespace TRP.ViewModels
 
         public ObservableCollection<Character> SelectedCharacters { get; set; } //selected party of characters
         public ObservableCollection<Character> AvailableCharacters { get; set; } //available characters left
-        public ObservableCollection<Monster> SelectedMonsters { get; set; } //selected party of characters
+        public ObservableCollection<Monster> SelectedMonsters { get; set; } //selected party of monsters
 
         public Command LoadDataCommand { get; set; } // load data command 
 
@@ -48,14 +48,19 @@ namespace TRP.ViewModels
         public BattleViewModel()
         {
             Title = "Battle Begin";
+
+            // Initialize battle engine
             BattleEngine = new BattleEngine();
 
+            // Create observable collections
             SelectedCharacters = new ObservableCollection<Character>();
             AvailableCharacters = new ObservableCollection<Character>();
             SelectedMonsters = new ObservableCollection<Monster>();
 
+            // Load data command
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
+            // Load the data
             ExecuteLoadDataCommand().GetAwaiter().GetResult();
 
             // For adding Characters to party
@@ -66,73 +71,44 @@ namespace TRP.ViewModels
                 foreach (var c in data) {
                     SelectedCharacters.Add(c);
                 }
-                //SelectedCharacters = data.ToArray();
-                
             });
 
-            //Messages for adding a character to party, removing a character from party
+            //Messages for adding a character to party
             MessagingCenter.Subscribe<CharactersSelectPage, Character>(this, "AddSelectedCharacter", async (obj, data) =>
             {
                 SelectedListAdd(data);
             });
 
+            // Messages for removing a character from the party
             MessagingCenter.Subscribe<CharactersSelectPage, Character>(this, "RemoveSelectedCharacter", async (obj, data) =>
             {
                 SelectedListRemove(data);
             });
 
-            //Messages to start and end battle
-
-            //Messages to start and end rounds
+            //Messages to start new round
             MessagingCenter.Subscribe<BattleEngine, RoundEnum>(this, "NewRound", async (obj, data) =>
             {
                 BattleEngine.NewRound();
             });
 
-            MessagingCenter.Subscribe<BattlePage, RoundEnum>(this, "EndBattle", async (obj, data) =>
-            {
-                BattleEngine.EndBattle();
-            });
-
-            //Messages for turns in round 
+            //Messages for round next turn
             MessagingCenter.Subscribe<BattlePage, RoundEnum>(this, "RoundNextTurn", async (obj, data) =>
             {
                 ExecuteLoadDataCommand().GetAwaiter().GetResult();
                 BattleEngine.RoundNextTurn();
             });
-        }
 
-        // Calls engine to start battle
-        public void StartBattle()
-        {
-            Instance.BattleEngine.StartBattle(false);
-        }
-
-        // Calls engine to end battle
-        public void EndBattle()
-        {
-            Instance.BattleEngine.EndBattle();
-        }
-
-        public RoundEnum currentRoundEnum()
-        {
-            return Instance.BattleEngine.RoundStateEnum;
+            // Messages to end battle
+            MessagingCenter.Subscribe<BattlePage, RoundEnum>(this, "EndBattle", async (obj, data) =>
+            {
+                BattleEngine.EndBattle();
+            });
         }
 
         // Calls engine to start round 
         public void StartRound()
         {
             Instance.BattleEngine.StartRound();
-        }
-
-        // Loads copies of selected characters into battle engine
-        public void LoadCharacters()
-        {
-            foreach (var data in SelectedCharacters)
-            {
-                BattleViewModel.Instance.BattleEngine.CharacterList.Add(new Character(data));
-            }
-
         }
 
         // Calls engine for next turn in a round
@@ -160,19 +136,6 @@ namespace TRP.ViewModels
         {
             SelectedCharacters.Add(data);
             return true;
-        }
-
-        // Call to database to grab character
-        public Character Get(string id)
-        {
-            var myData = SelectedCharacters.FirstOrDefault(arg => arg.Id == id);
-            if (myData == null)
-            {
-                return null;
-            }
-
-            return myData;
-
         }
         #endregion DataOperations
 
@@ -215,9 +178,7 @@ namespace TRP.ViewModels
 
             try
             {
-                // SelectedCharacters, no need to change them.
-
-                // Reload the Character List from the Character View Moel
+                // Reload the Available character list from the Character View Model
                 AvailableCharacters.Clear();
                 var availableCharacters = CharactersViewModel.Instance.Dataset;
                 foreach (var data in availableCharacters)
@@ -225,6 +186,7 @@ namespace TRP.ViewModels
                     AvailableCharacters.Add(data);
                 }
 
+                // Reload the Selected Monster List from the Battle engine monster list
                 SelectedMonsters.Clear();
                 var selectedMon = BattleEngine.MonsterList;
                 foreach (var mon in selectedMon)
@@ -232,32 +194,33 @@ namespace TRP.ViewModels
                     SelectedMonsters.Add(mon);
                 }
 
+                // Reload the Selected Character List from the Battle engine character list
                 SelectedCharacters.Clear();
                 var selectedChar = BattleEngine.CharacterList;
                 foreach (var ch in selectedChar)
                 {
                     SelectedCharacters.Add(ch);
                 }
-
             }
-
+            // Catch any exceptions
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
             }
 
+            // Set isBusy to false
             finally
             {
                 IsBusy = false;
             }
         }
 
+        // Force a data refresh
         public void ForceDataRefresh()
         {
             // Reset
             var canExecute = LoadDataCommand.CanExecute(null);
             LoadDataCommand.Execute(null);
         }
-
     }
 }
