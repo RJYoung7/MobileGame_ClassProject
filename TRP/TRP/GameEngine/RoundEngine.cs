@@ -256,12 +256,6 @@ namespace TRP.GameEngine
                 CurrentCharacter = PlayerCharacter(PlayerCurrent);
                 Debug.WriteLine("It's a Character!");
             }
-    
-
-            while (PlayerCurrent.Alive == false)
-            {
-                PlayerCurrent = GetNextPlayerInList();
-            }
 
             // Decide Who to Attack
             //Do the Turn
@@ -269,6 +263,11 @@ namespace TRP.GameEngine
             {
                 // Get the player
                 var myPlayer = CharacterList.Where(a => a.Guid == PlayerCurrent.Guid).FirstOrDefault();
+                if (myPlayer == null || !myPlayer.Alive)
+                {
+                    PlayerList.Remove(PlayerCurrent);
+                    RoundNextTurn();
+                }
 
                 // Do the turn...
                 TakeTurn(myPlayer);
@@ -278,6 +277,11 @@ namespace TRP.GameEngine
             {
                 // Get the player
                 var myPlayer = MonsterList.Where(a => a.Guid == PlayerCurrent.Guid).FirstOrDefault();
+                if (myPlayer == null || !myPlayer.Alive)
+                {
+                    PlayerList.Remove(PlayerCurrent);
+                    RoundNextTurn();
+                }
 
                 // Do the turn...
                 TakeTurn(myPlayer);
