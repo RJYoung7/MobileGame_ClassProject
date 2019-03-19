@@ -107,38 +107,6 @@ namespace TRP.GameEngine
             {
                 return;
             }
-            
-
-            //var ScaleLevelMax = 0;
-            //var ScaleLevelMin = 0;
-
-            ////Scale monsters based on the rounds so far
-            //if (BattleScore.RoundCount < 10)
-            //{
-            //    ScaleLevelMax = 3;
-            //    ScaleLevelMin = 1;
-            //}
-            //if (BattleScore.RoundCount > 10 && BattleScore.RoundCount <= 40)
-            //{
-            //    ScaleLevelMax = 4;
-            //    ScaleLevelMin = 2;
-            //}
-
-            //if (BattleScore.RoundCount > 40 && BattleScore.RoundCount <= 70)
-            //{
-            //    ScaleLevelMax = 8;
-            //    ScaleLevelMin = 4;
-            //}
-            //if (BattleScore.RoundCount > 70 && BattleScore.RoundCount <= 100)
-            //{
-            //    ScaleLevelMax = 12;
-            //    ScaleLevelMin = 8;
-            //}
-            //if (BattleScore.RoundCount > 100)
-            //{
-            //    ScaleLevelMax = 20;
-            //    ScaleLevelMin = 12;
-            //}
 
             // Make suure monster list exists and is loaded...
             var myMonsterViewModel = MonstersViewModel.Instance;
@@ -174,7 +142,6 @@ namespace TRP.GameEngine
                         // Scale the monster to be between the average level of the characters+1
                         var rndScale = HelperEngine.RollDice(1, ScaleLevelAverage + 1);
                         // Scale monster to be harder later... 
-                        //var rndScale = HelperEngine.RollDice(ScaleLevelMin, ScaleLevelMax);
                         monster.ScaleLevel(rndScale);
                         MonsterList.Add(monster);
                     }
@@ -290,7 +257,6 @@ namespace TRP.GameEngine
             RoundStateEnum = RoundEnum.NextTurn;
             return RoundStateEnum;
             // Game Over
-            //return RoundEnum.GameOver;
         }
 
         // Add players to list and order them 
@@ -417,13 +383,6 @@ namespace TRP.GameEngine
 
             // Since the list is already ordered by attributes, grab first 
             PlayerCurrent = PlayerList.FirstOrDefault();
-
-            // Does not seem to recognize dead players? The dead thing never gets attacked agai
-            //while (!PlayerCurrent.Alive)
-            //{
-            //    PlayerList.Remove(PlayerCurrent);
-            //    Debug.WriteLine("Removing dead " + PlayerCurrent.Name + "\n");
-            //}
 
             // Lazy dequeue and enqueue the selected player
             PlayerList.Remove(PlayerCurrent);

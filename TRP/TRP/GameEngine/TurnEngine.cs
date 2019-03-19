@@ -227,8 +227,7 @@ namespace TRP.GameEngine
                     ItemPool.AddRange(myItemList);
                 }
             }
-
-            //BattleMessage.TurnMessage = Attacker.Name + AttackStatus + Target.Name + ".\n" + BattleMessage.TurnMessageSpecial;
+            
             Debug.WriteLine(BattleMessage.TurnMessage);
 
             return true;
@@ -269,7 +268,6 @@ namespace TRP.GameEngine
 
             BattleMessage.TargetName = Target.Name;
             BattleMessage.AttackerName = Attacker.Name;
-            //Debug.WriteLine(AttackerName + " chooses to attack " + TargetName);
 
             // Get hit status
             var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
@@ -457,8 +455,6 @@ namespace TRP.GameEngine
                 }
 
             }
-
-            //BattleMessage.TurnMessage += "\n" + Attacker.Name + BattleMessage.AttackStatus + Target.Name + BattleMessage.TurnMessageSpecial;
             
             Debug.WriteLine(BattleMessage.TurnMessage + "\n");
             
@@ -562,16 +558,6 @@ namespace TRP.GameEngine
                 return null;
             }
 
-            //// For now, just use a simple selection of the first in the list.
-            //// Later consider, strongest, closest, with most Health etc...
-            //foreach (var Defender in MonsterList)
-            //{
-            //    if (Defender.Alive)
-            //    {
-            //        return Defender;
-            //    }
-            //}
-
             // Select first one to hit in the list for now...
             // Attack the Weakness (lowest HP) Monster first 
             var DefenderWeakest = MonsterList.OrderBy(m => m.Attribute.CurrentHealth).FirstOrDefault();
@@ -641,7 +627,6 @@ namespace TRP.GameEngine
 
                         // TODO:  Need way to not save the Item
                         myItemsViewModel.AddItem_Sync(item);
-                        //ItemsViewModel.Instance.InsertUpdateAsync(item).GetAwaiter().GetResult();
                     }
                     else
                     {

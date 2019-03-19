@@ -66,7 +66,6 @@ namespace TRP.GameEngine
 
             // Save the Score to the Datastore
             ScoresViewModel.Instance.Dataset.Add(BattleScore);
-            //ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
         }
 
         // Initializes the Battle to begin
@@ -109,12 +108,6 @@ namespace TRP.GameEngine
             var ScaleLevelMax = 3;
             var ScaleLevelMin = 1;
 
-            //var need = 6 - (CharacterList.Count);
-            //if (need >= 0)
-            //{
-            //    var rand = CharactersViewModel.Instance.Dataset.Take(need);
-            //    CharacterList.AddRange(rand);
-            //}
             // Get 6 Characters
             do
             {
