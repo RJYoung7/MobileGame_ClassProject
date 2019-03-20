@@ -25,7 +25,7 @@ namespace TRP.Views
                 Range=0,
                 Value=0,
                 ImageURI = ItemsController.DefaultImageURI
-        };
+            };
 
             BindingContext = this;
             //Need to make the SelectedItem a string, so it can select the correct item.

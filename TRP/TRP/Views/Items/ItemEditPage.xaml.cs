@@ -10,8 +10,7 @@ namespace TRP.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ItemEditPage : ContentPage
 	{
-	    // ReSharper disable once NotAccessedField.Local
-	    private ItemDetailViewModel _viewModel;
+	    private ItemDetailViewModel _viewModel; // view model for the page
 
         // The data returned from the edit.
         public Item Data { get; set; }
@@ -33,10 +32,10 @@ namespace TRP.Views
             //Need to make the SelectedItem a string, so it can select the correct item.
             LocationPicker.SelectedItem = Data.Location.ToString();
             AttributePicker.SelectedItem = Data.Attribute.ToString();
-
         }
 
-        // Save on the Tool bar
+        // When save button is pressed, broadcast the save, add new items detail page with the edited details,
+        // and remove this page 
         private async void Save_Clicked(object sender, EventArgs e)
         {
             // If the image in teh data box is empty, use the default one..

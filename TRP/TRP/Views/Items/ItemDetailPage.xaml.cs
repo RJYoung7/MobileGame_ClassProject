@@ -11,8 +11,7 @@ namespace TRP.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemDetailPage : ContentPage
     {
-        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
-        private ItemDetailViewModel _viewModel;
+        private ItemDetailViewModel _viewModel; // View model for this page 
 
         // Constructor: creates instance of page, which initializes the xaml 
         public ItemDetailPage(ItemDetailViewModel viewModel)
@@ -20,16 +19,6 @@ namespace TRP.Views
             InitializeComponent();
 
             BindingContext = _viewModel = viewModel;
-        }
-
-        public ItemDetailPage()
-        {
-            InitializeComponent();
-
-            var data = new Item();
-
-            _viewModel = new ItemDetailViewModel(data);
-            BindingContext = _viewModel;
         }
 
         // When edit button is clicked, create edit page and add onto stack
