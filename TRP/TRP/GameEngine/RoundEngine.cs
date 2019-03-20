@@ -120,6 +120,7 @@ namespace TRP.GameEngine
                 var ScaleLevelMin = 1;
                 var ScaleLevelAverage = 1;
 
+                // If there are any characters get min, max, and average levels of all of them
                 if (CharacterList.Any())
                 {
                     ScaleLevelMin = GetMinCharacterLevel();
@@ -130,24 +131,28 @@ namespace TRP.GameEngine
                 // Get 6 monsters
                 do
                 {
+                    // Roll dice to get random monster from dataset
                     var rnd = HelperEngine.RollDice(1, myMonsterViewModel.Dataset.Count);
                     {
+                        // Ensure rnd number is less than dataset size
                         if (rnd > myMonsterViewModel.Dataset.Count())
                         {
                             rnd = myMonsterViewModel.Dataset.Count();
                         }
 
+                        // Create a new monster from the monster in the dataset
                         var monster = new Monster(myMonsterViewModel.Dataset[rnd - 1]);
 
                         // Scale the monster to be between the average level of the characters+1
                         var rndScale = HelperEngine.RollDice(1, ScaleLevelAverage + 1);
+
                         // Scale monster to be harder later... 
                         monster.ScaleLevel(rndScale);
+
+                        // Add monster to the list
                         MonsterList.Add(monster);
                     }
-               
                 } while (MonsterList.Count() < 6);
-
             }
             else
             {
@@ -158,20 +163,23 @@ namespace TRP.GameEngine
 
                     // Help identify which monster it is....
                     monster.Name += " " + MonsterList.Count() + 1;
+
+                    // Add monster to the list
                     MonsterList.Add(monster);
-                    
                 }
             }
 
+            // Debug output text for chosen monsters
             var monstersOutput = "Chosen monsters: \n";
+            monstersOutput += "Count: " + MonsterList.Count() + "\n"; ;
 
-            monstersOutput += "Count: ";
-            monstersOutput += MonsterList.Count() + "\n";
-
+            // Add name of each monster to debug output statement
             foreach (var mon in MonsterList)
             {
                 monstersOutput += mon.FormatOutput() + "\n";
             }
+
+            // Write the debug output statement
             Debug.WriteLine(monstersOutput);
         }
 
@@ -186,18 +194,19 @@ namespace TRP.GameEngine
                 PickupItemsFromPool(character);
             }
 
+            // Clear the lists
             ClearLists();
         }
 
         // Get Round Turn Order
-
         // Rember Who's Turn
-
         // Starts next turn during round
         public RoundEnum RoundNextTurn()
         {
+            // Debug statements
             Debug.WriteLine("Starting RoundEngine...");
             Debug.WriteLine("From Round Engine: " + RoundStateEnum);
+
             // No charaacters, game is over...
             if(CharacterList.Count < 1)
             {
@@ -214,39 +223,47 @@ namespace TRP.GameEngine
             }
 
             // Decide Who gets next turn
-            // Remember who just went...
             PlayerCurrent = GetNextPlayerInList();
+
+            // Debug output of the next players name
             Debug.WriteLine(PlayerCurrent.Name);
 
-            if(PlayerCurrent.PlayerType == PlayerTypeEnum.Character)
-            {
-                CurrentCharacter = PlayerCharacter(PlayerCurrent);
-                Debug.WriteLine("It's a Character!");
-            }
-
             // Decide Who to Attack
-            //Do the Turn
+            //Do the turn as a character
             if (PlayerCurrent.PlayerType == PlayerTypeEnum.Character)
             {
+                // Get the current character for consumables
+                CurrentCharacter = PlayerCharacter(PlayerCurrent);
+                Debug.WriteLine("It's a Character!");
+
                 // Get the player
                 var myPlayer = CharacterList.Where(a => a.Guid == PlayerCurrent.Guid).FirstOrDefault();
+
+                // Remove player from player list if null or dead
                 if (myPlayer == null || !myPlayer.Alive)
                 {
                     PlayerList.Remove(PlayerCurrent);
+
+                    // Restart the turn
                     RoundNextTurn();
                 }
 
                 // Do the turn...
                 TakeTurn(myPlayer);
             }
-            // Add Monster turn here...
+            // Monsters turn
             else if (PlayerCurrent.PlayerType == PlayerTypeEnum.Monster)
             {
-                // Get the player
+                // Get the monster
                 var myPlayer = MonsterList.Where(a => a.Guid == PlayerCurrent.Guid).FirstOrDefault();
+
+                // If monster is dead or null remove it from the player list and restart round
                 if (myPlayer == null || !myPlayer.Alive)
                 {
+                    // Remove
                     PlayerList.Remove(PlayerCurrent);
+
+                    // Restart
                     RoundNextTurn();
                 }
 
@@ -254,30 +271,41 @@ namespace TRP.GameEngine
                 TakeTurn(myPlayer);
             }
 
+            // Update the roundstatenum to next turn
             RoundStateEnum = RoundEnum.NextTurn;
+
+            // Return the enum
             return RoundStateEnum;
-            // Game Over
         }
 
         // Add players to list and order them 
         private void MakePlayerList()
         {
+            // Instantiate the playerList
             PlayerList = new List<PlayerInfo>();
+
+            // Variable to hold a temporary player
             PlayerInfo tempPlayer;
 
+            // Variable to help with assigning list order
             var ListOrder = 0;
 
+            // Go through the characters and add them to the player list
             foreach (var data in CharacterList)
             {
+                // Check to make sure character is alive
                 if (data.Alive)
                 {
+                    // Create a new player with the character data
                     tempPlayer = new PlayerInfo(data);
 
                     // Remember the order
                     tempPlayer.ListOrder = ListOrder;
 
+                    // Add character to the playerlist
                     PlayerList.Add(tempPlayer);
 
+                    // Increment the list order
                     ListOrder++;
                 }
             }
@@ -285,16 +313,19 @@ namespace TRP.GameEngine
             // Updates list order with monsters
             foreach (var data in MonsterList)
             {
+                // Check if monster is alive
                 if (data.Alive)
                 {
-
+                    // Create a new player with the monster data
                     tempPlayer = new PlayerInfo(data);
 
                     // Remember the order
                     tempPlayer.ListOrder = ListOrder;
 
+                    // Add monster to the playerlist
                     PlayerList.Add(tempPlayer);
 
+                    // Increment the list order
                     ListOrder++;
                 }
             }
@@ -311,10 +342,13 @@ namespace TRP.GameEngine
             // Format list for output
             var playerListToString = "Player list this round: ";
 
+            // Get the player list and add each player to a debug string
             foreach (PlayerInfo p in PlayerList)
             {
                 playerListToString += p.Name + " ";
             }
+
+            // Output the player list to the debug window
             Debug.WriteLine(playerListToString);
 
             // Check to see if timewarp chance is enabled.
@@ -367,6 +401,7 @@ namespace TRP.GameEngine
             }
             else
             {
+                // No time warp
                 Debug.WriteLine("Normal Time");
                 return false;
             }
@@ -376,6 +411,7 @@ namespace TRP.GameEngine
         // Updates player to lists
         public PlayerInfo GetNextPlayerInList()
         {
+            // If list is empty return null
             if (PlayerList.Count == 0)
             {
                 return null;
@@ -395,7 +431,7 @@ namespace TRP.GameEngine
             {
                 GetNextDebug += p.Name + "\n";
             }
-            //Debug.WriteLine(GetNextDebug);
+
             return PlayerCurrent;
         }
 
@@ -403,13 +439,13 @@ namespace TRP.GameEngine
         public void PickupItemsFromPool(Character character)
         {
             // Have the character, walk the items in the pool, and decide if any are better than current one.
-
             // No items in the pool...
             if (ItemPool.Count < 1)
             {
                 return;
             }
 
+            // Get the better items for each location
             GetItemFromPoolIfBetter(character, ItemLocationEnum.Head);
             GetItemFromPoolIfBetter(character, ItemLocationEnum.Necklass);
             GetItemFromPoolIfBetter(character, ItemLocationEnum.PrimaryHand);
@@ -423,6 +459,7 @@ namespace TRP.GameEngine
         // Replaces an item assigned to character if there is a better item avaliable.
         public void GetItemFromPoolIfBetter(Character character, ItemLocationEnum setLocation)
         {
+            // Get the highest value item by location
             var myList = ItemPool.Where(a => a.Location == setLocation)
                 .OrderByDescending(a => a.Value)
                 .ToList();
@@ -433,7 +470,10 @@ namespace TRP.GameEngine
                 return;
             }
 
+            // Get the item that is on the character in that location
             var currentItem = character.GetItemByLocation(setLocation);
+
+            // If no item in that location, add the item
             if (currentItem == null)
             {
                 // If no item in the slot then put on the first in the list
@@ -451,6 +491,7 @@ namespace TRP.GameEngine
                     // Remove the item just put on from the pool
                     ItemPool.Remove(item);
 
+                    // Add the item to the pool if there is one
                     if (droppedItem != null)
                     {
                         // Add the dropped item to the pool
@@ -463,7 +504,7 @@ namespace TRP.GameEngine
         // Returns a character for item use.
         public Character PlayerCharacter(PlayerInfo player)
         {
-            
+            // Walk the character list to match the player guid with the characterlist guid
             foreach(var c in CharacterList)
             {
                 if(player.Guid == c.Guid)
@@ -474,6 +515,5 @@ namespace TRP.GameEngine
 
             return null;
         }
-
     }
 }
