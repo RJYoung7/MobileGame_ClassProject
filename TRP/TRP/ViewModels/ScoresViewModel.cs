@@ -52,13 +52,13 @@ namespace TRP.ViewModels
                     await DeleteAsync(data);
                 });
 
-            // For adding Score
+            // For adding Score from Scores page
             MessagingCenter.Subscribe<ScoreNewPage, Score>(this, "AddData", async (obj, data) =>
             {
                 await AddAsync(data);
             });
 
-            // For adding Score
+            // For adding Score from Battle Engine
             MessagingCenter.Subscribe<BattleEngine, Score>(this, "AddData", async (obj, data) =>
             {
                 await AddAsync(data);
@@ -70,6 +70,7 @@ namespace TRP.ViewModels
                     await UpdateAsync(data);
                 });
 
+            // For adding Score from BattlePage
             MessagingCenter.Subscribe<Views.Battle.BattlePage, Score>(this, "AddData", async (obj, data) =>
             {
                 await AddAsync(data);
