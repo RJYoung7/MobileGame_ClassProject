@@ -23,7 +23,7 @@
                 </StackLayout>
 
 
-                <StackLayout Spacing="0">
+            <StackLayout Spacing="0">
                 <Grid RowSpacing="3"
                       ColumnSpacing="3"
                       VerticalOptions="Start">
@@ -36,7 +36,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <!--Characters-->
                     <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
                         <ListView x:Name="CharactersListView" 
@@ -95,7 +95,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-                    
+
                     <!--Monsters-->
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
                         <ListView x:Name="MonstersListView" 
@@ -160,7 +160,7 @@
                         </ListView>
                     </StackLayout>
 
-                        <!--Battle Messages-->
+                    <!--Battle Messages-->
                     <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ScrollView>
                             <StackLayout>
@@ -184,24 +184,24 @@
                     </StackLayout>
                 </Grid>
 
-                    <!-- User Actions -->
+                <!-- User Actions -->
                 <StackLayout Padding="5" Orientation="Horizontal">
                     <!-- Use Item -->
-                    <StackLayout Padding="10">
-                        <Button Text="Use ITem"
+                    <StackLayout Padding="5">
+                        <Button Text="Use Item"
                                 Style="{StaticResource LargeButton}"
                                 Clicked="UseItemButton_Clicked"/>
                     </StackLayout>
-                    </StackLayout>
+
                     <!-- Finish turn button -->
-                    <StackLayout Padding="10">
+                    <StackLayout Padding="5">
                         <Button Text="Next Turn"
                                 Style="{StaticResource LargeButton}"
                                 Clicked="NextTurnButton_Clicked"/>
                     </StackLayout>
 
                 </StackLayout>
-
+            </StackLayout>
         </StackLayout>
 
     </ContentPage.Content>
