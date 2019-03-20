@@ -32,9 +32,13 @@ namespace TRP.GameEngine
         // Sets the new state for the variables for Battle
         public void BattleEngineClearData()
         {
+            // Create a score object
             BattleScore = new Score();
+
+            // Create a BattleMessages object
             BattleMessage = new BattleMessages();
 
+            // Clear the lists
             ItemPool.Clear();
             MonsterList.Clear();
             CharacterList.Clear();
@@ -72,11 +76,12 @@ namespace TRP.GameEngine
         // Initializes the Battle to begin
         public bool StartBattle(bool isAutoBattle)
         {
-            // New Battle
-            // Load Characters
+            // New BattleScore information
             BattleScore.AutoBattle = isAutoBattle;
             BattleScore.BattleNumber = getLatestBattleNumber() + 1;
             BattleScore.Name = "Battle " + BattleScore.BattleNumber.ToString();
+
+            // Sets battle running to true
             isBattleRunning = true;
 
             // Characters not Initialized, so false start...
@@ -98,18 +103,19 @@ namespace TRP.GameEngine
                 return false;
             }
 
-            // If the party does not have 6 characters, add them. 
+            // Check if the Character list has enough characters
             if (CharacterList.Count >= 6)
             {
                 return true;
             }
 
+            // If the party does not have 6 characters, add them. 
             // TODO, determine the character strength
             // add Characters up to that strength...
             var ScaleLevelMax = 3;
             var ScaleLevelMin = 1;
 
-            // Get 6 Characters
+            // Get up to 6 Characters
             do
             {
                 var Data = GetRandomCharacter(ScaleLevelMin, ScaleLevelMax);

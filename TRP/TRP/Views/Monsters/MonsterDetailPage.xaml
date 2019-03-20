@@ -12,33 +12,47 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-
         <StackLayout x:Name="DetailsRoot"
                      Orientation="Vertical"
                      Spacing="20"
                      Padding="15">
 
-            <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0" Padding="5">
+            <StackLayout Orientation="Horizontal" 
+                         BackgroundColor="#d5d8f0" 
+                         Padding="5">
+                
                 <!-- Picture of monster -->
                 <Image Source="{Binding Data.ImageURI}"
                        WidthRequest="150"
                        HeightRequest="150" 
                        HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
+                       VerticalOptions="Center"
+                       BackgroundColor="White"/>
 
                 <StackLayout Orientation="Vertical"
                              HorizontalOptions="Start"
                              VerticalOptions="Start">
-                    <!-- Name label -->
+                    
+                    <!-- Monster name -->
                     <Label Text="{Binding Data.Name}" 
-                           Style="{StaticResource TitleLabel}"/>
+                           Style="{StaticResource TitleLabel}"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
 
+                    <!-- Description of monster -->
                     <Label Text="{Binding Data.MonsterTypeString}" 
-                           Style="{StaticResource SmallLabel}"/>
+                           Style="{StaticResource SmallLabel}"
+                           FontAttributes="Italic"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
                 </StackLayout>
             </StackLayout>
 
-            <Label Text="Base Attributes: " Style="{StaticResource LargeLabel}" VerticalOptions="Start"/>
+            <!-- Attributes -->
+            <Label Text="Base Attributes: " 
+                   Style="{StaticResource MediumLabel}" 
+                   VerticalOptions="Start"/>
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -47,19 +61,19 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" Style="{StaticResource MediumLabel}" />
-                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" Style="{StaticResource SmallLabel}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="1" Text="Attack:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute.Attack}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="Attack:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute.Attack}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Text="Defense:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Attribute.Defense}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="2" Text="Defense:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Attribute.Defense}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Text="Speed:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="3" Text="Speed:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" Style="{StaticResource SmallLabel}"/>
             </Grid>
-
+            
         </StackLayout>
 
     </ScrollView>

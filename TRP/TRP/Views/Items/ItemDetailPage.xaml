@@ -17,7 +17,10 @@
                      Spacing="20"
                      Padding="15">
 
-            <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0" Padding="5">
+            <StackLayout Orientation="Horizontal" 
+                         BackgroundColor="#d5d8f0" 
+                         Padding="5">
+                
                 <!-- Picture of item -->
                 <Image Source="{Binding Data.ImageURI}"
                        WidthRequest="150"
@@ -32,17 +35,23 @@
                     
                     <!-- Item name -->
                     <Label Text="{Binding Data.Name}" 
-                           Style="{StaticResource TitleLabel}"/>
+                           Style="{StaticResource TitleLabel}"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
                     
                     <!-- Description of item -->
                     <Label Text="{Binding Data.Description}" 
-                           Style="{StaticResource SmallLabel}"/>
-
+                           Style="{StaticResource SmallLabel}"
+                           FontAttributes="Italic"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Start"/>
                 </StackLayout>
             </StackLayout>
 
             <!-- Attributes -->
-            <Label Text="Base Attributes: " Style="{StaticResource LargeLabel}"/>
+            <Label Text="Base Attributes: " 
+                   Style="{StaticResource MediumLabel}"
+                   VerticalOptions="Start"/>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -52,23 +61,23 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Text="Consumable:" Style="{StaticResource MediumLabel}" />
-                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Consumable}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="Consumable:" Style="{StaticResource SmallLabel}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Consumable}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="1" Text="Attribute:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="Attribute:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.Attribute}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Text="Value:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Value}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="2" Text="Value:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.Value}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Text="Range:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Range}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="3" Text="Range:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Range}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="4" Text="Damage:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Data.Damage}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="4" Text="Damage:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Data.Damage}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="5" Text="Location:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Data.Location}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="5" Text="Location:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Data.Location}" Style="{StaticResource SmallLabel}"/>
             </Grid>
         </StackLayout>
     </ScrollView>

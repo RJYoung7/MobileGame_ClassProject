@@ -12,30 +12,34 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-
             <StackLayout x:Name="DetailsRoot"
                          Orientation="Vertical"
                          Spacing="20"
                          Padding="15">
 
-            <StackLayout Orientation="Horizontal" BackgroundColor="#d5d8f0" Padding="5">
+            <StackLayout Orientation="Horizontal" 
+                         BackgroundColor="#d5d8f0" 
+                         Padding="5">
+                
                 <!-- Picture of character -->
                 <Image Source="{Binding Data.ImageURI}"
                        WidthRequest="150"
                        HeightRequest="150" 
                        HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
+                       VerticalOptions="Center"
+                       BackgroundColor="White"/>
 
                 <StackLayout Orientation="Vertical"
                              HorizontalOptions="Start"
                              VerticalOptions="Start">
-                    <!-- Name label -->
+                    
+                    <!-- Character name -->
                     <Label Text="{Binding Data.Name}" 
                            Style="{StaticResource TitleLabel}" 
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>
+                    
                     <!-- Description of character -->
-
                     <Label Text="{Binding Data.PenguinType}" 
                            Style="{StaticResource SmallLabel}"
                            FontAttributes="Italic"
@@ -44,9 +48,11 @@
                 </StackLayout>
             </StackLayout>
 
+            <!-- Attributes -->
             <Label Text="Base Attributes: " 
                    Style="{StaticResource MediumLabel}"
                    VerticalOptions="Start" />
+                
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -55,7 +61,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                 <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" Style="{StaticResource SmallLabel}" />
+                <Label Grid.Column="0" Grid.Row="0" Text="Max Health:" Style="{StaticResource SmallLabel}" />
                 <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Attribute.MaxHealth}" Style="{StaticResource SmallLabel}"/>
 
                 <Label Grid.Column="0" Grid.Row="1" Text="Attack:" Style="{StaticResource SmallLabel}"/>
