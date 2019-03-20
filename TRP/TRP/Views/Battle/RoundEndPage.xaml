@@ -23,7 +23,7 @@
                           IsPullToRefreshEnabled="true"
                           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                           CachingStrategy="RecycleElement"
-                          SelectedItem="OnCharacterSelected">
+                          ItemSelected="OnCharacterSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

@@ -10,7 +10,7 @@ namespace TRP.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RoundEndPage : ContentPage
     {
-        private BattleViewModel _viewModel;
+        private BattleViewModel _viewModel; // View model for this page
 
         // Constructor: initialize the page
         public RoundEndPage(BattleViewModel battleViewModel)
