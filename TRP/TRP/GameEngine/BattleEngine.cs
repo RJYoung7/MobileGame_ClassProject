@@ -110,8 +110,6 @@ namespace TRP.GameEngine
             }
 
             // If the party does not have 6 characters, add them. 
-            // TODO, determine the character strength
-            // add Characters up to that strength...
             var ScaleLevelMax = 3;
             var ScaleLevelMin = 1;
 
@@ -128,6 +126,7 @@ namespace TRP.GameEngine
         // Get a random character within range of min and max parameters
         public Character GetRandomCharacter(int ScaleLevelMin, int ScaleLevelMax)
         {
+            // Instance of character viewmodel
             var myCharacterViewModel = CharactersViewModel.Instance;
 
             var rnd = HelperEngine.RollDice(1, myCharacterViewModel.Dataset.Count);
@@ -137,7 +136,10 @@ namespace TRP.GameEngine
             // Help identify which Character it is...
             myData.Name += " " + (1 + CharacterList.Count).ToString();
 
+            // Determine what to scale the character level to
             var rndScale = HelperEngine.RollDice(ScaleLevelMin, ScaleLevelMax);
+
+            // Scale the characters level
             myData.ScaleLevel(rndScale);
 
             // Add Items...
@@ -158,12 +160,6 @@ namespace TRP.GameEngine
         {
             var BattleNumber = ScoresViewModel.Instance.Dataset.Max(s => s.BattleNumber);
             return BattleNumber;
-        }
-
-        // Autobattle
-        public bool AutoBattle()
-        {
-            return true;
         }
 
         // Returns string of battle summary

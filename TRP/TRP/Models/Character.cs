@@ -163,28 +163,43 @@ namespace TRP.Models
         }
 
         // Upgrades to a set level
-        public void ScaleLevel(int level)
+        public bool ScaleLevel(int level)
         {
             // Check to see if level is greater than max level
             if (level > LevelTable.MaxLevel)
             {
-                return;
+                return false;
             }
 
             // Check to see if level is less than or equal to lowest level
             if (level <= 1)
             {
-                return;
+                return false;
             }
 
             // Check to see if scale level is less than current level
             if (level < Level)
             {
-                return;
+                return false;
             }
 
             // Set level of character to new level
             Level = level;
+
+            // Get the number of points at the next level, and set it for Experience Total...
+            ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level + 1].Experience;
+
+            // Update the attributes based on the level
+            Attribute.Attack = LevelTable.Instance.LevelDetailsList[Level].Attack;
+            Attribute.Defense = LevelTable.Instance.LevelDetailsList[Level].Defense;
+            Attribute.Speed = LevelTable.Instance.LevelDetailsList[Level].Speed;
+            Attribute.MaxHealth = HelperEngine.RollDice(Level, HealthDice);
+            Attribute.CurrentHealth = Attribute.MaxHealth;
+
+            // Update the attribute string
+            AttributeString = AttributeBase.GetAttributeString(Attribute);
+
+            return true;
         }
 
         #region Basics
