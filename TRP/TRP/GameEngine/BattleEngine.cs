@@ -6,6 +6,7 @@ using System.Text;
 
 using TRP.Models;
 using TRP.ViewModels;
+using Xamarin.Forms;
 
 namespace TRP.GameEngine
 {
@@ -65,7 +66,7 @@ namespace TRP.GameEngine
             isBattleRunning = false;
 
             // Save the Score to the Datastore
-            ScoresViewModel.Instance.Dataset.Add(BattleScore);
+            MessagingCenter.Send(this, "AddData", BattleScore);
         }
 
         // Initializes the Battle to begin

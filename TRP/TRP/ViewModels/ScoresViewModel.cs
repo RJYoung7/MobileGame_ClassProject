@@ -9,6 +9,7 @@ using TRP.Models;
 using TRP.Views;
 using System.Linq;
 using TRP.Controllers;
+using TRP.GameEngine;
 
 namespace TRP.ViewModels
 {
@@ -47,34 +48,27 @@ namespace TRP.ViewModels
 
             // Update Database: Delete Score
             MessagingCenter.Subscribe<ScoreDeletePage, Score>(this, "DeleteData", async (obj, data) =>
-            {
-                Dataset.Remove(data);
-                await DataStore.AddAsync_Score(data);
-            });
+                {
+                    await DeleteAsync(data);
+                });
 
             // For adding Score
             MessagingCenter.Subscribe<ScoreNewPage, Score>(this, "AddData", async (obj, data) =>
             {
-                Dataset.Add(data);
-                await DataStore.AddAsync_Score(data);
+                await AddAsync(data);
+            });
+
+            // For adding Score
+            MessagingCenter.Subscribe<BattleEngine, Score>(this, "AddData", async (obj, data) =>
+            {
+                await AddAsync(data);
             });
 
             // For modifying a Score
             MessagingCenter.Subscribe<ScoreEditPage, Score>(this, "EditData", async (obj, data) =>
-            {
-                // Find the Score, then update it
-                var myData = Dataset.FirstOrDefault(arg => arg.Id == data.Id);
-                if (myData == null)
                 {
-                    return;
-                }
-
-                myData.Update(data);
-                await DataStore.UpdateAsync_Score(myData);
-
-                _needsRefresh = true;
-
-            });
+                    await UpdateAsync(data);
+                });
 
             MessagingCenter.Subscribe<Views.Battle.BattlePage, Score>(this, "AddData", async (obj, data) =>
             {
