@@ -111,10 +111,10 @@ namespace TRP.Views.Battle
             MessageText.Text = "";
         }
 
-        // Adds message to be shown in html box 
+        // Adds message to be shown in box 
         public void AppendMessage(string message)
         {
-            MessageText.Text = message + "\n" + MessageText.Text;
+            MessageText.Text += message + "\n";
         }
 
         // Displays the messages in the game 
