@@ -42,7 +42,7 @@ namespace TRP.Views.Battle
             if (data == null)
                 return;
 
-            await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(data)));
+            await Navigation.PushAsync(new CharacterInBattleDetailPage(new CharacterDetailViewModel(data)));
 
             // Manually deselect item.
             CharactersListView.SelectedItem = null;
