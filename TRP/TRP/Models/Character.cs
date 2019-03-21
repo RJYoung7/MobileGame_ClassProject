@@ -156,7 +156,7 @@ namespace TRP.Models
         public string FormatOutput()
         {
             var myReturn = Name + " (" + PenguinType.ToString() + ")\nLevel: " + Level + "\nExp: " + ExperienceTotal + "\nMaxHP: " + Attribute.MaxHealth
-                + "\n Attack: " + Attribute.Attack + "\nDefense: " + Attribute.Defense + "\nSpeed: " + Attribute.Speed + "\n";
+                + "\n Attack: " + GetAttack() + "\nDefense: " + GetDefense() + "\nSpeed: " + GetSpeed() + "\n";
             return myReturn;
         }
 
