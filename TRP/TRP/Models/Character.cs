@@ -155,7 +155,8 @@ namespace TRP.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = Name + " (" + PenguinType.ToString() + ")" + "\n";
+            var myReturn = Name + " (" + PenguinType.ToString() + ")\nLevel: " + Level + "\nExp: " + ExperienceTotal + "\nMaxHP: " + Attribute.MaxHealth
+                + "\n Attack: " + Attribute.Attack + "\nDefense: " + Attribute.Defense + "\nSpeed: " + Attribute.Speed + "\n";
             return myReturn;
         }
 
