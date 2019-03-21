@@ -72,7 +72,6 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
             Bag = newData.Bag;
         }
 
@@ -108,7 +107,6 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
             Bag = newData.Bag;
         }
 
@@ -148,7 +146,6 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
             Bag = newData.Bag;
 
             // Revive
