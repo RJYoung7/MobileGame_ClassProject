@@ -416,24 +416,27 @@ namespace TRP.GameEngine
                 Target.TakeDamage(BattleMessage.DamageAmount);
 
                 // See if a rebound occurs after dealing damage to monster
-                if (ReboundDamage())
+                if (GameGlobals.EnableRebound)
                 {
-                    // Calculate rebound damage
-                    var rebDmg = HelperEngine.RollDice(1, (BattleMessage.DamageAmount / 2));
+                    if (ReboundDamage())
+                    {
+                        // Calculate rebound damage
+                        var rebDmg = HelperEngine.RollDice(1, (BattleMessage.DamageAmount / 2));
 
-                    // Apply damange
-                    if (Attacker.GetHealthCurrent() <= rebDmg)
-                    {
-                        // If rebound damage would cause death, set it so that character only has one HP left.
-                        rebDmg = Attacker.GetHealthCurrent() - 1;
-                        Attacker.TakeDamage(rebDmg);
-                        BattleMessage.TurnMessageSpecial = string.Format(Attacker.Name + " gets hit by rebound for {0}.", rebDmg);
-                    }
-                    else
-                    {
-                        // Otherwise, apply damage
-                        Attacker.TakeDamage(rebDmg);
-                        BattleMessage.TurnMessageSpecial = string.Format(Attacker.Name + " gets hit by rebound for {0}.", rebDmg);
+                        // Apply damange
+                        if (Attacker.GetHealthCurrent() <= rebDmg)
+                        {
+                            // If rebound damage would cause death, set it so that character only has one HP left.
+                            rebDmg = Attacker.GetHealthCurrent() - 1;
+                            Attacker.TakeDamage(rebDmg);
+                            BattleMessage.TurnMessageSpecial = string.Format(Attacker.Name + " gets hit by rebound for {0}.", rebDmg);
+                        }
+                        else
+                        {
+                            // Otherwise, apply damage
+                            Attacker.TakeDamage(rebDmg);
+                            BattleMessage.TurnMessageSpecial = string.Format(Attacker.Name + " gets hit by rebound for {0}.", rebDmg);
+                        }
                     }
                 }
 

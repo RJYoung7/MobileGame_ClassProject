@@ -81,8 +81,8 @@ namespace TRP.Models
         }
 
         // Debug Settings
-        public static bool EnableCriticalMissProblems = true;
-        public static bool EnableCriticalHitDamage = true;
+        public static bool EnableCriticalMissProblems = false;
+        public static bool EnableCriticalHitDamage = false;
         public static bool EnableMonsterStolenItem = false;
         public static double MonsterStealsChance = 0;
         public static bool EnableRevivalOnce = false;
