@@ -12,13 +12,16 @@ namespace TRP.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CharacterInBattleDetailPage : ContentPage
     {
-        private CharacterDetailViewModel _viewModel;
+        private CharacterDetailViewModel _viewModel; // view model for this page
 
+        // Constructor: use view model before standing page up
 		public CharacterInBattleDetailPage(CharacterDetailViewModel viewModel)
 		{
 			InitializeComponent();
             BindingContext = _viewModel = viewModel;
 
+            // Setting the items for the character. Because item stored with character is just a guid,
+            // need to look up the item and grab name from dataset 
             var character = _viewModel.Data;
             if (character.Head != null)
             {
