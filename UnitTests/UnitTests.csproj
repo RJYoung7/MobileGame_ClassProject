@@ -71,6 +71,7 @@
     <Compile Include="GameEngine\AutoBattleEngineUnitTests.cs" />
     <Compile Include="GameEngine\BattleEngineUnitTests.cs" />
     <Compile Include="GameEngine\RoundEngineUnitTests.cs" />
+    <Compile Include="GameEngine\TurnEngineUnitTests.cs" />
     <Compile Include="Models\Default\CharacterUnitTests.cs" />
     <Compile Include="Models\Default\DefaultBaseCharacter.cs" />
     <Compile Include="Models\Default\DefaultBaseMonster.cs" />

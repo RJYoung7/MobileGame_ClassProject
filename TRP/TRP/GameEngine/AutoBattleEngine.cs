@@ -19,6 +19,8 @@ namespace TRP.GameEngine
         {
             // pick six characters
             var result = BattleEngine.AddCharactersToBattle();
+            if (!result)
+                return false;
 
             // Get the latest battlenumber for the score
             BattleScore.BattleNumber += getLatestBattleNumber();
