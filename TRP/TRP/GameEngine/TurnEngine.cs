@@ -169,7 +169,7 @@ namespace TRP.GameEngine
             if (HitStatus == HitStatusEnum.Hit)
             {
                 Target.TakeDamage(BattleMessage.DamageAmount);
-                BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name, BattleMessage.DamageAmount);
+                BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name + ". ", BattleMessage.DamageAmount);
             }
 
             // Check if critical hits are enabled
@@ -188,13 +188,13 @@ namespace TRP.GameEngine
             }
 
             // Set a message showing the remaining health of the target
-            BattleMessage.TurnMessageSpecial += Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial += Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth + " ";
 
             // Check for alive
             if (Target.Alive == false)
             {
                 // Mark Status in output
-                BattleMessage.TurnMessageSpecial += " and causes death.\n";
+                BattleMessage.TurnMessageSpecial += " and dies.\n";
 
                 // If character has not been revived yet, they can be revived
                 if (!Target.IsRevived && GameGlobals.EnableRevivalOnce)
@@ -215,16 +215,26 @@ namespace TRP.GameEngine
                     // Drop Items to item Pool
                     var myItemList = Target.DropAllItems();
 
-                    // Add items dropped message
-                    BattleMessage.TurnMessageSpecial += "\nItems dropped are (";
-
-                    // List the items that were dropped
-                    foreach (var item in myItemList)
+                    // Check to see if any items are dropped
+                    // No items message
+                    if (myItemList.Count == 0)
                     {
-                        BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
-                        BattleMessage.TurnMessageSpecial += item.Name;
+                        BattleMessage.TurnMessageSpecial += "No Items dropped";
                     }
-                    BattleMessage.TurnMessageSpecial += ")";
+                    else
+                    {
+                        // Add items dropped message
+                        BattleMessage.TurnMessageSpecial += "\nItems dropped are (";
+
+                        // List the items that were dropped
+                        foreach (var item in myItemList)
+                        {
+                            BattleScore.ItemsDroppedList += item.FormatOutput() + "\n";
+                            BattleMessage.TurnMessageSpecial += item.Name;
+                        }
+                        BattleMessage.TurnMessageSpecial += ")";
+                    }
+                    
 
                     // Calculate chance for monster to steal item
                     if (GameGlobals.EnableMonsterStolenItem)
@@ -397,7 +407,7 @@ namespace TRP.GameEngine
                 // Normal hit message
                 if (BattleMessage.HitStatus == HitStatusEnum.Hit)
                 {
-                    BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name, BattleMessage.DamageAmount);
+                    BattleMessage.AttackStatus = string.Format(Attacker.Name + " hits for {0} damage on " + Target.Name + ". ", BattleMessage.DamageAmount);
                 }
 
                 // Check if critical hits are enabled
@@ -450,7 +460,7 @@ namespace TRP.GameEngine
                 if (LevelUp)
                 {
                     // Level up message
-                    BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " is leveled up and to " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
+                    BattleMessage.LevelUpMessage = BattleMessage.AttackerName + " levels up to " + Attacker.Level + " with max health of " + Attacker.GetHealthMax();
                     Debug.WriteLine(BattleMessage.LevelUpMessage);
                 }
 
@@ -459,7 +469,7 @@ namespace TRP.GameEngine
             }
 
             // Message for remaining health
-            BattleMessage.TurnMessageSpecial += "\nRemaining health: " + Target.Attribute.CurrentHealth;
+            BattleMessage.TurnMessageSpecial += Target.Name + " has remaining health of " + Target.Attribute.CurrentHealth;
 
             // Check for alive
             if (Target.Alive == false)
@@ -473,7 +483,7 @@ namespace TRP.GameEngine
                     // and roll to turn monster to zombie
                     if (roll >= chance)
                     {
-                        BattleMessage.TurnMessageSpecial += "\n" + Target.Name + " dies but returns as a zombie.";
+                        BattleMessage.TurnMessageSpecial += "\n" + Target.Name + " dies but returns as a zombie. ";
                         Target.isZombie("Zombie " + Target.Name);
                         Target.Alive = true;
                     }
@@ -485,7 +495,7 @@ namespace TRP.GameEngine
                     MonsterList.Remove(Target);
 
                     // Mark Status in output
-                    BattleMessage.TurnMessageSpecial += Target.Name + " dies.\n";
+                    BattleMessage.TurnMessageSpecial += " and dies.\n";
 
                     // Add one to the monsters killd count...
                     BattleScore.MonsterSlainNumber++;
@@ -592,7 +602,6 @@ namespace TRP.GameEngine
             // If tohitscore is not greater than defense score, you miss
             if (ToHitScore <= DefenseScore)
             {
-                BattleMessage.AttackStatus = " misses ";
                 // Set hitstatus to miss
                 BattleMessage.HitStatus = HitStatusEnum.Miss;
                 BattleMessage.DamageAmount = 0;

@@ -130,8 +130,20 @@ namespace TRP.Models
         // Return message string
         public string GetTurnMessageString()
         {
-            var myResult = TurnMessage + "\n";
-            myResult += AttackStatus + "\n";
+            // To concatentate multiple strings
+            var myResult = "";
+
+            // Check to see if there is a turn message
+            if (!TurnMessage.Equals(""))
+            {
+                myResult += TurnMessage + "\n";
+            }
+
+            // Check to see if there is a Attack status
+            if (!AttackStatus.Equals(""))
+            {
+                myResult += AttackStatus + "\n";
+            }
             myResult += TurnMessageSpecial + "\n" + LevelUpMessage;
 
             ResetBattleMessages();

@@ -14,8 +14,6 @@ namespace TRP.Views.Battle
 	{
         private BattleViewModel _viewModel; // view model for the page 
 
-        HtmlWebViewSource htmlSource = new HtmlWebViewSource(); // window for messages
-        
         // Constructor: initialize battle page 
         public BattlePage (BattleViewModel viewmodel)
 		{
@@ -76,10 +74,11 @@ namespace TRP.Views.Battle
             // Output the Game Board
             _viewModel.LoadDataCommand.Execute(null);
 
-            //InitializeComponent();
+            // Convert round number to string and store for message
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
 
             RoundStartMessage();
+
             // Output The Message that happened.
             gameMessage();
         }
@@ -106,7 +105,7 @@ namespace TRP.Views.Battle
             }
         }
         
-        // Clears messages in html box 
+        // Clears messages in messages
         public void ClearMessages() 
         {
             MessageText.Text = "";
