@@ -168,16 +168,6 @@
                                        LineBreakMode="WordWrap"
                                        Text="{Binding Data}">
                                 </Label>
-                                <!--<WebView
-                                    WidthRequest="100"
-                                    MinimumWidthRequest="100"
-                                    HeightRequest="100"
-                                    MinimumHeightRequest="100"
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="Start"
-                                    BackgroundColor="Transparent"
-                                    x:Name="HtmlBox">
-                                </WebView>-->
                             </StackLayout>
 
                         </ScrollView>
