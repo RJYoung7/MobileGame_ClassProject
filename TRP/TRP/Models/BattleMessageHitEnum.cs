@@ -43,12 +43,14 @@ namespace TRP.Models
             ClearAndLoadDatTable();
         }
 
+        // Clear then load.
         public void ClearAndLoadDatTable()
         {
             MessageList = new List<MessageDetailHitEnum>();
             LoadData();
         }
 
+        // Load possible hit statuses
         public void LoadData()
         {
             MessageList.Add(new MessageDetailHitEnum { HitStatus = HitStatusEnum.Unknown, Message = "Unknown" });
@@ -65,6 +67,7 @@ namespace TRP.Models
             public string Message;
         }
 
+        // Returns string of the hitstatus.
         public string GetMessage(HitStatusEnum hitStatus)
         {
             var myReturn = MessageList.Where(a => a.HitStatus == hitStatus).FirstOrDefault().Message;

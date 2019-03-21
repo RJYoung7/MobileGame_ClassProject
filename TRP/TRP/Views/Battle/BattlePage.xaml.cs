@@ -23,8 +23,6 @@ namespace TRP.Views.Battle
             BindingContext = _viewModel = BattleViewModel.Instance;
             _viewModel.ClearCharacterLists();
 
-
-
             _viewModel.BattleEngine.StartBattle(false);
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
 
@@ -86,12 +84,6 @@ namespace TRP.Views.Battle
             gameMessage();
         }
 
-        // TODO
-        private async void AttackButton_Clicked(object sender, EventArgs e)
-        {
-            //should only be pressed during character's turn 
-        }
-
         // Use consumable item
         private async void UseItemButton_Clicked(object sender, EventArgs e)
         {
@@ -109,20 +101,15 @@ namespace TRP.Views.Battle
 
             else
             {
-               
                 _viewModel.BattleEngine.ConsumeItem(_viewModel.BattleEngine.CurrentCharacter);
-
                 gameMessage();
             }
-
         }
         
         // Clears messages in html box 
         public void ClearMessages() 
         {
             MessageText.Text = "";
-            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLBlankMessage();
-            //HtmlBox.Source = htmlSource;
         }
 
         // Adds message to be shown in html box 
@@ -131,7 +118,6 @@ namespace TRP.Views.Battle
             MessageText.Text = message + "\n" + MessageText.Text;
         }
 
-        // TODO: fix messages above box
         // Displays the messages in the game 
         public void gameMessage()
         {
@@ -139,21 +125,14 @@ namespace TRP.Views.Battle
             Debug.WriteLine("Message: " + message);
 
             MessageText.Text = message;
-
-            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
-            //HtmlBox.Source = HtmlBox.Source = htmlSource;
         }
 
-        // 
+        // If TimeWarp, then append this message to the box 
         public void RoundStartMessage()
         {
-
             var message = _viewModel.BattleEngine.BattleMessage.TimeWarpMessage;
 
             MessageText.Text = message;
-
-            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedRoundMessage();
-            //HtmlBox.Source = HtmlBox.Source = htmlSource;
         }
 
         // Before the page appears, remove anything that was there prior, and load data to view model

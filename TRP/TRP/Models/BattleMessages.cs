@@ -127,6 +127,7 @@ namespace TRP.Models
             return myResult;
         }
 
+        // Return message string
         public string GetTurnMessageString()
         {
             var myResult = TurnMessage + "\n";
@@ -139,6 +140,7 @@ namespace TRP.Models
 
         }
 
+        // Clear message
         public void ResetBattleMessages()
         {
             AttackerName = string.Empty;
@@ -152,15 +154,7 @@ namespace TRP.Models
             TimeWarpMessage = string.Empty;
             DamageAmount = 0;
             CurrentHealth = 0;
-    }
-
-        public string GetHTMLFormattedRoundMessage()
-        {
-            var htmlBody = string.Empty;
-            htmlBody += string.Format(@"<br><span>{0}</span>",TimeWarpMessage);
-
-            var myResult = htmlHead + htmlBody +htmlTail;
-            return myResult;
         }
+
     }
 }

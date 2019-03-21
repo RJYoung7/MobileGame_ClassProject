@@ -107,6 +107,7 @@ namespace TRP.Models
             EnableRevivalOnce = val;
         }
 
+        // Set switch for allowing reverse order
         public static void SetReverseOrder(bool val)
         {
             EnableReverseOrder = val;

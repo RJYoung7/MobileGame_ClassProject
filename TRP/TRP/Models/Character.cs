@@ -72,7 +72,6 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
             Bag = newData.Bag;
         }
 
@@ -108,7 +107,6 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
             Bag = newData.Bag;
         }
 
@@ -148,7 +146,6 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
             Bag = newData.Bag;
 
             // Revive
@@ -158,7 +155,8 @@ namespace TRP.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = Name + " (" + PenguinType.ToString() + ")" + "\n";
+            var myReturn = Name + " (" + PenguinType.ToString() + ")\nLevel: " + Level + "\nExp: " + ExperienceTotal + "\nMaxHP: " + Attribute.MaxHealth
+                + "\n Attack: " + Attribute.Attack + "\nDefense: " + Attribute.Defense + "\nSpeed: " + Attribute.Speed + "\n";
             return myReturn;
         }
 
@@ -289,6 +287,12 @@ namespace TRP.Models
             // Get Attack bonus from Items
             myReturn += GetItemBonus(AttributeEnum.Attack);
 
+            // Appy penguin type bonus
+            if (GetCharacterBonus(PenguinType) == AttributeEnum.Attack)
+            {
+                myReturn += (int)(myReturn*GetCharacterBonusValue(PenguinType));
+            }
+
             return myReturn;
         }
 
@@ -303,6 +307,12 @@ namespace TRP.Models
 
             // Get bonus from Items
             myReturn += GetItemBonus(AttributeEnum.Speed);
+
+            // Apply penguin type bonus
+            if (GetCharacterBonus(PenguinType) == AttributeEnum.Speed)
+            {
+                myReturn += (int)(myReturn * GetCharacterBonusValue(PenguinType));
+            }
 
             return myReturn;
         }
@@ -319,6 +329,12 @@ namespace TRP.Models
             // Get bonus from Items
             myReturn += GetItemBonus(AttributeEnum.Defense);
 
+            // Apply penguin type bonus
+            if (GetCharacterBonus(PenguinType) == AttributeEnum.Defense)
+            {
+                myReturn += (int)(myReturn * GetCharacterBonusValue(PenguinType));
+            }
+
             return myReturn;
         }
 
@@ -330,6 +346,12 @@ namespace TRP.Models
 
             // Get bonus from Items
             myReturn += GetItemBonus(AttributeEnum.MaxHealth);
+
+            // Appy penguin type bonus
+            if (GetCharacterBonus(PenguinType) == AttributeEnum.MaxHealth)
+            {
+                myReturn += (int)(myReturn * GetCharacterBonusValue(PenguinType));
+            }
 
             return myReturn;
         }
