@@ -10,7 +10,7 @@
                    Style="{StaticResource TitleLabel}"
                    FontSize="50"/>
             <ListView x:Name="ItemsListView" 
-                      ItemsSource="{Binding Dataset}"
+                      ItemsSource="{Binding availItems}"
                       VerticalOptions="FillAndExpand"
                       HasUnevenRows="true"
                       RefreshCommand="{Binding LoadItemsCommand}"

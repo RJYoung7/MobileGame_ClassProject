@@ -39,6 +39,9 @@ namespace TRP.ViewModels
         public ObservableCollection<Character> SelectedCharacters { get; set; } //selected party of characters
         public ObservableCollection<Character> AvailableCharacters { get; set; } //available characters left
         public ObservableCollection<Monster> SelectedMonsters { get; set; } //selected party of monsters
+        public ObservableCollection<Item> availItems { get; set; }
+
+
 
         public Command LoadDataCommand { get; set; } // load data command 
 
@@ -56,6 +59,7 @@ namespace TRP.ViewModels
             SelectedCharacters = new ObservableCollection<Character>();
             AvailableCharacters = new ObservableCollection<Character>();
             SelectedMonsters = new ObservableCollection<Monster>();
+            availItems = new ObservableCollection<Item>();
 
             // Load data command
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
@@ -145,6 +149,7 @@ namespace TRP.ViewModels
             AvailableCharacters.Clear();
             SelectedCharacters.Clear();
             SelectedMonsters.Clear();
+            availItems.Clear();
             ExecuteLoadDataCommand();
         }
 
@@ -200,6 +205,14 @@ namespace TRP.ViewModels
                 foreach (var ch in selectedChar)
                 {
                     SelectedCharacters.Add(ch);
+                }
+
+                // Reload the availItems List from the Battle engine itemspool list
+                availItems.Clear();
+                var avaItems = BattleEngine.ItemPool;
+                foreach (var it in avaItems)
+                {
+                    availItems.Add(it);
                 }
             }
             // Catch any exceptions

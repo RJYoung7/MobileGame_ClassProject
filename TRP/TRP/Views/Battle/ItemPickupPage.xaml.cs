@@ -9,14 +9,14 @@ namespace TRP.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ItemPickupPage : ContentPage
 	{
-        private ItemsViewModel _viewModel; // View model for this page
+        private BattleViewModel _viewModel; // View model for this page
 
         // Constructor: initialize the page 
         public ItemPickupPage ()
 		{
 			InitializeComponent ();
 
-            BindingContext = _viewModel = ItemsViewModel.Instance;
+            BindingContext = _viewModel = BattleViewModel.Instance;
         }
 
         // When item is selected, should go to items detail page

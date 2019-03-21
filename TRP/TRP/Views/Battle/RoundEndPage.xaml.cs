@@ -24,6 +24,7 @@ namespace TRP.Views.Battle
         // Button to go to page that displays items picked up in round
         private async void ItemPickupButton_Clicked(object sender, EventArgs e)
         {
+            _viewModel.ForceDataRefresh();
             await Navigation.PushAsync(new ItemPickupPage());
         }
 
