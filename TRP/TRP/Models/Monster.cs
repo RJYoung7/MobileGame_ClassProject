@@ -84,13 +84,6 @@ namespace TRP.Models
                 return false;
             }
 
-            // Don't exit on same level, because the settings below need to be calculated
-            //// Same level does not need changing
-            //if (level == this.Level)
-            //{
-            //    return false;
-            //}
-
             // Don't go down in level...
             if (level < this.Level)
             {
@@ -110,14 +103,15 @@ namespace TRP.Models
             ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level + 1].Experience;
             ExperienceRemaining = ExperienceTotal;
 
+            // Set attributes based on level
             Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[Level].Attack;
             Attribute.Attack = LevelTable.Instance.LevelDetailsList[Level].Attack;
             Attribute.Defense = LevelTable.Instance.LevelDetailsList[Level].Defense;
             Attribute.Speed = LevelTable.Instance.LevelDetailsList[Level].Speed;
-
             Attribute.MaxHealth = HelperEngine.RollDice(Level, HealthDice);
             Attribute.CurrentHealth = Attribute.MaxHealth;
 
+            // Update the attribute string
             AttributeString = AttributeBase.GetAttributeString(Attribute);
 
             return true;
