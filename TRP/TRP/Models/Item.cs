@@ -74,7 +74,25 @@ namespace TRP.Models
         // Update the item
         public Item(Item data)
         {
-            Update(data);
+            if (data == null)
+            {
+                return;
+            }
+
+            // Update all the fields in the Data
+            Name = data.Name;
+            Description = data.Description;
+            Value = data.Value;
+            Attribute = data.Attribute;
+            Location = data.Location;
+            Name = data.Name;
+            Description = data.Description;
+            ImageURI = data.ImageURI;
+            Range = data.Range;
+            Damage = data.Damage;
+            Consumable = data.Consumable;
+            Guid = data.Guid;
+            Id = data.Id;
         }
 
         // Constructor for Item called if needed to create a new item with set values.

@@ -51,7 +51,7 @@ namespace TRP.Controllers
             }
 
             // Call model to refresh itself to fetch list
-            ItemsViewModel.Instance.SetNeedsRefresh(true);
+            ItemsViewModel.Instance.ForceDataRefresh();
             return itemsList;
         }
 
@@ -100,7 +100,7 @@ namespace TRP.Controllers
                 }
 
                 // Call viewmodel to refresh itself 
-                ItemsViewModel.Instance.SetNeedsRefresh(true);
+                ItemsViewModel.Instance.ForceDataRefresh();
             }
 
             return myList;
