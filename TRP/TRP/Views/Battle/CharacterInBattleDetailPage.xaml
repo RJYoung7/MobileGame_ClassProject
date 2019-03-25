@@ -1,18 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TRP.Views.CharacterDetailPage"
-             Title="Character Detail">
+             x:Class="TRP.Views.Battle.CharacterInBattleDetailPage"
+             xmlns:local="clr-namespace:TRP.Models">
 
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
-        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
-    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <local:StringEnumConverter x:Key="StringEnum"/>
+    </ContentPage.Resources>
 
     <ScrollView>
-            <StackLayout x:Name="DetailsRoot"
+        <StackLayout x:Name="DetailsRoot"
                          Orientation="Vertical"
                          Spacing="20"
                          Padding="15">
@@ -20,7 +17,7 @@
             <StackLayout Orientation="Horizontal" 
                          BackgroundColor="#d5d8f0" 
                          Padding="5">
-                
+
                 <!-- Picture of character -->
                 <Image Source="{Binding Data.ImageURI}"
                        WidthRequest="150"
@@ -32,13 +29,13 @@
                 <StackLayout Orientation="Vertical"
                              HorizontalOptions="Start"
                              VerticalOptions="Start">
-                    
+
                     <!-- Character name -->
                     <Label Text="{Binding Data.Name}" 
                            Style="{StaticResource TitleLabel}" 
                            HorizontalOptions="Start"
                            VerticalOptions="Start"/>
-                    
+
                     <!-- Description of character -->
                     <Label Text="{Binding Data.PenguinType}" 
                            Style="{StaticResource SmallLabel}"
@@ -52,7 +49,7 @@
             <Label Text="Base Attributes: " 
                    Style="{StaticResource MediumLabel}"
                    VerticalOptions="Start" />
-                
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -73,8 +70,50 @@
                 <Label Grid.Column="0" Grid.Row="3" Text="Speed:" Style="{StaticResource SmallLabel}"/>
                 <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.Attribute.Speed}" Style="{StaticResource SmallLabel}"/>
             </Grid>
-            
-            </StackLayout>
+
+            <!-- Items -->
+            <Label Text="Items: " 
+                   Style="{StaticResource MediumLabel}"
+                   VerticalOptions="Start" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Text="Head:" Style="{StaticResource SmallLabel}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="None" x:Name="HeadString" Style="{StaticResource SmallLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Feet:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="None" x:Name="FeetString" Style="{StaticResource SmallLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="2" Text="Necklass:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="None" x:Name="NecklassString" Style="{StaticResource SmallLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="3" Text="Body:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="3" Text="None" x:Name="BodyString" Style="{StaticResource SmallLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="4" Text="Primary Hand:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="4" Text="None" x:Name="PrimaryHandString" Style="{StaticResource SmallLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="5" Text="Off Hand:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="5" Text="None" x:Name="OffHandString" Style="{StaticResource SmallLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="6" Text="Right Finger:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="6" Text="None" x:Name="RightFingerString" Style="{StaticResource SmallLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="7" Text="Left Finger:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="7" Text="None" x:Name="LeftFingerString" Style="{StaticResource SmallLabel}"/>
+
+                <Label Grid.Column="0" Grid.Row="8" Text="Bag:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="8" Text="None" x:Name="BagString" Style="{StaticResource SmallLabel}"/>
+            </Grid>
+
+
+        </StackLayout>
 
     </ScrollView>
 </ContentPage>

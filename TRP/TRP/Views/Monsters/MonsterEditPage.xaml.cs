@@ -10,11 +10,11 @@ namespace TRP.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MonsterEditPage : ContentPage
 	{
-	    // ReSharper disable once NotAccessedField.Local
-	    private MonsterDetailViewModel _viewModel;
+	    private MonsterDetailViewModel _viewModel; // view model for this page
 
-        public Monster Data { get; set; }
+        public Monster Data { get; set; } // data for this page
 
+        // Constructor: create instance of this page, and set the view model
         public MonsterEditPage(MonsterDetailViewModel viewModel)
         {
             // Save off the item

@@ -81,8 +81,8 @@ namespace TRP.Models
         }
 
         // Debug Settings
-        public static bool EnableCriticalMissProblems = true;
-        public static bool EnableCriticalHitDamage = true;
+        public static bool EnableCriticalMissProblems = false;
+        public static bool EnableCriticalHitDamage = false;
         public static bool EnableMonsterStolenItem = false;
         public static double MonsterStealsChance = 0;
         public static bool EnableRevivalOnce = false;
@@ -107,6 +107,7 @@ namespace TRP.Models
             EnableRevivalOnce = val;
         }
 
+        // Set switch for allowing reverse order
         public static void SetReverseOrder(bool val)
         {
             EnableReverseOrder = val;

@@ -6,6 +6,7 @@ using System.Text;
 
 using TRP.Models;
 using TRP.ViewModels;
+using Xamarin.Forms;
 
 namespace TRP.GameEngine
 {
@@ -14,8 +15,6 @@ namespace TRP.GameEngine
     {
         // The status of the actual battle, running or not (over)
         private bool isBattleRunning = false;
-
-        //public RoundEnum RoundStateEnum = RoundEnum.Unknown;
 
         // Constructor calls Init
         public BattleEngine()
@@ -33,9 +32,13 @@ namespace TRP.GameEngine
         // Sets the new state for the variables for Battle
         public void BattleEngineClearData()
         {
+            // Create a score object
             BattleScore = new Score();
+
+            // Create a BattleMessages object
             BattleMessage = new BattleMessages();
 
+            // Clear the lists
             ItemPool.Clear();
             MonsterList.Clear();
             CharacterList.Clear();
@@ -67,18 +70,18 @@ namespace TRP.GameEngine
             isBattleRunning = false;
 
             // Save the Score to the Datastore
-            ScoresViewModel.Instance.Dataset.Add(BattleScore);
-            //ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
+            MessagingCenter.Send(this, "AddData", BattleScore);
         }
 
         // Initializes the Battle to begin
         public bool StartBattle(bool isAutoBattle)
         {
-            // New Battle
-            // Load Characters
+            // New BattleScore information
             BattleScore.AutoBattle = isAutoBattle;
             BattleScore.BattleNumber = getLatestBattleNumber() + 1;
             BattleScore.Name = "Battle " + BattleScore.BattleNumber.ToString();
+
+            // Sets battle running to true
             isBattleRunning = true;
 
             // Characters not Initialized, so false start...
@@ -100,24 +103,17 @@ namespace TRP.GameEngine
                 return false;
             }
 
-            // If the party does not have 6 characters, add them. 
+            // Check if the Character list has enough characters
             if (CharacterList.Count >= 6)
             {
                 return true;
             }
 
-            // TODO, determine the character strength
-            // add Characters up to that strength...
+            // If the party does not have 6 characters, add them. 
             var ScaleLevelMax = 3;
             var ScaleLevelMin = 1;
 
-            //var need = 6 - (CharacterList.Count);
-            //if (need >= 0)
-            //{
-            //    var rand = CharactersViewModel.Instance.Dataset.Take(need);
-            //    CharacterList.AddRange(rand);
-            //}
-            // Get 6 Characters
+            // Get up to 6 Characters
             do
             {
                 var Data = GetRandomCharacter(ScaleLevelMin, ScaleLevelMax);
@@ -130,6 +126,7 @@ namespace TRP.GameEngine
         // Get a random character within range of min and max parameters
         public Character GetRandomCharacter(int ScaleLevelMin, int ScaleLevelMax)
         {
+            // Instance of character viewmodel
             var myCharacterViewModel = CharactersViewModel.Instance;
 
             var rnd = HelperEngine.RollDice(1, myCharacterViewModel.Dataset.Count);
@@ -139,7 +136,10 @@ namespace TRP.GameEngine
             // Help identify which Character it is...
             myData.Name += " " + (1 + CharacterList.Count).ToString();
 
+            // Determine what to scale the character level to
             var rndScale = HelperEngine.RollDice(ScaleLevelMin, ScaleLevelMax);
+
+            // Scale the characters level
             myData.ScaleLevel(rndScale);
 
             // Add Items...
@@ -150,6 +150,7 @@ namespace TRP.GameEngine
             myData.RightFinger = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.RightFinger, AttributeEnum.Unknown);
             myData.LeftFinger = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.LeftFinger, AttributeEnum.Unknown);
             myData.Feet = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Feet, AttributeEnum.Unknown);
+            myData.Bag = ItemsViewModel.Instance.ChooseRandomItemString(ItemLocationEnum.Bag, AttributeEnum.Unknown);
 
             return myData;
         }
@@ -159,12 +160,6 @@ namespace TRP.GameEngine
         {
             var BattleNumber = ScoresViewModel.Instance.Dataset.Max(s => s.BattleNumber);
             return BattleNumber;
-        }
-
-        // Autobattle
-        public bool AutoBattle()
-        {
-            return true;
         }
 
         // Returns string of battle summary

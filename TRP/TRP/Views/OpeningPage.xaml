@@ -9,9 +9,8 @@
                              VerticalOptions="Start"
                              Orientation="Vertical">
                     <Label FontSize="50"
-                               Text="The Righteous Penguins"
-                               Style="{StaticResource TitleLabel}"
-                               HorizontalTextAlignment="Center"/>
+                            Text="The Righteous Penguins"
+                            Style="{StaticResource TitleLabel}"/>
                     
                     <Frame WidthRequest="200" HeightRequest="200">
                         <Image Source="https://i.pinimg.com/736x/b8/73/5e/b8735e30a542ac991f2c1d22b8f80431--penguin-life-penguin-baby.jpg"  />

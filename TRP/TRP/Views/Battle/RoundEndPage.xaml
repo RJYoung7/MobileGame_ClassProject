@@ -23,7 +23,7 @@
                           IsPullToRefreshEnabled="true"
                           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                           CachingStrategy="RecycleElement"
-                          SelectedItem="OnCharacterSelected">
+                          ItemSelected="OnCharacterSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -60,7 +60,7 @@
                     Clicked="ItemPickupButton_Clicked"
                     Style="{StaticResource LargeButton}"
                     FontFamily="{StaticResource Body}"/>
-            <Button Text="Begin Next Round" FontSize="Medium"
+            <Button Text="Begin Next Round"
                     Clicked="NextRoundButton_Clicked"
                     Style="{StaticResource LargeButton}"
                     FontFamily="{StaticResource Body}"/>

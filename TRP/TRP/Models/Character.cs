@@ -72,7 +72,7 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
+            Bag = newData.Bag;
         }
 
         // Create a new character, based on existing Character
@@ -107,7 +107,7 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
+            Bag = newData.Bag;
         }
 
         // Update the character information
@@ -146,7 +146,7 @@ namespace TRP.Models
             OffHand = newData.OffHand;
             RightFinger = newData.RightFinger;
             LeftFinger = newData.LeftFinger;
-            Feet = newData.Feet;
+            Bag = newData.Bag;
 
             // Revive
             IsRevived = false;
@@ -155,14 +155,49 @@ namespace TRP.Models
         // Helper to combine the attributes into a single line, to make it easier to display the item as a string
         public string FormatOutput()
         {
-            var myReturn = Name + " (" + PenguinType.ToString() + ")" + "\n";
+            var myReturn = Name + " (" + PenguinType.ToString() + ")\nLevel: " + Level + "\nExp: " + ExperienceTotal + "\nMaxHP: " + Attribute.MaxHealth
+                + "\n Attack: " + GetAttack() + "\nDefense: " + GetDefense() + "\nSpeed: " + GetSpeed() + "\n";
             return myReturn;
         }
 
         // Upgrades to a set level
-        public void ScaleLevel(int level)
+        public bool ScaleLevel(int level)
         {
+            // Check to see if level is greater than max level
+            if (level > LevelTable.MaxLevel)
+            {
+                return false;
+            }
+
+            // Check to see if level is less than or equal to lowest level
+            if (level <= 1)
+            {
+                return false;
+            }
+
+            // Check to see if scale level is less than current level
+            if (level < Level)
+            {
+                return false;
+            }
+
+            // Set level of character to new level
             Level = level;
+
+            // Get the number of points at the next level, and set it for Experience Total...
+            ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level + 1].Experience;
+
+            // Update the attributes based on the level
+            Attribute.Attack = LevelTable.Instance.LevelDetailsList[Level].Attack;
+            Attribute.Defense = LevelTable.Instance.LevelDetailsList[Level].Defense;
+            Attribute.Speed = LevelTable.Instance.LevelDetailsList[Level].Speed;
+            Attribute.MaxHealth = HelperEngine.RollDice(Level, HealthDice);
+            Attribute.CurrentHealth = Attribute.MaxHealth;
+
+            // Update the attribute string
+            AttributeString = AttributeBase.GetAttributeString(Attribute);
+
+            return true;
         }
 
         #region Basics
@@ -206,34 +241,6 @@ namespace TRP.Models
             }
 
             return false;
-        }
-
-        // Level up to a number, say Level 3
-        public int LevelUpToValue(int Value)
-        {
-            // Adjust the experience to the min for that level.
-            // That will trigger level up to happen
-
-            if (Value < 0)
-            {
-                // Skip, and return old level
-                return Level;
-            }
-
-            if (Value <= Level)
-            {
-                // Skip, and return old level
-                return Level;
-            }
-
-            if (Value > LevelTable.MaxLevel)
-            {
-                Value = LevelTable.MaxLevel;
-            }
-
-            AddExperience(LevelTable.Instance.LevelDetailsList[Value].Experience + 1);
-
-            return Level;
         }
 
         // Add experience
@@ -280,6 +287,12 @@ namespace TRP.Models
             // Get Attack bonus from Items
             myReturn += GetItemBonus(AttributeEnum.Attack);
 
+            // Appy penguin type bonus
+            if (GetCharacterBonus(PenguinType) == AttributeEnum.Attack)
+            {
+                myReturn += (int)(myReturn*GetCharacterBonusValue(PenguinType));
+            }
+
             return myReturn;
         }
 
@@ -294,6 +307,12 @@ namespace TRP.Models
 
             // Get bonus from Items
             myReturn += GetItemBonus(AttributeEnum.Speed);
+
+            // Apply penguin type bonus
+            if (GetCharacterBonus(PenguinType) == AttributeEnum.Speed)
+            {
+                myReturn += (int)(myReturn * GetCharacterBonusValue(PenguinType));
+            }
 
             return myReturn;
         }
@@ -310,6 +329,12 @@ namespace TRP.Models
             // Get bonus from Items
             myReturn += GetItemBonus(AttributeEnum.Defense);
 
+            // Apply penguin type bonus
+            if (GetCharacterBonus(PenguinType) == AttributeEnum.Defense)
+            {
+                myReturn += (int)(myReturn * GetCharacterBonusValue(PenguinType));
+            }
+
             return myReturn;
         }
 
@@ -321,6 +346,12 @@ namespace TRP.Models
 
             // Get bonus from Items
             myReturn += GetItemBonus(AttributeEnum.MaxHealth);
+
+            // Appy penguin type bonus
+            if (GetCharacterBonus(PenguinType) == AttributeEnum.MaxHealth)
+            {
+                myReturn += (int)(myReturn * GetCharacterBonusValue(PenguinType));
+            }
 
             return myReturn;
         }
@@ -359,11 +390,20 @@ namespace TRP.Models
         {
             var myReturn = GetLevelBasedDamage();
 
-            var myItem = ItemsViewModel.Instance.GetItem(PrimaryHand);
-            if (myItem != null)
+            // Get primary hand weapon and determine damage
+            var primary = ItemsViewModel.Instance.GetItem(PrimaryHand);
+            if (primary != null)
             {
                 // Damage is base damage plus dice of the weapon.  So sword of Damage 10 is d10
-                myReturn += HelperEngine.RollDice(1, myItem.Damage);
+                myReturn += HelperEngine.RollDice(1, primary.Damage);
+            }
+
+            // Get off hand weapon and determine damage
+            var offhand = ItemsViewModel.Instance.GetItem(OffHand);
+            if (offhand != null)
+            {
+                // Damage is base damage plus dice of the weapon.  So sword of Damage 10 is d10
+                myReturn += HelperEngine.RollDice(1, offhand.Damage);
             }
 
             return myReturn;
@@ -470,6 +510,9 @@ namespace TRP.Models
 
                 case ItemLocationEnum.Feet:
                     return GetItem(Feet);
+
+                case ItemLocationEnum.Bag:
+                    return GetItem(Bag);
             }
 
             return null;
@@ -519,6 +562,11 @@ namespace TRP.Models
                 case ItemLocationEnum.LeftFinger:
                     myReturn = GetItem(LeftFinger);
                     LeftFinger = itemID;
+                    break;
+
+                case ItemLocationEnum.Bag:
+                    myReturn = GetItem(Bag);
+                    Bag = itemID;
                     break;
 
                 default:
@@ -601,6 +649,31 @@ namespace TRP.Models
             }
 
             return myReturn;
+        }
+
+        // Use an item, currently only applies to health.
+        public void UseItem(Item consume)
+        {
+            if(consume == null)
+            {
+                return;
+            }
+
+            var maxHP = Attribute.MaxHealth;
+            var currentHP = Attribute.CurrentHealth;
+
+            // Prevent increaseing health past max health
+            if(currentHP + consume.Value > maxHP)
+            {
+                Attribute.CurrentHealth = maxHP;
+            }
+            else
+            {
+                // Increase health by item value
+                Attribute.CurrentHealth += consume.Value;
+            }
+
+            RemoveItem(consume.Location);
         }
 
         #endregion Items

@@ -9,6 +9,7 @@
         <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
+    
     <ScrollView Padding="10">
         <StackLayout VerticalOptions="Start">
             <Label Text="Score Detail Page" Style="{StaticResource TitleLabel}" FontSize="50" HorizontalTextAlignment="Center"/>
@@ -29,57 +30,58 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Text="Name:" Style="{StaticResource MediumLabel}" />
-                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Name}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="Name:" Style="{StaticResource SmallLabel}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Data.Name}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="1" Text="Score Total:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.ScoreTotal}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="Score Total:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Data.ScoreTotal}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Text="Game Date:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.GameDate}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="2" Text="Game Date:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Data.GameDate}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Text="AutoBattle:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.AutoBattle}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="3" Text="AutoBattle:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Data.AutoBattle}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="4" Text="Number of Turns:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Data.TurnCount}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="4" Text="Number of Turns:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Data.TurnCount}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="5" Text="# of Monsters Slain:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Data.MonsterSlainNumber}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="5" Text="# of Monsters Slain:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Data.MonsterSlainNumber}" Style="{StaticResource SmallLabel}"/>
 
-                <Label Grid.Column="0" Grid.Row="6" Text="Experience Gained:" Style="{StaticResource MediumLabel}"/>
-                <Label Grid.Column="1" Grid.Row="6" Text="{Binding Data.ExperienceGainedTotal}" Style="{StaticResource MediumLabel}"/>
+                <Label Grid.Column="0" Grid.Row="6" Text="Experience Gained:" Style="{StaticResource SmallLabel}"/>
+                <Label Grid.Column="1" Grid.Row="6" Text="{Binding Data.ExperienceGainedTotal}" Style="{StaticResource SmallLabel}"/>
 
                 <Label Grid.Column="0" Grid.Row="7" 
                        Text="Characters at Death:" 
                        VerticalOptions="Start"
-                       Style="{StaticResource MediumLabel}" />
+                       Style="{StaticResource SmallLabel}" />
                 <Label Grid.Column="1" Grid.Row="7" 
                        Text="{Binding Data.CharacterAtDeathList}" 
                        VerticalOptions="Start"
-                       Style="{StaticResource MediumLabel}"/>
+                       Style="{StaticResource SmallLabel}"/>
 
                 <Label Grid.Column="0" Grid.Row="8" 
                        Text="Monsters Killed:" 
                        VerticalOptions="Start"
                        FontAttributes="Bold"
-                       Style="{StaticResource MediumLabel}"/>
+                       Style="{StaticResource SmallLabel}"/>
                 <Label Grid.Column="1" Grid.Row="8" 
                        Text="{Binding Data.MonstersKilledList}" 
                        VerticalOptions="Start"
-                       Style="{StaticResource MediumLabel}"/>
+                       Style="{StaticResource SmallLabel}"/>
 
                 <Label Grid.Column="0" Grid.Row="9" 
                        Text="Items Dropped:" 
                        VerticalOptions="Start"
                        FontAttributes="Bold" 
-                       Style="{StaticResource MediumLabel}"/>
+                       Style="{StaticResource SmallLabel}"/>
                 <Label Grid.Column="1" Grid.Row="9" 
                        Text="{Binding Data.ItemsDroppedList}" 
                        VerticalOptions="Start"
-                       Style="{StaticResource MediumLabel}"/>
+                       Style="{StaticResource SmallLabel}"/>
             </Grid>
         </StackLayout>
     </ScrollView>

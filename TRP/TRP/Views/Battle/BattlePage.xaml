@@ -23,7 +23,7 @@
                 </StackLayout>
 
 
-                <StackLayout Spacing="0">
+            <StackLayout Spacing="0">
                 <Grid RowSpacing="3"
                       ColumnSpacing="3"
                       VerticalOptions="Start">
@@ -36,7 +36,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <!--Characters-->
                     <StackLayout Grid.Column="0" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
                         <ListView x:Name="CharactersListView" 
@@ -95,7 +95,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-                    
+
                     <!--Monsters-->
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" BackgroundColor="#eee9e9">
                         <ListView x:Name="MonstersListView" 
@@ -148,11 +148,6 @@
                                                            HorizontalOptions="Start"/>
                                                 </StackLayout>
                                             </StackLayout>
-                                            <StackLayout HorizontalOptions="CenterAndExpand" 
-                                                         VerticalOptions="Center">
-                                                <!--<Button Text="Attack" 
-                                                        Clicked="AttackButton_Clicked"/>-->
-                                            </StackLayout>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -160,7 +155,7 @@
                         </ListView>
                     </StackLayout>
 
-                        <!--Battle Messages-->
+                    <!--Battle Messages-->
                     <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
                         <ScrollView>
                             <StackLayout>
@@ -168,32 +163,28 @@
                                        LineBreakMode="WordWrap"
                                        Text="{Binding Data}">
                                 </Label>
-                                <!--<WebView
-                                    WidthRequest="100"
-                                    MinimumWidthRequest="100"
-                                    HeightRequest="100"
-                                    MinimumHeightRequest="100"
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="Start"
-                                    BackgroundColor="Transparent"
-                                    x:Name="HtmlBox">
-                                </WebView>-->
                             </StackLayout>
-
                         </ScrollView>
                     </StackLayout>
                 </Grid>
 
-                    <!-- Finish turn button -->
-                    <StackLayout Padding="10">
-                        <Button Text="Next Turn"
-                               VerticalOptions="CenterAndExpand" 
-                               HorizontalOptions="CenterAndExpand"
-                               Style="{StaticResource LargeButton}"
-                               Clicked="NextTurnButton_Clicked"/>
+                <!-- User Actions -->
+                <StackLayout Padding="5" Orientation="Horizontal" HorizontalOptions="Center">
+                    <!-- Use Item -->
+                    <StackLayout Padding="5">
+                        <Button Text="Use Item"
+                                Style="{StaticResource LargeButton}"
+                                Clicked="UseItemButton_Clicked"/>
                     </StackLayout>
 
-                <!--</StackLayout>-->
+                    <!-- Finish turn button -->
+                    <StackLayout Padding="5">
+                        <Button Text="Next Turn"
+                                Style="{StaticResource LargeButton}"
+                                Clicked="NextTurnButton_Clicked"/>
+                    </StackLayout>
+
+                </StackLayout>
             </StackLayout>
         </StackLayout>
 

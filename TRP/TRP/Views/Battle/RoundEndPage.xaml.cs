@@ -10,7 +10,7 @@ namespace TRP.Views.Battle
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RoundEndPage : ContentPage
     {
-        private BattleViewModel _viewModel;
+        private BattleViewModel _viewModel; // View model for this page
 
         // Constructor: initialize the page
         public RoundEndPage(BattleViewModel battleViewModel)
@@ -24,6 +24,7 @@ namespace TRP.Views.Battle
         // Button to go to page that displays items picked up in round
         private async void ItemPickupButton_Clicked(object sender, EventArgs e)
         {
+            _viewModel.ForceDataRefresh();
             await Navigation.PushAsync(new ItemPickupPage());
         }
 
@@ -42,7 +43,7 @@ namespace TRP.Views.Battle
             if (data == null)
                 return;
 
-            await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(data)));
+            await Navigation.PushAsync(new CharacterInBattleDetailPage(new CharacterDetailViewModel(data)));
 
             // Manually deselect item.
             CharactersListView.SelectedItem = null;

@@ -25,8 +25,7 @@ namespace TRP.Views
             // Can create a new battle engine...
             var myBattleEngine = new AutoBattleEngine();
 
-            // Add characters to AutoBattle
-            //var result = myBattleEngine.AddCharactersToBattle();
+            await DisplayAlert("Starting autobattle...", null, "Continue");
 
             // Start AutoBattle
             myBattleEngine.RunAutoBattle(); 

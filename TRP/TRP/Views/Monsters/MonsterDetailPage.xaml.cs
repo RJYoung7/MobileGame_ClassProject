@@ -9,7 +9,6 @@ using TRP.ViewModels;
 namespace TRP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    // ReSharper disable once RedundantExtendsListEntry
     public partial class MonsterDetailPage : ContentPage
     {
         private MonsterDetailViewModel _viewModel; // View model for this page

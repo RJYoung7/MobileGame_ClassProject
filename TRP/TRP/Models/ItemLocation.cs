@@ -37,6 +37,9 @@ namespace TRP.Models
         // Boots, shoes, socks or anything else on the feet
         Feet = 40,
 
+        // Consumable Slot
+        Bag = 50
+
     }
 
     // Helper functions for the Item Locations
@@ -109,8 +112,9 @@ namespace TRP.Models
                     return ItemLocationEnum.LeftFinger;
 
                 case 7:
-                default:
                     return ItemLocationEnum.Feet;
+                default:
+                    return ItemLocationEnum.Bag;
             }
         }
     }

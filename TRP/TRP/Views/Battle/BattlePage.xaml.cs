@@ -14,16 +14,12 @@ namespace TRP.Views.Battle
 	{
         private BattleViewModel _viewModel; // view model for the page 
 
-        HtmlWebViewSource htmlSource = new HtmlWebViewSource(); // window for messages
-        
         // Constructor: initialize battle page 
         public BattlePage (BattleViewModel viewmodel)
 		{
 			InitializeComponent ();
             BindingContext = _viewModel = BattleViewModel.Instance;
             _viewModel.ClearCharacterLists();
-
-
 
             _viewModel.BattleEngine.StartBattle(false);
             Debug.WriteLine("Battle Start" + " Characters: " + _viewModel.BattleEngine.CharacterList.Count);
@@ -78,35 +74,49 @@ namespace TRP.Views.Battle
             // Output the Game Board
             _viewModel.LoadDataCommand.Execute(null);
 
-            //InitializeComponent();
+            // Convert round number to string and store for message
             numRounds.Text = Convert.ToString(_viewModel.BattleEngine.BattleScore.RoundCount);
 
             RoundStartMessage();
+
             // Output The Message that happened.
             gameMessage();
         }
 
-        // TODO
-        private async void AttackButton_Clicked(object sender, EventArgs e)
+        // Use consumable item
+        private async void UseItemButton_Clicked(object sender, EventArgs e)
         {
-            //should only be pressed during character's turn 
+
+            if(_viewModel.BattleEngine.BattleScore.TurnCount < 1)
+            {
+                _viewModel.BattleEngine.BattleMessage.TurnMessageSpecial = "All Characters full health";
+                gameMessage();
+            }
+            if (_viewModel.BattleEngine.PlayerCurrent == null|| _viewModel.BattleEngine.PlayerCurrent.PlayerType == PlayerTypeEnum.Monster)
+            {
+                _viewModel.BattleEngine.BattleMessage.TurnMessageSpecial = "Not your turn.";
+                gameMessage();
+            }
+
+            else
+            {
+                _viewModel.BattleEngine.ConsumeItem(_viewModel.BattleEngine.CurrentCharacter);
+                gameMessage();
+            }
         }
         
-        // Clears messages in html box 
+        // Clears messages in messages
         public void ClearMessages() 
         {
             MessageText.Text = "";
-            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLBlankMessage();
-            //HtmlBox.Source = htmlSource;
         }
 
-        // Adds message to be shown in html box 
+        // Adds message to be shown in box 
         public void AppendMessage(string message)
         {
-            MessageText.Text = message + "\n" + MessageText.Text;
+            MessageText.Text += message + "\n";
         }
 
-        // TODO: fix messages above box
         // Displays the messages in the game 
         public void gameMessage()
         {
@@ -114,21 +124,14 @@ namespace TRP.Views.Battle
             Debug.WriteLine("Message: " + message);
 
             MessageText.Text = message;
-
-            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedTurnMessage();
-            //HtmlBox.Source = HtmlBox.Source = htmlSource;
         }
 
-        //
+        // If TimeWarp, then append this message to the box 
         public void RoundStartMessage()
         {
-
             var message = _viewModel.BattleEngine.BattleMessage.TimeWarpMessage;
 
             MessageText.Text = message;
-
-            //htmlSource.Html = _viewModel.BattleEngine.BattleMessage.GetHTMLFormattedRoundMessage();
-            //HtmlBox.Source = HtmlBox.Source = htmlSource;
         }
 
         // Before the page appears, remove anything that was there prior, and load data to view model

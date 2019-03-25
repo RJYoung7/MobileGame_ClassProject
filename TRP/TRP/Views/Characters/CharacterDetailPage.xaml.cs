@@ -23,17 +23,6 @@ namespace TRP.Views
             BindingContext = _viewModel = viewModel;
         }
 
-        // Constructor: creates instance of page, which initializes the xaml 
-        public CharacterDetailPage()
-        {
-            InitializeComponent();
-
-            var data = new Character();
-
-            _viewModel = new CharacterDetailViewModel(data);
-            BindingContext = _viewModel;
-        }
-
         //When edit button is clicked, create edit page and add onto stack
         public async void Edit_Clicked(object sender, EventArgs e)
         {

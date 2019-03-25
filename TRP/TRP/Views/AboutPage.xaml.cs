@@ -53,18 +53,9 @@ namespace TRP.Views
 
             // Turn off Database Settings Frame
             DatabaseSettingsFrame.IsVisible = false;
-
-            var myTestItem = new Item();
-            var myTestCharacter = new Character();
-            var myTestMonster = new Monster();
-
-            var myOutputItem = myTestItem.FormatOutput();
-            var myOutputCharacter = myTestCharacter.FormatOutput();
-            var myOutputMonster = myTestMonster.FormatOutput();
-
         }
 
-        // Set datastore based on user's toggle 
+        // Set datastore based on user's toggle: default is mock 
         private void SetDataSource(bool isMock)
         {
             var set = DataStoreEnum.SQL;
@@ -80,8 +71,6 @@ namespace TRP.Views
         // Enable or disable debug settings 
         private void EnableDebugSettings_OnToggled(object sender, ToggledEventArgs e)
         {
-            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
-
             DebugSettingsFrame.IsVisible = (e.Value);
         }
 
@@ -91,14 +80,13 @@ namespace TRP.Views
             DatabaseSettingsFrame.IsVisible = (e.Value);
         }
 
+        // Sets database based on the switch: if on, using mock; if off, using SQL
         private void UseMockDataSourceSwitch_OnToggled(object sender, ToggledEventArgs e)
         {
-            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
             SetDataSource(e.Value);
         }
 
         // Debug Switches
-
         // Turn on forced random values 
         private void UseForcedRandomValuesSwitch_OnToggled(object sender, ToggledEventArgs e)
         {
@@ -276,6 +264,7 @@ namespace TRP.Views
             GameGlobals.EnableMulligan = e.Value;
         }
 
+        // Sets change of mulligan 
         private async void SetMulliganChance(object sender, EventArgs e)
         {
             GameGlobals.MulliganChance = Convert.ToInt32(MulliganChance.Text);

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace TRP.Controllers
 {
-
     public class ItemsController
     {
         // Make this a singleton so it only exist one time because holds all the data records in memory
@@ -34,6 +33,7 @@ namespace TRP.Controllers
         //Ask server for items based on api url 
         public async Task<List<Item>> GetItemsFromServer(int parameter = 100)
         {
+            // URL component for the server get calls
             var URLComponent = "GetItemList/";
 
             // Grab items
@@ -51,7 +51,7 @@ namespace TRP.Controllers
             }
 
             // Call model to refresh itself to fetch list
-            ItemsViewModel.Instance.SetNeedsRefresh(true);
+            ItemsViewModel.Instance.ForceDataRefresh();
             return itemsList;
         }
 
@@ -62,8 +62,10 @@ namespace TRP.Controllers
         // Attribute: which attribute the item should be for, or Unknown 
         public async Task<List<Item>> GetItemsFromGame(int number, int level, AttributeEnum attribute, ItemLocationEnum location, bool random, bool updateDataBase)
         {
+            // URL component for server post calls
             var URLComponent = "GetItemListPost";
 
+            // Create a dictionary object to store the requested parameters
             var dict = new Dictionary<string, string>
             {
                 { "Number", number.ToString()},
@@ -71,7 +73,6 @@ namespace TRP.Controllers
                 { "Attribute", ((int)attribute).ToString()},
                 { "Location", ((int)location).ToString()},
                 { "Random", random.ToString()}
-
             };
 
             // Convert parameters to a key value pairs to a json object
@@ -88,36 +89,41 @@ namespace TRP.Controllers
                 return new List<Item>();
             }
 
-
-            // Update the db by inserting via view model
+            // Update the db by inserting via viewmodel
             if (updateDataBase)
             {
+                // Walk through the list and insertupdate
                 foreach (var item in myList)
                 {
-                    // Call to the View Model, so view model can decide where to put data
+                    // Call to the ViewModel, so viewmodel can decide where to put data
                     await ItemsViewModel.Instance.InsertUpdateAsync(item);
                 }
 
-                // Call view model to refresh itself 
-                ItemsViewModel.Instance.SetNeedsRefresh(true);
+                // Call viewmodel to refresh itself 
+                ItemsViewModel.Instance.ForceDataRefresh();
             }
 
             return myList;
         }
 
-
         // Parse JSON and return list of items 
         private List<Item> ParseJson(string myJsonData)
         {
+            // Variable to hold the list of items
             var myData = new List<Item>();
 
+            // Try parsing the Json and adding object to list of items
             try
             {
                 JObject json;
+
+                // Parse the Json string
                 json = JObject.Parse(myJsonData);
 
+                // Temporary list to hold the list of Json objects
                 var myTempList = json["ItemList"].ToObject<List<JObject>>();
 
+                // Convert json objects to items and add them to the item list
                 foreach (var myItem in myTempList)
                 {
                     var myTempObject = ConvertFromJson(myItem);
@@ -134,14 +140,15 @@ namespace TRP.Controllers
                 Console.WriteLine(Ex.ToString());
                 return null;
             }
-
         }
 
         // Parse fields of item from JSON
         private Item ConvertFromJson(JObject json)
         {
+            // Create a new base item
             var myData = new Item();
 
+            // Update the item with the information from the json object
             try
             {
                 myData.Name = JsonHelper.GetJsonString(json, "Name");
@@ -155,7 +162,6 @@ namespace TRP.Controllers
                 myData.Location = (ItemLocationEnum)JsonHelper.GetJsonInteger(json, "Location");
                 myData.Attribute = (AttributeEnum)JsonHelper.GetJsonInteger(json, "Attribute");
             }
-
             catch (Exception Ex)
             {
                 Console.WriteLine(Ex.ToString());

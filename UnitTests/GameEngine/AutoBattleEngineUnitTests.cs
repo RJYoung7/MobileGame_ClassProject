@@ -111,11 +111,6 @@ namespace UnitTests.GameEngine
             var myEngine = new BattleEngine();
             var Expected = true;
 
-            for (var i = 0; i < 6; i++)
-            {
-                myEngine.CharacterList.Add(new Character());
-            }
-
             // Act
             var Actual = myEngine.AddCharactersToBattle();
 
@@ -157,7 +152,7 @@ namespace UnitTests.GameEngine
             var Actual = myEngine.RunAutoBattle();
 
             // Reset
-          //  CharactersViewModel.Instance.ReloadData();
+            CharactersViewModel.Instance.ReloadData();
 
             // Assert
             Assert.AreEqual(Expect, Actual, TestContext.CurrentContext.Test.Name);

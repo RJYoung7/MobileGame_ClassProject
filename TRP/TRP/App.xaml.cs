@@ -8,7 +8,9 @@ namespace TRP
 {
     public partial class App : Application
     {
+        static SQLiteAsyncConnection _database; // db for this app
 
+        // Application constructor: loads database 
         public App()
         {
             InitializeComponent();
@@ -19,24 +21,7 @@ namespace TRP
             TRP.Services.MasterDataStore.ToggleDataStore(Models.DataStoreEnum.Mock);
         }
 
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
-
-
-        static SQLiteAsyncConnection _database;
-
+        // SQLite initalization: where the database file can be found
         public static SQLiteAsyncConnection Database
         {
             get
